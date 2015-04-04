@@ -10,6 +10,16 @@
 <script src="js/admin_public.js" language="javascript"></script> 
 <title>后台管理</title>
 </head>
+<script>
+function checkucform(){
+	
+	if(myform.UC_CONNECT.value=='' || myform.UC_DBHOST.value=='' || myform.UC_DBUSER.value==''|| myform.UC_DBNAME.value==''|| myform.UC_DBCHARSET.value==''|| myform.UC_DBTABLEPRE.value==''|| myform.UC_KEY.value==''|| myform.UC_API.value==''|| myform.UC_APPID.value==''|| myform.UC_APP.value=='')
+	{
+		layer.msg('请确认信息填写完善！', 2, 8);
+		return false;
+	}
+}
+</script>
 <body class="body_ifm">
 <div class="infoboxp"><div class="infoboxp_top_bg"></div>
 <div class="infoboxp_top">
@@ -18,7 +28,7 @@
 </div>
 <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
 <div class="admin_table_border">
-<form method="post" action="index.php?m=admin_uc&c=save" name="myform" target="supportiframe">
+<form method="post" action="index.php?m=admin_uc&c=save" name="myform" target="supportiframe"  onsubmit="return checkucform();">
 	<table width="100%" class="table_form">
             <tr>
             <th width="200"  style=" background:#EBF4FC">数据库类型 UC_CONNECT：</th>

@@ -34,12 +34,18 @@ class invite_controller extends company
 				foreach($rows as $v){
 					$uid[]=$v['uid'];
 				}
-				$resume=$this->obj->DB_select_all("resume","`uid` in (".$this->pylode(",",$uid).") and `r_status`<>'2'","`uid`,`name`,`sex`,`edu`");
+				$where="a.`uid` in (".$this->pylode(",",$uid).") and a.`r_status`<>'2' and a.`def_job`=b.`id`";
+				$resume=$this->obj->DB_select_alls("resume","resume_expect",$where,"a.`uid`,a.`name`,a.`sex`,a.`edu`,b.`job_classid`");
 			}
 			if(is_array($resume))
 			{
 				include(PLUS_PATH."user.cache.php");
+				include(PLUS_PATH."job.cache.php");
 				foreach($resume as $va){
+					if($va['job_classid']!=""){
+						$job=@explode(",",$va['job_classid']);
+						$user[$va['uid']]['jobname']=$job_name[$job[0]];
+					}
 					$user[$va['uid']]['name']=$va['name'];
 					$user[$va['uid']]['sex']=$userclass_name[$va['sex']];
 					$user[$va['uid']]['edu']=$userclass_name[$va['edu']];

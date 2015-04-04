@@ -10,7 +10,7 @@
  */
 class reward_controller extends common
 {
-			//设置高级搜索功能
+
 	function set_search(){
 		$search_list[]=array("param"=>"status","name"=>'审核状态',"value"=>array("1"=>"上架","2"=>"下架"));
 		$search_list[]=array("param"=>"rec","name"=>'热门推荐',"value"=>array("1"=>"是","2"=>"否"));
@@ -84,7 +84,7 @@ class reward_controller extends common
 				$value.="`pic`='".$pic."',";
 				if($_POST['id']){
 					$row=$this->obj->DB_select_once("reward","`id`='".$_POST['id']."'");
-					@unlink("../".$row['pic']);
+					$this->obj->unlink_pic("../".$row['pic']);
 				}
 			}
 			$value.="`name`='".$_POST['name']."',";

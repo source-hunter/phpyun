@@ -1620,7 +1620,12 @@ class Smarty_Compiler extends Smarty
 					$len = intval($paramer[len]);
 					$group[$key][name] = mb_substr($value[name],0,$len,"GBK");
 				}
-				
+				if($group_type[$value['id']])
+				{
+					$nids = $value['id'].",".@implode(',',$group_type[$value['id']]);
+				}else{
+					$nids = $value['id'];
+				}
 				if($config[sy_news_rewrite]=="2"){
 					$group[$key][url] = $config['sy_weburl']."/news/".$value[id]."/";
 				}else{
@@ -1996,7 +2001,7 @@ class Smarty_Compiler extends Smarty
 					$user[$k]['time'] = date("Y-m-d",$v['lastupdate']);
 				}
 
-				if($config['sy_usertype_1']=='1'){
+				if($config['sy_usertype_1']=='1'&&$v['photo']){
 					if(!empty($my_down)){
 						foreach($my_down as $m_k=>$m_v){
 							$my_down_uid[]=$m_v['uid'];
@@ -3041,7 +3046,7 @@ class Smarty_Compiler extends Smarty
 			$limit =  " limit $paramer[limit]";
 		}
 		include APP_PATH."/plus/city.cache.php";
-		$query = $db->query("select count(*) as num,uid,cityid,three_cityid,lastupdate from $db_config[def]company_job where  $where GROUP BY uid ORDER BY lastupdate desc $limit");
+		$query = $db->query("select count(*) as num,uid,provinceid,cityid,three_cityid,lastupdate from $db_config[def]company_job where  $where GROUP BY uid ORDER BY lastupdate desc $limit");
 
 		while($rs = $db->fetch_array($query))
 		{
@@ -3053,6 +3058,9 @@ class Smarty_Compiler extends Smarty
 				$one_city[$rs['uid']]			= $city_name[$rs['cityid']];
 				$two_city[$rs['uid']]  = $city_name[$rs['three_cityid']];
 			}
+			if($one_city[$rs['uid']]==''){
+				$one_city[$rs['uid']]=$city_name[$rs['provinceid']];
+			} 
 			$lasttime[$rs['uid']] = date('Y-m-d',$rs['lastupdate']);
 			$uids[] = $rs['uid'];
 		}
@@ -3132,6 +3140,18 @@ class Smarty_Compiler extends Smarty
 						}
 					}
 					$paramer[nid]=@implode(',',$nids);
+				}
+			}
+			if($paramer[nid])
+			{
+				$nid_s = @explode(',',$paramer[nid]);
+				
+				foreach($nid_s as $v)
+				{
+					if($group_type[$v])
+					{
+						$paramer[nid] = $paramer[nid].",".@implode(',',$group_type[$v]);
+					}
 				}
 			}
 			if($paramer[type])
@@ -3632,8 +3652,6 @@ class Smarty_Compiler extends Smarty
 		if($paramer['limit'])
 		{
 			$limit=" LIMIT ".$paramer['limit'];
-		}else{
-			$limit=" LIMIT 10";
 		}
 		$List=$db->select_all("toolbox_doc",$where.$limit);
 		$this->_tpl_vars[$item] = $List;
@@ -3684,10 +3702,17 @@ class Smarty_Compiler extends Smarty
 		{
 			$where.=" AND `rec_time`>'".time()."'";
 		}
-
 		if($paramer['cert'])
 		{
-			$where.=" AND `yyzz_status`='1'";
+			$company=$db->select_all("company","`yyzz_status`='1'","`uid`");
+			if(is_array($company))
+			{
+				foreach($company as $v)
+				{
+					$job_uid[]=$v['uid'];
+				}
+			}
+			$where.=" and `uid` in (".@implode(",",$job_uid).")";
 		}
 		
 		if($paramer[noid]){
@@ -3741,7 +3766,7 @@ class Smarty_Compiler extends Smarty
 		}
 		if($paramer['jobids'])
 		{
-			$where.= " AND (`job1_son` IN (".@implode(',',$paramer['jobids']).") OR `job_post` IN (".@implode(',',$paramer['jobids'])."))";
+			$where.= " AND (`job1_son`='".$paramer['jobids']."' OR `job_post`='".$paramer['jobids']."')";
 		}
 		if($paramer['jobin'])
 		{

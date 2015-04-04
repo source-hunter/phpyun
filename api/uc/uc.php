@@ -218,7 +218,7 @@ class uc_note {
 	}
 	function add_cookie($weburl,$uid,$username,$salt,$email,$pass,$usertype="1")
 	{
-		require_once ("../../plus/config.php");
+		include ("../../plus/config.php");
 		if($config[sy_web_site]=="1"){
 			SetCookie("uid",$uid,time() + 86400,"/",$weburl);
 			SetCookie("username",$username,time() + 86400,"/",$weburl);
@@ -238,7 +238,7 @@ class uc_note {
 	}
 	function unset_cookie($weburl)
 	{
-		require_once ("../../plus/config.php");
+		include ("../../plus/config.php");
 		if($config[sy_web_site]=="1"){
 			SetCookie("uid", "", time() - 604800, "/",$weburl);
 			SetCookie("username", "", time() - 604800, "/",$weburl);
@@ -295,7 +295,7 @@ class uc_note {
 		if(!API_SYNLOGOUT) {
 			return API_RETURN_FORBIDDEN;
 		}
-		require_once ("../../plus/config.php");
+		include ("../../plus/config.php");
 		if($config[sy_onedomain]!=""){
 			$weburl=str_replace("http://www","",$config[sy_onedomain]);
 		}elseif($config[sy_indexdomain]!=""){

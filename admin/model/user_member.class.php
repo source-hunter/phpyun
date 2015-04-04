@@ -27,6 +27,7 @@ class user_member_controller extends common
 			}else{
 				$where .=" and b.`moblie` LIKE '%".$_GET['keyword']."%'";
 			}
+			$page_url['keyword']=$_GET['keyword'];
 			$page_url['type']=$_GET['type'];
 		}
 		if($_GET['adtime']){

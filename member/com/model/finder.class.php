@@ -64,12 +64,7 @@ class finder_controller extends company{
 		$CacheArr['user'] =array('userdata','userclass_name');
 		$CacheArr['com'] =array('comdata','comclass_name');
 		$result=$this->CacheInclude($CacheArr);
-		if($result['comdata']['com_finder_num']&&is_array($result['comdata']['com_finder_num'])){
-			$com_finder_num=$this->obj->DB_select_all("comclass","`id` in(".@implode(',',$result['comdata']['com_finder_num']).")  order  by `sort` asc");
-		}
-		if($result['comdata']['com_finder_cycle']&&is_array($result['comdata']['com_finder_cycle'])){
-			$com_finder_cycle=$this->obj->DB_select_all("comclass","`id` in(".@implode(',',$result['comdata']['com_finder_cycle']).")  order  by `sort` asc");
-		}
+	 
 		if($_GET['id']){
 			$info=$this->obj->DB_select_once("finder","`uid`='".$this->uid."' and `id`='".(int)$_GET['id']."'");
 			if($info['para']){
@@ -87,17 +82,14 @@ class finder_controller extends company{
 				}
 				$this->yunset("parav",$parav);
 			}
-			$this->yunset("info",$info);
-			$this->yunset("com_finder_num",$com_finder_num);
-			$this->yunset("com_finder_cycle",$com_finder_cycle);
+			$this->yunset("info",$info); 
 			$this->yunset("js_def",1);
 			$this->public_action();
 
 		}
 		$uptime=array('1'=>'今天',"3"=>'最近三天','7'=>'最近七天','30'=>'最近一个月',"90"=>'最近三个月');
 		$adtime=array('1'=>'一天内',"3"=>'三天内','7'=>'七天内',"15"=>'十五天内','30'=>'一个月内',"60"=>'两个月内');
-		$this->yunset("com_finder_num",$com_finder_num);
-		$this->yunset("com_finder_cycle",$com_finder_cycle);
+	 
 		$this->yunset("adtime",$adtime);
 		$this->yunset("uptime",$uptime);
 		$this->com_tpl('finderinfo');

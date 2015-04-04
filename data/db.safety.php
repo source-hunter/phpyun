@@ -37,7 +37,7 @@ function gpc2sql($str,$str2) {
 	}
 
 
-	$arr=array("sleep"=>"£Óleep"," and "=>" an d "," or "=>" £Ïr ","%20"=>" ","select"=>"£Óelect","update"=>"£Õpdate","count"=>"£Ãount","chr"=>"£Ãhr","truncate"=>"£Ôruncate","union"=>"£Õnion","delete"=>"£Äelete","insert"=>"£Énsert","<"=>"&lt;",">"=>"&gt;","\""=>"&quot;","'"=>"&acute;","--"=>"- -","\("=>"£¨","\)"=>"£©");
+	$arr=array("sleep"=>"£Óleep"," and "=>" an d "," or "=>" £Ïr ","%20"=>" ","select"=>"£Óelect","update"=>"£Õpdate","count"=>"£Ãount","chr"=>"£Ãhr","truncate"=>"£Ôruncate","union"=>"£Õnion","delete"=>"£Äelete","insert"=>"£Énsert","<"=>"&lt;",">"=>"&gt;","\""=>"&quot;","'"=>"&acute;","--"=>"- -","\("=>"£¨","\)"=>"£©","00000000"=>"");
 	
 	foreach($arr as $key=>$v){
     	$str = preg_replace('/'.$key.'/isU',$v,$str);
@@ -107,6 +107,8 @@ function common_htmlspecialchars($key,$str,$str2,$config){
 			$str[$str_k] = common_htmlspecialchars($str_k,$str_v);
 		}
 	}else{
+		$str = gpc2sql($str,$str2);
+
 		if(!in_array($key,array('content','config','group_power','description','body','job_desc','eligible','other','code','intro','doc','traffic','media','packages','booth','participate')))
 		{
 			$str = strip_tags($str);			
@@ -117,7 +119,7 @@ function common_htmlspecialchars($key,$str,$str2,$config){
 				$str = RemoveXSS($str);
 			}
 		}
-		$str = gpc2sql($str,$str2);
+		
 	}
 	return $str;
 }

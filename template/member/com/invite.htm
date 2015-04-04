@@ -36,7 +36,7 @@
                 
                 <div class="job_news_list">
                   <span class="job_news_list_span job_w30"><input type=checkbox name="delid[]" value="{yun:}$job.id{/yun}"></span>
-                  <span class="job_news_list_span job_w160">ÍøÒ³Éè¼Æ</span>
+                  <span class="job_news_list_span job_w160">{yun:}$user[$uid].jobname{/yun}</span>
                   <span class="job_news_list_span job_w90">{yun:}$user[$uid].name{/yun}</span>
                   <span class="job_news_list_span job_w50">{yun:}$user[$uid].sex{/yun}</span>
                   <span class="job_news_list_span job_w50">{yun:}$user[$uid].edu{/yun}</span>
@@ -64,6 +64,5 @@
       </div>
     </div>
   </div>
-</div>
-</div></div>
+</div> 
 {yun:}include file="$comstyle/footer.htm"{/yun} 

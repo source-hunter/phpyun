@@ -1,4 +1,7 @@
 	  <div class="search_select">
+        {yun:}if $smarty.get.keyword!=""{/yun}
+        <a class="Search_jobs_c_a" href="{yun:}seacrh_url m=$smarty.get.m c=$smarty.get.c untype=keyword{/yun}">¹Ø¼ü×Ö£º{yun:}$smarty.get.keyword{/yun}</a>
+        {yun:}/if{/yun}
       {yun:}foreach item=rows key=key from=$search_list{/yun}
        {yun:}assign var="t" value=$rows.param{/yun}
              {yun:}if $smarty.get.$t!==false && $smarty.get.$t!=''{/yun}

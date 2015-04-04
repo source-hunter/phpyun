@@ -35,16 +35,13 @@ class link_controller extends common
 			}
 			$urlarr['link']=$_GET['link'];
 		}
-		
 		if($_GET['news_search']!=''){
 			if ($_GET['type']=='1'){
-				$where.=" and `link_type`='1'";
+				$where.=" and `link_name` like '%".$_GET['keyword']."%' and `link_type`='1'";
 			}elseif ($_GET['type']=='2'){
-				$where.=" and `link_type`='2'";
-			}
-			if($_GET['keyword'])
-			{
-				$where.=" AND `link_name` like '%".$_GET['keyword']."%'";
+				$where.=" and `link_name` like '%".$_GET['keyword']."%' and `link_type`='2'";
+			}else{
+			    $where.=" and `link_name` like '%".$_GET['keyword']."%'";
 			}
 			$urlarr['type']=$_GET['type'];
 			$urlarr['keyword']=$_GET['keyword'];
@@ -59,7 +56,6 @@ class link_controller extends common
 			$where.=" order by id desc";
 		}
 		$urlarr['page']="{{page}}";
-		
 		$pageurl=$this->url("index",$_GET['m'],$urlarr);
 		$linkrows=$this->get_page("admin_link",$where,$pageurl,$this->config['sy_listnum']);
 		foreach($linkrows as $key=>$value)

@@ -30,6 +30,8 @@ class user_controller extends common{
 			$v['name'] = trim($p['info_name']);
 			$v['lastupdate']=time();
 			$v['uid']=$uid;
+			
+			include(PLUS_PATH."industry.cache.php");
 			$v['hy']=$this->locoytostr($industry_name,$p['info_hy'],$l['locoy_rate']);
 			if(!$v['hy']){
 				$v['hy']=$l['locoy_resume_hy'];
@@ -50,7 +52,6 @@ class user_controller extends common{
 			}
 			
 			$job_row=$this->get_job_class($p['info_classid'],$l['locoy_rate']);
-			
 			if($job_row){
 				foreach($job_row as $vs){
 					$job_arr[] = $vs;
@@ -60,6 +61,7 @@ class user_controller extends common{
 			if(!$v['job_classid']){
 				$v['job_classid']=$l['locoy_resume_post'];
 			}
+			
 			$salary=$p['info_salary'];
 			$v['salary']=$this->locoytostr($this->get_user_type('salary'),$salary,$l['locoy_rate']);
 			if(!$v['salary']){
@@ -70,10 +72,8 @@ class user_controller extends common{
 			if(!$v['report']){
 				$v['report']=$l['locoy_user_report'];
 			}
-			
-			
 			$type=$p['info_type'];
-			$v['type']=$this->locoytostr($this->get_user_type('type'),$type,$l['locoy_rate']);
+            $v['type']=$this->locoytostr($this->get_user_type('type'),$type,$l['locoy_rate']);
 			
 			if($p['info_hits']){
 				$v['hits']=trim($p['info_hits']);
@@ -121,7 +121,6 @@ class user_controller extends common{
 					{
 						$p['work_edate'].='01';
 					}
-					
 					$work_v.="`sdate`='".strtotime($p['work_sdate'])."',";
 					$work_v.="`edate`='".strtotime($p['work_edate'])."',";
 					$work_v.="`department`='".$p['work_department']."',";
@@ -129,6 +128,99 @@ class user_controller extends common{
 					$work_v.="`title`='".$p['work_title']."'";
 					$this->obj->DB_insert_once("resume_work",$work_v);
 				}
+								if($p['work_name1'] || $p['work_sdate1']){    //工作经历2
+					$work_v1="`uid`='".$uid."',";
+					$work_v1.="`eid`='".$nid."',";
+					$work_v1.="`name`='".$p['work_name1']."',";
+
+					$p['work_sdate1'] = str_replace(array('年','月','日'),'-',$p['work_sdate1']);
+					$p['work_edate1'] = str_replace(array('年','月','日'),'-',$p['work_edate1']);
+					if(substr($p['work_sdate1'], -1)=='-')
+					{
+						$p['work_sdate1'].='01';
+					}
+					if(substr($p['work_edate1'], -1)=='-')
+					{
+						$p['work_edate1'].='01';
+					}
+					
+					$work_v1.="`sdate`='".strtotime($p['work_sdate1'])."',";
+					$work_v1.="`edate`='".strtotime($p['work_edate1'])."',";
+					$work_v1.="`department`='".$p['work_department1']."',";
+					$work_v1.="`content`='".$p['work_content1']."',";
+					$work_v1.="`title`='".$p['work_title1']."'";
+					$this->obj->DB_insert_once("resume_work",$work_v1);
+				}
+					if($p['work_name2'] || $p['work_sdate2']){    //工作经历3
+					$work_v2="`uid`='".$uid."',";
+					$work_v2.="`eid`='".$nid."',";
+					$work_v2.="`name`='".$p['work_name2']."',";
+
+					$p['work_sdate2'] = str_replace(array('年','月','日'),'-',$p['work_sdate2']);
+					$p['work_edate2'] = str_replace(array('年','月','日'),'-',$p['work_edate2']);
+					if(substr($p['work_sdate2'], -1)=='-')
+					{
+						$p['work_sdate2'].='01';
+					}
+					if(substr($p['work_edate2'], -1)=='-')
+					{
+						$p['work_edate2'].='01';
+					}
+					
+					$work_v2.="`sdate`='".strtotime($p['work_sdate2'])."',";
+					$work_v2.="`edate`='".strtotime($p['work_edate2'])."',";
+					$work_v2.="`department`='".$p['work_department2']."',";
+					$work_v2.="`content`='".$p['work_content2']."',";
+					$work_v2.="`title`='".$p['work_title2']."'";
+					$this->obj->DB_insert_once("resume_work",$work_v2);
+				}
+					if($p['work_name3'] || $p['work_sdate3']){    //工作经历4
+					$work_v3="`uid`='".$uid."',";
+					$work_v3.="`eid`='".$nid."',";
+					$work_v3.="`name`='".$p['work_name3']."',";
+
+					$p['work_sdate3'] = str_replace(array('年','月','日'),'-',$p['work_sdate3']);
+					$p['work_edate3'] = str_replace(array('年','月','日'),'-',$p['work_edate3']);
+					if(substr($p['work_sdate3'], -1)=='-')
+					{
+						$p['work_sdate3'].='01';
+					}
+					if(substr($p['work_edate3'], -1)=='-')
+					{
+						$p['work_edate3'].='01';
+					}
+					
+					$work_v3.="`sdate`='".strtotime($p['work_sdate3'])."',";
+					$work_v3.="`edate`='".strtotime($p['work_edate3'])."',";
+					$work_v3.="`department`='".$p['work_department3']."',";
+					$work_v3.="`content`='".$p['work_content3']."',";
+					$work_v3.="`title`='".$p['work_title3']."'";
+					$this->obj->DB_insert_once("resume_work",$work_v3);
+				}
+					if($p['work_name4'] || $p['work_sdate4']){    //工作经历5
+					$work_v4="`uid`='".$uid."',";
+					$work_v4.="`eid`='".$nid."',";
+					$work_v4.="`name`='".$p['work_name4']."',";
+
+					$p['work_sdate4'] = str_replace(array('年','月','日'),'-',$p['work_sdate4']);
+					$p['work_edate4'] = str_replace(array('年','月','日'),'-',$p['work_edate4']);
+					if(substr($p['work_sdate4'], -1)=='-')
+					{
+						$p['work_sdate4'].='01';
+					}
+					if(substr($p['work_edate4'], -1)=='-')
+					{
+						$p['work_edate4'].='01';
+					}
+					
+					$work_v4.="`sdate`='".strtotime($p['work_sdate4'])."',";
+					$work_v4.="`edate`='".strtotime($p['work_edate4'])."',";
+					$work_v4.="`department`='".$p['work_department4']."',";
+					$work_v4.="`content`='".$p['work_content4']."',";
+					$work_v4.="`title`='".$p['work_title4']."'";
+					$this->obj->DB_insert_once("resume_work",$work_v4);
+				}
+				
 				if($p['pro_name']|| $p['pro_sdate']){
 					$pro_v="`uid`='".$uid."',";
 					$pro_v.="`eid`='".$nid."',";
@@ -171,6 +263,48 @@ class user_controller extends common{
 					$edu_v.="`title`='".$p['edu_title']."'";
 					$this->obj->DB_insert_once("resume_edu",$edu_v);
 				}
+								if($p['edu_name1'] || $p['edu_title1']){       //教育经历2
+					$edu_v1="`uid`='".$uid."',";
+					$edu_v1.="`eid`='".$nid."',";
+					$edu_v1.="`name`='".$p['edu_name1']."',";
+					$p['edu_sdate1'] = str_replace(array('年','月','日'),'-',$p['edu_sdate1']);
+					$p['edu_edate1'] = str_replace(array('年','月','日'),'-',$p['edu_edate1']);
+					if(substr($p['edu_sdate1'], -1)=='-')
+					{
+						$p['edu_sdate1'].='01';
+					}
+					if(substr($p['edu_edate1'], -1)=='-')
+					{
+						$p['edu_edate1'].='01';
+					}
+					$edu_v1.="`sdate`='".strtotime($p['edu_sdate1'])."',";
+					$edu_v1.="`edate`='".strtotime($p['edu_edate1'])."',";
+					$edu_v1.="`specialty`='".$p['edu_specialty1']."',";
+					$edu_v1.="`content`='".$p['edu_content1']."',";
+					$edu_v1.="`title`='".$p['edu_title1']."'";
+					$this->obj->DB_insert_once("resume_edu",$edu_v1);
+				}
+				if($p['edu_name2'] || $p['edu_title2']){       //教育经历3
+					$edu_v2="`uid`='".$uid."',";
+					$edu_v2.="`eid`='".$nid."',";
+					$edu_v2.="`name`='".$p['edu_name2']."',";
+					$p['edu_sdate2'] = str_replace(array('年','月','日'),'-',$p['edu_sdate2']);
+					$p['edu_edate2'] = str_replace(array('年','月','日'),'-',$p['edu_edate2']);
+					if(substr($p['edu_sdate2'], -1)=='-')
+					{
+						$p['edu_sdate2'].='01';
+					}
+					if(substr($p['edu_edate2'], -1)=='-')
+					{
+						$p['edu_edate2'].='01';
+					}
+					$edu_v2.="`sdate`='".strtotime($p['edu_sdate2'])."',";
+					$edu_v2.="`edate`='".strtotime($p['edu_edate2'])."',";
+					$edu_v2.="`specialty`='".$p['edu_specialty2']."',";
+					$edu_v2.="`content`='".$p['edu_content2']."',";
+					$edu_v2.="`title`='".$p['edu_title2']."'";
+					$this->obj->DB_insert_once("resume_edu",$edu_v2);
+				}
 				if($p['cert_name'] || $p['cert_title']){
 					$cert_v="`uid`='".$uid."',";
 					$cert_v.="`eid`='".$nid."',";
@@ -211,6 +345,26 @@ class user_controller extends common{
 					$train_v.="`content`='".$p['train_content']."',";
 					$train_v.="`title`='".$p['train_title']."'";
 					$this->obj->DB_insert_once("resume_training",$train_v);
+				}
+				if($p['train_name1'] || $p['train_title1']){    //培训经历2
+					$train_v1="`uid`='".$uid."',";
+					$train_v1.="`eid`='".$nid."',";
+					$train_v1.="`name`='".$p['train_name1']."',";
+					$p['train_sdate1'] = str_replace(array('年','月','日'),'-',$p['train_sdate1']);
+					$p['train_edate1'] = str_replace(array('年','月','日'),'-',$p['train_edate1']);
+					if(substr($p['train_sdate1'], -1)=='-')
+					{
+						$p['train_sdate1'].='01';
+					}
+					if(substr($p['train_edate1'], -1)=='-')
+					{
+						$p['train_edat1'].='01';
+					}
+					$train_v1.="`sdate`='".strtotime($p['train_sdate1'])."',";
+					$train_v1.="`edate`='".strtotime($p['train_edate1'])."',";
+					$train_v1.="`content`='".$p['train_content1']."',";
+					$train_v1.="`title`='".$p['train_title1']."'";
+					$this->obj->DB_insert_once("resume_training",$train_v1);
 				}
 				echo 1;die;
 			}
@@ -315,19 +469,13 @@ class user_controller extends common{
 	function get_job_class($name,$locoy_rate){
 		
 		include(PLUS_PATH."job.cache.php");
-		$arr=explode("/",$name);
+		$arr=explode(",",$name);
 		if(is_array($arr)){
 			foreach($arr as $v){
 				$data[]=$this->locoytostr($job_name,$v,$locoy_rate);
 			}
 		}
-		$job_type[0]=$job_index;
-		$val=$this->get_all_city($job_type,$data,$locoy_rate);
-		if(count($val)==1){
-			$val[]=$this->get_once_city($job_type,$job_name,$val[0],$locoy_rate);
-		}
-
-		return $val;
+		return $data;
 	}
 	function get_all_city($city_type,$data,$locoy_rate,$k=""){
 		if(is_array($data)){

@@ -72,7 +72,7 @@ class com_controller extends common{
 			}else {
 				if($_GET['type']=='sq'){
 					$row=$this->obj->DB_select_num("userid_job","`uid`='".$this->uid."' and `job_id`='".$_GET['id']."'");
-					$resume=$this->obj->DB_select_num("resume","`uid`='".$this->uid."'");
+					$resume=$this->obj->DB_select_once("resume","`uid`='".$this->uid."'");
 					if(empty($resume)){
 						$data['msg']='您还没有简历，请先添加简历！';
 						$data['url']='index.php?m=com';

@@ -50,7 +50,7 @@ class resume_controller extends user{
 		{
 			foreach($show as $v)
 			{
-				@unlink(".".$show['picurl']);
+				$this->obj->unlink_pic(".".$show['picurl']);
 			}
 		}
 		$del_array=array("resume_cert","resume_edu","resume_other","resume_project","resume_skill","resume_training","resume_work","resume_doc","user_resume","resume_show","down_resume","userid_job");
@@ -124,31 +124,7 @@ class resume_controller extends user{
 	function resume_ajax_action(){
 		$this->select_resume('resume_'.$_POST['type'],$_POST['id']);
 	}
-	function upload_action(){
-		if($_POST['submit']){
-            if($_POST['url']){
-				$userurl=$this->obj->DB_select_once("resume_expect","`uid`='".$this->uid."' and `id`='".intval($_POST['id'])."'");
-				if(is_array($userurl) && !empty($userurl))
-				{
-					if($userurl['works_upload'])
-					{
-						@unlink(APP_PATH.$userurl['works_upload']);
-					}
-					$url=str_replace($this->config['sy_weburl'],"",$_POST['url']);
-					$nbid=$this->obj->DB_update_all("resume_expect","`works_upload`='".$url."'","`uid`='".$this->uid."' AND `id`='".$_POST['id']."'");
-					isset($nbid)?$this->obj->ACT_layer_msg("Ìí¼Ó³É¹¦£¡",9,"index.php?c=resume"):$this->obj->ACT_layer_msg("Ìí¼ÓÊ§°Ü£¡",8,"index.php?c=resume");
-				}else{
-					$this->obj->ACT_layer_msg("²Ù×÷Ê§°Ü£¡",8,"index.php");
-				}
-			}else{
-				$this->obj->ACT_layer_msg("ÇëÉÏ´«ÎÄµµ£¡",8,"index.php?c=upload&id='".$_POST['id']."'");
-			}
-		}
-		$this->yunset("js_def",2);
-		$this->yunset("id",$_GET['id']);
-		$this->public_action();
-		$this->user_tpl('upload');
-	}
+	
 	function refresh_action(){
 		$id=(int)$_GET['id'];
 		$nid=$this->obj->update_once('resume_expect',array('lastupdate'=>time()),array('id'=>$id,'uid'=>$this->uid));

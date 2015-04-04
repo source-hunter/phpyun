@@ -53,7 +53,7 @@ DD_belatedPNG.fix('.png');
     </div>
     <div class="job_fairs_sub">
         <a href="javascript:;" id="zphstatus" pid="{yun:}$Info.id{/yun}" stime="{yun:}$Info.stime{/yun}" etime="{yun:}$Info.etime{/yun}" class="fairs_yd yun_bth" onclick="get_zph({yun:}$Info.id{/yun})"><!--企业预定--></a>
-        <a href="index.php?m=zph&c=com&id={yun:}$Info.id{/yun}" class="fairs_ch yun_bth"><!--参会企业--></a>
+        <a href="{yun:}url m=zph url=c:com,id:`$Info.id`{/yun}" class="fairs_ch yun_bth"><!--参会企业--></a>
 		<input id="zph_etime_{yun:}$Info.id{/yun}" value='{yun:}$Info.etime{/yun}' type="hidden"/>
 		<input id="zph_stime_{yun:}$Info.id{/yun}" value='{yun:}$Info.stime{/yun}' type="hidden"/>
     </div>
@@ -115,18 +115,18 @@ DD_belatedPNG.fix('.png');
 <!--//--><![CDATA[//><!--
 
 var li_num=$("#rolling_img1 li").length;
-if(li_num>4){//如果图片数量不足，就不执行切换
+if(li_num>4){
 	var scrollPic_02 = new ScrollPic();
-	scrollPic_02.scrollContId   = "rolling_img1"; //内容容器ID
-	scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
-	scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
-	scrollPic_02.frameWidth     = 980;//显示框宽度
-	scrollPic_02.pageWidth      = 242; //翻页宽度
-	scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
-	scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
-	scrollPic_02.autoPlay       = true; //自动播放
-	scrollPic_02.autoPlayTime   = 2; //自动播放间隔时间(秒)
-	scrollPic_02.initialize(); //初始化
+	scrollPic_02.scrollContId   = "rolling_img1"; 
+	scrollPic_02.arrLeftId      = "LeftArr";
+	scrollPic_02.arrRightId     = "RightArr"; 
+	scrollPic_02.frameWidth     = 980;
+	scrollPic_02.pageWidth      = 242;
+	scrollPic_02.speed          = 10;
+	scrollPic_02.space          = 10;
+	scrollPic_02.autoPlay       = true;
+	scrollPic_02.autoPlayTime   = 2;
+	scrollPic_02.initialize();
 }
 //--><!]]> 
 $(function(){

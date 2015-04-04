@@ -391,7 +391,9 @@ function uprating(id){
              <div  class="admin_table_w84">
 			 {yun:}if $v.hottime{/yun} 
 				<a href="javascript:void(0);" onClick="showdiv3('{yun:}$v.uid{/yun}');" class="admin_cz_sc">修改</a>/<a href="javascript:void(0);" onClick="layer_del('确定要取消该名企？','index.php?m=admin_company&c=delhot&id={yun:}$v.uid{/yun}');" class="admin_cz_sc">取消</a>
-				<div class="">{yun:}$v.hottime|date_format:"%Y-%m-%d"{/yun}</div> 
+				<div class="">{yun:}if $v.hottime>=time(){/yun} {yun:}$v.hottime|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun} 
+				<font color='red'>{yun:}$v.hottime|date_format:"%Y-%m-%d"{/yun}</font>
+				{yun:}/if{/yun} </div> 
 			 {yun:}else{/yun}
 			  <a href="javascript:void(0);" onClick="showdiv2('{yun:}$v.uid{/yun}');" class="admin_cz_sc">设为名企</a>
 			 {yun:}/if{/yun}

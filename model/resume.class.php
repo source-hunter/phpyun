@@ -177,19 +177,7 @@ class resume_controller extends common
     		echo 2;die;
     	}
 		$user=$this->obj->DB_select_once("resume_expect","`id`='".(int)$_GET['id']."'");
-		if(empty($user['works_upload'])){
-            echo 3;
-            exit;
-		}
-		if(file_exists(APP_PATH.$user['works_upload'])) {
-			header("Content-type:text/html;charset=utf-8");
-            header("Content-Type: application/force-download");
-            header("Content-Disposition: attachment; filename=".basename($user['works_upload'])."");
-            readfile(APP_PATH.$user['works_upload']);
-            exit;
-        }else{
-            echo "文件不存在！";exit;
-        }
+	
 	}
 }
 ?>

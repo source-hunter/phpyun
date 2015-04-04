@@ -85,7 +85,7 @@ class admin_company_controller extends common
 		}
 		if($_GET['rec']){
        	   if($_GET['rec']=='1'){
- 				$where.= "  and `rec`=1 and `hottime`>'".time()."'";
+ 				$where.= "  and `rec`=1 ";
        	   }else{
  				$where.= "  and `rec`=0 ";
        	   }

@@ -74,7 +74,7 @@ function break_job(num){
   {yun:}include file="$comstyle/left.htm"{/yun}
     <div class="right_box">
       <div  class="index_data_left">
-       <div class="Gain_integral"><span class="Gain_integral_span"><a href="{yun:}url url=c:integral{/yun}">如何获取积分?</a><i class="Gain_integral_icon"></i></span></div>
+     
      <div class="index_data_name"><span class="bold">您好！</span>
      	<span class="funds_cor funds_cor_name">
         {yun:}if $company.name{/yun}{yun:}$company.name{/yun}{yun:}else{/yun}
@@ -101,7 +101,7 @@ function break_job(num){
 	   {yun:}if $company_rating.type=='2'&&$days{/yun} 
 			到期天数：{yun:}$days{/yun}天
 			到期时间：{yun:}$statis.vip_etime|date_format:'%Y-%m-%d'{/yun} 
-		{yun:}/if{/yun}</div>
+		{yun:}/if{/yun}<a href="{yun:}url url=c:integral{/yun}" style="color:#f60; margin-left:10px; display:inline-block">如何获取积分?</a></div>
      <div class="my_funds"><span class="bold">我的资金：</span>账户余额：<span class="funds_cor bold">{yun:}$statis.pay{/yun}</span> 元  您的{yun:}$config.integral_pricename{/yun}：<span class="funds_cor bold">{yun:}$statis.integral{/yun}</span>{yun:}$config.integral_priceunit{/yun}
      <a href='index.php?c=pay' class="my_funds_x">充值</a>
      <a href="index.php?c=paylog&consume=ok" class="my_funds_x">余额详情</a>
@@ -137,7 +137,7 @@ function break_job(num){
          <div class="index_Management_box index_Management_box_no">
       <div class="index_Management_box_h1"><span class="index_Management_box_h1_span">下载管理</span><a href="index.php?c=down" class="index_Management_box_more">查看详情>></a></div>
      <div class="index_Management_c">  贵公司已下载简历 <span class="funds_cor bold">{yun:}$down_resume{/yun}</span>  份 </div>
-     <div class="index_Management_c">  贵公司还可下载简历 <span class="funds_cor bold">{yun:}$statis.down_resume{/yun}</span>  份</div> 
+     <div class="index_Management_c">  贵公司还可下载简历 <span class="funds_cor bold">{yun:}if $statis.vip_etime>time()||$statis.vip_etime=="0"{/yun}{yun:}if $statis.rating_type==1{/yun}{yun:}$statis.down_resume{/yun}{yun:}else{/yun}无限{yun:}/if{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span>  份</div> 
       </div>
       
       

@@ -38,7 +38,7 @@ function Close_yd(){
   <a href="index.php?c=binding">
   <span class="member_Information_touch fltL">{yun:}if $resume.telphone==""{/yun}手机号未填写{yun:}else{/yun}{yun:}$resume.telphone{/yun}{yun:}/if{/yun}</span>
 <span class="member_Information_email fltL">{yun:}if $resume.email==""{/yun}邮箱未填写{yun:}else{/yun}{yun:}$resume.email{/yun}{yun:}/if{/yun}</span></a>
-  <span class="member_Information_xg fltL"><a href="index.php?c=info">修改基本资料</a></span> </div>
+  <span class="member_Information_xg fltL"><a href="index.php?c=info">修改基本资料</a></span><a href="{yun:}url url=c:integral{/yun}" style="color:#f60; margin-left:10px; display:inline-block; line-height:30px; font-size:14px">如何获取积分?</a> </div>
   <div class="member_Information_msg fltL mt5 ">
   <dl class="member_Information_amount"><dt><a href="index.php?c=msg">邀请面试</a></dt><dd><span class="member_Information_amount_n">{yun:}if $msgnum==""{/yun}0{yun:}else{/yun}{yun:}$msgnum{/yun}{yun:}/if{/yun}</span></dd></dl>  
   <dl class="member_Information_amount"><dt> <a href="index.php?c=look">谁看了我的简历</a></dt><dd><span class="member_Information_amount_n">{yun:}$lookNum{/yun}</span></dd></dl> 
@@ -46,7 +46,6 @@ function Close_yd(){
   <dl class="member_Information_amount"><dt><a href="index.php?c=favorite" title="职位收藏">职位收藏记录</a></dt><dd><span class="member_Information_amount_n">{yun:}if $statis.fav_jobnum==""{/yun}0{yun:}else{/yun}{yun:}$statis.fav_jobnum{/yun}{yun:}/if{/yun}</span></dd></dl> 
   <dl class="member_Information_amount member_Information_amountw80"><dt><a href="{yun:}url m=redeem{/yun}">获得积分</a></dt><dd><span class="member_Information_amount_n member_Information_amount_n_re">{yun:}$statis.integral{/yun}<a href="{yun:}url m=redeem{/yun}" class="member_Information_dh png">兑换</a></span></dd></dl> 
   </div>
-  <div class="Gain_integral"><span class="Gain_integral_span"><a href="{yun:}url url=c:integral{/yun}">如何获取积分?</a><i class="Gain_integral_icon"></i></span></div>
   </div>
   </div>
   </div>

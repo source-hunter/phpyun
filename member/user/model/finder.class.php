@@ -57,12 +57,7 @@ class finder_controller extends user{
 		$CacheArr['user'] =array('userdata','userclass_name');
 		$CacheArr['com'] =array('comdata','comclass_name');
 		$result=$this->CacheInclude($CacheArr);
-		if($result['userdata']['user_finder_num']&&is_array($result['userdata']['user_finder_num'])){
-			$user_finder_num=$this->obj->DB_select_all("userclass","`id` in(".@implode(',',$result['userdata']['user_finder_num']).")  order  by `sort` asc");
-		}
-		if($result['userdata']['user_finder_cycle']&&is_array($result['userdata']['user_finder_cycle'])){
-			$user_finder_cycle=$this->obj->DB_select_all("userclass","`id` in(".@implode(',',$result['userdata']['user_finder_cycle']).")  order  by `sort` asc");
-		}
+		 
 		if($_GET['id']){
 			$info=$this->obj->DB_select_once("finder","`uid`='".$this->uid."' and `id`='".(int)$_GET['id']."'");
 			if($info['para']){
@@ -83,9 +78,7 @@ class finder_controller extends user{
 			$this->yunset("info",$info);
 		}
 		$sdate=array('1'=>'一天内',"3"=>'三天内','7'=>'七天内',"15"=>'十五天内','30'=>'一个月内',"60"=>'两个月内');
-		$this->yunset("sdate",$sdate);
-		$this->yunset("user_finder_num",$user_finder_num);
-		$this->yunset("user_finder_cycle",$user_finder_cycle);
+		$this->yunset("sdate",$sdate); 
 		$this->user_tpl('finderinfo');
 	}
 }

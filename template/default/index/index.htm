@@ -122,7 +122,7 @@ $(document).ready(function(){
 	</div>
 	<div class="yun_index_cont" style="display:none">
 		<ul class="index_latest_news">
-			{yun:}fairs len=20 state=2 limit=8 item=flist{/yun}
+			{yun:}fairs len=20  limit=8 item=flist{/yun}
 			<li><a href="{yun:}$flist.url{/yun}" target="_blank">{yun:}$flist.title{/yun}</a></li>
 			{yun:}/fairs{/yun} 
 		</ul> 
@@ -146,8 +146,8 @@ $(document).ready(function(){
       <div class="index_buildPic">
 		<div class="index_buildPic_cont">
 		<ul>
-		   {yun:}adlist classid=39 limit=10 item=ad39{/yun}
-			<li>{yun:}$ad39.html{/yun}</li>
+		   {yun:}adlist classid=8 limit=10 item=ad8{/yun}
+			<li>{yun:}$ad8.html{/yun}</li>
 			{yun:}/adlist{/yun}  
 		</ul>
        </div>     

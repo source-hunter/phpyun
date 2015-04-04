@@ -76,11 +76,10 @@ function SendMsg(){
     	<span class="complay_top_span fl">个人会员列表</span>
       <div class="admin_Filter_span">搜索类型：</div>
       <div class="admin_Filter_text formselect" did='dtype'>
-        <input type="button" {yun:}if $get_type.type==''{/yun} value="全部" {yun:}elseif $get_type.type=='1'{/yun} value="用户名" {yun:}elseif $get_type.type=='2'{/yun} value="姓名" {yun:}elseif $get_type.type=='3'{/yun} value="EMAIL" {yun:}elseif $get_type.type=='4'{/yun} value="手机号" {yun:}/if{/yun} class="admin_Filter_but" id="btype">
-        <input type="hidden" name="type" id="type"/>
+        <input type="button" {yun:}if $get_type.type==''||$get_type.type=='1'{/yun} value="用户名" {yun:}elseif $get_type.type=='2'{/yun} value="姓名" {yun:}elseif $get_type.type=='3'{/yun} value="EMAIL" {yun:}elseif $get_type.type=='4'{/yun} value="手机号" {yun:}/if{/yun} class="admin_Filter_but" id="btype">
+        <input type="hidden" name="type" id="type"  value='1'/>
         <div class="admin_Filter_text_box" style="display:none" id="dtype">
-          <ul>
-            <li><a href="javascript:void(0)" onClick="formselect('','type','全部')">全部</a></li>
+          <ul> 
             <li><a href="javascript:void(0)" onClick="formselect('1','type','用户名')">用户名</a></li>
             <li><a href="javascript:void(0)" onClick="formselect('2','type','姓名')">姓名</a></li>
             <li><a href="javascript:void(0)" onClick="formselect('3','type','EMAIL')">EMAIL</a></li>

@@ -270,7 +270,7 @@ class admin_resume_controller extends common
 			{
 				foreach($show as $v)
 				{
-					@unlink(".".$show['picurl']);
+					$this->obj->unlink_pic(".".$show['picurl']);
 				}
 			}
 			foreach($del_array as $v){

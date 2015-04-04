@@ -22,13 +22,7 @@ DD_belatedPNG.fix('.png');
 {yun:}include file="$tplstyle/header.htm"{/yun}
 <div class="yun_content">
 <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > 招聘会 </div>
-{yun:}if !$total{/yun}
-<div class="seachno">
-        <div class="seachno_left"><img src="{yun:}$style{/yun}/images/search-no.gif"></div>
-        <div class="listno-content"> <strong>很抱歉，没有找到满足条件的招聘会</strong><br>
-	 </div>
-</div>
-{yun:}/if{/yun}
+
 {yun:}fairs item=zph limit=10 ispage=1{/yun}
     <div class="job_fairs fl">
         <div>
@@ -59,8 +53,8 @@ DD_belatedPNG.fix('.png');
             </ul>
             <div class="job_fairs_sub">
              <a href="javascript:;" class="fairs_yd yun_bth" pid="{yun:}$zph.id{/yun}" stime="{yun:}$zph.stime{/yun}" etime="{yun:}$zph.etime{/yun}" class="zphstatus" onclick="get_zph({yun:}$zph.id{/yun});"><!--企业预定--></a>
-             <a href="index.php?m=zph&c=com&id={yun:}$zph.id{/yun}" class="fairs_ch yun_bth"><!--参会企业--></a>
-             <a href="index.php?m=zph&c=show&id={yun:}$zph.id{/yun}" class="fairs_xq yun_bth"><!--查看详情--></a>
+             <a href="{yun:}url m=zph url=c:com,id:`$zph.id`{/yun}" class="fairs_ch yun_bth"><!--参会企业--></a>
+             <a href="{yun:}url m=zph url=c:show,id:`$zph.id`{/yun}" class="fairs_xq yun_bth"><!--查看详情--></a>
 			 <input id="zph_etime_{yun:}$zph.id{/yun}" value='{yun:}$zph.etime{/yun}' type="hidden"/>
 			 <input id="zph_stime_{yun:}$zph.id{/yun}" value='{yun:}$zph.stime{/yun}' type="hidden"/>
              </div>
@@ -71,6 +65,19 @@ DD_belatedPNG.fix('.png');
     </div>
 </div>
 {yun:}/fairs{/yun}
+{yun:}if !$total{/yun}
+<div class="seachno">
+        <div class="seachno_left"><img src="{yun:}$style{/yun}/images/search-no.gif"></div>
+        <div class="listno-content"> <strong>很抱歉，没有找到满足条件的招聘会</strong><br>
+	 </div>
+</div>
+{yun:}else{/yun}
+<div class="clear"></div>
+<div class="search_pages"> 
+	<div class="pages">{yun:}$pagenav{/yun}</div>
+</div>
+{yun:}/if{/yun}
+
 <div id="TB_window" style=" display: none;" class="Corporate_box">
 	<div id="error_zph" class="error_zph"></div>
 	<div id="TB_ajaxContent" class="Corporate_box_cont" style="padding:10px;">

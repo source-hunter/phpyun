@@ -76,18 +76,7 @@ function preview(url,uid,status){
     <form action="index.php" name="myform" method="get">
       <input name="m" value="usercert" type="hidden"/>
       <div class="admin_Filter">
-	  <span class="complay_top_span fl">个人认证审核</span>
-        <div class="admin_Filter_span">检索类型：</div>
-        <div class="admin_Filter_text formselect" did='dtype'>
-          <input type="button" value="{yun:}if $smarty.get.type=='1'{/yun}认证人 {yun:}else{/yun}全部{yun:}/if{/yun}" class="admin_Filter_but" id="btype">
-         <input type="hidden" name="type" id="type"/>
-          <div class="admin_Filter_text_box" style="display:none" id='dtype'>
-            <ul>
-              <li><a href="javascript:void(0)" onClick="formselect('','type','全部')">全部</a></li>
-              <li><a href="javascript:void(0)" onClick="formselect('1','type','用户名')">认证人</a></li>
-            </ul>
-          </div>
-        </div>
+	  <span class="complay_top_span fl">个人认证审核</span> 
         <input type="text" placeholder="输入你要搜索的关键字" value="{yun:}$smarty.get.keyword{/yun}" name='keyword' class="admin_Filter_search">
         <input type="submit" name='search'  value="搜索" class="admin_Filter_bth">
         <span class='admin_search_div'>
