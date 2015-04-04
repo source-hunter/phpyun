@@ -21,6 +21,18 @@ function check_username(){
 		});
 	}
 }
+function check_comusername(){
+	var username=$.trim($("#username").val());
+	var pytoken=$.trim($("#pytoken").val());
+	if(username){
+		$.post("index.php?m=admin_company&c=check_username",{username:username,pytoken:pytoken},function(msg){
+			if(msg){
+				layer.tips('已存在该用户！',"#username" , {guide: 1,style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F']});
+				$("#username").attr("vtype",'1');
+			}else if($("#username").attr('vtype')=='1'){layer.closeTips();$("#username").attr("vtype",'0');}
+		});
+	}
+}
 function returnmessage(frame_id){
 	if(frame_id==''||frame_id==undefined){
 		frame_id='supportiframe';

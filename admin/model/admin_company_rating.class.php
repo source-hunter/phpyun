@@ -37,6 +37,13 @@ class admin_company_rating_controller extends common
 			}
 			$_POST['time_start']=strtotime($_POST['time_start']);
 			$_POST['time_end']=strtotime($_POST['time_end']);
+			foreach($_POST as $key=>$value)
+			{
+				if($value=='')
+				{
+					$_POST[$key] = 0;
+				}
+			}
 			if(!$id){
 				$_POST['com_pic']=$pic;
 				$nid=$this->obj->insert_into("company_rating",$_POST);

@@ -1,6 +1,6 @@
 <nav class="footer_nav">
 <a href="javascript:window.scrollTo(0,0);">TOP</a>
-<a href="./">首页</a> 
+<a href="{yun:}$config_wapdomain{/yun}/">首页</a> 
 &nbsp;-
 {yun:}if !$cookie.uid{/yun}
 &nbsp;<a href="{yun:}wapurl m=login{/yun}">个人登录</a>
@@ -8,7 +8,7 @@
 <a href="{yun:}wapurl m=login url=usertype:2{/yun}">企业登录</a>
 &nbsp;&nbsp;<br/>
 {yun:}else{/yun}
-欢迎,<a href="member/">{yun:}$cookie.username{/yun}</a><strong></strong> <a href="{yun:}wapurl url=c:loginout{/yun}">退出</a>
+欢迎,<a href="{yun:}$config_wapdomain{/yun}/member/">{yun:}$cookie.username{/yun}</a><strong></strong> <a href="{yun:}wapurl url=c:loginout{/yun}">退出</a>
 {yun:}/if{/yun}
 </nav>
 <footer class="footer">

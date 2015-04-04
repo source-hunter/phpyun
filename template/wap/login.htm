@@ -1,7 +1,7 @@
 {yun:}include file="$wapstyle/header_cont.htm"{/yun}
 
 <section class="wap_login"> 
-	<form action="" method="post" onsubmit="return mlogin();">
+	<form action="{yun:}$config_wapdomain{/yun}/index.php?m=login" method="post" onsubmit="return mlogin();">
 		<input name="usertype" type="hidden" value="{yun:}$smarty.get.usertype{/yun}"/>
 		<input name="wxid" type="hidden" value="{yun:}$smarty.get.wxid{/yun}"/>
 		<p><input name="username" type="text" id="username" value="{yun:}$smarty.get.username{/yun}" class="input-common placeholder" placeholder="请输入您的用户名" /></p>

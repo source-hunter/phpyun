@@ -4,7 +4,7 @@
 *
 * 官网: http://www.phpyun.com
 *
-* 版权所有 2009-2014 宿迁鑫潮信息技术有限公司，并保留所有权利。
+* 版权所有 2009-2015 宿迁鑫潮信息技术有限公司，并保留所有权利。
 *
 * 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
  */
@@ -228,6 +228,7 @@ class action {
 		unset($_SESSION["ashell"]);
 		unset($_SESSION["md"]);
 		unset($_SESSION["tooken"]);
+		unset($_SESSION["xsstooken"]);
 	}
 	function GET_user_shell_check($uid, $shell, $m_id = 9, $url = 'login.php') {
 		if ($row = $this->get_user_shell($uid, $shell)) {
@@ -329,6 +330,7 @@ class action {
 		return substr(strip_tags($cont),0,200);
 	}
 	function admin_get_user_login($username,$password,$url='index.php') {
+		global $config;
 		$username = str_replace(" ", "", $username);
 		$query = $this->db->query("SELECT * FROM `".$this->def."admin_user` WHERE `username`='$username' limit 1");
 		$us = is_array($row = $this->db->fetch_array($query));
@@ -336,6 +338,7 @@ class action {
 		if($ps){
 			$_SESSION['auid']=$row['uid'];
 			$_SESSION['ausername']=$row['username'];
+			$_SESSION['xsstooken'] = sha1($config['sy_safekey']);
 			$_SESSION['ashell']=md5($row['username'] . $row['password'] . $this->md);
 			setCookie("ashell", md5($row['username'] . $row['password'] . $this->md), time() + 80000,"/");
 			$this->DB_update_all("admin_user","`lasttime`='".time()."'","`uid`='".$row['uid']."'");
@@ -808,11 +811,10 @@ class action {
 	}
 	function unlink_pic($pic){
 		$pictype=getimagesize($pic);
-		$pictype = strtolower($pictype[2]);
-		
-		if($pictype=="jpg" || $pictype=="jpeg" || $pictype=="gif" || $pictype=="png"){
-
+		if($pictype[2]=='1' || $pictype[2]=='2' || $pictype[2]=='3')
+		{
 			@unlink($pic);
+			
 		}
 	}
 	function admin_log($data){

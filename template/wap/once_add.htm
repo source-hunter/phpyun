@@ -2,7 +2,7 @@
 <div class="post_content" style="padding-top:0px;">
 <div class="resume-cont" style="margin-top:0px;">
 <div class="resume-cont_zk" style="padding-top:0px;">
-	<form action="" method="post" onsubmit="return ckonce()">
+	<form action="{yun:}$config_wapdomain{/yun}/index.php?m=once&c=add" method="post" onsubmit="return ckonce()">
     <div class="resume-cont_wate">
 		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">*</span>我想招聘：</dt> <dd><input type="text" name="title" value="{yun:}$row.title{/yun}" class="reinputText"></dd></dl>
 		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">*</span>招聘人数：</dt> <dd><input type="text" name="mans" value="{yun:}$row.mans{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText"></dd></dl>

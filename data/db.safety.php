@@ -4,7 +4,7 @@
 *
 * 官网: http://www.phpyun.com
 *
-* 版权所有 2009-2014 宿迁鑫潮信息技术有限公司，并保留所有权利。
+* 版权所有 2009-2015 宿迁鑫潮信息技术有限公司，并保留所有权利。
 *
 * 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
 */
@@ -100,6 +100,7 @@ function safesql($StrFiltKey,$StrFiltValue,$type){
 	}
 }
 function common_htmlspecialchars($key,$str,$str2,$config){
+	
 	if(is_array($str))
 	{
 		foreach($str as $str_k=>$str_v)
@@ -107,15 +108,18 @@ function common_htmlspecialchars($key,$str,$str2,$config){
 			$str[$str_k] = common_htmlspecialchars($str_k,$str_v);
 		}
 	}else{
+		$str = preg_replace('/([\x00-\x08\x0b-\x0c\x0e-\x19])/', '', $str);
+		
 		$str = gpc2sql($str,$str2);
-
+		
 		if(!in_array($key,array('content','config','group_power','description','body','job_desc','eligible','other','code','intro','doc','traffic','media','packages','booth','participate')))
 		{
-			$str = strip_tags($str);			
+			$str = strip_tags($str);
 		}else{
 			
 			if($_SESSION['xsstooken'] != sha1($config['sy_safekey']))
 			{
+				
 				$str = RemoveXSS($str);
 			}
 		}
@@ -124,7 +128,8 @@ function common_htmlspecialchars($key,$str,$str2,$config){
 	return $str;
 }
 function RemoveXSS($val) {
-   $val = preg_replace('/([\x00-\x08,\x0b-\x0c,\x0e-\x19])/', '', $val);    
+   $val = preg_replace('/([\x00-\x08\x0b-\x0c\x0e-\x19])/', '', $val);
+  
    $search = 'abcdefghijklmnopqrstuvwxyz';
    $search .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
    $search .= '1234567890!@#$%^&*()';   
@@ -178,6 +183,7 @@ quotesGPC();
 
 if($config['sy_istemplate']!='1' || md5(md5($config['sy_safekey']).$_GET['m'])!=$_POST['safekey'])
 {
+	
 	foreach($_POST  as $id=>$v){
 		
 		$str = html_entity_decode($v,ENT_QUOTES,"GB2312");

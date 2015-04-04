@@ -4,7 +4,7 @@
 *
 * 官网: http://www.phpyun.com
 *
-* 版权所有 2009-2014 宿迁鑫潮信息技术有限公司，并保留所有权利。
+* 版权所有 2009-2015 宿迁鑫潮信息技术有限公司，并保留所有权利。
 *
 * 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
  */
@@ -325,7 +325,7 @@ class admin_company_controller extends common
 	function rating_action(){
 		$ratingid = (int)$_POST['ratingid'];
 		$statis = $this->obj->DB_select_all("company_statis","`uid`='".$_POST['uid']."'");
-		if(is_array($statis))
+		if(is_array($statis) && !empty($statis))
 		{
 			$value=$this->rating_info($ratingid);
 			$this->obj->DB_update_all("company_statis",$value,"`uid`='".$_POST['uid']."'");
@@ -774,6 +774,11 @@ class admin_company_controller extends common
 
 		header('Location: '.$this->config['sy_weburl'].'/member');
 	}
+	function check_username_action(){
+		$username=iconv("utf-8", "gbk", $_POST['username']);
+		$member=$this->obj->DB_select_once("member","`username`='".$username."'","`uid`");
+		echo $member['uid'];die;
+	}
 
-}
+}	
 ?>

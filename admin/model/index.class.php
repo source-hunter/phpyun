@@ -4,7 +4,7 @@
 *
 * 官网: http://www.phpyun.com
 *
-* 版权所有 2009-2014 宿迁鑫潮信息技术有限公司，并保留所有权利。
+* 版权所有 2009-2015 宿迁鑫潮信息技术有限公司，并保留所有权利。
 *
 * 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
  */
@@ -110,6 +110,7 @@ class index_controller extends common{
 		unset($_SESSION['ashell']);
 		unset($_SESSION['md']);
 		unset($_SESSION['tooken']);
+		unset($_SESSION['xsstooken']);
 		$this->layer_msg("您已成功退出！",9,0,"index.php");
 	}
 	function index_cache_action()

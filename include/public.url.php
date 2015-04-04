@@ -1,5 +1,13 @@
 <?php
-
+/*
+* $Author ：PHPYUN开发团队
+*
+* 官网: http://www.phpyun.com
+*
+* 版权所有 2009-2015 宿迁鑫潮信息技术有限公司，并保留所有权利。
+*
+* 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
+ */
 function get_seo_url($paramer,$config,$seo,$type=''){
 	
 	
@@ -42,7 +50,7 @@ function get_seo_url($paramer,$config,$seo,$type=''){
 		if($v[$i]['rewrite_url'] && $v[$i]['php_url']){
 
 			$vUrl = @explode('?',$v[$i]['php_url']);
-			
+			$urlArray = array();
 			if($vUrl[1])
 			{
 				$urlArray = @explode("&",$vUrl[1]);
@@ -55,20 +63,23 @@ function get_seo_url($paramer,$config,$seo,$type=''){
 						$urlFileds[$valueArray[0]] = $valueArray[1];
 					}
 				}
-			
 			}
 			
 			if($type!='')
 			{
-				$urlDir = array_filter(@explode('/',$vUrl[0]));
 				
+				$urlDir = array_filter(@explode('/',$vUrl[0]));
 				if($urlDir[0] == $typeDir)
 				{
-					$rewrite_url=$defaultUrl.$v[$i]['rewrite_url'];
+					
+					if((!$paramer['c'] && !$paramer['tp']) ||($paramer['c']  && $paramer['c']==$urlFileds['c']) || ($type=='company' && $paramer['tp'] && $paramer['tp']==$urlFileds['tp']))
+					{
+						$rewrite_url=$defaultUrl.$v[$i]['rewrite_url'];
+						break;
+					}
 				}
 			}else{
 				
-			
 				if(!$urlFileds['m'])
 				{
 					$urlFileds['m'] = 'index';
@@ -76,13 +87,13 @@ function get_seo_url($paramer,$config,$seo,$type=''){
 				if((!$paramer['c'] && $paramer['m']==$urlFileds['m'] && !$urlFileds['c']) || ($paramer['c'] && $paramer['m']==$urlFileds['m'] && $paramer['c']==$urlFileds['c']))
 				{
 					$rewrite_url=$config['sy_weburl'].$type.$v[$i]['rewrite_url'];
+					break;
 				}
 			}
 		}
 
 		$i++;
 	}
-	
 	if($rewrite_url){
 
 		foreach($paramer as $key=>$value)
@@ -118,7 +129,6 @@ function get_url($paramer,$config,$seo,$type='',$index){
 			$defaultUrlRewrite = $config['sy_weburl'];
 		}
 		
-	
 
 		if(empty($paramer[con])){
 			$con='index';
@@ -140,13 +150,10 @@ function get_url($paramer,$config,$seo,$type='',$index){
 
 		if($config['sy_seo_rewrite'])
 		{
-			
 			$url=get_seo_url($paramer,$config,$seo,$type);
 			if($url){
 				return $url;
 			}
-		
-
 
 			if($con!='index' && !empty($con))
 			{
@@ -173,19 +180,14 @@ function get_url($paramer,$config,$seo,$type='',$index){
 				}
 				$urltemp=@implode('-',$a);
 				$url.=$urltemp.'.html';
-				
 				if($type)
 				{
 					$url=$defaultUrlRewrite."-".$url;
 				}else{
 					$url=$defaultUrlRewrite."/".$url;
 				}
-				
-				
 			}else{
-				
 				$url=$defaultUrlRewrite;
-				
 			}
 			
 		}else{
@@ -221,8 +223,6 @@ function get_url($paramer,$config,$seo,$type='',$index){
 
 function get_index_url($paramer,$config,$seo,$type='',$index){
 
-		
-	
 		if($type)
 		{
 			$type = $type;
@@ -242,10 +242,8 @@ function get_index_url($paramer,$config,$seo,$type='',$index){
 		}
 		
 		
-		
 		if($config['sy_seo_rewrite'] && $index=="1")
 		{
-			
 			$url=get_seo_url($paramer,$config,$seo);
 			if($url){
 				return $url;
@@ -253,7 +251,6 @@ function get_index_url($paramer,$config,$seo,$type='',$index){
 			$con = $paramer['con'];
 			$m = $paramer['m'];
 			unset($paramer['con']);unset($paramer['m']);
-			
 			
 			if($con!='index' && !empty($con))
 			{
@@ -282,7 +279,6 @@ function get_index_url($paramer,$config,$seo,$type='',$index){
 				}
 				$urltemp=@implode('-',$a);
 				$url.=$urltemp.'.html';
-				
 				if($type)
 				{
 					$url=$defaultUrlRewrite."-".$url;
@@ -290,11 +286,8 @@ function get_index_url($paramer,$config,$seo,$type='',$index){
 					$url=$defaultUrlRewrite."/".$url;
 				}
 				
-				
 			}else{
-				
 				$url=$defaultUrlRewrite;
-				
 			}
 		}else{
 			$con = $paramer['con'];

@@ -42,7 +42,7 @@ function checkfrom(){
 }
 </script>
 <section class="wap_login">
-  <form action="" method="post" onSubmit="return checkfrom();">
+  <form action="{yun:}$config_wapdomain{/yun}/index.php?m=register" method="post" onSubmit="return checkfrom();">
   <input name="wxid" type="hidden" value="{yun:}$smarty.get.wxid{/yun}"/>
     <input name="usertype" type="hidden" value="{yun:}$smarty.get.usertype{/yun}"/>
     <p><label style="width:auto;">ÓÃ»§Ãû£º</label>

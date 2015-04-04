@@ -4,7 +4,7 @@
 *
 * 官网: http://www.phpyun.com
 *
-* 版权所有 2009-2014 宿迁鑫潮信息技术有限公司，并保留所有权利。
+* 版权所有 2009-2015 宿迁鑫潮信息技术有限公司，并保留所有权利。
 *
 * 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
  */
@@ -897,25 +897,10 @@ class common
 		return $smtp;
 	}
 	function logout($result=true){
-		$uiddir=APP_PATH."cache/im/";
-		include($uiddir."/status.php");
-		$liststatus=unserialize(base64_decode($statusdata));
-
-		if(!empty($liststatus[$this->uid])){
-			unset($liststatus[$this->uid]);
-			unset($liststatus[$this->uid."time"]);
-		}
-		$content=base64_encode(serialize($liststatus));
-		$cont="<?php";
-		$cont.="\r\n";
-		$cont.="\$statusdata='".$content."';";
-		$cont.="?>";
-		$fp=@fopen($uiddir."/status.php","w+");
-		$filetouid=@fwrite($fp,$cont);
-		@fclose($fp);
+		
 		if($this->config['sy_uc_type']=="uc_center"){
 			$this->obj->uc_open();
-			$logout = uc_user_synlogout();
+			echo $logout = uc_user_synlogout();
 		}elseif($this->config["sy_pw_type"]){
 			include(APP_PATH."/api/pw_api/pw_client_class_phpapp.php");
 			$username=$_SESSION["username"];
@@ -1339,7 +1324,7 @@ class common
 			$resume_diy=split('[|]',$user_jy['resume_diy']);
 			$user['resume_diy']=$resume_diy[0];
 			$user['dom_sort']=$user_jy['dom_sort'];
-			$user['works_upload']=$user_jy['works_upload'];
+			
 			$user['background_image']=$resume_diy[1];
 			$user['id']=$id;
 			$jy=@explode(",",$user_jy['job_classid']);
@@ -1857,6 +1842,12 @@ class common
 
 	}
 	function wapheader($url,$point=''){
+		if(!($this->config['sy_wapdomain'])){
+			$sy_wapdomain=$this->config['sy_weburl'].'/'.$this->config['sy_wapdir'];
+		}else{
+			$sy_wapdomain = "http://".$this->config['sy_wapdomain'];
+		}
+		$url=$sy_wapdomain."/".$url;
 		if($point!='')
 		{
 			$point = 'point='.$point;
@@ -1865,6 +1856,12 @@ class common
 		exit();
 	}
 	function wapheaderLayer($url,$point=''){
+		if(!($this->config['sy_wapdomain'])){
+			$sy_wapdomain=$this->config['sy_weburl'].'/'.$this->config['sy_wapdir'];
+		}else{
+			$sy_wapdomain = "http://".$this->config['sy_wapdomain'];
+		}
+		$url=$sy_wapdomain."/".$url;
 		if($point!='')
 		{
 			$point = 'layer='.$point;
@@ -1894,6 +1891,12 @@ class common
 				foreach($config as $v){
 					$configarr[$v['name']]=$v['config'];
 				}
+			}
+			if($config['autodate'])
+			{
+				$this->obj->DB_update_all("admin_config","`config`='".date('Ymd')."'","`name`='autodate'");
+			}else{
+				$this->obj->DB_insert_once("admin_config","`config`='".date('Ymd')."',`name`='autodate'");
 			}
 			$configarr['autodate'] = date('Ymd');
 			include_once(LIB_PATH."/public.function.php");
@@ -1974,7 +1977,7 @@ class common
 				$table='member_statis';
 			}else if($usertype['usertype']=='2'){
 				$table='company_statis'; 
-				$tvalue=",`all_pay`=`all_pay`+".$order["order_price"];
+				$tvalue=",`all_pay`=`all_pay`+'".$order["order_price"]."'";
 			} 
 			if($order['type']=='1'&&$order['rating']&&$usertype['usertype']=='2'){
 				$row=$this->obj->DB_select_once("company_rating","`id`='".$order['rating']."'");
@@ -1996,9 +1999,9 @@ class common
 			}else if($order['type']=='2'&&$order['integral']){ 
 				$status=$this->obj->DB_update_all($table,"`integral`=`integral`+'".$order['integral']."'".$tvalue,"`uid`='".$order["uid"]."'");
 			}else if($order['type']=='3'||$order['type']=='4'){
-				$status=$this->obj->DB_update_all($table,"`pay`=`pay`+".$order["order_price"].$tvalue,"`uid`='".$order["uid"]."'");
+				$status=$this->obj->DB_update_all($table,"`pay`=`pay`+'".$order["order_price"]."'".$tvalue,"`uid`='".$order["uid"]."'");
 			}else if($order['type']=='5'&&$order['integral']&&$usertype['usertype']=='2'){ 
-				$status=$this->obj->DB_update_all("company_statis","`msg_num`=`msg_num`+'".$order['integral']."',`all_pay`=`all_pay`+".$order["order_price"],"`uid`='".$order["uid"]."'");
+				$status=$this->obj->DB_update_all("company_statis","`msg_num`=`msg_num`+'".$order['integral']."',`all_pay`=`all_pay`+'".$order["order_price"]."'","`uid`='".$order["uid"]."'");
 			}
 			if($this->config['sy_msg_fkcg']=='1'||$this->config['sy_email_fkcg']=='1'){
 				$member=$this->obj->DB_select_once("member","`uid`='".$order['uid']."'","`email`,`moblie`,`uid`,`usertype`");
@@ -2047,12 +2050,7 @@ class common
 		}else{
 			$auto=false;
 		}
-
-		if($_COOKIE['usertype']=="1"){
-			$this->obj->company_invtal($uid,$this->config[$type],$auto,$msg,true,2,'integral');
-		}elseif($_COOKIE['usertype']=="2"){
-			$this->obj->company_invtal($uid,$this->config[$type],$auto,$msg,true,2,'integral');
-		}
+		$this->obj->company_invtal($uid,$this->config[$type],$auto,$msg,true,2,'integral');
 	}
 	function subscribe()
 	{
@@ -2076,8 +2074,23 @@ class common
 					}
 				}
 			}
-			$this->obj->DB_update_all("admin_config","`config`='".time()."'","`name`='subscribe_time'");
-			$this->web_config();
+			$config=$this->obj->DB_select_all("admin_config");
+			if(is_array($config)){
+				foreach($config as $v){
+					$configarr[$v['name']]=$v['config'];
+				}
+			}
+			if($config['subscribe_time'])
+			{
+				$this->obj->DB_update_all("admin_config","`config`='".time()."'","`name`='subscribe_time'");
+			}else{
+			
+				$this->obj->DB_insert_once("admin_config","`config`='".time()."',`name`='subscribe_time'");
+			}
+			$configarr['autodate'] = $this->config['autodate'];
+			$configarr['subscribe_time'] = time();
+			include_once(LIB_PATH."/public.function.php");
+			$this->obj->made_web(PLUS_PATH."config.php",ArrayToString($configarr),"config");
 		}
 
 	}

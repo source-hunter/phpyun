@@ -2787,7 +2787,7 @@ class Smarty_Compiler extends Smarty
 		{
 			$jobwhere.=" AND `job_post`='$paramer[job_post]'";
 		}
-		$joball=$db->select_all("company_job",$jobwhere);
+		$joball=$db->select_all("company_job",$jobwhere,"`uid`");
 		if(is_array($joball)){
 			foreach($joball as $v){
 				$uid[]=$v[uid];
@@ -3558,7 +3558,7 @@ class Smarty_Compiler extends Smarty
 			$i=0;
 			foreach($link as $key=>$value)
 			{
-				if($value['domain']!='0' && stripos($value['domain'],$domain)===false)
+				if($value['domain']!='0' && $value['domain']!='' && stripos($value['domain'],$domain)===false)
 				{
 					continue;
 				}elseif($paramer['tem_type'] && $value['tem_type']!=$paramer['tem_type'] && $value['tem_type']!='1'){

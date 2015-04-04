@@ -1,6 +1,6 @@
 {yun:}include file="$wapstyle/header_cont.htm"{/yun}
 <div class="com_search_top">
-  <form action="index.php" method="get">
+  <form action="{yun:}$config_wapdomain{/yun}/index.php" method="get">
    <input type="hidden" name="m" value="com" />
     <div class="com_post_left">
     <input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}" class="seach_post_text placeholder"  placeholder="ÇëÊäÈë¹Ø¼ü×Ö" /> <div class="com_post_right"><a href="{yun:}wapurl url=m:com,c:search{/yun}" class="seach_post_text_a">¸ß¼¶ËÑË÷</a><span class="com_post_bth1_line"></span><input type="submit" value="ËÑË÷"class="com_post_bth1" /></div>

@@ -1,6 +1,6 @@
 {yun:}include file="$wapstyle/header_cont.htm"{/yun}
 <div class="fm">
-  <form action="index.php" method="get">
+  <form action="{yun:}$config_wapdomain{/yun}/index.php" method="get">
     <input type="hidden" name="m" value="firm" />
     <div class="seach_post" style="padding-bottom:10px;">
       <input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}"  class="seach_post_text placeholder" placeholder="请输入关键字/职位/地点搜索" />

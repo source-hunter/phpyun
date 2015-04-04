@@ -4,7 +4,7 @@
 *
 * 官网: http://www.phpyun.com
 *
-* 版权所有 2009-2014 宿迁鑫潮信息技术有限公司，并保留所有权利。
+* 版权所有 2009-2015 宿迁鑫潮信息技术有限公司，并保留所有权利。
 *
 * 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
  */
@@ -104,37 +104,40 @@ class login_controller extends common
 					$ucsynlogin=uc_user_synlogin($uid);
 					$msg =  '登录成功！';
 					$user = $this->obj->DB_select_once("member","`username`='".$username."'","`uid`,`usertype`,`email_status`");
-					if($_SESSION['qq']['openid'])
+					if(!empty($user))
 					{
-						$this->obj->DB_update_all("member","`qqid`='".$_SESSION['qq']['openid']."'","`username`='".$username."'");
-						unset($_SESSION['qq']);
+						if($_SESSION['qq']['openid'])
+						{
+							$this->obj->DB_update_all("member","`qqid`='".$_SESSION['qq']['openid']."'","`username`='".$username."'");
+							unset($_SESSION['qq']);
+						}
+						if($_SESSION['wx']['openid'])
+						{
+							$this->obj->DB_update_all("member","`wxid`='".$_SESSION['wx']['openid']."'","`username`='".$username."'");
+							unset($_SESSION['wx']);
+						}
+						if($_SESSION['sina']['openid'])
+						{
+							$this->obj->DB_update_all("member","`sinaid`='".$_SESSION['wx']['openid']."'","`username`='".$username."'");
+							unset($_SESSION['sina']);
+						}
+						if(!is_array($user)){
+							$this->unset_cookie();
+							echo "没有该用户！";die;
+						}else{
+							echo $ucsynlogin;
+						}
+						if($this->config['user_status']=="1"){ 
+							echo $ucsynlogin; 
+							if($user['email_status']!="1"){
+								echo "您的账户还未激活，请先激活！";die;
+							} 
+						}
+						if($_POST['loginname']){
+							setcookie("loginname",$username,time()+8640000);
+						}
+						$this->autoupjob($user['uid'],$_POST['usertype']);
 					}
-					if($_SESSION['wx']['openid'])
-					{
-						$this->obj->DB_update_all("member","`wxid`='".$_SESSION['wx']['openid']."'","`username`='".$username."'");
-						unset($_SESSION['wx']);
-					}
-					if($_SESSION['sina']['openid'])
-					{
-						$this->obj->DB_update_all("member","`sinaid`='".$_SESSION['wx']['openid']."'","`username`='".$username."'");
-						unset($_SESSION['sina']);
-					}
-					if(!is_array($user)){
-						$this->unset_cookie();
-						echo "没有该用户！";die;
-					}else{
-						echo $ucsynlogin;
-					}
-					if($this->config['user_status']=="1"){ 
-						echo $ucsynlogin; 
-						if($user['email_status']!="1"){
-							echo "您的账户还未激活，请先激活！";die;
-						} 
-					}
-					if($_POST['loginname']){
-						setcookie("loginname",$username,time()+8640000);
-					}
-					$this->autoupjob($user['uid'],$_POST['usertype']);
 					echo $ucsynlogin;
 					echo 1;die;
 				} elseif($uid == -1) {
