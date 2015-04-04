@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+   <span class="admin_title_span">计划任务</span>
+  <a href="index.php?m=cron&c=add"  class="admin_infoboxp_tj">添加计划任务</a>
+</div>
+<div class="table-list">
+  <div class="admin_table_border">
+    <form action="" name="myform" method="get">
+    <input type="hidden" name="pytoken" id='pytoken'  value="{yun:}$pytoken{/yun}">
+      <table width="100%">
+        <thead>
+          <tr class="admin_table_top">
+            <th align="left">任务名称</th>
+            <th align="left">任务路径</th>
+            <th align="left">执行类型</th>
+            <th align="left">是否执行</th>
+            <th align="left">上次执行时间</th>
+            <th align="left">下次执行时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+            {yun:}foreach item=v from=$rows{/yun}
+            <tr align="left">
+              <td align="left" class="td1"><span>{yun:}$v.name{/yun}</span></td>
+              <td  align="left" class="ud">{yun:}$v.dir{/yun}</td>
+              <td class="ud" align="left">
+                {yun:}if $v.type==1{/yun}每周{yun:}/if{/yun}
+                {yun:}if $v.type==2{/yun}每月{yun:}/if{/yun}
+                {yun:}if $v.type==3{/yun}每天{yun:}/if{/yun}
+               </td>
+              <td class="od" align="left"> 
+                {yun:}if $v.display==1{/yun}是{yun:}/if{/yun}
+                {yun:}if $v.display==2{/yun}否{yun:}/if{/yun}
+              </td>
+              <td  align="left" class="ud">{yun:}if $v.nowtime{/yun}{yun:}$v.nowtime|date_format:"%Y-%m-%d %H:%M"{/yun}{yun:}else{/yun}- -{yun:}/if{/yun}</td>
+              <td  align="left" class="ud">{yun:}if $v.nexttime{/yun}{yun:}$v.nexttime|date_format:"%Y-%m-%d %H:%M"{/yun}{yun:}else{/yun}- -{yun:}/if{/yun}</td>
+              <td align="center"> 
+        <a href="javascript:void(0)" onclick="layer_del('确定现在执行该任务？', 'index.php?m=cron&c=run&id={yun:}$v.id{/yun}');" class="admin_cz_sc">执行</a> | 
+		<a href="index.php?m=cron&c=add&id={yun:}$v.id{/yun}"class="admin_cz_bj">修改</a> |
+		<a href="javascript:void(0)" onclick="layer_del('确定要删除？', 'index.php?m=cron&c=del&id={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</a>
+        </td>
+            </tr>
+            {yun:}/foreach{/yun}
+          </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

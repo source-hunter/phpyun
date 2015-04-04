@@ -1,0 +1,17 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun} 
+<div class="wap_member_comp_h1 mt10">
+<span>谁看过我的简历</span>
+</div>
+<div class="wap_member_Receive">
+{yun:}foreach item=v from=$rows{/yun}
+<div class="wap_member_msg">
+<span><a href="{yun:}wapurl m=firm url=c:show,id:`$v.com_id`{/yun}">{yun:}$v.com_name{/yun}</a></span>
+<p>简历名称：{yun:}$v.resume_name{/yun}</p>
+<i>{yun:}$v.datetime|date_format:"%Y-%m-%d"{/yun}</i>
+<em><a href="javascript:void(0)" onclick="isdel('index.php?c=look&del={yun:}$v.id{/yun}')">删除</a></em>
+</div>
+{yun:}/foreach{/yun}
+</div>
+
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

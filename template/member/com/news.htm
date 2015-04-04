@@ -1,0 +1,84 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+<div class=right_box>
+  <div class=admincont_box>
+    <div class=admin_tit><span   class="admin_tit_bg">企业新闻管理</span>  
+    <form action="index.php" method="get">
+    <div class="news_search">
+        <input name="c" type="hidden" value="news">
+          <input name="keyword" type="text" class="news_text" placeholder="请输入新闻关键字">
+          <input name="" type="submit" class="news_bth" value=" "></div>
+      </form>
+	  <input  class="job_new_tj" style="float:right;margin-right:10px" onclick="location.href='index.php?c=news&act=add'" type="button" value="添加新闻">
+      </div>
+    <div class=admin_textbox_04>
+	<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="{yun:}$now_url{/yun}&act=del" method="post" target="supportiframe" id='myform'> 
+        <div class=table>
+          <div id="job_checkbokid">
+              <div class="job_news_list job_news_list_h1">
+                <span class="job_news_list_span job_w30">&nbsp;</span>
+                  <span class="job_news_list_span job_w370">新闻标题</span>
+                  <span class="job_news_list_span job_w120">添加时间</span>
+                  <span class="job_news_list_span job_w120">状态</span>
+                 <span class="job_news_list_span job_w120">操作</span>
+              </div>
+            
+            {yun:}foreach item=v from=$rows{/yun}
+                   <div class="job_news_list">
+                <span class="job_news_list_span job_w30"><input class="job_news_input" type=checkbox name="delid[]" value="{yun:}$v.id{/yun}" style="border:0px;"></span>
+                  <span class="job_news_list_span job_w370"><a href="{yun:}curl url=id:`$cookie.uid`,tp:newsshow,nid:`$v.id`{/yun}" target="_blank">{yun:}$v.title{/yun}</a></span>
+                  <span class="job_news_list_span job_w120">{yun:}$v.ctime|date_format:'%Y-%m-%d'{/yun}</span>
+                  <span class="job_news_list_span job_w120">{yun:}if $v.status=="0"{/yun}<span class="wate_verify">等待审核</span>{yun:}/if{/yun}
+                {yun:}if $v.status=="1"{/yun} <span class="y_verify">已审核</span>{yun:}/if{/yun}
+                {yun:}if $v.status=="2"{/yun} <span class="n_verify">未通过</span> | <a href="javascript:;" onclick="show_msg('{yun:}$v.statusbody{/yun}')">原因</a>{yun:}/if{/yun}</span>
+                 <span class="job_news_list_span job_w120"><a href="{yun:}curl url=id:`$cookie.uid`,tp:newsshow,nid:`$v.id`{/yun}" target="_blank">预览</a> | <a href="{yun:}$now_url{/yun}&act=edit&id={yun:}$v.id{/yun}">修改</a> | <a href="javascript:void(0)" onclick="layer_del('确定要删除该新闻？', '{yun:}$now_url{/yun}&act=del&id={yun:}$v.id{/yun}')">删除</a></span>
+              </div> 
+            {yun:}foreachelse{/yun}
+			<div class="msg_no">{yun:}if $smarty.get.keyword!="" {/yun}没有搜索相关新闻。{yun:}else{/yun}您还没有添加新闻。{yun:}/if{/yun}</div>
+            {yun:}/foreach{/yun}  
+			
+           </div>
+          </div> 
+        
+		{yun:}if $rows{/yun}
+		<div class="fltL">
+		<span class="fltL job_new_de"><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'> 全选</span>
+		<INPUT class='btn_02' type="button" name="subdel" value="批量删除" onclick="return really('delid[]');"> 
+		</div>
+		<div class="diggg">{yun:}$pagenav{/yun}</div>
+		{yun:}/if{/yun}
+        </form> 
+    </div>
+  </div>
+</div>
+</div>
+</div> 
+<script>
+function show_msg(msg){
+	$("#msgs").html(msg);
+	$.layer({
+		type : 1,
+		title :'查看原因',
+		offset: [($(window).height() - 300)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['400px','200px'],
+		page : {dom :"#showmsg"}
+	});
+}
+</script>
+<div id="showmsg"  style="display:none; width: 400px;">
+	<div>
+    <div id="infobox">
+		 <div class="admin_Operating_sh" style="padding:10px; ">
+		<div class="admin_Operating_sh_h1" style="padding:5px;"><div style="height:80px;overflow:auto;" id="msgs"></div></div>
+		<div class="admin_Operating_sub" style="margin-top:10px;"> 
+          &nbsp;&nbsp;<input type="button" id="zxxCancelBtn" onClick="layer.closeAll();" class="cancel_btn" value='确认'></div>
+		</div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

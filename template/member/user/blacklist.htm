@@ -1,0 +1,49 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12 re">
+   {yun:}include file="$userstyle/ul_nav.htm"{/yun}
+    <div id="gms_showclew"></div>
+      <div class="resume_box_list">
+       <div class="List_Ope List_Title ">
+       <span class="List_Title_span List_Title_w500">公司名称</span>		
+       <span class="List_Title_span List_Title_w120">添加屏蔽时间</span>	 	
+       <span class="List_Title_span List_Title_w80">操作</span>	
+      </div>
+          {yun:}foreach item=log from=$rows{/yun}
+           <div class="List_Ope List_Ope_bor">
+               <span class="List_Title_span List_Title_w500"><a href="{yun:}curl url=id:`$log.p_uid`{/yun}"  class="List_Title_span_com">{yun:}$log.com_name{/yun}</a></span>		
+       <span class="List_Title_span List_Title_w120">{yun:}$log.inputtime|date_format:'%Y-%m-%d'{/yun}</span>	 	
+       <span class="List_Title_span List_Title_w80"><a href="javascript:void(0)"  onclick="layer_del('您确定要取消屏蔽？', '{yun:}$config.sy_weburl{/yun}/member/index.php?c=blacklist&act=del&id={yun:}$log.id{/yun}');">取消屏蔽</a></span>	
+      </div>
+            {yun:}foreachelse{/yun} 
+          <div class="msg_no">没有想要屏蔽的企业</div>
+          {yun:}/foreach{/yun}  
+            <div class="com_Blacklist"><a class="index_Job_Finder_submit index_Job_Finder_submitw150"  href="javascript:void(0)" onclick="addblack()">添加屏蔽的企业</a></div>
+         <div class="clear"></div>
+         <div class="diggg">{yun:}$pagenav{/yun}</div>   
+       </div>  
+       <div class="" style="padding:5px; float:left;color:#999; line-height:23px;">
+			<div class="wxts">温馨提示：</div> 
+			1、请在上方输入公司名称，搜索出您想要屏蔽的企业；<br>
+			2、您选择并添加到黑名单的企业，将无法搜索到或查看您的简历；<br>
+			3、建议您搜索完整的公司名称或品牌名称，以便更准确的找到您要屏蔽的企业；
+			</div>
+      </div> 
+</div>  
+<div style="padding:10px;height:260px; display:none;" id='blackdiv'> 
+   <input id="name" class="black_text" type="text" style="width:300px" placeholder="请输入要屏蔽的公司名称">
+   <input type="button" value="搜索" class="black_sumit" onclick="searchcom()"> 
+   <div class="Blacklist_box">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+	<form action="index.php?c=blacklist&act=save" target="supportiframe" method="post" onsubmit="return ckaddblack()">
+	   <div class="alert-compt-list_h1"><label id="select" class="fltR"><input id="checkAll" type="checkbox" onclick="m_checkAll(this.form)"> 全选</label>请在下方选择您要屏蔽的公司</div>
+		<ul></ul>
+		<div class="black_submit_cont">
+			<input type="submit" value="确定" class="black_submit">
+		</div>
+	 </form>
+	 </div>
+	 <div class="clear"></div> 
+ </div> 
+{yun:}include file="$userstyle/footer.htm"{/yun} 

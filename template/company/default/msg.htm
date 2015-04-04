@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$com_style{/yun}/images/comapply.css" type="text/css">
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+  <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}url m=com{/yun}">职位列表</a> > 企业详情 </div>
+   <div class="Job_content">
+   {yun:}include file="$comstyle/job_nav.htm"{/yun}
+  <div class="Job_Introduction_cont" style="background: none repeat scroll 0 0 #fff;">
+    <div class="clear"></div>
+    <div class="Job_Introduction_h1"><span>公司评论</span></div>
+    <div class="Job_comment">
+      <div class="Job_comment_left"> 
+		{yun:}if $msglist{/yun}
+			<div class="Job_comment_left_c"> 
+			{yun:}foreach item=v from=$msglist{/yun}
+			  <div class="Comment_list" {yun:}if empty($msglist){/yun}style="display:none;"{yun:}/if{/yun}>
+				<div class="Comment_time">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</div>
+				<div class="Comment_dd"></div>
+				<div class="Comment_icon2"></div>
+				<div class="Comment_list_right">
+				  <div class="Comment_w608"><span class="fl"> <a href="{yun:}url m=resume url=uid:`$v.uid`{/yun}">{yun:}$v.name{/yun}</a>：{yun:}$v.content{/yun}</span> </div>
+	 
+				  {yun:}if $v.reply!=""{/yun}
+				  <div class="Comment_w608">
+					<div class="tips_reply">企业回复：<span>{yun:}$v.reply{/yun}</span></div>
+				  </div>
+				  {yun:}/if{/yun} </div>
+			  </div>  
+			  {yun:}/foreach{/yun}
+			  
+			</div>  
+			  
+		{yun:}else{/yun}
+			<div class="com_index_pl">还未有人评论过该企业，赶快来评论一下吧！！</div>
+		{yun:}/if{/yun} 
+      </div>
+      <div class="Job_comment_right Job_comment_right_fixd">
+      {yun:}if $usertype!=1{/yun}
+		  <div class="Job_user_no">
+			<div class="Job_ask_bg"></div>
+			 <div class="Job_ask_bg_login">您还没有登录或者您不是个人用户，请 【<a href="{yun:}url m=login url=c:rest{/yun}">登陆</a>】</div>
+		 </div>
+       {yun:}else{/yun}
+        <div class="Job_Company_h1 fl"><span>我要评论</span></div>
+		<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+
+        <form action="{yun:}curl url=id:`$com.uid`{/yun}" target="supportiframe" method="post" onSubmit="return check_pl();">
+          <input type="hidden" name="id" value="{yun:}$id{/yun}"/>
+          <div class="commpay_textarea">
+            <div class="Comment_list_top"></div>
+            <textarea  class="program_tooltip placeholder" id="content" name="content" data-rid="949"></textarea>
+          </div>
+          <div class="commpay_Comment_input">
+            <input class="program_reply_pl" type="submit" name="submit" value="提交评论">
+            <span>您对这个公司有什么看法？</span></div>
+        </form>
+        {yun:}/if{/yun}
+		</div>
+		<div class="pages" style="float:left">{yun:}$pagenav{/yun}</div> 
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+</div> 
+</div> 
+</div> 
+<div class="clear"></div>
+<div class="commpay_Comment">
+<div id="huifu{yun:}$v.id{/yun}" style="display:none;">
+  <form action="index.php" method="post" onSubmit="return check_huifu('{yun:}$v.id{/yun}');">
+    <div class="Comment_w608">
+      <textarea class="Comment_textarea_hf" placeholder="说两句吧```" id="reply{yun:}$v.id{/yun}" name="content"></textarea>
+      <input type="hidden" name="id" value="{yun:}$v.id{/yun}" />
+    </div>
+    <div class="Comment_w608">
+      <input class="program_reply" type="submit" name="submit2" value="回复">
+    </div>
+  </form>
+</div>
+<div class="clear"></div>
+<script type="text/javascript"> 
+$(document).ready(function(){
+	$(window).scroll(function(){
+		var scroll_Top = $(window).scrollTop();
+		var width=document.body.clientWidth;
+		if(scroll_Top>423){
+			if(window.XMLHttpRequest){
+				var top=0;
+				var right=(width-940)/2+"px";
+			}else{ 
+				var top=parseInt(scroll_Top)-(418);
+				var right=0;
+			} 
+			$(".Job_comment_right_fixd").attr("style","position:fixed;top:"+top+"px;_position:absolute;right:"+right+";");
+		}else{
+			$(".Job_comment_right_fixd").attr("style","");
+		}
+	});
+});
+</script>
+{yun:}include file="$defaultstyle/footer.htm"{/yun}

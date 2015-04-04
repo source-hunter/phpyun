@@ -1,0 +1,44 @@
+.clear {clear: both;font-size: 0;height: 0;line-height: 0;visibility: hidden;}
+.sPopupTitle290, .sPopupTitle225 { border-bottom: 1px solid #ccc;height: auto; position: relative;width: 100%;}
+.sPopupDiv .sPopupBlock table { border-collapse: separate;margin: 0;width: 100%;}
+.sPopupDiv .sPopupBlock td { padding: 2px 2px;text-align: left; cursor:pointer;color:#666}
+.sPopupDiv .zebraCol0 .blurItem { border: 1px solid #fff;border-bottom:none;}
+.sPopupDiv .zebraCol1 .blurItem { border: 1px solid #F1F1F1;border-bottom:none;}
+.sPopupDiv .blurItem {border-bottom:none; background: url(../images/index_sj_iconplus.gif.png) no-repeat  4px center; text-indent: 20px;}
+.sPopupDiv .zebraCol1 {background:#F1F1F1;}
+.sPopupDiv .sPopupBlock td.jobtypeLCla {width: 150px;}
+.sPopupDiv .sPopupBlock td.leftClass {font-weight: bold; padding-right: 5px !important;text-align: right !important;vertical-align: middle;color:#666}
+.sPopupDiv td.focusItemTop span.availItem {color: #336699;display: inline;float: left;height: auto;padding-left: 0;width: auto;}
+.sPopupDivSubJobname {background:#fff;border-left: 1px solid #f2c98c;border-right:1px solid #f2c98c;left: -99px;padding: 0;position: absolute;top: -100px;width: 346px;z-index: 1000;}
+.sPopupDivLeftTop {background: url(../images/subpopupdivbg_l.gif) no-repeat left top #fff;border-bottom:1px solid #f2c98c;padding-top: 2px !important; padding-bottom:10px;}
+.sPopupDivLeftBottom {background: url(../images/subpopupdivbg_l.gif) no-repeat left bottom #F3FAFF;border-top:1px solid #f2c98c;padding-bottom: 1px !important;}
+.sPopupDivRightTop {background: url(../images/subpopupdivbg_l.gif) no-repeat  right top #F3FAFF;border-bottom: 1px solid #f2c98c;padding-top: 2px !important;}
+.sPopupDivRightBottom {background: url(../images/subpopupdivbg_l.gif) no-repeat  right bottom #F3FAFF;border-top: 1px solid #f2c98c;padding-bottom: 1px !important;}
+.sPopupDiv .focusItemTop {border:1px solid #f2c98c;border-bottom:none; background:#fff;z-index: 3000;}
+.focusItemTop .seach_tck_box_hy {float: left;position: relative;text-indent: 5px;width: 100%;z-index:1000;+margin-top:-1px !important;}
+.sPopupDiv .sButtonBlock a.blueButton, .sPopupDivSubJobname .sButtonBlock a.blueButton.sButtonBlock a.closeButton {background-position: 0 0;color: #336699;margin-left: 5px;width: 62px;}
+.seach_box_cheack{ display:inline-block; vertical-align:middle; margin-left:5px; margin-right:5px;}
+.dialog-content{width:760px; float:left;margin-top:8px;position:absolute;left:53px;top:0px; }
+.dialog-content .selected {min-height: 20px;}
+.dialog-content .selected li {float: left;margin-bottom: 4px; margin-left:5px;}
+.dialog-content .selected li a {background: url(../images/pickpad.gif) no-repeat left top ;cursor: default;float: left;height: 20px;line-height: 20px;margin: 0 2px;padding-left: 8px;white-space: nowrap;}
+.dialog-content .selected li .delete {background: url(../images/pickpad.gif) no-repeat right top ;cursor: pointer;display: inline-block;height: 20px;margin-left: 6px;text-indent: -99999px;width: 20px;}
+.dialog-content .selected li a:hover {background-position: left bottom;color: #333333;text-decoration:none}
+.dialog-content .selected li a:hover .delete { background-position: right bottom;}
+.student_tips_h1{width:53px; float:left; text-align:right;  font-size:12px; padding-top:10px; padding-bottom:10px;}
+.tips_ture{width:140px; float:right; margin-top:4px;}
+.tips_ture a{width:62px;height:27px;text-align:center; line-height:25px; display:block; float:left; margin-left:4px;}
+.tips_ture .tips_sub1{ background:url(../images/s_tck.jpg) no-repeat 0 0;color:#fff;}
+.tips_ture .tips_sub2{ background:url(../images/s_tck.jpg) no-repeat -62px 0;color:#666;}
+.tips_ture .tips_sub1:hover{ background:url(../images/s_tck.jpg) no-repeat 0px -28px;color:#fff; text-decoration:none}
+.tips_ture .tips_sub2:hover{ background:url(../images/s_tck.jpg) no-repeat -62px -28px;color:#333;text-decoration:none}
+.sPopupDiv input, .sPopupDivSub input, .sPopupDivSubJobname input {margin-right: 3px; vertical-align: middle;}
+.sPopupDiv .sPopupBlock td span.availItem {color: #336699;cursor: pointer;height: 16px;line-height: 16px;overflow: hidden;}
+.sPopupDivSubCity {background: url(../images/subpopupdivbg_l.gif) no-repeat  right top #Ffff;border-bottom:1px solid #f2c98c;padding-top:5px;}
+.sPopupDivSubCity span {display: block;float: left;height: 21px;line-height: 21px;margin-right: 5px;min-width: 107px;overflow: hidden;}
+.sPopupDivSubCity label.noselItem {color: #336699;margin: 0;padding: 0;width: 100%;}
+.sPopupBlock_city{ padding-left:10px; padding-bottom:10px; padding-top:10px;}
+.sPopupDiv .sPopupBlock_city td{ padding:4px;}
+.sPopupDivSubCity {background: url(../images/subpopupdivbg_l.gif) no-repeat  right top #fff;border-bottom: 1px solid  #f2c98c;}
+.s_b_city_icon{width:14px;height:14px; float:left; background:url(../images/yun_s_icon1.jpg) no-repeat}
+.availCbox{width:13px;height:13px; overflow:hidden}

@@ -1,0 +1,79 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> 
+	{yun:}include file="$comstyle/left.htm"{/yun} 
+    <script>
+function CheckForm(){ 
+	var title = $("#title").val();
+	var con = $("#content").val(); 
+	var len = strlen(con);
+	var info = 100 - len; 
+	if(title==""){layer.msg('请填写留言标题！', 2, 2);return false;}
+	if(con==""){layer.msg('请填写留言内容！', 2, 2);return false;}	
+	if(len >= 100) {layer.msg('字数超过限制！', 2, 2);return false;}			
+}
+</script> 
+<script language="javascript" type="text/javascript">
+$(function() {
+	$("#content").keyup(check);
+	//$("#content").onpaste(check);
+});
+function check() {
+	var str = $.trim($("#content").val());
+	var len = strlen(str);
+	var info = 100 - len;
+	info = info + "";
+	if (info.indexOf('.') > 0)
+		info = info.substring(0, info.indexOf('.'));
+	if (len <= 100) {
+		$("#info1").html("还能输入");
+		$("#info").css('color', 'gray');
+		$("#info").html(info);
+	} else {
+		info = info.substr(1)
+		$("#info1").html("超出");
+		$("#info").css('color', 'red');
+		$("#info").html(info);
+	}
+}
+function trim(str) {
+	return (str + '').replace(/(\s+)$/g, '').replace(/^\s+/g, '');
+}
+
+function strlen(str) {
+	var str = trim(str);
+	var len = 0;
+	for (var i = 0; i < str.length; i++) {
+		len += str.charCodeAt(i) > 0 && str.charCodeAt(i) < 255 ? 0.5 : 1;
+	}
+	return len;
+}
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span  class="admin_tit_bg">留言反馈</span><span class=remind></span></div>
+        <div class=admin_note2>
+          <table width="100%" border="0" cellspacing="1" cellpadding="0" class="my_table_msg" >
+            <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+            <form name=alipayment target="supportiframe" onSubmit="return CheckForm();" action="" method=post>
+              <tr>
+                <th>内容:</th>
+                <td><textarea name="content" id="content" cols="60" rows="5" class="meg_textarea"></textarea>
+                  <div class="may_sr">
+                    <label id="info1"> 还能输入</label>
+                    <span id="info" >100</span>
+                    <label id="info2"> 个字</label>
+                  </div></td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td height="90" style="text-align:left"><input type="submit" name="add_message" class="btn_01" value="添加留言" style="margin-top:0px;"></td>
+              </tr>
+            </form>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

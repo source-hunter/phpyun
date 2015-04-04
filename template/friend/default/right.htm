@@ -1,0 +1,26 @@
+
+<div class="Personals_right">
+  <div class="clear"></div>
+  <div class="Personals_may"><strong>可能感兴趣的人</strong> <a href="{yun:}furl url=c:addfriend{/yun}">更多>></a></div>
+  {yun:}foreach from=$addlist item=addlist{/yun}
+  <div class="Personals_may_firend">
+    <div class="Personals_may_firend_img"><img src="{yun:}$addlist.pic{/yun}" width="30" height="30" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);"/></div>
+    <a href="{yun:}furl url=c:profile,id:`$addlist.uid`{/yun}" class="Personals_may_fangk" title="{yun:}$addlist.nickname{/yun}">{yun:}$addlist.nickname{/yun}</a> <a href="javascript:;" onclick="addfriend('{yun:}$addlist.uid{/yun}','{yun:}$addlist.usertype{/yun}');" class="Personals_may_submit" title="好友">好友</a> 
+	</div>
+  {yun:}/foreach{/yun}
+  <div class="Personals_may"><strong>热门问答</strong> <a  href="{yun:}aurl{/yun}">更多>></a></div>
+	<ul class="Personals_py_wd">
+	{yun:}qlist item=qlist order=visit t_len=20 limit=8{/yun}
+	<li><a href="{yun:}$qlist.url{/yun}" title="{yun:}$qlist.title{/yun}" target="_blank">{yun:}$qlist.title{/yun}</a></li>
+	{yun:}/qlist{/yun}
+	</ul>
+  <div class="Personals_may"><strong>最近访客</strong> </div>
+  <div class="Personals_may_list"> 
+  {yun:}foreach from=$myfoot item=myfoot{/yun}
+    <dl>
+      <dt><img src="{yun:}$myfoot.pic{/yun}" width="50" height="50" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);"/></dt>
+      <dd><a href="{yun:}furl url=c:profile,id:`$myfoot.uid`{/yun}" class="my_fangk" title="{yun:}$myfoot.nickname{/yun}">{yun:}$myfoot.nickname{/yun}</a></dd>
+    </dl>
+    {yun:}/foreach{/yun} 
+	</div>
+</div>

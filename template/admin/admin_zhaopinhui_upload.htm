@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="../data/kindeditor/themes/default/default.css" />
+<title>后台管理</title>
+</head>
+<script>
+KindEditor.ready(function(K) {
+	var uploadbutton = K.uploadbutton({
+		button : K('#insertfile')[0],
+		fieldName : 'imgFile',
+		url : '../data/kindeditor/php/upload_json.php?dir=image',
+		afterUpload : function(data) {
+			if (data.error === 0) {
+				K('#pic_url').val(data.url);
+				K('#span_pic_url').val(data.url);
+			} else {
+				parent.layer.msg(data.message);
+			}
+		},
+		afterError : function(str) {
+			parent.layer.msg(str);
+		}
+	});
+	uploadbutton.fileBox.change(function(e) {
+		uploadbutton.submit();
+	});
+});
+ 
+function show_pic(url,id){
+	if($("#pic_"+id).width()&&$("#pic_"+id).width()>380){
+		var width=$("#pic_"+id).width();
+		$(".job_box_div").html("<img id='pic_show' src='"+url+"' style='width:380px;height:auto; ' />");
+	}else{
+		$(".job_box_div").html("<img id='pic_show' src='"+url+"' style='max-width:380px;height:auto; ' />");
+	}
+	 
+	var i = $.layer({
+		type : 1,
+		title : '查看图片',
+		closeBtn : [0 , true], 
+		fix : false,
+		offset:['50px' , ''],
+		area : ['400px','auto'],
+		page : {dom : '#preview'}
+	});
+}
+
+</script>
+
+<body class="body_ifm">
+<div id="preview"  style="display:none; width:400px; "> 
+	<div style="height:300px; overflow:auto; width:auto; " > 
+		<div class="job_box_div" style="text-align:center;margin-top:10px;"></div>
+	</div>	
+</div>  
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>{yun:}$row.title{/yun}图片管理</h6>
+  <div class="infoboxp_right"> 
+<a href="index.php?m=zhaopinhui&c=add" class="on">添加招聘会</a>
+<a href="index.php?m=zhaopinhui" class="on">招聘会列表</a>
+	</div>
+</div>
+<style>
+
+
+.content-menu span {
+    color: #DDDDDD;
+    padding: 0;
+}
+</style>
+<div class="subnav">
+<div class="content-menu ib-a blue line-x">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=zhaopinhui&c=uploadsave" method="post" enctype="multipart/form-data">
+<input class="input-text" name="zid" type="hidden" value="{yun:}$row.id{/yun}" /> 
+图片名称：<input class="input-text" name="title" type="text" value="{yun:}$editrow.title{/yun}" /> 
+<input class="input-text" name="pic" type="hidden" value="{yun:}$editrow.sort{/yun}" id='pic_url'/> 
+<span id="span_pic_url" style="color:#444">{yun:}$pic{/yun}</span>
+<input   type="button" id="insertfile" value="重新选择" />
+排序：<input class="input-text" name="sort" type="text" value="{yun:}$editrow.sort{/yun}" style="width:40px;"/> 
+{yun:}if is_array($editrow){/yun}
+<input class="admin_submit4" type="hidden" name="id" value="{yun:}$editrow.id{/yun}" value="修改">
+<input class="admin_submit4" type="submit" name="update" value="修改">
+{yun:}else{/yun}
+<input class="admin_submit4" type="submit" name="add" value="添加">
+{yun:}/if{/yun}
+<input type="hidden" name="pytoken" id="pytoken"  value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+</div>
+<div class="table-list">
+<div class="admin_table_border">
+<form action="index.php" name="myform" method="get" target="supportiframe" >
+<table width="100%">
+<thead>
+	<tr class="admin_table_top">
+		<th>图片名称</th>
+		<th>查看图片</th>
+		<th>排序</th>
+		<th class="admin_table_th_bg">操作</th>
+	</tr>
+</thead>
+<tbody>
+	{yun:}foreach from=$rows item=list{/yun}
+	<tr align="center">
+		<td><span>{yun:}$list.title{/yun}</span>{yun:}if $list.is_themb==1{/yun}<span  style="color:red;">缩略图</span>{yun:}/if{/yun}</td>
+		<td class="ud"><a href="javascript:void(0)"  onclick="show_pic('{yun:}$config.sy_weburl{/yun}/{yun:}$list.pic{/yun}','{yun:}$list.id{/yun}')">查看</a><img src="../{yun:}$list.pic{/yun}" id="pic_{yun:}$list.id{/yun}" style="display:none"></td>
+		<td class="od">{yun:}$list.sort{/yun}</td>
+		<td>{yun:}if $list.is_themb!=1{/yun}<a href="javascript:void(0)" onClick="layer_del('','index.php?m=zhaopinhui&c=pic&sid={yun:}$list.id{/yun}')">设为缩略图</a> | {yun:}/if{/yun}<a href="index.php?m=zhaopinhui&c=upload&editid={yun:}$list.id{/yun}">修改</a> | <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=zhaopinhui&c=pic&delid={yun:}$list.id{/yun}');">删除</a></td>
+	</tr>
+	{yun:}/foreach{/yun}
+</tbody>
+</table>
+</form>
+
+	
+</div>
+</div>
+</div>
+</body>
+</html>

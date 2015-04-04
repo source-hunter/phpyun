@@ -1,0 +1,112 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box >
+        <div class=admin_tit><span class="admin_tit_bg">评论管理</span></div>
+      
+        <div class="clear"></div>
+        <div class="admin_note" style="line-height:23px;">功能说明：购买功能以后，可以自主设定是否开启评论审核功能，对于不友好或者广告等垃圾信息进行删除。
+          <div>{yun:}if $com.pl_time>time(){/yun}您的评论管理功能到期时间为：{yun:}$com.pl_time|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}您还没有购买评论管理功能或已经过期 {yun:}/if{/yun} <a href="index.php?c=buyvip&vipid=0" style="color:red;">购买评论管理功能</a></div>
+          {yun:}if $com.pl_time>time(){/yun}
+          评论设置：
+          <input type="radio"  name="pl_status" onclick="check_pl('2')" checked="checked"/>
+          需审核
+          <input type="radio" name="pl_status" onclick="check_pl('1')" {yun:}if $com.pl_status==1{/yun}checked="checked"{yun:}/if{/yun}/>
+          不需审核
+          {yun:}/if{/yun} </div>
+        <div class="clear"></div>
+        <div class=admin_note2>
+          <table width="100%" border="0" cellpadding="0" cellspacing="1" class="my_table_msg" >
+            <tr>
+              <th width="4%"  height="26" align="center" bgcolor="#F7FAFF">咨询人</th>
+              <th width="15%" align="center" bgcolor="#F7FAFF">内容</th>
+              <th width="5%" align="center" bgcolor="#F7FAFF">时间</th>
+              <th width="3%" align="center" bgcolor="#F7FAFF">状态</th>
+              <th width="3%" align="center" bgcolor="#F7FAFF">审核</th>
+              <th width="3%" align="center" bgcolor="#F7FAFF">删除</th>
+            </tr>
+            {yun:}foreach item=v from=$rows{/yun}
+            <tr>
+              <td  height="26"align="center" bgcolor="#FFFFFF"><a href="{yun:}url m=resume url=uid:`$v.uid`{/yun}">{yun:}$v.name{/yun}</a></td>
+              <td  height="26"align="center" bgcolor="#FFFFFF">{yun:}$v.content{/yun}</td>
+              <td  height="26"align="center" bgcolor="#FFFFFF">{yun:}$v.ctime|date_format:'%Y-%m-%d'{/yun}</td>
+              <td align="center" bgcolor="#FFFFFF">
+			  {yun:}if $v.reply!=""{/yun}<font color="#FF0000">已回复</font> 
+			  {yun:}else{/yun}
+			  <span onclick="reply_msg('{yun:}$v.id{/yun}');" style="cursor:pointer">未回复</span>
+			  {yun:}/if{/yun}
+			  </td>
+              <td  height="26"align="center" bgcolor="#FFFFFF" id="status{yun:}$v.id{/yun}">
+			  {yun:}if $v.status==1{/yun}
+			  <font color="green">已审核</font>
+			  {yun:}else{/yun}
+			  <a href="javascript:onstatus('{yun:}$v.id{/yun}','1');"><font color="red">未审核</font></a>
+			  {yun:}/if{/yun}
+			  </td>
+              <td align="center" bgcolor="#FFFFFF"> {yun:}if $pl_time==1{/yun} <a href="javascript:void(0)" onclick="layer_del('确定要删除？', 'index.php?c=pl&act=del&id={yun:}$v.id{/yun}');" >删除</a> {yun:}else{/yun} <a href="javascript:void(0)" onclick="return layer.msg('请先购买评论管理功能！', 2, 8);return false;">删除</a> {yun:}/if{/yun} </td>
+            </tr>
+            {yun:}foreachelse{/yun} 
+			<tr style="height:30px">
+                <td colspan="6" align="center">您还没有评论记录。</td>
+              </tr>
+            {yun:}/foreach{/yun}
+          </table>
+          <div class="clear"></div>
+          <div class="diggg mt10">{yun:}$pagenav{/yun}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<div id="reply" style=" width:408px; display:none;margin: 0 auto; padding: 0;">
+	<form id="formstatus" method="post" target="supportiframe" action="index.php?c=pl&act=save" onSubmit="return check_msg();">
+	  <table class="table_form "  id="infobox"> 
+ 			<tr><td>回复内容：</td><td><textarea name="reply" id="content" rows="4" cols="35" class="text" ></textarea></td></tr> 
+			<tr><td colspan="2" style="text-align:center;padding:0"><input type="submit" name="submit" value=" "class="Reply_cont_submit"  /></td></tr>
+			<input type="hidden" id="msgid" name="id" value="" />
+	  </table>
+	 </form>
+</div>  
+<script>
+function reply_msg(id){ 
+	$("#msgid").val(id); 
+	$.layer({
+		type : 1,
+		title :'回复留言',
+		offset: [($(window).height() - 190)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['410px','190px'],
+		page : {dom :"#reply"}
+	}); 
+} 
+function check_msg(){
+	if($.trim($("#content").val())==""){ 
+		layer.msg('回复内容不能为空！', 2, 2);return false;
+	}
+}
+function check_pl(id){
+	$.post("index.php?c=pl&act=plset",{id:id,ajax:1},function(data){ 
+		if(data==1){
+			layer.msg('设置成功！', 2, 9);
+		}else{
+			layer.msg('设置失败！', 2, 8);
+		}
+	})
+}
+function onstatus(id,status){
+	$.post("index.php?c=pl&act=plset",{id:id,status:status},function(data){
+		if(data==1){
+			layer.msg('审核成功！', 2, 9);
+			$("#status"+id).html('<font color="green">已审核</font>');
+		}else if(data==0){
+			layer.msg('请先购买企业评论管理功能！', 2, 8);
+		}else{
+			layer.msg('审核失败！', 2, 8);
+		}
+	})
+}
+</script> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

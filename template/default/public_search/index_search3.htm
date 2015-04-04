@@ -1,0 +1,138 @@
+<link href="{yun:}$style{/yun}/style/tck_box.css" rel="stylesheet" type="text/css" />
+<liNK href="{yun:}$userstyle{/yun}/images/yun_tck.css" type="text/css" rel="stylesheet">
+
+<!--------------------------------弹出框-------------------------------------->
+
+<!--选择职位 lgl -->
+
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+	$("input[name='layoutcheck']").attr("checked",false);
+	/*$("#layout_inner dd").hover(function(){},function(){
+		$(this).fadeOut("slow");
+		$(this).parent("dl").find("dt").removeClass("cur"); 
+	});*/
+});
+</script>
+<div id="index_job_class" class="layout" style="display: none;width:710px ">
+	<div class="tit" > 
+		<div id="my_selected"  >
+			<div class="OK_Cancel">
+				<a class="ok" href="javascript:void(0);" onclick="index_select_prop('job_class','workadds_job','layout_job')"><img src="{yun:}$userstyle{/yun}/images/hire_search_OKbg.gif"></a>
+				<a class="cancel" href="javascript:void(0);" onclick="index_clear_prop()"><img src="{yun:}$userstyle{/yun}/images/qk.png"></a>
+			</div> 
+			<span class='span'>已选择：</span> 
+		</div>
+        <div class="dialog-content" ><ul class="selected clearfix" id="job_choosed"></ul></div>
+	</div>
+	<div id="layout_inner" class="con clearfix">
+	{yun:}foreach from=$job_index item=j_index{/yun} 
+	<dl style="z-index: 990;">
+		<dt  id='dt_job_{yun:}$j_index{/yun}' class="dt_job_1"onclick="index_job_class('{yun:}$j_index{/yun}','f','1')">{yun:}$job_name[$j_index]{/yun}</dt>
+		<dd style="top: 77px; display:none;" class="dd_job_1" id='dd_job_{yun:}$j_index{/yun}'>
+			<ul class="clearfix">
+			{yun:}foreach from=$job_type[$j_index] item=j_type{/yun}
+			{yun:}if is_array($job_type[$j_type]){/yun}
+			<dl style="z-index: 990;">
+				<dt  id='dt_job_{yun:}$j_type{/yun}' class="dt_job_2" onclick="index_job_class('{yun:}$j_type{/yun}','f','2')">{yun:}$job_name[$j_type]{/yun}</dt>
+				<dd style="top: 77px; display:none;width:570px" class="dd_job_2" id='dd_job_{yun:}$j_type{/yun}'>
+					<ul class="clearfix">
+					<li><input id="job_{yun:}$j_type{/yun}" type="checkbox" value="{yun:}$job_name[$j_type]{/yun}" name="layoutcheck" onclick="index_job_class('{yun:}$j_type{/yun}','s','3')"><label title="{yun:}$job_name[$j_type]{/yun}" for="job_{yun:}$j_type{/yun}">{yun:}$job_name[$j_type]{/yun}</label></li>
+					{yun:}foreach from=$job_type[$j_type] item=cc_type{/yun} 
+					<li><input id="job_{yun:}$cc_type{/yun}" type="checkbox" value="{yun:}$job_name[$cc_type]{/yun}" name="layoutcheck" onclick="index_job_class('{yun:}$cc_type{/yun}','s','3')"><label title="{yun:}$job_name[$cc_type]{/yun}" for="job_{yun:}$cc_type{/yun}">{yun:}$job_name[$cc_type]{/yun}</label></li>
+					{yun:}/foreach{/yun}
+					</ul>
+				</dd> 
+			</dl>
+			{yun:}else{/yun}
+			<li><input id="{yun:}$j_type{/yun}" type="checkbox" value="{yun:}$job_name[$j_type]{/yun}" name="layoutcheck" onclick="job_city('{yun:}$j_type{/yun}','city','3')" ><label title="{yun:}$job_name[$j_type]{/yun}" for="{yun:}$j_type{/yun}">{yun:}$job_name[$j_type]{/yun}</label></li>
+			{yun:}/if{/yun} 
+			{yun:}/foreach{/yun}
+			</ul>
+		</dd>
+	</dl>
+	{yun:}/foreach{/yun} 
+	</div>
+</div>
+<!--选择职位end-->
+
+
+
+
+
+<!--职位类别-->
+
+<div class="sPopupDiv" id="jobdiv" style="width: 705px; left: 232px; top:274px; visibility: visible; display:none;"></div>
+
+<!--职位类别end--> 
+
+
+<!--工作地点-->
+<div class="sPopupDiv" id="citydiv" style="width: 705px; left: 242px; top: 142px; visibility: visible; display:none"></div>
+
+<!--工作地点end--> 
+<script>
+function showcity(id){
+	$("#td_city"+id).attr("class","focusItemTop mOutItem");
+	$("#span_city"+id).hide();
+	$("#div_city"+id).show();
+}
+function guanbicity(id){
+   $("#td_city"+id).bind("mouseleave", function(){
+	$("#td_city"+id).attr("class","blurItem");
+	$("#span_city"+id).show();
+	$("#div_city"+id).hide();
+   });
+}
+function checkcity(id,name){
+	//$(".sPopupTabC>td").attr("class","blurItem");
+	$("#city").val(name);
+	$("#cityid").val(id);
+	$("#citydiv").hide();
+	$("#bg").hide();
+}
+function showjob(id){ 
+	var top=$("#td"+id).offset().top;  
+	$("#td"+id).attr("class","focusItemTop mOutItem"); 
+	$("#span"+id).hide();
+	$("#div"+id).show();  
+}
+function Determine(id){
+	var check_val,name_val;
+	$(".label"+id).each(function(){
+		if($(this).attr("checked")=="checked"){
+		  var info = $(this).val().split("+");
+		  check_val+=","+info[0];
+		  name_val+="+"+info[1];
+		}
+	});
+  check_val = check_val.replace("undefined,","");
+  $("#jobid").val(check_val);
+  name_val = name_val.replace("undefined+","");
+  $("#jobname").val(name_val);
+	$("#jobdiv").hide();	  
+	$("#bg").hide();
+}
+function check_all(id){
+	if($("#all"+id).attr("checked")!="checked"){
+		$(".label"+id).removeAttr("checked");
+	}else{
+		$(".label"+id).attr("checked","true");
+	}
+}
+function Close(id){
+	$("#td"+id).attr("class","blurItem");
+	$("#span"+id).show();
+	$("#div"+id).hide();
+}
+function guanbiselect(id){
+	$("#td"+id).bind("mouseleave", function(){
+	$("#td"+id).attr("class","blurItem");
+	$("#span"+id).show();
+	$("#div"+id).hide();
+   });
+}
+function check_this(id){
+	$("#job_class_"+id).attr("checked","checked");
+}
+</script>

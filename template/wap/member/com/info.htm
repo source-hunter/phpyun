@@ -1,0 +1,165 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun}  
+<script src="{yun:}$wap_style{/yun}/js/jobadd.js" language="javascript"></script> 
+<script>var weburl='{yun:}$config_wapdomain{/yun}';</script>
+<section class="wap_member">
+  <div class="wap_member_comp_h1" style="position:relative"><span>完善基本资料</span><em class="wap_member_comp_em">以下<font color="#ff0000">*</font> 号为必填项</em></div>
+  <div class="resume-cont">
+    <div class="resume-cont_zk">
+      <div class="resume-cont_wate">
+      <form method="post" action="" onsubmit="return checkinfo();">
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font>企业全称：</dt>
+          <dd>
+            <input type="text" name="name" id='name' value="{yun:}$row.name{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font>从事行业：</dt>
+          <dd>
+            <div class="mLeft12 relative">
+              <div class="selectOption" style="width:100%">
+              <select name="hy" id='hy'>
+				{yun:}foreach item=v from=$industry_index{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.hy==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+              </div>
+            </div>
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font>企业性质：</dt>
+          <dd>
+            <div class="mLeft12 relative">
+              <div class="selectOption" style="width:100%">
+              <select name="pr" id='pr'>
+				{yun:}foreach item=v from=$comdata.job_pr{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.pr==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+              </div>
+            </div>
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font> 企业地址：</dt>
+          <dd>
+            <div class="mLeft12 relative">
+            <div class="selectOption" style="width:30%">
+              <select name="provinceid" onchange="checkcity(this.value,'1');">
+                <option value="">请选择</option>
+                {yun:}foreach from=$city_index item=v{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.provinceid==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+            <div class="selectOption" style="width:30%">
+              <select name="cityid" id="cityid">
+                <option value="">请选择</option>
+                {yun:}foreach from=$city_type[$row.provinceid] item=v{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.cityid==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+            </div>
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font> 企业规模：</dt>
+          <dd>
+            <div class="mLeft12 relative">
+              <div class="selectOption" style="width:100%">
+              <select name="mun" id="mun">
+				{yun:}foreach item=v from=$comdata.job_mun{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.mun==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+              </div>
+            </div>
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font> 公司地址：</dt>
+          <dd>
+            <input type="text" name="address" id='address' value="{yun:}$row.address{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font> 固定电话：</dt>
+          <dd>
+           <input type="text" name="linkphone" id='linkphone' value="{yun:}$row.linkphone{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font> 联系邮件：</dt>
+          <dd>
+            <input type="text" name="linkmail" id='linkmail' value="{yun:}$row.linkmail{/yun}" class="reinputText">
+            修改后邮件需重新认证 </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt><font color="#ff0000">*</font> 企业简介：</dt>
+          <dd>
+           <textarea class="textAreaMsg tip" id="content" name="content" placeholder="请输入职位描述500字以内" en="Please input your career direction,limited to 500 characters.">{yun:}$row.content{/yun}</textarea>
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>创办时间：</dt>
+          <dd>
+            <input type="text" name="sdate" value="{yun:}$row.sdate{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>注册资金：</dt>
+          <dd>
+            <input type="text" name="money" value="{yun:}$row.money{/yun}" class="reinputText" style="width:70%">万元
+          </dd>
+        </dl>
+       
+        <dl class="resume-cont_wate_list">
+          <dt>邮政编码：</dt>
+          <dd>
+            <input type="text" name="zip" value="{yun:}$row.zip{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>联 系 人：</dt>
+          <dd>
+            <input type="text" name="linkman" value="{yun:}$row.linkman{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>所属职位：</dt>
+          <dd>
+            <input type="text" name="linkjob" value="{yun:}$row.linkjob{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>联 系 QQ：</dt>
+          <dd>
+            <input type="text" name="linkqq" value="{yun:}$row.linkqq{/yun}"class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>联系电话：</dt>
+          <dd>
+            <input type="text" name="linktel" value="{yun:}$row.linktel{/yun}" class="reinputText" style="width:70%">
+            修改后邮件需重新认证</dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>企业网址：</dt>
+          <dd>
+            <input type="text" name="website" value="{yun:}$row.website{/yun}" class="reinputText">
+          </dd>
+        </dl>
+        <dl class="resume-cont_wate_list">
+          <dt>&nbsp;</dt>
+          <dd>
+            <input type="submit" name="submit" value="提交操作" class="reinputText2">
+          </dd>
+        </dl>
+        </form>
+      </div>
+    </div>
+  </div> 
+</section>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

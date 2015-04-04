@@ -1,0 +1,41 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun} 
+<section class="wap_member">
+<div class="wap_member_comp_h1"><span>我看过谁</span></div>
+<div class="wap_member_Receive">
+<!--	<form id="myform" action="{yun:}$config_wapdomain{/yun}/member/index.php?c=look_job_del" method="post">-->
+          	{yun:}foreach item=one from=$look{/yun}
+           	<div class="List_Ope List_Ope_bor">
+                <span class="List_Title_span List_Title_span_n"><input type=checkbox name="delid[]" value="{yun:}$log.id{/yun}" class="List_Title_span_check"></span>
+                <span class="List_Title_span List_Title_w230">
+                <div class="">
+                <a href="{yun:}wapurl m=com url=c:view,id:`$one.job_id`{/yun}" target="_blank" class="List_Title_span_com">{yun:}$one.jobname{/yun}</a> 
+                </div>
+                <a href="{yun:}wapurl m=firm url=c:show,id:`$one.com_id`{/yun}" target="_blank">{yun:}$one.comname{/yun}</A>&nbsp;            
+                </span>	
+                
+                <span class="List_Title_span  List_Title_w120 mt10">{yun:}$one.salary{/yun}</span>	  
+                <span class="List_Title_span List_Title_w100 mt10">{yun:}$one.provinceid{/yun}-{yun:}$one.cityid{/yun}</span>		
+                <span class="List_Title_span List_Title_w80 mt10">{yun:}$one.datetime|date_format:'%Y-%m-%d'{/yun}</span>	 	
+                <span class="List_Title_span List_Title_w100 mt10">
+                <a href="javascript:void(0)"  onclick="isdel('{yun:}$config_wapdomain{/yun}/member/index.php?c=look_job_del&id={yun:}$log.id{/yun}');" class="List_dete"> 删除</a>
+                </span>	
+      		</div>
+         	{yun:}foreachelse{/yun}  
+         	<div class="msg_no">您还没有浏览过的职位。</div>
+          	{yun:}/foreach{/yun} 
+            
+		   	{yun:}if $look|@count>0{/yun} 
+<!--        	<div class="List_Ope List_Ope_bg">
+                <span class="List_Title_span List_Title_span_n">
+                    <input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)' class="List_Title_span_check_n mt5">
+                </span>
+                <INPUT type="button" name="subdel" value="批量删除" onclick="return really('delid[]');"class="Bulk_Delete">
+        	</div>-->
+        	<div class="diggg" style="width:710px;">{yun:}$pagenav{/yun}</div>
+	  		{yun:}/if{/yun} 
+<!--      </form>-->
+</div>
+
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+</section>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

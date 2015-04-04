@@ -1,0 +1,36 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun} 
+<div class="wap_com_m_top">
+<div class="wap_com_m_top_left"><i class="wap_com_m_top_iocn"></i>{yun:}$company.name{/yun}</div>
+<div class="wap_com_m_top_bot">用户名：{yun:}$username{/yun}</div>
+<div class="wap_log_out"><a href="index.php?c=logout">退出</a></div>
+</div>
+<div class="wap_com_m_center">
+<table class="wap_com_m_table" cellpadding="1" cellspacing="1">
+<td><a href="index.php?c=job" class="wap_com_m_table_a">
+<span class="wap_com_m_table_span">{yun:}$jobnum{/yun}</span>
+职位管理
+</a></td>
+<td><a href="index.php?c=hr" class="wap_com_m_table_a">
+<span class="wap_com_m_table_span">{yun:}$sqnum{/yun}</span>
+收到简历
+</a></td>
+<td><a  href="index.php?c=talent_pool" class="wap_com_m_table_a">
+<span class="wap_com_m_table_span">{yun:}$talent_pool_num{/yun}</span>
+人才库
+</a></td>
+</table>
+</div>
+<section class="wap_member">
+
+<div class="wap_member_mrecord" style="margin-top:0px;">
+    <a href="index.php?c=info" class="wap_member_mrecord_list">完善基本资料</a>
+    <a href="index.php?c=com" class="wap_member_mrecord_list">账户管理</a>
+    <a href="index.php?c=look_job" class="wap_member_mrecord_list">谁看过我</a>
+    <a href="index.php?c=look_resume" class="wap_member_mrecord_list">我看过谁</a>
+    <a href="index.php?c=invite" class="wap_member_mrecord_list">已邀请面试的简历</a>
+    <a href="index.php?c=password" class="wap_member_mrecord_list wap_member_mrecord_list_no">更改密码</a>
+</div>
+
+</section>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

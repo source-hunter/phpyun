@@ -1,0 +1,21 @@
+<body style="padding:0px;margin:0px;">
+<div style="margin:0px;padding:0px;font-size:12px;">
+  <form action="" method="post" enctype="multipart/form-data" name="upimg"  onsubmit="return CheckPost();">
+    <input type="file" name="file" id="file" style="height:30px;" value=""/>
+    <input type="submit" name="subuppic" id="button" value="…œ¥´" style="height:30px;" />
+    <input name="upload" type="hidden" id="upload" value="upload"  />
+    <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+  </FORM>
+</div>
+<script>
+function CheckPost()
+{
+	if (upimg.file.value=="")
+	{ 
+		layer.msg('«Î—°‘ÒÕº∆¨£°', 2, 2); 
+		upimg.file.focus();
+		return false;
+	}
+}
+</script>
+</body>

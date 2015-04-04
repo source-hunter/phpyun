@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script> 
+function delall(){
+	var time=$("#ad_start").val();
+	var ptype=$('input[name=ptype]').val();
+	if(ptype=='2'){
+	    var usertype=2;
+	}else if(ptype=='3'){
+	     var usertype=3;
+	}else{
+	     var usertype=1;
+	}
+	if(time==""){ 
+		parent.layer.msg('请选择时间！', 2, 8);return false;
+	}
+	layer_del("确定删除"+time+" 23:59:59以前的会员日志吗？","index.php?m=member_log&c=del&type="+usertype+"&time="+time);  
+}	
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top" style="z-index:600;position:relative;">
+	<span class="admin_title_span">会员日志</span>
+	<div class="report_uaer_list">
+	 <a href="index.php?m=member_log" {yun:}if $smarty.get.type==""{/yun}class="report_uaer_list_on"{yun:}/if{/yun}>个人日志</a>
+	 <a href="index.php?m=member_log&type=2" {yun:}if $smarty.get.type=="2"{/yun}class="report_uaer_list_on"{yun:}/if{/yun}>企业日志</a>
+
+	  </div> 
+  </div> 
+  <div class="admin_Filter">   
+	<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>	
+      <form action="index.php" name="myform" method="get">
+        <input name="m" value="member_log" type="hidden"/>
+		<span class="admin_Filter_span" style="width:100px"> 检索用户名：</span>
+        <input class="admin_Filter_search" type="text" name="keyword"  size="25" style="float:left">
+        <input  class="admin_Filter_bth"  type="submit" name="qysearch" value="检索"/>
+		
+	  <span class="company_job_a">
+      <link href="{yun:}$config.sy_weburl{/yun}/js/time/jscal2.css" type="text/css" rel="stylesheet">
+      <script src="{yun:}$config.sy_weburl{/yun}/js/time/calendar.js" type="text/javascript"></script> 
+      <script src="{yun:}$config.sy_weburl{/yun}/js/time/en.js" type="text/javascript"></script> 
+      <span class="admin_Filter_span"> 删除日期：</span>
+      <input id="ad_start" class="admin_Filter_search" type="text" name="time_start" readonly="true" style="float:left;width:100px">
+      <script type="text/javascript">
+        Calendar.setup({
+        weekNumbers: true,
+        inputField : "ad_start",
+        trigger : "ad_start",
+        dateFormat: "%Y-%m-%d",
+        showTime: false,
+        onSelect : function() {this.hide();}
+        });
+        </script> 
+       <input  class="admin_Filter_bth"  type="button" value="删除" onClick="return delall();"/>
+	   <input type="hidden" name="ptype" value="{yun:}$type{/yun}"/>
+	   </span>  
+	   <span class='admin_search_div'>
+        <div class="admin_adv_search">
+          <div class="admin_adv_search_bth">高级搜索</div>
+        </div> 
+        </span>
+ 	   </form>
+  </div>
+
+  {yun:}include file="admin/admin_search.htm"{/yun}
+  <div class="table-list">
+    <div class="admin_table_border">
+      <form action="index.php" name="myform" method="get" target="supportiframe" id='myform'>
+        <input name="m" value="member_log" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th style="width:20px;"><label for="chkall">
+                  <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+                  {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+                  <th><a href="{yun:}seacrh_url order=desc t=id m=member_log untype=order,t{/yun}">编号<img src="images/sanj.jpg"/></a></th>
+                  {yun:}else{/yun}
+                  <th><a href="{yun:}seacrh_url order=asc t=id m=member_log untype=order,t{/yun}">编号<img src="images/sanj2.jpg"/></a></th>
+                  {yun:}/if{/yun}
+              <th>用户名</th>
+              <th>内容</th>
+              <th>IP</th>
+              {yun:}if $smarty.get.t=="ctime" && $smarty.get.order=="asc"{/yun}
+              <th><a href="{yun:}seacrh_url order=desc t=ctime m=member_log untype=order,t{/yun}">时间<img src="images/sanj.jpg"/></a></th>
+              {yun:}else{/yun}
+              <th><a href="{yun:}seacrh_url order=asc t=ctime m=member_log untype=order,t{/yun}">时间<img src="images/sanj2.jpg"/></a></th>
+              {yun:}/if{/yun}
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {yun:}foreach item=v from=$rows{/yun}
+          <tr align="center" id="list{yun:}$v.id{/yun}">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td>{yun:}$v.id{/yun}</td>
+            <td align="left" >{yun:}$v.username{/yun}</td>
+            <td align="left">{yun:}$v.content{/yun}</td>
+            <td>{yun:}$v.ip{/yun}</td>
+            <td class="td">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</td>
+            <td><a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=member_log&c=del&del={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</a></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+          <td align="center"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></td>
+          <td colspan="2">
+          <label for="chkAll2">全选</label>&nbsp;
+            <input class="admin_submit4" type="button" name="delsub" value="删除所选"  onclick="return really('del[]')"/></td>
+            <td colspan="6" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+        </table>
+		<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun} 
+<div class="post_content">
+<div class="post_title">
+<h3>{yun:}$row.name{/yun}</h3>
+<aside  class="post_title_data">发布日期： {yun:}$row.lastupdate{/yun}</aside>
+<i>{yun:}$city_name[$row.provinceid]{/yun}/{yun:}$city_name[$row.cityid]{/yun}</i>
+</div>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》基本信息</span></header>
+<aside class="post_list_span">
+<ul class="com_post_msg">
+<li>[企业性质] {yun:}$comclass_name[$row.pr]{/yun}</li>
+<li>[所属行业] {yun:}$industry_name[$row.hy]{/yun}</li>
+<li>[注册资金] {yun:}$row.money{/yun}万元</li>
+<li>[公司规模] {yun:}$comclass_name[$row.mun]{/yun}</li>
+</ul>
+
+</aside>
+</section>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》公司简介</span></header>
+<div class="com_post_jj">{yun:}$row.content{/yun}</div>
+
+</section>
+
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》联系方式</span></header>
+{yun:}if ($config.com_login_link==1 && $cookie.uid && $cookie.usertype==1) || $config.com_login_link==0{/yun}
+ <ul class="com_post_msg">
+    <li>[联系人]  {yun:}$row.linkman{/yun}</li>
+    <li>[联系电话] {yun:}$row.linkphone{/yun}</li>
+   <li>[公司地址] {yun:}$row.address{/yun}</li>
+  </ul>
+{yun:}else{/yun}
+       <div class="com_post_login"> 请 <a href="{yun:}wapurl m=login{/yun}">[登录]</a> 后查看联系方式 
+    没有帐号？<a href="{yun:}wapurl m=register{/yun}">[免费注册]</a></div>
+{yun:}/if{/yun}
+</section>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》最新职位</span></header>
+<div class="index_post_list"> 
+{yun:}assign name=uid value=$row.uid{/yun}
+  {yun:}joblist namelen=8 comlen=12 ispage=0 uid=@row.uid order=xuanshang limit=5 islt=4 item=job_list{/yun}
+  	<a href="{yun:}wapurl url=m:com,c:view,id:`$job_list.id`{/yun}" class="index_post_list_b index_post_list_b_com">
+    <h3>{yun:}$job_list.name_n{/yun}</h3>
+    <aside>{yun:}$job_list.job_city_one{/yun}-{yun:}$job_list.job_city_two{/yun}</aside> <em>{yun:}$job_list.time{/yun}</em> </a> 
+    {yun:}/joblist{/yun}
+     </div>
+</section>
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

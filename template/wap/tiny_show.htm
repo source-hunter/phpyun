@@ -1,0 +1,31 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="post_content">
+<div class="post_list">
+<div class="post_title">
+<h3>{yun:}$row.username{/yun}</h3>
+<aside>意向职位：{yun:}$row.job{/yun}</aside>
+<i>{yun:}$row.time|date_format:"%Y-%m-%d"{/yun}</i>
+</div>
+</div> 
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》自我描述</span></header>
+  <ul class="com_post_msg">
+  <li>[工作年限] {yun:}$userclass_name[$row.exp]{/yun}</li>
+  <li>[联系QQ] {yun:}$row.qq{/yun}</li>
+  <li>[联系电话] {yun:}if $config.user_wjl_link=='1' && !$smarty.cookies.uid{/yun}
+  <a href='{yun:}wapurl m=login url=usertype:2{/yun}'><font color='red'>登录后查看联系电话</font></a>
+  {yun:}else{/yun}
+
+  {yun:}$row.mobile{/yun}
+  
+  {yun:}/if{/yun}</li>
+  <li>[自我介绍] {yun:}$row.production{/yun}</li>
+  </ul>
+ <header  class="index_post_h2"><span> 》信息管理</span></header>
+
+ <a  onclick="checkshowjob('tiny');$('#tinyid').val('{yun:}$row.id{/yun}');$('#tiny_password').val('')" class="tiny_cz">管理</a>  
+ <div class="tiny_tag">只有发布者本人才可以操作</div>
+</section> 
+</div>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

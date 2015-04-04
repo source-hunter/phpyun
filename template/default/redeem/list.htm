@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun} 
+<div class="redeem">
+  <div class="redeem_mainlists fl">
+    <div class="redeem_goods fl">
+      <dl class="redeem_goods_items fl">
+        <dt>商品类别：</dt>
+        <dd>
+          <ul>
+            {yun:}foreach item=v from=$row{/yun}
+            <li><a href="{yun:}url m=redeem url=c:list,id:`$v.id`{/yun}">{yun:}$v.name{/yun}</a> 丨 </li>
+            {yun:}/foreach{/yun}
+          </ul>
+        </dd>
+      </dl>
+    </div>
+    <div class="redeem_goods_lists fl">
+      <div class="redeem_goods_top fl"> {yun:}foreach item=v from=$rows{/yun}
+        <dl class="redeem_one fl">
+          <dt><a href="{yun:}url m=redeem url=c:show,id:`$v.id`{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$v.pic{/yun}" width="222" height="248"></a></dt>
+          <dd> <a href="{yun:}url m=redeem url=c:show,id:`$v.id`{/yun}" class="redeem_one_h fl">{yun:}$v.name{/yun}</a>
+            <div class="redeem_one_text fl"><em><font color="#f00">{yun:}$v.integral{/yun}</font> 积分</br>
+              库存{yun:}$v.stock{/yun}个</em> {yun:}if $v.stock=='0'{/yun} <img src="{yun:}$style{/yun}/images/yun_ydw.png"> {yun:}else{/yun} <a href="{yun:}url m=redeem url=c:show,id:`$v.id`{/yun}" class="redeem_bth fr"><img src="{yun:}$style{/yun}/images/redeem_bth.png"></a> {yun:}/if{/yun} </div>
+          </dd>
+        </dl>
+        {yun:}/foreach{/yun}
+        <div class="clear"></div>
+        <div class="pages"> {yun:}$pagenav{/yun}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--content  end--> 
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

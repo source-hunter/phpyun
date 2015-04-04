@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link href="{yun:}$style{/yun}/style/Micro_resume.css" rel="stylesheet" type="text/css" />
+<style>
+* {margin:0;padding:0;}
+body,div{margin:0;padding:0;}
+.content_firm{float:left;width:100%;margin: 0 auto;position: relative;}
+</style>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+  <div class="current_Location icon"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}"> 首页</a> > 微招聘 </div>
+  <div class="fast_issuance" style="display:none;_position:absolute;" id="fabufast">
+    <div class="fast_once_cont fl">
+      <div class="fast-onxt_box">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="{yun:}url m=once{/yun}" target="supportiframe" method="post" onSubmit="return check_once_job()">
+        <div class="once_fb_list"><span class="once_fb_list_span"><font color="red">* </font>我想招聘：</span>
+          <input  class="once_input_simple once_input_simple_w290" type="text" id="title" maxlength="15" name="title">
+          <span class="once_fb_list_span"><font color="red">* </font>人数：</span>
+          <input  class="once_input_simple once_input_simple_w140" type="text" id="mans" onkeyup="this.value=this.value.replace(/[^0-9-]/g,'')"maxlength="4" name="mans">
+        </div>
+        <div class="once_fb_list"><span class="once_fb_list_span"><font color="red">* </font>(店面)名称：</span>
+          <input class="once_input_simple once_input_simple_w480" type="text" id="companyname" maxlength="15" name="companyname">
+        </div>
+        <div class="once_fb_list"><span class="once_fb_list_span"><font color="red">* </font>联系人：</span>
+          <input class="once_input_simple once_input_simple_w140" type="text" id="linkman" maxlength="15" name="linkman">
+          <span class="once_fb_list_span"><font color="red">* </font>联系地址：</span>
+          <input class="once_input_simple once_input_simple_w290" type="text" id="address" maxlength="50" name="address">
+        </div>
+        <div class="once_fb_list" style="margin-top:5px;"><span class="once_fb_list_span"><font color="red">* </font>具体要求：</span>
+          <textarea rows='6' class="once_simplew_textarea" id="require" placeholder="请填写招聘的具体要求，如：性别，学历，年龄，工作经验，工资待遇等相关信息" onfocus="if(this.value=='请填写招聘的具体要求，如：性别，学历，年龄，工作经验，工资待遇等相关信息') this.value=''" onblur="this.value=this.value==''?'请填写招聘的具体要求，如：性别，学历，年龄，工作经验，工资待遇等相关信息':this.value" name="require">{yun:}$onshow.require{/yun}</textarea>
+        </div>
+        <div class="once_fb_list_bottom">
+          <div class="once_fb_list_bottom_tips">以下（3）项需选填一项</div>
+          <div class="once_fb_list_bottom_left"> 联系电话
+            <input class="once_input_simple_xt" type="text" id="phone" onkeyup="this.value=this.value.replace(/[^0-9-]/g,'')" maxlength="11" name="phone">
+          </div>
+          <div class="once_fb_list_bottom_left"> 联系邮箱
+            <input class="once_input_simple_xt" type="text" id="email" maxlength="50" name="email">
+          </div>
+          <div class="once_fb_list_bottom_left"> 联系QQ
+            <input class="once_input_simple_xt" type="text" id="qq" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" maxlength="50" name="qq">
+          </div>
+        </div>
+        <div class="once_fb_list"> <span class="once_fb_list_span"><font color="red">* </font>有效期：</span>
+          <input class="once_input_simple once_input_simple_w80" type="text" id="edate" style="width:80px" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  maxlength="3" name="edate">
+          <em class="once_fb_list_em">天</em></span> <span class="once_fb_list_span once_fb_list_span_ml20"><font color="red">* </font>密码：</span>
+          <input class="once_input_simple once_input_simple_w80" type="password"  id="password" name="password" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')">
+          <span class="once_fb_list_span once_fb_list_span_ml20"><font color="red">* </font>验证码：</span> {yun:}if strpos($config.code_web,"一句话招聘")!==false{/yun}
+          <input id="authcode" class="once_input_simple once_input_simple_w80" type="text" maxlength="4" name="authcode">
+          <a href="javascript:check_code();"><img id="vcode_img" src="include/authcode.inc.php" style="margin-left:10px;"></a> {yun:}else{/yun}
+          <input id="authcode" type="hidden" value="12345" maxlength="4" name="authcode">
+          {yun:}/if{/yun} </div>
+        <div class="once_fb_list_tips"><span class="once_fb_list_span once_fb_list_span_w80">温馨提示：</span> <em class="once_fb_list_span_em">请妥善保存密码，密码可用于刷新/修改/删除信息！
+          您当前的IP是：{yun:}$ip{/yun}，</br>
+          请不要发布虚假、违法信息！</em></div>
+        <div class="once_fb_list">
+          <input type="hidden" id="id" name="id"/>
+          <input id="botton" class="once_fast_submit" type="submit" value="发布" name="submit">
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="{yun:}$style{/yun}/js/fast.js" language="javascript"></script>
+  <div class="yun_micro_body">
+    <div class="yun_micro_ban"> <img src="{yun:}$style{/yun}/images/8.jpg" width="970"> </div>
+    <div class="micro_tag"><span>热门搜索：</span> {yun:}key limit=15 type=1 item=keylist{/yun} <a href="{yun:}$keylist.url{/yun}"> <em>{yun:}$keylist.key_name{/yun}</em></a> {yun:}/key{/yun} </div>
+    <div class="clear"></div>
+    <div class="Fast_Search_Results fl"><span class="fl">最新微聘信息 </span> </div>
+    <div class="content_firm">
+      <div class="new_fast fl "> {yun:}fast item=once ispage=1 limit=20 keyword=auto.keyword {/yun}
+        <div class="new_fast_list new_fast_listbg ">
+          <div class="yun_micro_list_t"> <a class="yun_micro_list_t_name"  href="{yun:}url m=once url=c:show,id:`$once.id`{/yun}" target="_blank">{yun:}$once.title|mb_substr:0:11:'gbk'{/yun}</a> <span class="yun_micro_list_t_firm">{yun:}$once.companyname{/yun}</span> <span>招聘人数：{yun:}$once.mans{/yun}人</span> <span> 联系人：{yun:}$once.linkman{/yun} </span> {yun:}if $once.phone{/yun} <span> 电话：{yun:}$once.phone{/yun}</span> {yun:}/if{/yun} <span><em>{yun:}$once.ctime|date_format:"%Y-%m-%d"{/yun}</em></span> </div>
+          <div class="yun_micro_list_yq"><em>具体要求：</em>{yun:}$once.require|mb_substr:0:100:gbk{/yun} </div>
+          <div class="yun_micro_list_touch">地址：{yun:}$once.address{/yun} 
+            {yun:}if $once.qq{/yun}<span>QQ:{yun:}$once.qq{/yun}</span> {yun:}/if{/yun}
+            {yun:}if $once.email{/yun}<span> 邮箱：{yun:}$once.email{/yun}</span> {yun:}/if{/yun} <em> <a href="javascript:;" onclick="showdd('1','{yun:}$once.id{/yun}');">刷新</a> | <a href="{yun:}url m=once url=c:show,id:`$once.id`{/yun}" target="_blank">查看</a> | <a href="javascript:;" onclick="showdd('2','{yun:}$once.id{/yun}')" >修改</a> | <a href="javascript:;" onclick="showdd('3','{yun:}$once.id{/yun}');">删除</a></em></div>
+        </div>
+        {yun:}/fast{/yun}
+        <div class="clear"></div> 
+        {yun:}if $total!=0{/yun}
+        <div class="pages"> {yun:}$pagenav{/yun}</div>
+        {yun:}/if{/yun}
+        {yun:}if $total==0{/yun}
+        <div class="seachno" style="background:#FFF; width:614px;">
+          <div class="seachno_left"> <img src="{yun:}$style{/yun}/images/search-no.gif"></div>
+          <div class="listno-content"> <strong>很抱歉，没有找到满足条件的职位</strong><br>
+            <span> 建议您：<br>
+            1、适当减少已选择的条件<br>
+            2、适当删减或更改搜索关键字<br>
+            </span> <span> 热门关键字：<br>
+            {yun:}key limit=6 recom=1 type=1 item=top_key{/yun} <a href="{yun:}$top_key.url{/yun}">{yun:}$top_key.key_name{/yun}</a> {yun:}/key{/yun} </span> </div>
+        </div>
+        {yun:}/if{/yun} </div>
+      <style> 
+.Fast_left{z-index:9999;}
+</style>
+      <div class="Fast_left fr">
+        <div class="Fast_left_fixed"> <span class="why_fast_fb" style="margin-top:10px;"><a href='javascript:;' onclick="showfabu()"><img src="{yun:}$style{/yun}/images/yun_fast_fb.jpg" style='auto'/></a></span>
+          <form method="get" name="myform" onsubmit="return check_once_keyword();" action="index.php">
+            <input type="hidden" name="m" value="once">
+            <input class="Fast_text placeholder" id="Fastkeyword" type="text" size="45" value="请输入搜索内容" onclick="if(this.value=='请输入搜索内容'){this.value=''}" onblur="if(this.value==''){this.value='请输入搜索内容'}" name="keyword">
+            <input class="Fast_submit" type="submit" value=" ">
+          </form>
+          <span class="why_fast">为方便一些普工类企业(如饭店,店面,个体户等)发布招聘信息,特设定了无需注册,即可发布简短招聘的功能,在给大家提供了更多的信息的同时也存在的问题是,我们无法对这些发布者做核实.<br>
+          ★以下信息由企业或个体工商户自行提供，该企业或个体工商户负责信息内容的真实性、准确性和合法性。网站对此不承担任何保证或连带责任. </span> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--弹出框-->
+<div style="display:none;" id="postpw">
+  <div>
+    <ul class="micro_resume_release_list">
+      <li><span><font color="#FF3300">*</font> 密码：</span>
+        <input id="pw" type='password' class="micro_resume_release_text" style='width:100px'/>
+        <em style="line-height:28px; display:inline-block; margin-left:5px;">请输入添加时的密码。</em> </li>
+      <li><span><font color="#FF3300">*</font> 验证码：</span>
+        <input type="text" id="code" class="micro_resume_release_text micro_resume_release_text2" style='width:100px'/>
+        <a href="javascript:check_codes();"><img id="vcode_imgs" src="include/authcode.inc.php"></a>
+        <!--a href="javascript:check_codes();">看不清，换一张</a-->
+      </li>
+      <li><span>&nbsp; </span>
+        <input type="hidden" id="tid"/>
+        <input type="hidden" id="type"/>
+        <input class="fast_submit" type="button" value="提交" onclick="post_pass();">
+      </li>
+    </ul>
+  </div>
+</div>
+<!--弹出框 end-->
+<script type="text/javascript"> 
+$(document).ready(function(){
+	$(window).scroll(function(){
+		var scroll_Top = $(window).scrollTop();
+		var width=document.body.clientWidth;
+		if(scroll_Top>520){
+			if(window.XMLHttpRequest){
+				var top=0;
+				var right=(width-970)/2+"px";
+			}else{
+				var top=parseInt(scroll_Top)-(520);
+				var right=0;
+			}
+			$(".Fast_left").attr("style","position:fixed;top:"+top+"px;_position:absolute;right:"+right+";");
+		}else{
+			$(".Fast_left").attr("style","");
+		}
+	});
+});
+</script>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

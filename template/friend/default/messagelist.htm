@@ -1,0 +1,60 @@
+{yun:}include file="$friendstyle/header.htm"{/yun}
+<div class="Personals_content">
+<div class="py_cont">
+{yun:}include file="$friendstyle/left.htm"{/yun}
+    <div class="Personals_cont">
+      <div class="talk-box">
+        <h1 class="box-header"> <span id="title_head">{yun:}$nickname{/yun}的留言板</span> </h1>
+        <div class="box-body">
+          <div id="miniEditor" class="m-editor clearfix">
+			<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+            <form action="" method="post" target="supportiframe" name="myform"  onsubmit="return CheckPost1();">
+              <div class="m-editor-textarea">
+                <textarea id="content" style="height:70px;" name="content" placeholder='有多久没给好友留言了？'></textarea>
+                
+                <input type="hidden" name="touid" value="{yun:}$member.uid{/yun}" id="touid"/>
+              </div>
+              <div class="m-editor-submit">
+                <input id="commentPostBtn" class="input-button" type="submit" value=" 留言" name="submit">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+        {yun:}foreach from=$mlist item=mlist{/yun}
+        <div class="Personals_cont_dy">
+        <div class="Personals_cont_tx">{yun:}if $mlist.pic{/yun}<img src="{yun:}$mlist.pic{/yun}" width="50" height="50"/>{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}" width="50" height="50"/>{yun:}/if{/yun}</div>
+        <div class="Personals_cont_dy_r">
+        <div class="Personals_cont_dy_name">
+            <a href="{yun:}furl url=c:profile,id:`$mlist.uid`{/yun}" style="float:left">{yun:}$mlist.nickname{/yun}</a>
+            
+            <span style="float:right;padding-right:16px; color:#336699">{yun:}if $mlist.uid==$member.uid{/yun}<a href="javascript:void(0)" onclick="layer_del('确定要删除？', '{yun:}furl url=c:del,t:message,id:`$mlist.id`{/yun}');" >删除</a>{yun:}else{/yun}<a onclick="reply('{yun:}$mlist.nickname{/yun}','{yun:}$mlist.uid{/yun}');">回复</a>{yun:}/if{/yun}</span></div>
+            <div class="Personals_cont_dy_ss" style="width:100%; float:left">{yun:}$mlist.content{/yun}</div>
+            <div class="Personals_cont_dy_cz"><span class="messagetime" style="color:#999; float:left">{yun:}$mlist.ctime{/yun}</span></div>
+            <div class="Personals_cont_dy_cz"></div>
+
+          </div>
+        </div>
+        {yun:}/foreach{/yun}     
+  <div class="clear"></div>
+  <div>
+    <div class="pages">{yun:}$pagenav{/yun}</div>
+  </div>
+      <div class="clear"></div>
+    </div>
+    <div class="Personals_right">
+    <div class="Personals_may"><strong>最近访客</strong></div>
+     <div class="Personals_may_list">
+      {yun:}foreach from=$myfoot item=myfoot{/yun}
+        <dl>
+          <dt>{yun:}if $myfoot.pic{/yun}<img src="{yun:}$myfoot.pic{/yun}" width="50" height="50">{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}" width="50" height="50"/>{yun:}/if{/yun}</dt>
+          <dd><a href="{yun:}furl url=c:profile,id:`$myfoot.uid`{/yun}" class="my_fangk">{yun:}$myfoot.nickname{/yun}</a></dd>
+        </dl>
+      {yun:}/foreach{/yun}
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" value="{yun:}$member.uid{/yun}" id="myuid"/>
+{yun:}include file="$friendstyle/footer.htm"{/yun}

@@ -1,0 +1,72 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">我的兑换记录</span><a href="{yun:}url m=redeem{/yun}" class="my_dh_sun"> 我要兑换</a> </div>
+        <div class=admin_textbox_04>
+          <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+          <form action="{yun:}$now_url{/yun}" target="supportiframe" method="post" id='myform'>
+         <div id="job_checkbokid">
+<div class="job_news_list job_news_list_h1">
+<span class="job_news_list_span job_w160">商品名称</span>
+<span class="job_news_list_span job_w80">消耗积分</span>
+<span class="job_news_list_span job_w80">兑换数量</span>
+<span class="job_news_list_span job_w80">兑换时间</span>
+<span class="job_news_list_span job_w100">联系电话</span>
+<span class="job_news_list_span job_w80">联系人</span>
+<span class="job_news_list_span job_w100">状态</span>
+</div>
+  {yun:}foreach from=$rows item=v{/yun}
+   <div class="job_news_list">
+<span class="job_news_list_span job_w160">{yun:}$v.name{/yun}</span>
+<span class="job_news_list_span job_w80">{yun:}$v.integral{/yun}</span>
+<span class="job_news_list_span job_w80">{yun:}$v.num{/yun}(件)</span>
+<span class="job_news_list_span job_w80">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M:%S"{/yun}</span>
+<span class="job_news_list_span job_w100">{yun:}$v.linktel{/yun}</span>
+<span class="job_news_list_span job_w80">{yun:}$v.linkman{/yun}</span>
+<span class="job_news_list_span job_w155">{yun:}if $v.status=="0"{/yun} <span class="wate_verify">未审核</span> <a href="javascript:void(0)" onclick="layer_del('确定要取消？', 'index.php?c=reward_list&act=del&id={yun:}$v.id{/yun}');">取消兑换</a>{yun:}/if{/yun}
+                    {yun:}if $v.status=="1"{/yun} <span class="y_verify">已审核</span> {yun:}/if{/yun}
+                    {yun:}if $v.status=="2"{/yun} <span class="n_verify">未通过</span> | <a href="javascript:;" onclick="show_msg('{yun:}$v.statusbody{/yun}')">查看原因</a> {yun:}/if{/yun}</span>
+            <div class="job_news_list_bot">备注： {yun:}$v.body{/yun}</div>
+                    
+</div>      
+            {yun:}foreachelse{/yun}
+                <div class="msg_no">您还没有兑换记录。</div>
+                {yun:}/foreach{/yun}      
+   </div>      
+              <div style="clear:both"></div>
+              <div class="diggg">{yun:}$pagenav{/yun}</div>
+          
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function show_msg(msg){
+	$("#msgs").html(msg);
+	$.layer({
+		type : 1,
+		title :'查看原因',
+		offset: [($(window).height() - 300)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['400px','200px'],
+		page : {dom :"#showmsg"}
+	});
+}
+</script>
+<div id="showmsg"  style="display:none; width: 400px;">
+	<div>
+    <div id="infobox">
+		 <div class="admin_Operating_sh" style="padding:10px; ">
+		<div class="admin_Operating_sh_h1" style="padding:5px;"><div style="height:80px;overflow:auto;" id="msgs"></div></div>
+		<div class="admin_Operating_sub" style="margin-top:10px;"> 
+          &nbsp;&nbsp;<input type="button" id="zxxCancelBtn" onClick="layer.closeAll();" class="cancel_btn" value='确认'></div>
+		</div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

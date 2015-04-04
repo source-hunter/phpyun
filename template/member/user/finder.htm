@@ -1,0 +1,34 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">   
+
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"><a href="javascript:void(0);">职位搜索器</a></li>
+    </ul>
+  </div>
+      <div class="resumelistbox01 mt10" style="flaot:left"> 
+        <div class="index_Job_Finder_box" style="padding-left:10px;"> 
+		{yun:}foreach from=$finder item=flist{/yun} 
+		 <ul class="index_Job_Finder_ul fltL">
+		  <li class="index_Job_Finder fltL">
+		  <i class="index_Job_Finder_icon fltL png"></i>
+		  <div class="index_Job_Finder_cont fltL">
+		  <div class="index_Job_Finder_cont_name"><a href="{yun:}$config.sy_weburl{/yun}/{yun:}$flist.url{/yun}" class="index_Job_Finder_cont_name_a">{yun:}if $flist.name{/yun}{yun:}$flist.name{/yun}{yun:}else{/yun}未命名{yun:}/if{/yun}</a></div>
+		 <div class="index_Job_Finder_cont_name_condition">搜索条件：{yun:}$flist.findername{/yun}</div>
+		 <div class="index_Job_Finder_cont_search"><a class="index_Job_Finder_cont_search_a" title="搜索" target="_blank" href="{yun:}$config.sy_weburl{/yun}/{yun:}$flist.url{/yun}">立即搜索</a> {yun:}$flist.addtime|date_format:'%Y-%m-%d %H:%M'{/yun}</div>
+		  </div> 
+		  <div class="index_Job_Finder_Operating fltL"><a href="index.php?c=finder&act=edit&id={yun:}$flist.id{/yun}" title="修改">修改</a> | <a class="re_sc" onclick="layer_del('确定要删除？', 'index.php?c=finder&act=del&id={yun:}$flist.id{/yun}');" href="javascript:void(0)">删除</a></div>
+		  </li>
+		  </ul> 
+
+	  {yun:}foreachelse{/yun} 
+	   <div class="msg_no">您还没有个人搜索器。</div> 
+	  {yun:}/foreach{/yun} 
+	  <div class="index_Job_Finder_bot fltL">{yun:}if $syfinder>0{/yun}<a href="index.php?c=finder&act=edit" class="index_Job_Finder_submit">新增搜索器</a>{yun:}/if{/yun}共可创建{yun:}$config.user_finder{/yun}个，还可创建{yun:}$syfinder{/yun}个搜索器</div> 
+        </div>
+	</div> 
+  </div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

@@ -1,0 +1,42 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+<div class=right_box>
+  <div class=admincont_box>
+    <div class=admin_tit><span class="admin_tit_bg">企业横幅图片</span> </div> 
+    <div class=admin_note>
+		<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="{yun:}$now_url{/yun}" method="post" name="myform" target="supportiframe" id='myform' onsubmit="return check();" enctype="multipart/form-data">
+     <ul>
+        <li style="line-height:34px;">
+          <input name="pic" type="file" id="pic" class="" style="height: 37px;float:left;line-height:37px; width:400px;">
+          {yun:}if is_array($banner){/yun}
+          <input name="update" type="submit" class=btn_01 value="设置" style="margin-top:0px; margin-left:10px;float:left; margin-right:6px;">
+          {yun:}else{/yun}
+          <input name="submit" type="submit" class=btn_01 value="上传" style="float:left;" >
+          {yun:}/if{/yun}
+         &nbsp; 最佳尺寸：980*280</li>
+      </ul>
+      </form>
+    </div>
+    <div class=admin_textbox_04>
+      <div class="banner_h1"><span>图片展示</span></div>
+      {yun:}if is_array($banner){/yun} 
+      	<img src="{yun:}$banner.pic{/yun}" width="708" height="200" /> 
+      {yun:}else{/yun}
+     	<div class="con_banner_no"><span></span> <em>您还没有上传横幅图片</em></div>
+      {yun:}/if{/yun} 
+    </div>
+  </div> 
+</div> 
+</div> 
+</div> 
+<script>
+function check(myform){
+	if ($("#pic").val()==""){
+		layer.msg('图片不能为空！！', 2, 2);return false; 
+	}	
+}
+</script> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

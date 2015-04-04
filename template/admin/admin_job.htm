@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script> 
+function replace_job(id){
+	var type=$("input[name='type']").val();
+	var pytoken=$("#pytoken").val();
+	if(id!="0"&&type=='2'){//
+		$.get("index.php?m=admin_job&c=ajaxjob&ajax=1&id="+id,function(data){	
+			$("#tow_class").html(data);
+			$("#tow_class").parents().show();
+		});	
+	}
+}
+function showdiv8(type,pid){
+	$(".pid").val(pid);  
+	$("input[name='type']").val(type);
+	if(type=="1"){
+		$("#gettow").hide();
+		$("#tow_class").html('');
+	}
+	$.layer({
+		type : 1,
+		title : '移动类别',
+		offset: [($(window).height() - 150)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['350px','150px'],
+		page : {dom :"#job_div"}
+	});  
+} 
+
+function checksort(id){
+	$("#sort"+id).hide();
+	$("#input"+id).show();
+	$("#input"+id).focus();
+}	
+function subsort(id){
+	var sort=$("#input"+id).val();
+	var pytoken=$("#pytoken").val();
+	$.post("index.php?m=admin_job&c=ajax",{id:id,sort:sort,pytoken:pytoken},function(data){
+		$("#sort"+id).html(sort);
+		$("#sort"+id).show();
+		$("#input"+id).hide();
+		if(data!='1'){config_msg(data);}else{location.reload();}
+	})
+}
+function checkname(id){
+	$("#name"+id).hide();
+	$("#inputname"+id).show();
+	$("#inputname"+id).focus();
+}	
+function subname(id){
+	var name=$("#inputname"+id).val();
+	if($.trim(name)==""){
+		parent.layer.msg("类别名称不能为空！",2,8,function(){location.reload();});return false;
+	}
+	var pytoken=$("#pytoken").val();
+	$.post("index.php?m=admin_job&c=ajax",{id:id,name:name,pytoken:pytoken},function(data){
+		$("#name"+id).html(name);
+		$("#name"+id).show();
+		$("#inputname"+id).hide();
+		if(data!='1'){config_msg(data);}else{location.reload();}
+	})
+}
+function clickname(id){
+	if(document.getElementById('msg'+id).style.display=='none'){
+		document.getElementById('msg'+id).style.display='block';
+		$("#msg"+id).attr("class","open");
+		}else{
+		document.getElementById('msg'+id).style.display='none';
+		$("#msg"+id).attr("msg","close");
+	}
+}
+function is_move(){
+	layer.closeAll();
+	parent.layer.confirm('确定移动吗？',function(){
+		setTimeout(function(){$('#moveform').submit()},0);
+	});
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<!--弹出框-->
+<div id="wname"  style="display:none; width: 300px; "> 
+	<div style="height: 160px;" class="job_box_div">  
+	   <div class="job_box_inp">
+		<table class="table_form "style="width:100%">
+			<tr ><td colspan='2' class='ui_content_wrap'><input name='ctype' type='radio' value='1' checked='checked'>一级类别<input name='ctype' type='radio' value='2'>二级类别<input name='ctype' type='radio' value='3'>三级类别</td></tr>
+		<tr class='sclass_2 sclass_3  sclass'  style="display:none;"><td style="text-align: right;">一级分类:</td><td><select name="nid" id='nid'> 
+				{yun:}foreach item=one from=$position{/yun}
+				<option value="{yun:}$one.id{/yun}">{yun:}$one.name{/yun}</option>
+				{yun:}/foreach{/yun}
+			</select> </td></tr>
+			<tr class='sclass_3 sclass'  style="display:none;"><td style="text-align: right;">二级分类:</td><td><select name="keyid" id='keyid'><option value="">--请选择--</option></select> </td></tr>			
+			<tr><td style="text-align: right;">类别名称:</td><td><input type="text" name="position" id='position' class="input-text" /></td></tr>
+			<tr><td style="text-align: right;">排序:</td><td><input type="text" name="sort" id='sort' class="input-text" size='5'/></td></tr>
+ 			<tr><td colspan='2' class='ui_content_wrap' style="border-bottom:none"><input class="admin_submit4" type="button" value="添加 " onClick="save_jobclass()"/></td></tr> 
+		</table> 
+	   </div>
+	</div>
+</div> 
+<!--弹出框end-->
+<span id="temp"></span>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<span class="admin_title_span">职位类别管理</span>
+<a href="index.php?m=admin_job&c=classadd" class="admin_infoboxp_tj">添加类别</a>
+</div>
+ 
+<div class="table-list">
+  <div class="admin_table_border">
+  <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+  <form action="index.php?m=admin_job&c=del" method="post" id='myform' target="supportiframe">   
+  <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+<table width="100%">
+	<thead>
+	<tr class="admin_table_top">
+		<th width="50"><label for="chkall"> <input type="checkbox" id='chkAll' onclick='CheckAll(this.form)' /></label></th>
+		<th>编号</th>
+		<th>职位名称<span class="clickup">(点击修改)</span></th>
+        <th width="100">职位排序</th>
+		<th width="180" class="admin_table_th_bg">操作</th>
+	</tr>
+	</thead>
+	<tbody>	
+    {yun:}if empty($id){/yun}
+	{yun:}foreach item=v key=key from=$position{/yun}
+	
+	<tr align="center" {yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun} id="list{yun:}$v.id{/yun}">
+   		<td width="50"><input type="checkbox" value="{yun:}$v.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+		<td class="ud">{yun:}$v.id{/yun}</td>
+		<td  align="left">一级分类：
+        <span onClick="checkname('{yun:}$v.id{/yun}');" id="name{yun:}$v.id{/yun}" style="cursor:pointer;">{yun:}$v.name{/yun}</span>
+        <input class="input-text hidden" type="text" id="inputname{yun:}$v.id{/yun}"value="{yun:}$v.name{/yun}" onBlur="subname('{yun:}$v.id{/yun}');"></td>
+       
+        <td><span onClick="checksort('{yun:}$v.id{/yun}');" id="sort{yun:}$v.id{/yun}" style="cursor:pointer;">{yun:}$v.sort{/yun}</span>
+        <input class="input-text hidden" type="text" id="input{yun:}$v.id{/yun}" size="10" value="{yun:}$v.sort{/yun}" onBlur="subsort('{yun:}$v.id{/yun}');"></td>
+		<td class="ud">
+            <A href="index.php?m=admin_job&c=up&id={yun:}$v.id{/yun}">分类管理</A> | 
+            <A href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=admin_job&c=del&delid={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</a>
+        </td>
+	</tr>
+	
+    {yun:}/foreach{/yun}
+    {yun:}/if{/yun}
+	{yun:}if $id{/yun}
+	<tr align="center" id="list{yun:}$onejob.id{/yun}">
+   		<td width="50"><input type="checkbox" value="{yun:}$onejob.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+		<td class="ud" width="60">{yun:}$onejob.id{/yun}</td>
+		<td class="ud"  align="left">一级分类：<span onClick="checkname('{yun:}$onejob.id{/yun}');" id="name{yun:}$onejob.id{/yun}" style="cursor:pointer;">{yun:}$onejob.name{/yun}</span><input class="input-text hidden" type="text" id="inputname{yun:}$onejob.id{/yun}"value="{yun:}$onejob.name{/yun}" onBlur="subname('{yun:}$onejob.id{/yun}');">
+        </td>
+        <td><span onClick="checksort('{yun:}$onejob.id{/yun}');" id="sort{yun:}$onejob.id{/yun}" style="cursor:pointer;">{yun:}$onejob.sort{/yun}</span><input class="input-text hidden" type="text" id="input{yun:}$onejob.id{/yun}" size="10" value="{yun:}$onejob.sort{/yun}" onBlur="subsort('{yun:}$onejob.id{/yun}');"></td>
+		<td class="ud" width="180"><A href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=admin_job&c=del&delid={yun:}$onejob.id{/yun}');" class="admin_cz_sc">删除</a></td>
+	</tr>
+	{yun:}foreach item=two from=$twojob{/yun}
+    {yun:}assign var="two_class_id" value=$two.id{/yun}
+	<tr align="center" id="list{yun:}$two.id{/yun}">
+    	<td width="50"><input type="checkbox" value="{yun:}$two.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+		<td class="ud" >{yun:}$two.id{/yun}</td>
+		<td   align="left">&nbsp;&nbsp;&nbsp;&nbsp;
+        二级分类：┗<span onClick="checkname('{yun:}$two.id{/yun}');" id="name{yun:}$two.id{/yun}" style="cursor:pointer;">{yun:}$two.name{/yun}</span>
+        <input class="input-text hidden" type="text" id="inputname{yun:}$two.id{/yun}"value="{yun:}$two.name{/yun}" onBlur="subname('{yun:}$two.id{/yun}');"></td>
+        <td><span onClick="checksort('{yun:}$two.id{/yun}');" id="sort{yun:}$two.id{/yun}" style="cursor:pointer;">{yun:}$two.sort{/yun}</span>
+        <input class="input-text hidden" type="text" id="input{yun:}$two.id{/yun}" size="10" value="{yun:}$two.sort{/yun}" onBlur="subsort('{yun:}$two.id{/yun}');"></td>
+		<td class="ud"><A href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=admin_job&c=del&delid={yun:}$two.id{/yun}');"class="admin_cz_sc">删除</a> | <a href="javascript:;" onClick="showdiv8('1','{yun:}$two.id{/yun}');">移动</a></td>
+	</tr>
+    {yun:}foreach item=three from=$threejob[$two_class_id]{/yun}
+    {yun:}assign var="three_class_arr" value=$threejob[$two_class_id]{/yun}
+	<tr align="center" id="list{yun:}$three.id{/yun}">
+    	<td width="50"><input type="checkbox" value="{yun:}$three.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+		<td class="ud">{yun:}$three.id{/yun}</td>
+		<td class="ud"  align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         ┗<span onClick="checkname('{yun:}$three.id{/yun}');" id="name{yun:}$three.id{/yun}" style="cursor:pointer;">{yun:}$three.name{/yun}</span>
+        <input class="input-text hidden" type="text" id="inputname{yun:}$three.id{/yun}"value="{yun:}$three.name{/yun}" onBlur="subname('{yun:}$three.id{/yun}');"></td>
+        <td><span onClick="checksort('{yun:}$three.id{/yun}');" id="sort{yun:}$three.id{/yun}" style="cursor:pointer;">{yun:}$three.sort{/yun}</span>
+        <input class="input-text hidden" type="text" id="input{yun:}$three.id{/yun}" size="10" value="{yun:}$three.sort{/yun}" onBlur="subsort('{yun:}$three.id{/yun}');"></td>
+		<td class="ud"><A href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=admin_job&c=del&delid={yun:}$three.id{/yun}');"class="admin_cz_sc">删除</a> | <a href="javascript:;" onClick="showdiv8('2','{yun:}$three.id{/yun}');">移动</a> | <a href="index.php?m=admin_job&c=classadd&id={yun:}$three.id{/yun}">修改</a></td>
+	</tr>
+	
+    {yun:}/foreach{/yun}
+	{yun:}/foreach{/yun}
+	{yun:}/if{/yun}
+  <tr style="background:#f1f1f1;">
+    <td align="center"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></td>
+    <td colspan="4" >
+    <label for="chkAll2">全选</label>&nbsp;
+    <input class="admin_submit4"  type="button" name="delsub" value="删除所选"  onclick="return really('del[]')"/></td>
+    </tr>
+	</tbody>
+</table>
+</form>
+</div>
+</div>
+</div> 
+<div id="job_div" style="display:none;" class="job_box_div">
+  <form action="index.php" method="get" id="moveform" target="supportiframe"> 
+	<input name="m" value="admin_job" type="hidden">
+	<input name="c" value="move" type="hidden">
+	<input type="hidden" class="pid" name="pid" value="0">
+    <input type="hidden" name="type" value="0">
+    <table class="table_form " style="width:100%">
+    <tbody>
+        <tr>
+            <td class="ui_content_wrap" style=" margin:0px;">一级类别：  </td>
+			<td><select name="nid" onChange="replace_job(this.value);">
+				<option value="0">==请选择==</option>
+					{yun:}foreach item=one from=$position{/yun}
+					<option value="{yun:}$one.id{/yun}">{yun:}$one.name{/yun}</option>
+					{yun:}/foreach{/yun}
+				</select></td>
+        </tr> 
+		<tr style="display:none" id="gettow"><td  class="ui_content_wrap" style=" margin:0px;">二级分类：</td><td id="tow_class"></td></tr>
+		<tr><td colspan='2' style="text-align:center"><input class="admin_submit4" type="button" name="add" onClick="is_move()" value=" 确认 " /></td></tr>
+    </tbody>
+	</table>
+	</form>
+</div> 
+</body>
+</html>

@@ -1,0 +1,17 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<section>
+<div class="main">
+{yun:}article nid=@nid ispage=1 limit=20 islt=4  t_len=12 item=news{/yun} 
+   
+<a href="{yun:}wapurl m=news url=c:show,id:`$news.id`{/yun}"  class="index_post_list_b">
+<h3>{yun:}$news.title{/yun}</h3>
+<i>{yun:}$news.time{/yun}</i>
+</a> 
+{yun:}/article{/yun}
+</div>
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+
+
+<div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

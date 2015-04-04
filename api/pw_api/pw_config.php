@@ -1,0 +1,15 @@
+<?php 
+define("UC_DBHOST",""); 
+define("UC_DBUSER",""); 
+define("UC_DBPW",""); 
+define("UC_DBNAME",""); 
+define("UC_DBCHARSET",""); 
+define("UC_DBTABLEPRE",""); 
+define("UC_DBCONNECT",""); 
+define("UC_KEY",""); 
+define("UC_API",""); 
+define("UC_CHARSET",""); 
+define("UC_IP",""); 
+define("UC_APPID",""); 
+define("UC_APP",""); 
+$ucinfo=array("UC_DBHOST"=>"","UC_DBUSER"=>"","UC_DBPW"=>"","UC_DBNAME"=>"","UC_DBCHARSET"=>"","UC_DBTABLEPRE"=>"","UC_DBCONNECT"=>"","UC_KEY"=>"","UC_API"=>"","UC_CHARSET"=>"","UC_IP"=>"","UC_APPID"=>"","UC_APP"=>""); 

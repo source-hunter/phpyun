@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script language="javascript">
+KindEditor.ready(function(K){K.create('#content', {items : ['source','bold', 'italic', 'underline','removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist','insertunorderedlist','emoticons', 'image'],afterBlur:function(){this.sync();} });});
+$(document).ready(function(){
+	$("select[name=top_tpl]").change(function(){
+		var topvalue=$(this).val();
+		if(topvalue==1){
+			$("#top_styletpl").show();
+			$("#top_tpl_dir").hide();
+		}
+		if(topvalue==3){
+			$("#top_styletpl").hide();
+			$("#top_tpl_dir").show();
+		}else{
+			$("input[name=top_tpl_dir]").val('');
+			$("#top_tpl_dir").hide();
+		}
+	})
+	$("select[name=footer_tpl]").change(function(){
+		var footervalue=$(this).val();
+		if(footervalue==1){
+			$("#footer_styletpl").show();
+			$("#footer_tpl_dir").hide();
+		}
+		if(footervalue==3){
+			$("#footer_styletpl").hide();
+			$("#footer_tpl_dir").show();
+		}else{
+			$("input[name=footer_tpl_dir]").val('');
+			$("#footer_tpl_dir").hide();
+		}
+	})
+	$("input[name=is_type]").click(function(){
+		var footervalue=$(this).val();
+		if(footervalue==1){
+			$(".diyweb").show();
+		}else{
+			$(".diyweb").hide();
+		}
+	})
+})
+<!--
+function checkform(myform){
+	var is_type=myform.is_type.value;
+  if (myform.title.value=="" && is_type==1) { 
+	  parent.layer.msg('请填写标题！', 2, 2);
+      myform.title.focus();
+      return (false);
+  }
+}
+
+//-->
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Prompt">
+        <div class="admin_Prompt_span">
+           提示：自定义页面的URL为HTML静态页面，外部链接为绝对路径，例：http://www.phpyun.com/index.php
+        </div>
+        <div class="admin_Prompt_close"></div>
+    </div>
+<div class="infoboxp_top"><h6>添加单页面</h6>
+ 	<div class="infoboxp_right">
+    	<a href="index.php?m=description" class="infoboxp_tj">单页面管理</a>
+    </div>
+</div>
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+
+<form  target="supportiframe" name="myform" action="index.php?m=description&c=save" method="post"  onSubmit="return checkform(this);">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+	<table width="100%" class="table_form" style="background:#fff;">
+		<tr>
+			<th>名称：</th>
+			<td><input class="input-text" type="text" name="name" size="40" value="{yun:}$descrow.name{/yun}"/></td>
+		</tr>
+		<tr class="admin_table_trbg">
+			<th>类别：</th>
+			<td><select name="nid">
+            {yun:}foreach item=v from=$class{/yun}
+            <option value="{yun:}$v.id{/yun}" {yun:}if $v.id==$descrow.nid{/yun}selected{yun:}/if{/yun}>{yun:}$v.name{/yun}</option>
+            {yun:}/foreach{/yun}
+            </select></td>
+		</tr>
+        <tr class="admin_table_trbg">
+			<th>类型：</th>
+			<td><input type="radio" name="is_type" value="1" id="is_type_0" {yun:}if $descrow.is_type!="0"{/yun}checked='checked'{yun:}/if{/yun}>
+              <label for="is_type_0">自定义页面</label>
+              <input type="radio" name="is_type" value="0" id="is_type_1" {yun:}if $descrow.is_type=="0"{/yun}checked='checked'{yun:}/if{/yun}>
+              <label for="is_type_1">外部链接</label>
+             </td>
+		</tr>
+      	<tr>
+			<th>URL链接：</th>
+			<td><input class="input-text" type="text" name="url" size="40" value="{yun:}$descrow.url{/yun}"/>(可以为多级目录)。例：/about/index.html</td>
+		</tr>
+        <tr class="admin_table_trbg diyweb" {yun:}if $descrow.is_type=="0"{/yun}style="display:none;"{yun:}/if{/yun}>
+			<th>标题：</th>
+			<td><input class="input-text" type="text" name="title" size="40" value="{yun:}$descrow.title{/yun}"/></td>
+		</tr>
+		<tr class="diyweb" {yun:}if $descrow.is_type=="0"{/yun}style="display:none;"{yun:}/if{/yun}>
+			<th>关键词：</th>
+			<td>
+			 <input class="input-text" type="text" name="keyword" size="50" value="{yun:}$descrow.keyword{/yun}"/>(多关键字，请用，隔开，请不要为空)
+			</td>
+		</tr>
+    	<tr class="admin_table_trbg diyweb" {yun:}if $descrow.is_type=="0"{/yun}style="display:none;"{yun:}/if{/yun}>
+			<th>描述：</th>
+			<td><textarea name="description" cols="55" rows="3">{yun:}$descrow.descs{/yun}</textarea></td>
+		</tr>
+      	<tr class="diyweb" {yun:}if $descrow.is_type=="0"{/yun}style="display:none;"{yun:}/if{/yun}>
+			<th>头部模板：<div style="height:10px;"></div>底部模板：<div style="height:10px;"></div> <div style="height:10px;"></div></th>
+			<td>
+            <select name="top_tpl">
+            	<option value="1" {yun:}if $descrow.top_tpl eq 1{/yun}selected{yun:}/if{/yun}>默认模板</option>
+                <option value="2" {yun:}if $descrow.top_tpl eq 2{/yun}selected{yun:}/if{/yun}>空白模板</option>
+                <option value="3" {yun:}if $descrow.top_tpl eq 3{/yun}selected{yun:}/if{/yun}>自定义模板</option>
+            </select>
+            <span id="top_tpl_dir" {yun:}if $descrow.top_tpl_dir eq ""{/yun}style="display:none;"{yun:}/if{/yun}>
+            	<input class="input-text" type="text" name="top_tpl_dir" size="40" value="{yun:}$descrow.top_tpl_dir{/yun}"/>
+                例：/tempates/default/header 注：模板是以htm结尾
+            </span>
+            <span id="top_styletpl" {yun:}if $descrow.top_tpl neq 1{/yun}style="display:none;"{yun:}/if{/yun}>
+            	头部默认模板为当前模板风格下的header.htm
+            </span>
+            <div style="height:10px;"></div>
+            <select name="footer_tpl">
+            	<option value="1" {yun:}if $descrow.footer_tpl eq 1{/yun}selected{yun:}/if{/yun}>默认模板</option>
+                <option value="2" {yun:}if $descrow.footer_tpl eq 2{/yun}selected{yun:}/if{/yun}>空白模板</option>
+                <option value="3" {yun:}if $descrow.footer_tpl eq 3{/yun}selected{yun:}/if{/yun}>自定义模板</option>
+            </select>
+            <span id="footer_tpl_dir" {yun:}if $descrow.footer_tpl_dir eq ""{/yun}style="display:none;"{yun:}/if{/yun}>
+            	<input class="input-text" type="text" name="footer_tpl_dir" size="40" value="{yun:}$descrow.footer_tpl_dir{/yun}"/>			   例：/tempates/default/header 注：模板是以htm结尾
+            </span>
+            <span id="footer_styletpl" {yun:}if $descrow.footer_tpl neq 1{/yun}style="display:none;"{yun:}/if{/yun}>
+            	底部默认模板为当前模板风格下的footer.htm
+            </span>
+            <div style="height:10px;"></div>
+            </td>
+		</tr>
+    	<tr class="admin_table_trbg diyweb" {yun:}if $descrow.is_type=="0"{/yun}style="display:none;"{yun:}/if{/yun}>
+			<th>页面内容： </th>
+			<td>
+			<textarea  id="content" name="content" cols="100" rows="8" style="width:700px;height:300px;">{yun:}$descrow.content{/yun}</textarea>
+			</td>
+		</tr>
+        <tr>
+			<th>排序：</th>
+			<td><input class="input-text" type="text" name="sort" size="20" value="{yun:}$descrow.sort{/yun}"/></td>
+		</tr>
+         <tr class="admin_table_trbg">
+			<th>单页面左则导航：</th>
+			<td><input type="radio" name="is_nav" value="1" id="is_nav_0" {yun:}if $descrow.is_nav!="0"{/yun}checked='checked'{yun:}/if{/yun}>
+              <label for="is_nav_0">显示</label>
+              <input type="radio" name="is_nav" value="0" id="is_nav_1" {yun:}if $descrow.is_nav=="0"{/yun}checked='checked'{yun:}/if{/yun}>
+              <label for="is_nav_1">不显示</label></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+			{yun:}if is_array($descrow){/yun}
+        	<input type="hidden" name="id" size="40" value="{yun:}$descrow.id{/yun}"/>
+        	<input class="admin_submit4" type="submit" name="update_desc" value="&nbsp;更 新&nbsp;"  />
+        	{yun:}else{/yun}
+    		<input class="admin_submit4" type="submit" name="add_desc" value="&nbsp;添 加&nbsp;"  />
+     		{yun:}/if{/yun}
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+			</td>
+		</tr>
+	</table>
+</form>
+</div></div>
+</body>
+</html>

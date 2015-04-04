@@ -1,0 +1,20 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun} 
+<section class="wap_member">
+<div class="wap_member_comp_h1"><span>申请职位的人才</span></div>
+<div class="wap_member_Receive">
+{yun:}foreach item=v from=$rows{/yun}
+<div class="wap_member_Receive_list">
+<span><a href="{yun:}wapurl m=user url=c:show,id:`$v.eid`{/yun}" class="wap_m_post_user">{yun:}$v.name{/yun}</a> / {yun:}$v.sex{/yun}</span>
+<aside>申请职位：{yun:}$v.job_name{/yun}</aside>
+<i>{yun:}$v.edu{/yun}</i>
+
+</div>
+{yun:}foreachelse{/yun}
+<div class="wap_member_no">您暂时还没有申请职位的人才</div>
+{yun:}/foreach{/yun}
+
+</div>
+<!--没有职位提示-->
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

@@ -1,0 +1,32 @@
+
+<div class="Personals_left">
+<div class="logoContainer">
+	{yun:}if $pic{/yun}<img src="{yun:}$pic{/yun}" width="160" height="200" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);"/>{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}" width="160" height="200"/>{yun:}/if{/yun}
+</div>
+<div class="clear"></div>
+{yun:}if $type==1{/yun}
+<ul class="Personals_left_js">
+    <li class="left_icon1">会员类别:{yun:}$leftinfo.typename{/yun}</li>
+    <li class="left_icon2">性　　别:{yun:}if $leftinfo.sex=='1'{/yun}男{yun:}elseif $leftinfo.sex=='2'{/yun}女{yun:}elseif $leftinfo.sex=='3'{/yun}保密{yun:}/if{/yun}</li>
+    <li class="left_icon3">生　　日:{yun:}$leftinfo.birthday{/yun}</li>
+    <li class="left_icon4">家　　乡:{yun:}$leftinfo.domicile{/yun}</li>
+    <li style="background:none;">{yun:}if $config.sy_im_online=="1" && $uid{/yun}{yun:}if $liststatus[$leftinfo.uid]==1{/yun}<a href="javascript:;" onclick="addfriend_im('{yun:}$leftinfo.uid{/yun}','1','1','{yun:}$leftinfo.username{/yun}');"><img src="{yun:}$config.sy_weburl{/yun}/template/default/images/online.gif" height="26" /></a>{yun:}else{/yun}<a href="javascript:;" onclick="addfriend_im('{yun:}$leftinfo.uid{/yun}','1','2','{yun:}$leftinfo.username{/yun}');"><img src="{yun:}$config.sy_weburl{/yun}/template/default/images/offline.gif" height="26" /></a>{yun:}/if{/yun}{yun:}/if{/yun}</li>
+</ul>
+{yun:}elseif $type==2{/yun}
+<ul class="Personals_left_js">
+    <li class="left_icon1">会员类别:{yun:}$leftinfo.typename{/yun}</li>
+    <li class="left_icon5">公司名称:{yun:}$leftinfo.name{/yun}</li>
+    <li class="left_icon6">从事行业:{yun:}$leftinfo.hyinfo{/yun}</li>
+    <li class="left_icon7">公司地址:{yun:}$leftinfo.home{/yun}</li>
+    <li style="background:none;">{yun:}if $config.sy_im_online=="1" && $uid{/yun}{yun:}if $liststatus[$leftinfo.uid]==1{/yun}<a href="javascript:;" onclick="addfriend_im('{yun:}$leftinfo.uid{/yun}','2','1','{yun:}$leftinfo.username{/yun}');"><img src="{yun:}$config.sy_weburl{/yun}/template/default/images/icon_online1.gif" height="26" /></a>{yun:}else{/yun}<a href="javascript:;" onclick="addfriend_im('{yun:}$leftinfo.uid{/yun}','2','2','{yun:}$leftinfo.username{/yun}');"><img src="{yun:}$config.sy_weburl{/yun}/template/default/images/icon_offline1.gif" height="26" /></a>{yun:}/if{/yun}{yun:}/if{/yun}</li>
+</ul>
+{yun:}elseif $type==3{/yun}
+<ul class="Personals_left_js">
+    <li class="left_icon1">会员类别:{yun:}$leftinfo.typename{/yun}</li>
+    <li class="left_icon5">公司名称:{yun:}$leftinfo.com_name{/yun}</li>
+    <li class="left_icon2">联 系 人:{yun:}$leftinfo.realname{/yun} </li>
+    <li class="left_icon7">公司地址:{yun:}$leftinfo.home{/yun}</li>
+    <li style="background:none;">{yun:}if $config.sy_im_online=="1" && $uid && $uid!=$leftinfo.uid{/yun}{yun:}if $liststatus[$leftinfo.uid]==1{/yun}<a href="javascript:;" onclick="addfriend_im('{yun:}$leftinfo.uid{/yun}','3','1','{yun:}$leftinfo.username{/yun}');"><img src="{yun:}$config.sy_weburl{/yun}/template/default/images/online.gif" height="26" /></a>{yun:}else{/yun}<a href="javascript:;" onclick="addfriend_im('{yun:}$leftinfo.uid{/yun}','3','2','{yun:}$leftinfo.username{/yun}');"><img src="{yun:}$config.sy_weburl{/yun}/template/default/images/offline.gif" height="26" /></a>{yun:}/if{/yun}{yun:}/if{/yun}</li>
+</ul>
+{yun:}/if{/yun}
+</div>

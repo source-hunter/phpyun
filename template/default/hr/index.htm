@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/news.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_body">
+<div class="yun_content">
+<div class="current_Location icon com_current_Location png"><div class="fl">您当前的位置：<a href="index.php">首页</a> > <a href="{yun:}url m=hr{/yun}">工具箱</a></div></div>
+<div class="clear"></div>
+<div class="Toolbox_left">
+<div class="Toolbox_h1">HR必备工具</div>
+{yun:}hrclass item=list limit=10 ispage=1{/yun}
+<div class="Toolbox_list">
+<div class="Toolbox_list_img"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$list.pic{/yun}" width="72" height="72"></div>
+<div class="Toolbox_list_cont">
+<div class="Toolbox_list_h1"><a href="{yun:}url m=hr url=c:list,id:`$list.id`{/yun}" title="{yun:}$list.name{/yun}">{yun:}$list.name{/yun}</a></div>
+<div class="Toolbox_list_p">{yun:}$list.content{/yun}</div>
+</div>
+<div class="Toolbox_list_r"><a href="{yun:}url m=hr url=c:list,id:`$list.id`{/yun}" class="Toolbox_list_more">查看更多</a></div>
+</div>
+{yun:}/hrclass{/yun}
+</div>
+<div class="Toolbox_right">
+<div class="Toolbox_right_box">
+<div class="Toolbox_search">
+<form action="index.php" method="get" onsubmit="return checkkey();">
+<input type="hidden" name="m" value="hr" />
+<input type="hidden" name="c" value="list" />
+<input type="text" name="key" value="请输入关键字" class="Toolbox_search_text" onblur="if(this.value==''){this.value='请输入关键字'}" onclick="if(this.value=='请输入关键字'){this.value=''}" >
+<input type="submit" value="搜索" class="Toolbox_search_sub">
+</form>
+</div>
+<div class="Toolbox_Ranking_h1">下载排行</div>
+<ul class="Toolbox_Ranking_list">
+{yun:}hrlist item=down order=downnum key=key limit=10{/yun}
+<li><span class="Ranking_no {yun:}if $key<3{/yun}Ranking_no_mc{yun:}/if{/yun}">{yun:}$key+1{/yun}</span>
+<em class="Ranking_name">{yun:}$down.name{/yun}</em><em class="Ranking_cs">{yun:}$down.downnum{/yun}</em><a href="javascript:downhr('{yun:}$down.id{/yun}');" class="Toolbox_down">下载</a></li>
+{yun:}/hrlist{/yun}
+       {yun:}if !$down{/yun}
+	   暂无下载
+	   {yun:}/if{/yun}
+</ul>
+</div>
+<div class="Toolbox_right_box m10">
+<div class="Toolbox_Ranking_h1">最新上传</div>
+<ul class="Toolbox_Ranking_list Toolbox_Ranking_list_new">
+{yun:}hrlist item=news limit=10{/yun}
+<li><span class="Toolbox_down_span" >{yun:}$news.name{/yun}</span><a href="javascript:downhr('{yun:}$news.id{/yun}');" class="Toolbox_down">下载</a></li>
+{yun:}/hrlist{/yun}
+       {yun:}if !$news{/yun}
+	   暂无上传文件
+	   {yun:}/if{/yun}
+</ul>
+</div>
+</div>
+</div>
+</div>
+<script>
+function downhr(id){
+	$.post("index.php?m=hr&c=ajax",{id:id},function(data){
+		window.location.href=data;
+	})
+}
+function checkkey(){
+	var keyword=$("input[name=key]").val();
+	if(keyword=="" || keyword=="请输入关键字"){
+		layer.msg('请输入关键字！', 2, 8);return false;
+	}
+}
+</script>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

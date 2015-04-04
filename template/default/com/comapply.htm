@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/comapply.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}url m=com{/yun}">职位列表</a> > 职位详情 </div>
+<div class="clear"></div>
+<div class="comappiy_left_sidebar fl">
+  <div class="Company_left_cont">
+   <div class="Company_post_top fl">
+    <div class="Company_post_name fl">
+    <span class="Company_post_name_h1">{yun:}$Info.jobname{/yun}</span>
+    {yun:}if $Info.urgent_time>time(){/yun}<span class="Company_post_span_i Company_post_tj">急聘</span>{yun:}/if{/yun}
+    {yun:}if $Info.rec_time>time(){/yun}<span class="Company_post_span_i Company_post_jinj">推荐</span>{yun:}/if{/yun}
+    <div class="complay_h1_share"><span class="Company_post_s_fl">分享到：</span><span ><div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script></span></div>
+    </div>
+   <div class="Company_post_h1_msg">
+    <em class="Company_post_h1_msg_left">浏览次数：{yun:}$Info.jobhits{/yun}次</em> | <em>简历投递量：{yun:}$Info.snum{/yun}</em> | <em>  更新时间：{yun:}$Info.lastupdate|date_format:'%Y-%m-%d'{/yun}</em> | <em>公司评价数：{yun:}$n_com{/yun}</em> | <em>公司关注数：{yun:}$g_com.ant_num{/yun}</em> | <em>公司职位申请数：{yun:}$s_com{/yun}</em> </div>
+   </div>
+    <div class="Company_content fl">
+      <ul class="Company_Claim">
+       {yun:}if $Info.job_class_two||$Info.job_class_three{/yun}
+        <li>职位类型：<span class="Company_Claim_r">{yun:}$Info.job_class_two{/yun} {yun:}$Info.job_class_three{/yun}</span></li>
+        {yun:}/if{/yun}
+      	 {yun:}if $Info.job_salary{/yun}
+        <li>提供月薪：{yun:}$Info.job_salary{/yun}</li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.job_number{/yun}
+        <li>招聘人数：{yun:}$Info.job_number{/yun}</li>
+        {yun:}/if{/yun}
+       
+        {yun:}if $Info.job_hy{/yun}
+        <li>行业类别：{yun:}$Info.job_hy{/yun}</li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.job_edu{/yun}
+        <li>学历要求：{yun:}$Info.job_edu{/yun}</li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.job_age{/yun}
+        <li>年龄要求：{yun:}$Info.job_age{/yun}</li>
+        {yun:}/if{/yun}
+
+        {yun:}if $Info.job_type{/yun}
+        <li>工作性质：{yun:}$Info.job_type{/yun}</li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.job_sex{/yun}
+        <li>性别要求：{yun:}$Info.job_sex{/yun}</li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.job_marriage{/yun}
+        <li>婚姻状况：{yun:}$Info.job_marriage{/yun}</li>
+        {yun:}/if{/yun}
+
+        {yun:}if $Info.job_report{/yun}
+        <li>到岗时间：{yun:}$Info.job_report{/yun}</li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.job_exp{/yun}
+        <li>工作经验：{yun:}$Info.job_exp{/yun}</li>
+        {yun:}/if{/yun}
+        
+        {yun:}if $Info.edate{/yun}
+        <li>有效日期：{yun:}$Info.edate{/yun}</li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.job_city_one||$Info.job_city_two||$Info.job_city_three{/yun}
+        <li>工作地点：<span class="Company_Claim_r">{yun:}$Info.job_city_one{/yun}&nbsp;{yun:}$Info.job_city_two{/yun}&nbsp;{yun:}$Info.job_city_three{/yun}</span> </li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.lang_info{/yun}
+        <li class="Company_Claim_end"><span style="width:70px; float:left">语言要求：</span>
+        <em style=" display:block;width:580px; float:left">
+		{yun:}foreach from=$Info.lang item=langlist{/yun}
+        <span class="yun_com_fl_dy ">{yun:}$comclass_name[$langlist]{/yun}</span>
+		{yun:}/foreach{/yun}
+        </em></li>
+        {yun:}/if{/yun}
+        {yun:}if $Info.welfare_info{/yun}
+        <li  class="Company_Claim_end"><span style="width:70px; float:left">福利待遇：</span>
+        <em style=" display:block;width:580px; float:left">
+        {yun:}foreach from=$Info.welfare item=wlist{/yun}
+        <span class="yun_com_fl_dy yun_com_fl_dy_cor">{yun:}$comclass_name[$wlist]{/yun}</span>
+        {yun:}/foreach{/yun}</em></li>
+        {yun:}/if{/yun}
+      </ul>
+	   <div class="stamp_exceed">
+	 {yun:}if $stop=='1'{/yun}
+	 <img src="{yun:}$style{/yun}/images/stamp.png" title="已暂停">
+	 {yun:}/if{/yun}
+	  {yun:}if $entype=='1'{/yun}
+	 <img src="{yun:}$style{/yun}/images/stamp_gq.png" title="已过期">
+	 {yun:}/if{/yun}
+	 </div>
+    </div>
+    <div class="clear"></div>
+    <div class="Company_post_ms m10"><span class="Company_post_cur" name='info'>职位描述</span><span name='record' onclick="forrecord('{yun:}$smarty.get.id{/yun}','1')">申请记录</span></div>
+    <div class="Company_content fl Company_toggle" id="Company_job_info" >
+      <div class="Job_Description"> {yun:}$Info.description{/yun} </div>
+    </div>
+    <div class="Company_Record Company_toggle" id="Company_job_record" style="display:none">
+		<div class="Company_Record_list Company_Record_h1">
+			<span class="Company_Record_span Company_Record_spanzhe">申请者</span>   
+			<span class="Company_Record_span Company_Record_spantime">申请时间</span>   
+			<span class="Company_Record_span  Company_Record_spanzt">申请状态</span>
+		</div>
+		<div class="Company_job_record_div"></div>
+    </div>
+    
+    
+    <div class="Company_post_msg"><span class="Company_co">联系方式</span></div>
+    <div class="Company_content fl">
+    
+    {yun:}if $look_msg==""{/yun}
+    <div class="Company_Contact">
+        <ul class="Company_Contact_show">
+         {yun:}if $Info.is_link=='1'{/yun}<li>联 系 人：{yun:}$Info.linkman{/yun}</li>{yun:}/if{/yun}  
+		
+		  {yun:}if $Info.linkqq{/yun}
+          <li>在 线 QQ：<a href="http://wpa.qq.com/msgrd?v=3&uin={yun:}$Info.linkqq{/yun}&site=qq&menu=yes" target="_blank"><img border="0" alt="点击这里" src="http://wpa.qq.com/pa?p=2:{yun:}$Info.linkqq{/yun}:45 &r=0.22914223582483828"></a>{yun:}$Info.linkqq{/yun}</li>
+          {yun:}/if{/yun}
+		  {yun:}if $Info.website{/yun}
+          <li>公司网站：{yun:}$Info.website{/yun} </li>
+		   {yun:}/if{/yun}
+		 {yun:}if $Info.is_link=='1'{/yun}
+         {yun:}if $Info.linkphone{/yun} <li>电　　话：{yun:}image number=$Info.linkphone jobid=$Info.id uid=$Info.uid action=linkphone{/yun}
+		</li>{yun:}/if{/yun}
+		 <li style="width:100%">手　　机：{yun:}image number=$Info.linktel jobid=$Info.id uid=$Info.uid action=linktel{/yun}</li>
+         {yun:}/if{/yun}
+          
+          
+          {yun:}if $Info.address{/yun}
+          <li style="width:530px">公司地址：{yun:}$Info.address{/yun}<a href="{yun:}curl url=id:`$Info.uid`,tp:position{/yun}" class="complay_post_map" target="_blank">查看地图</a></li>
+          {yun:}/if{/yun}
+        </ul>
+      </div>
+      {yun:}else{/yun}
+      <div class="about_touch">
+        <div class="about_touch_logoin">
+          <div class="about_touch_red">{yun:}$look_msg{/yun}</div>
+          {yun:}if $looktype==""{/yun} 
+          <a class="about_touch_logoin_bth" onclick="showcomlogin();" style="cursor:pointer">登录</a>
+          <div class="about_touch_reg">还没有注册？请 <a class="about_touch_reg_bth" href="{yun:}url m=register url=usertype:1{/yun}">免费注册</a> 为个人会员。</div>
+          
+          {yun:}/if{/yun} </div>
+       </div>
+      {yun:}/if{/yun}
+      </div>  
+       {yun:}if $stop!='1'&&$entype!='1'{/yun}
+	      <div class="about_touch">
+	      {yun:}if $look_msg1!=""{/yun}
+		  <div class="comapply_sq"><a onclick="showcomlogin();" href="javascript:;" class="comapply_sq_submit">申请此职位</a></div>
+	      {yun:}else{/yun}
+				<div id="sqjob_show"  class="Pop-up_logoin" style="display:none;background:none;  padding:10px 20px 20px 20px;">
+					<div class="Pop-up_logoin_sq"> <span>申请职位名称：</span><em>{yun:}$Info.jobname{/yun}</em> </div>
+					<div class="Pop-up_logoin_sq"> <span>公司名称： </span><em>{yun:}$Info.name{/yun}</em> </div>
+					<div class="Pop-up_logoin_sq" id="resume_job"> <span>选择简历：</span>
+					  <div class="POp_up_r"></div>
+					</div>
+					<div class="Pop-up_logoin_sq" style="clear:both"> <span>&nbsp;</span>
+					  <input id="companyname" type="hidden" value="{yun:}$Info.name{/yun}"/>
+					  <input id="jobname" type="hidden" value="{yun:}$Info.jobname{/yun}"/>
+					  <input id="companyuid" type="hidden" value="{yun:}$Info.uid{/yun}"/>
+					  <input id="jobid" type="hidden" value="{yun:}$Info.id{/yun}"/>
+					  <input id="click_sq" class="login_button2" type="button" value=" " name="Submit">
+					</div>
+				  </div>
+	        {yun:}if $usertype=='1'{/yun}
+	        <div class="comapply_sq">
+	        {yun:}if $userid_job{/yun}
+			<a  class="comapply_ysq">已申请</a>
+			{yun:}else{/yun}
+			<a id="sq_job" href="javascript:;" class="comapply_sq_submit">申请此职位</a>
+			{yun:}/if{/yun}
+	         <div class="comapply_sq_r">
+	          <a href="javascript:fav_job('{yun:}$Info.id{/yun}','2');" class="comapply_sq_sc">收藏此职位</a>
+	          <a id="tj_job" href="{yun:}url m=com url=c:recommend,id:`$Info.id`{/yun}" target="_blank"  class="comapply_sq_tj">推荐给好友</a>
+			  {yun:}if $config.user_report==1{/yun}
+			  <a style="cursor:pointer" onclick="report_com();" class="comapply_sq_jb">举报该企业</a>
+			  {yun:}/if{/yun}
+	         </div>
+	        </div>
+	        {yun:}/if{/yun}
+	     {yun:}/if{/yun}
+	      </div>
+      {yun:}/if{/yun}
+      </div>
+	  {yun:}if $config.user_report==1{/yun}
+      <div class="" id="report" style="display:none; ">
+         <div class="Pop-up_logoin  Pop-up_logoin_pad" style="background:none;padding: 10px 20px 20px;">
+          <div class="Pop-up_logoin_jb" style="margin-bottom:15px;">举报原因</div>
+            <input id="r_uid" value="{yun:}$Info.uid{/yun}" type="hidden">
+            <input id="id" value="{yun:}$Info.id{/yun}" type="hidden">
+            <input id="r_name" value="{yun:}$Info.name{/yun}" type="hidden">
+            <div class="Pop-up_logoin_sq" style="margin-bottom:10px;"> <em>
+              <textarea class="Pop-cottextarea" rows="2" cols="38" id="r_reason" style="width:338px;height:60px;"></textarea>
+              </em> </div>
+            <div class="Pop-up_logoin_sq" style="margin-bottom:10px;"> <span class=" Pop-up_logoin_jb_span" style="width:80px;">验 证 码： </span>
+              <input type="text" class="Pop-cottextarea_text" id="report_authcode" style="float:left; margin-right:5px;">
+              <img id="vcode_imgs" src="{yun:}$config.sy_weburl{/yun}/include/authcode.inc.php" > <a href="javascript:check_codes();">看不清?</a></div>
+            <div class="Pop-up_logoin_sq"> <span>&nbsp;</span>
+              <input class="login_button_jb" type="button"  onclick="reportSub();">
+            </div>
+        </div>
+      </div>
+	  {yun:}/if{/yun}
+	{yun:}if $look_msg=="" && $config.com_message==1 &&$usertype=='1'&&$stop!='1'&&$entype!='1'{/yun}
+ <div class="Company_post_msg"><span class="Company_co">求职咨询</span></div>
+	  <div class="Company_content fl">
+	  <div class="Company_post_more">想了解更多职位信息请留言给我</div>
+	  <form action="" method="post" target="supportiframe" onsubmit="return com_msg();">
+		<div>
+		  <textarea  class="comapply_Leave_fb_text" name="content" id='msg_content' placeholder='请输入您对该职位的疑问。比如所在地、年薪、福利等等，我会及时给您回复！期待与您合作。'></textarea>
+		  <input type="hidden" name="jobid" value="{yun:}$Info.id{/yun}" />
+		  <input type="hidden" name="job_uid" value="{yun:}$Info.uid{/yun}" />
+		  <input type="hidden" name="com_name" value="{yun:}$Info.com_name{/yun}" />
+		  <input type="hidden" name="job_name" value="{yun:}$Info.jobname{/yun}" />
+		</div>
+		<div class="comapply_Leave_fb_s">
+		  <input type="submit" value="提交咨询" name="submit" class="comapply_Leave_fb_sub">
+		</div>
+	  </form>
+	  </div>
+	   <div class="clear"></div>
+	  {yun:}/if{/yun}
+    <div class="Company_post_msg m10"><span class="Company_co">公司简介</span></div>
+    <div class="Company_content fl">
+      <div class="Company_Profile"> {yun:}$Info.content{/yun} </div>
+	
+      <div class="clear"></div>
+     
+   </div>
+   </div>
+  <div class="Compply_right_sidebar">
+    <div class="Compply_right_qy">
+      <div class="Compply_logo"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$Info.logo{/yun}" width="185" height="75" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}',2);"/></div>
+      <div class="Compply_right_name">
+      <a href="{yun:}$Info.com_url{/yun}">{yun:}$Info.name{/yun}</a> 
+       </div>
+
+      <div class="Compply_right_js">
+        <ul>
+          <li>认证方式：    {yun:}if $Info.email_status==1{/yun}
+        <img src="{yun:}$style{/yun}/images/rz_yx2.png" alt="邮箱已认证" title="邮箱已认证" class="png">
+        {yun:}else{/yun}
+        <img src="{yun:}$style{/yun}/images/rz_yx.png" alt="邮箱未认证" title="邮箱未认证" class="png">
+        {yun:}/if{/yun}
+        {yun:}if $Info.moblie_status==1{/yun}
+        <img src="{yun:}$style{/yun}/images/rz_sj2.png" alt="手机已认证" title="手机已认证" class="png">
+        {yun:}else{/yun}
+        <img src="{yun:}$style{/yun}/images/rz_sj.png" alt="手机未认证" title="手机未认证" class="png">
+        {yun:}/if{/yun}
+       {yun:}if $Info.yyzz_status==1{/yun}
+        <img src="{yun:}$style{/yun}/images/rz_zz2.png" alt="执照已认证" title="执照已认证" class="png">
+        {yun:}else{/yun}
+        <img src="{yun:}$style{/yun}/images/rz_zz.png" alt="执照未认证" title="执照未认证" class="png">
+        {yun:}/if{/yun}</li>
+          <li>公司类型：<span class="Compply_right_span_c">{yun:}$Info.job_hy{/yun}</span></li>
+          <li>公司性质：<span class="Compply_right_span_c">{yun:}$Info.job_pr{/yun}</span> </li>
+          <li>所在地区：<span class="Compply_right_span_c">{yun:}$Info.job_city_one{/yun}</span></li>
+          <li>公司规模：<span class="Compply_right_span_c">{yun:}$Info.job_mun{/yun}</span></li>
+          <li>注册资金：<span class="Compply_right_span_c">{yun:}$Info.money{/yun}万</span></li>
+        </ul>
+      </div>
+    </div>
+     <div class="Compply_right_post">
+     <div class="Company_post_xs Company_post_7a"><span>该公司其他职位 </span></div>
+      <ul class="Compply_right_post_other">
+      {yun:}joblist uid=@Info.uid noid=@Info.id namelen=9 limit=3 item=job{/yun}
+      <li>
+      <a href="{yun:}$job.job_url{/yun}" class="Compply_right_post_other_name">{yun:}$job.name{/yun}</a>
+      工作地区：{yun:}$job.job_city_one{/yun}&nbsp;{yun:}$job.job_city_two{/yun} <br>
+      每月薪水：<span class="Company_other_fd8">{yun:}$job.job_salary{/yun}</span></li>
+     {yun:}/joblist{/yun}
+       {yun:}if !$job{/yun}
+	   <div class="Company_other_no_msg">暂无其他职位</div>
+	   {yun:}/if{/yun}
+      </ul>
+     </div>
+    <div class="Compply_right_banner m10 fl">
+    {yun:}adlist classid=27  item=adlist_27{/yun}{yun:}$adlist_27.html{/yun}{yun:}/adlist{/yun}</div>
+    <div class="Compply_right_post">
+    <div class="Company_post_xs Company_post_7a"><span>相似职位 </span></div>
+      {yun:}joblist limit=4 order=rec  noid=@Info.id jobids=@Info.job1   namelen=6  item=job_jia key=key{/yun}
+      <div class="Company_post_other_list Company_post_right_list">
+      <ul>
+      <li><a href="{yun:}$job_jia.job_url{/yun}" class="Company_other_name">{yun:}$job_jia.name{/yun}</a></li>
+      <li>工作城市：{yun:}$job_jia.job_city_one{/yun}&nbsp;{yun:}$job_jia.job_city_two{/yun} <br> 薪水：<span class="Company_other_fd8">{yun:}$job_jia.job_salary{/yun}</span></li>
+      </ul>
+      </div>
+      {yun:}/joblist{/yun}
+       {yun:}if !$job_jia{/yun}
+	   <div class="Company_other_no_msg">暂无相似职位</div>
+	   {yun:}/if{/yun}
+</div>
+</div>
+</div>
+ <div style="display:none" id="touch_lo" >
+  <div class="Pop-up_logoin" style="background:none"> 
+	  <div class="Pop-up_logoin_list"> <span>用户名：</span>
+		<input type="text" id="username" value="" tabindex="1" name="username" class="ajax_login_input">
+	  </div>
+	  <div class="Pop-up_logoin_list"> <span>密　码：</span>
+		<input type="password" id="password" tabindex="2" name="password" value=""class="ajax_login_input">
+	  </div>
+	  <div class="Pop-up_logoin_list"> <span>验证码：</span>
+		<input id="authcode" type="text" tabindex="3" style="width:60px;" maxlength="4" name="authcode" class="ajax_login_input w60">
+		<img id="vcode_img" src="{yun:}$config.sy_weburl{/yun}/include/authcode.inc.php"  style="margin-right:5px; margin-left:5px;">&nbsp;<a href="javascript:check_code();">看不清?</a> </div>
+	  <div class="Pop-up_logoin_list">
+		<div id="msg"></div>
+	  </div>
+	  <div class="Pop-up_logoin_list"> <span>&nbsp;</span>
+		<input id="loginsubmit" class="login_button" type="button" name="loginsubmit" onclick="checkcomlogin()">
+		<a href="{yun:}url m=forgetpw url=usertype:1{/yun}"  class="Orange">忘记密码？</a> </div>
+ 
+	<div class="Pop-up_logoin_bot"> <span>&nbsp;</span> 还没有账号？<a href="{yun:}url m=register url=usertype:1{/yun}" class="Orange">免费注册</a> </div>
+  </div>
+</div> 
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

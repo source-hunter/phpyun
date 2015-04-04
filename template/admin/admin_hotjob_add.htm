@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="./images/reset.css" rel="stylesheet" type="text/css" />
+<link href="./images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="./images/table_form.css" rel="stylesheet" type="text/css" /> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script>
+function toDate(str){
+    var sd=str.split("-");
+    return new Date(sd[0],sd[1],sd[2]);
+}
+
+function check_form(){
+
+	var start = $("#start").val();	
+	var end = $("#end").val();
+	if(start==""||end=="")
+	{ 
+		parent.layer.msg('开始时间，结束时间不能为空！', 2, 2);
+		return false
+	}else{
+		var st=toDate(start);
+		var ed=toDate(end);
+		if(st>ed){ 
+			parent.layer.msg('开始时间不得大于结束时间！', 2, 2);
+			return false
+		}
+
+	}
+	
+}
+
+</script>
+<title></title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+		<div class="infoboxp_top">
+			<h6>名企招聘</h6>
+            
+		</div>
+<div class="common-form">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=hotjob&c=save" method="post" id="myform" enctype="multipart/form-data" onSubmit="return check_form();">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+<table width="100%" class="table_form contentWrap"> 
+    <tr>
+        <td align="right">企业名称:</td>
+        <td>
+        {yun:}$username{/yun}<input name="username" type="hidden" value="{yun:}$username{/yun}">
+        </td>
+    </tr>
+    <tr>
+        <td align="right">会员级别:</td>
+        <td>
+      		{yun:}$rating{/yun}<input name="rating" type="hidden" value="{yun:}$rating{/yun}">
+        </td>
+    </tr>
+      <tr>
+        <td align="right">企业展示LOGO:</td>
+        <td>
+        <input type="file" name="hot_pic" size="30" value="{yun:}$row.service_price{/yun}">{yun:}if $row.hot_pic{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$row.hot_pic{/yun}">{yun:}/if{/yun}
+        </td>
+    </tr>
+    <tr>
+        <td align="right">服务价格:</td>
+        <td>
+        <input type="text" name="service_price" id="service_price" class="input-text" size="30" value="{yun:}$row.service_price{/yun}" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')">元
+        </td>
+    </tr>
+      <tr>
+        <td align="right">开始时间:</td>
+        <td>
+         <input class="input-text" id="start" value="{yun:}$row.time_start|date_format:'%Y-%m-%d'{/yun}" name="time_start" onClick="return Calendar('start');">
+        </td>
+    </tr>
+      <tr>
+        <td align="right">结束时间:</td>
+        <td>
+   <input class="input-text" id="end" value="{yun:}$row.time_end|date_format:'%Y-%m-%d'{/yun}" name="time_end" onClick="return Calendar('end');">
+        </td>
+    </tr>
+  
+    <tr>
+        <td align="right">备注:</td>
+        <td>
+       <textarea name="beizhu" id="beizhu" rows="3" cols="50" class="text">{yun:}$row.beizhu{/yun}</textarea>
+        </td>
+    </tr>
+      <tr>
+        <td align="right">排序:</td>
+        <td>
+   			<input class="input-text" id="sort" value="{yun:}$row.sort{/yun}" name="sort" size="5"> 小前大后
+        </td>
+    </tr>
+<tr>
+<td colspan="2" align="center">
+	
+    <input name="uid" type="hidden" value="{yun:}$uid{/yun}">
+    {yun:}if $row.id{/yun}
+    <input name="id" type="hidden" value="{yun:}$row.id{/yun}">
+	<input class="admin_submit4" name="hotup" type="submit" value="修改" id="dosubmit">
+    {yun:}else{/yun}
+    <input class="admin_submit4" name="hotad" type="submit" value="提交" id="dosubmit">
+    {yun:}/if{/yun}
+</td>
+ </table>
+ </form>
+</div>
+</div>
+</body>
+</html>

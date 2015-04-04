@@ -1,0 +1,56 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+<link href="{yun:}$comstyle{/yun}/images/index_style.css" type=text/css rel=stylesheet>
+<div class=right_box>
+  <div class=admincont_box>
+    <div class=admin_tit><span class="admin_tit_bg"><strong>{yun:}$job.name{/yun}</strong>的相似简历</span> </div>
+
+
+    <div class=admin_textbox_04>
+		<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+      <form action="{yun:}$now_url{/yun}" target="supportiframe" method="post" id='myform'>
+        <div class=table>
+          <table id="job_checkbokid" cellspacing=1 align=center border=0 class="com_table">
+            <tbody>
+              <tr align=middle style="height:30px">
+                <th scope=col style="width: 8%">姓名</th>
+                <th scope=col style="width: 6%">性别</th>
+                <th scope=col style="width: 6%">学历</th>
+                <th scope=col style="width: 6%">工作经验</th>
+                <th scope=col style="width: 6%">期望月薪</th>
+                <th scope=col style="width: 5%">匹配度</th>
+                <th scope=col style="width: 10%">操作</th>
+              </tr>
+            {yun:}foreach item=v key=key from=$resume{/yun}
+            {yun:}if $key<10{/yun}
+            <tr style="height:30px">
+              <td><a href="{yun:}url m=resume url=id:`$v.id`{/yun}" target=_blank>{yun:}$v.name{/yun}</a></td>
+              <td>{yun:}$userclass_name[$v.sex]{/yun}</td>
+              <td>{yun:}$userclass_name[$v.edu]{/yun}</td>
+              <td>{yun:}$userclass_name[$v.exp]{/yun}</td>
+              <td>{yun:}$userclass_name[$v.salary]{/yun}</td>
+              <td>{yun:}$v.pre{/yun}%</td>
+              <td><a href="javascript:;" uid="{yun:}$v.uid{/yun}" eid="{yun:}$v.id{/yun}" jobname="{yun:}$job.name{/yun}" username="{yun:}$v.name{/yun}"  class="sq_resume">邀请面试</a><!--&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="layer_del('屏蔽该用户，并删除该条信息？', 'index.php?c=job&p_uid={yun:}$v.uid{/yun}'); ">屏蔽</a>--></td>
+            </tr>
+            {yun:}/if{/yun}
+            {yun:}foreachelse{/yun}
+            <tr style="height:30px">
+              <td colspan="8">没有相似简历</td>
+            </tr>
+            {yun:}/foreach{/yun}
+              </tbody>
+            
+          </table>
+        </div> 
+            <div class="diggg mt10 fltR">{yun:}$pagenav{/yun}</div>  
+          <div class="clear"></div> 
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div> 
+{yun:}include file="$comstyle/yqms.htm"{/yun}
+{yun:}include file="$comstyle/footer.htm"{/yun}

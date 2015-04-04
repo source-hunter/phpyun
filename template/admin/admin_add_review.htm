@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" /> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script language="javascript">
+<!--
+KindEditor.ready(function(K) {
+	K.create('#content', {
+		items : ['source',
+		'bold', 'italic', 'underline',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist','emoticons', 'image'],afterBlur:function(){this.sync();} 
+	});
+});
+
+//-->
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>{yun:}if $review_show.id{/yun}修改评论{yun:}else{/yun}添加评论{yun:}/if{/yun}</h6>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=admin_question&c=save_review" method="post" encType="multipart/form-data" >
+	<table width="100%" class="table_form table_form_bg">
+    	<tr >
+			<th>评论内容： </th>
+			<td>
+			<textarea  id="content" name="content" cols="100" rows="8" style="width:700px;height:300px;">{yun:}$review_show.content{/yun}</textarea>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan="2">
+            <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+			{yun:}if $review_show.id{/yun}
+        	<input type="hidden" name="id" value="{yun:}$review_show.id{/yun}"/> 
+        	<input type="hidden" name="aid" value="{yun:}$review_show.aid{/yun}"/> 
+        	<input type="hidden" name="qid" value="{yun:}$review_show.qid{/yun}"/> 
+			<input type="hidden" name="back_url"  value="{yun:}$back_url{/yun}"/> 
+        	<input class="admin_submit2" type="submit" name="update" value="&nbsp;更 新&nbsp;"  />
+        	{yun:}else{/yun}
+    		<input class="admin_submit2" type="submit" name="add" value="&nbsp;添 加&nbsp;"  />
+			<input type="hidden" name="aid" value="{yun:}$aid{/yun}"/> 
+        	<input type="hidden" name="qid" value="{yun:}$qid{/yun}"/> 
+     		{yun:}/if{/yun}
+     		<input class="admin_submit2" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+			</td>
+		</tr>
+        
+	</table>
+	
+</form>
+</div>
+</body>
+</html>

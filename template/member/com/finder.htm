@@ -1,0 +1,49 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit ><span class="admin_tit_bg">搜索器管理</span> 
+       
+        </div>
+       
+        <div class=admin_textbox_04>
+         
+			<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+            
+                {yun:}foreach from=$finder item=flist{/yun} 
+            <ul class="index_Job_Finder_ul fltL">
+            <li class="index_Job_Finder fltL">
+            <i class="index_Job_Finder_icon fltL png"></i>
+            <div class="index_Job_Finder_cont fltL">
+            <div class="index_Job_Finder_cont_name">
+            <a class="index_Job_Finder_cont_name_a" href="{yun:}$config.sy_weburl{/yun}/{yun:}$flist.url{/yun}">{yun:}if $flist.name{/yun}{yun:}$flist.name{/yun}{yun:}else{/yun}未命名{yun:}/if{/yun}</a>
+            </div>
+            <div class="index_Job_Finder_cont_name_condition">搜索条件：{yun:}$flist.findername{/yun}</div>
+            <div class="index_Job_Finder_cont_search">
+            <a class="index_Job_Finder_cont_search_a" href="{yun:}$config.sy_weburl{/yun}/{yun:}$flist.url{/yun}" target="_blank" title="搜索">立即搜索</a>
+           {yun:}$flist.addtime|date_format:'%Y-%m-%d %H:%M'{/yun}
+            </div>
+            </div>
+            <div class="index_Job_Finder_Operating fltL">
+            	<a href="index.php?c=finder&act=edit&id={yun:}$flist.id{/yun}" title="修改">修改</a>
+            |
+            <a class="re_sc" onclick="layer_del('确定要删除？', 'index.php?c=finder&act=del&id={yun:}$flist.id{/yun}');" href="javascript:void(0)">删除</a>
+            </div>
+            </li>
+             </ul>
+
+                {yun:}foreachelse{/yun}
+                <div class="msg_no">您还没有添加搜索器。</div>
+              {yun:}/foreach{/yun}
+               <div class="index_Job_Finder_bot fltL">
+<input class="job_new_tj" type="button" value="添加搜索器" onclick="location.href='index.php?c=finder&act=edit&id={yun:}$uid{/yun}'" style="float:none">
+</div>
+               
+      
+          <div style="clear:both"></div>
+            <div class="diggg">{yun:}$pagenav{/yun}</div>
+        </div>
+      </div>
+    </div>    </div>    </div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

@@ -1,0 +1,54 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="post_content" style="padding-top:0px;">
+<div class="resume-cont" style="margin-top:0px;">
+<div class="resume-cont_zk" style="padding-top:0px;">
+	<form action="" method="post" onsubmit="return cktiny()">
+    <div class="resume-cont_wate">
+		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">*</span>姓名：</dt> <dd><input type="text" name="username" value="{yun:}$row.username{/yun}" class="reinputText"></dd></dl>
+		<dl class="resume-cont_wate_list"> 
+		 <dt><span class="x_cor">*</span>性别：</dt>
+		 <dd> 
+		 <div class="mLeft12 relative" style="margin-left:-12px;">
+		  <div class="selectOption_sex" style="width:100%;">
+			<select name="sex" id='sex'>
+				{yun:}foreach from=$userdata.user_sex item=user_sex{/yun}
+				<option value="{yun:}$user_sex{/yun}" {yun:}if $row.sex==$user_sex{/yun}selected="select"{yun:}/if{/yun}>{yun:}$userclass_name[$user_sex]{/yun}</option>
+				{yun:}/foreach{/yun} 
+			  </select>
+			 </div>  
+			 </div>  
+		  </dd>
+		 </dl>
+		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">*</span>工作经验：</dt> <dd>
+		<div class="mLeft12 relative" style="margin-left:-12px;">
+		  <div class="selectOption_sex" style="width:100%;">
+			<select name="exp" id='exp'>
+				{yun:}foreach from=$userdata.user_word item=user_word{/yun}
+				<option value="{yun:}$user_word{/yun}" {yun:}if $row.exp==$user_word{/yun}selected="select"{yun:}/if{/yun}>{yun:}$userclass_name[$user_word]{/yun}</option>
+				{yun:}/foreach{/yun} 
+			  </select>
+			 </div>  
+			 </div> 
+		</dd></dl>
+		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">*</span>意向职位：</dt> <dd><input type="text" name="job" id="job" value="{yun:}$row.job{/yun}" class="reinputText"></dd></dl>
+		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">*</span>手机：</dt> <dd><input type="text" name="mobile" value="{yun:}$row.mobile{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText"></dd></dl>
+		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">&nbsp;</span> 联系QQ：</dt> <dd><input type="text" name="qq" value="{yun:}$row.qq{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText"></dd></dl>
+		<dl class="resume-cont_wate_list"> <dt><span class="x_cor">*</span>自我介绍：</dt> <dd><textarea id="production" class="textAreaMsg tip" placeholder="请输入你的技能情况" name="production">{yun:}$row.production{/yun}</textarea></dd></dl>
+		<dl class="resume-cont_wate_list"><dt><span class="x_cor">*</span>密码：</dt>  <dd><input type="password" name="password" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')" class="reinputText"><div style=" margin-left:-12px;">密码修改信息时使用,请牢记！ </div></dd></dl>
+		{yun:}if $row.id{/yun} 
+		<div style="width:100%;margin:5px 0;float:left">
+			<span style="float:left;margin-left:120px;"><input type="radio" name="type" value='1' class="reinputText" checked="checked"/>修改
+			<input type="radio" name="type" value='2' class="reinputText"/>刷新
+			<input type="radio" name="type" value='3' class="reinputText"/>删除
+			</span>
+			<input name="id" value="{yun:}$row.id{/yun}" type="hidden"/>
+		</div>
+		<div style="clear:both"></div>
+		{yun:}/if{/yun}
+		<dl class="resume-cont_wate_list"> <dt>&nbsp;</dt><dd><input type="submit" name="submit" value="提交" class="reinputText2"> </dd> </dl>
+	</div>
+	</form>
+</div>
+</div>
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

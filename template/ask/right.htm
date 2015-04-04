@@ -1,0 +1,40 @@
+<div class="answers_right_Status">
+	<div class="answers_right_h1"><span>我的应用</span></div>
+	<ul class="answers_right_sidebar-nav">
+		<li><a href="{yun:}aurl url=c:myquestion{/yun}" class="answers_right_a" title="我的问题">我的问题</a></li>
+		<li><a href="{yun:}aurl url=c:attenquestion{/yun}" class="answers_right_b" title="我关注的问题">我关注的问题</a></li>
+		<li><a href="{yun:}aurl url=c:myanswer{/yun}" class="answers_right_c" title="我回答的问题">我回答的问题</a></li> 
+	</ul>
+</div>
+<div class="answers_right_like">
+<div class="answers_right_h1"><span>你可能感兴趣的人</span></div>
+	{yun:}qrecom item=qrecom_l ispage=0 limit=5 key=key{/yun}
+	{yun:}if empty($qrecom_l) && $key=='0'{/yun}
+		<div style="padding-top:10px; auto;width:100%;text-align:center;">暂无推荐</div>
+	{yun:}else{/yun}
+    {yun:}if $qrecom_l.nickname{/yun}
+        <dl class="answers_right_like_list">
+            <dt onmouseover="get_user_info('user_tj_','{yun:}$qrecom_l.uid{/yun}','{yun:}$qrecom_l.uid{/yun}','35');" onmouseout="hide_user_info('user_tj_','{yun:}$qrecom_l.uid{/yun}')"  id='user_tj_{yun:}$qrecom_l.uid{/yun}' style=" cursor:pointer">
+                <img src="{yun:}$qrecom_l.pic{/yun}" width="25" height="25" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);"> 
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        <a href="{yun:}furl url=c:profile,id:`$qrecom_l.uid`{/yun}" title="{yun:}$qrecom_l.nickname{/yun}">{yun:}$qrecom_l.nickname{/yun}</a> 
+                        {yun:}if $qrecom_l.is_atn!='2'{/yun}
+                            {yun:}if $qrecom_l.is_atn=='1'{/yun} 
+                                <a href="javascript:void(0)" style="float:right" onclick="attention_user('{yun:}$qrecom_l.uid{/yun}')" class="zg-btn-unfollow"  name="atn_{yun:}$qrecom_l.uid{/yun}" title="取消关注">取消关注</a>
+                            {yun:}else{/yun}
+                                <a href="javascript:void(0)" style="float:right" onclick="attention_user('{yun:}$qrecom_l.uid{/yun}')" class='zg-btn-green'  name="atn_{yun:}$qrecom_l.uid{/yun}" title="关注">关注</a>
+                            {yun:}/if{/yun}
+                        {yun:}/if{/yun} 
+                    </li>
+                    <li>{yun:}if $qrecom_l.description{/yun}{yun:}$qrecom_l.description{/yun}{yun:}else{/yun}暂无签名 {yun:}/if{/yun}</li>
+                    <li>他比较关注：{yun:}$qrecom_l.class_name{/yun}</li>
+                </ul>
+            </dd>
+        </dl>
+        {yun:}/if{/yun} 
+	{yun:}/if{/yun} 
+	{yun:}/qrecom{/yun}
+</div>

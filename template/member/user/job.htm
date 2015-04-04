@@ -1,0 +1,74 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+   {yun:}include file="$userstyle/ul_nav.htm"{/yun}
+  <div class="resume_box_list">
+  <div class="resume_Prompt">您已申请 <span style="color:red;">{yun:}$total{/yun}</span> 条职位,请耐心等待企业回复！</div>
+    <div class="clear"></div>
+    <div id="gms_showclew"></div>
+           <div class="List_Ope List_Title mt12">
+       <span class="List_Title_span List_Title_w260">申请的职位</span>	 	
+       <span class="List_Title_span List_Title_w110">薪资待遇</span>	
+        <span class="List_Title_span List_Title_w80">工作地点</span>
+       <span class="List_Title_span List_Title_w110"> 企业浏览状态</span>		
+       <span class="List_Title_span List_Title_w80">申请时间</span>	 	
+       <span class="List_Title_span List_Title_w80">操作</span>	
+      </div>
+          {yun:}foreach item=job from=$rows{/yun}
+            <div class="List_Ope List_Ope_bor">
+			   <span class="List_Title_span List_Title_w260">
+			   <div class=""><a href="{yun:}url m=com url=c:comapply,id:`$job.job_id`{/yun}" target="_blank" title="{yun:}$job.job_name{/yun}" class="List_Title_span_com">{yun:}$job.job_name{/yun}</a>  </div>
+			  
+					<a href="{yun:}curl url=id:`$job.com_id`{/yun}" target="_blank" title="{yun:}$job.com_name{/yun}"class="List_Ope_a">{yun:}$job.com_name{/yun}
+					</a> 
+			   </span>	 
+			   <span class="List_Title_span  List_Title_w110 mt10">{yun:}$comclass_name[$job.salary]{/yun}</span>	  
+			   <span class="List_Title_span List_Title_w80 mt10">{yun:}$city_name[$job.provinceid]{/yun}-{yun:}$city_name[$job.cityid]{/yun}</span>			   <span class="List_Title_span List_Title_w110 mt10"> {yun:}if $job.is_browse=='1'{/yun}<span class="Not_browse">企业未浏览简历</span>{yun:}else{/yun}<span class="yes_browse">企业已浏览简历</span>{yun:}/if{/yun}</span></span>	
+			   <span class="List_Title_span List_Title_w80 mt10">{yun:}$job.datetime|date_format:'%Y-%m-%d'{/yun}</span>	 	
+			   <span class="List_Title_span List_Title_w80 mt10">
+               
+                {yun:}if $job.body!=''{/yun}
+                        <span class="List_dete" style="color:#999;">已取消申请</span><br/>
+                   {yun:}/if{/yun}
+               {yun:}if $job.is_browse=='1'{/yun}
+                   {yun:}if $job.body==''{/yun}
+                        <a href="javascript:void(0)" onclick="quxiaoshenqin({yun:}$job.id{/yun});" class="List_dete" >取消申请</a>
+                   {yun:}/if{/yun}
+               {yun:}else{/yun}
+               <a href="javascript:void(0)" onclick="layer_del('确定要删除？','index.php?c=job&act=del&id={yun:}$job.id{/yun}');" class="List_dete" >删除</a>
+               {yun:}/if{/yun}
+               </span>
+			  </div> 
+              <div class="clear"></div>
+           {yun:}foreachelse{/yun}
+           <div class="msg_no">你还没有申请职位哦！<a href="{yun:}url m=com {/yun}" class="msg_no_sq">马上去找工作</a></div>
+          {yun:}/foreach{/yun}
+      </div>
+      <div class="diggg" style="margin-top:10px; float:right">{yun:}$pagenav{/yun}</div>
+    </div>
+  </div>
+  <div style="padding:10px;height:180px;display:none;" id='blackdiv'> 
+   <div class="Blacklist_box">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+	<form action="index.php?c=job&act=qs" target="supportiframe" method="post">
+    <input type="hidden" value="" name="id" id="qsid">
+    		<div style="height:30px;">
+                快速选择：
+                <select name="body" style="line-height:25px; height:25px;">
+                    <option value="已经找到工作">已经找到工作</option>
+                    <option value="想休息一段时间">想休息一段时间</option>
+                    <option value="生病了">生病了</option>
+                    <option value="看错信息了">看错信息了</option>
+                    <option value="很长时间没有查看">很长时间没有查看</option>
+                    <option value="其它原因">其它原因</option>
+            	</select>
+            </div>
+		<div class="black_submit_cont">
+			<input type="submit" value="确定" class="black_submit">
+		</div>
+	 </form>
+	 </div>
+	 <div class="clear"></div> 
+ </div> 
+{yun:}include file="$userstyle/footer.htm"{/yun}

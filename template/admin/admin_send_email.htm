@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script language="javascript">
+	KindEditor.ready(function(K) {
+		editor=K.create('#content', {
+		 themeType : 'default'
+	 	});
+	});
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<script>
+$(document).ready(function(){
+	$("#CheckboxGroup1_3").click(function(){
+			$("#user_email").toggle();
+			$("input[name=email_user]").val('');
+	})
+	$("input[name=email_send]").click(function(){
+		var email_title=$("input[name=email_title]").val();
+		if(email_title==""){parent.layer.msg('主题不能为空，请填写主题！', 2, 8);return false;}
+		var content=$("#content").val();
+		if(content==""){parent.layer.msg('内容不能为空，请填写内容！', 2, 8);return false;}
+		loadlayer();
+	})
+})
+</script>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Prompt">
+<div class="admin_Prompt_span">注意事项：发送邮件时，请正确选择用户类型。</div><div class="admin_Prompt_close"></div>
+</div>
+<div class="infoboxp_top"><h6>邮件群发</h6></div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" action="index.php?m=email&c=send" method="post" target="supportiframe">
+	<table width="100%" class="table_form table_form_bg">
+        <tr>
+        <th width="120">选择用户</th>
+        <td>
+          <input type="checkbox" name="all[]" value="1" id="CheckboxGroup1_0"><label for="CheckboxGroup1_0">个人用户</label>&nbsp;
+          <input type="checkbox" name="all[]" value="2" id="CheckboxGroup1_1"><label for="CheckboxGroup1_1">企业用户</label>&nbsp;
+        
+          <input type="checkbox" name="all[]" value="3" id="CheckboxGroup1_3"><label for="CheckboxGroup1_3">自定义用户</label>&nbsp;&nbsp;&nbsp;
+          <font color="gray">注：全部用户发送，时间较长，建议分批发送</font>
+      </td>
+      </tr>
+		<tr  id="user_email" style="display:none;">
+			<th width="120">用户邮箱</th>
+			<td>
+      <input class="input-text" type="text" name="email_user" size="50"/><font color="gray">多个邮箱请用,(半角)隔开</font>
+      </td></tr>
+		<tr class="admin_table_trbg">
+			<th width="120">邮件主题</th>
+			<td><input class="input-text" type="text" name="email_title" size="40"/><font color="gray"></font>
+			</td>
+		</tr>
+        	<tr>
+			<th width="120">邮件内容</th>
+			<td>
+           <textarea id="content" name="content" cols="100" rows="8" style="width:800px;height:300px;"></textarea></td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+            <input class="admin_submit4" type="submit" name="email_send" value="&nbsp;发 送&nbsp;"  />
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+     		</td>
+		</tr>
+	</table>
+	<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+
+</body>
+</html>

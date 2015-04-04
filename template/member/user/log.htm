@@ -1,0 +1,38 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"><a href="javascript:void(0);">操作日志</a></li>
+    </ul>
+  </div>
+  <div class="remindbox01 mt10">
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div id="" class="resume_box_list">
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <table border="0" cellspacing="1" cellpadding="0" class="resume" style="width:780px;">
+          <tr>
+            <th>ID</th>
+            <th>操作内容</th>
+            <th>IP</th>
+            <th>时间</th>
+          </tr>
+          {yun:}foreach item=log from=$rows{/yun}
+          <tr>
+            <td>{yun:}$log.id{/yun}</td>
+            <td style="text-align:left">{yun:}$log.content{/yun}</td>
+            <td>{yun:}$log.ip{/yun}</td>
+            <td>{yun:}$log.ctime|date_format:'%Y-%m-%d %H:%M'{/yun}</td>	
+			
+          </tr>
+          {yun:}/foreach{/yun}
+        </table>
+      </div>
+    </div>
+    <div class="diggg">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

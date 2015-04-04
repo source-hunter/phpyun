@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun} - Powered by PHPYun.</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$ask_style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('.png,.answers_feed-meta a,.answers_right_sidebar-nav li a,.topic_list_top .answer_gz,.icon2,.ask_icon3');
+</script>
+<![endif]-->
+<script>
+var weburl="{yun:}$config.sy_weburl{/yun}"; 
+</script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script src="{yun:}$ask_style{/yun}/js/question.js" language="javascript"></script> 
+</head>
+<body>
+<div class="answers_top">
+  <div class="answers_top_cont">
+    <div class="answers_top_left">
+		欢迎来到{yun:}$config.sy_webname{/yun}！&nbsp;&nbsp;
+	</div>
+       <div class="top_right_re fr">
+        <div class="top_right">
+          <div class="yun_topNav fr"> <a class="yun_navMore" href="javascript:;">网站导航</a>
+            <div class="yun_webMoredown" style="display:none">
+              <div class="yun_top_nav_box"> {yun:}navmap key=key item=navmap{/yun}
+                <div class="yun_top_nav_h1"><a href="{yun:}$navmap.url{/yun}" {yun:}if $navmap.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$navmap.name{/yun}</a></div>
+                <ul>
+                  {yun:}foreach from=$navmap.list item=maplist{/yun}
+                  <li><a href="{yun:}$maplist.url{/yun}" {yun:}if $maplist.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$maplist.name{/yun}</a></li>
+                  {yun:}/foreach{/yun}
+                </ul>
+                {yun:}/navmap{/yun} </div>
+            </div>
+          </div>
+        
+        
+	<SCRIPT LANGUAGE='JavaScript' src='{yun:}$config.sy_weburl{/yun}/index.php?m=includejs&c=RedLoginHead'></SCRIPT>
+   </div>
+      </div>
+  </div>
+</div>
+
+<div class="answers_header">
+	<div class="answers_logo"><a href="{yun:}$config.sy_weburl{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_logo{/yun}" class="png"></a> </div>
+	<div class="answers_mune">
+		<ul>
+			<li {yun:}if $c=='index'{/yun}class="answers_current"{yun:}/if{/yun}><a href="{yun:}aurl{/yun}">首页</a></li>
+			<li {yun:}if $c=='topic'{/yun}class="answers_current"{yun:}/if{/yun}><a href="{yun:}aurl url=c:topic{/yun}" >话题 </a></li>
+			<li {yun:}if $c=='topic_cont'{/yun}class="answers_current"{yun:}/if{/yun}><a href="{yun:}aurl url=c:hotweek{/yun}">一周热点</a></li>
+			<li ><a href="{yun:}furl{/yun}">朋友圈</a></li>
+			<li ><a href="{yun:}$config.sy_weburl{/yun}">人才网首页</a></li>
+		</ul>
+		<div class="answers_mune_right">
+			<div class="answers_seach">
+				<form action="{yun:}$config.sy_weburl{/yun}/ask/index.php" method="get" >
+				<input type="hidden" value="search" name='c'>
+				<input type="text" value="{yun:}$search_title{/yun}" class="answers_text" name='search_title'>
+				<input type="submit" value="" class="answers_submit">
+				</form>
+			</div>
+			<div class="answers_mune_right_tw">
+				{yun:}if $uid{/yun}
+				<a href="{yun:}aurl url=c:addquestion{/yun}"><img src="{yun:}$ask_style{/yun}/images/ask_tw.png"></a>
+				{yun:}else{/yun}
+				<a href="javascript:void(0);" onclick="layer.msg('请先登录！', 2, 8);return false; "><img src="{yun:}$ask_style{/yun}/images/ask_tw.png"></a>
+				{yun:}/if{/yun}
+			</div>
+		</div>
+	</div>
+</div>

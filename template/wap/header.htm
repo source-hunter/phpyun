@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<title>{yun:}$config.sy_webname{/yun} -  手机人才网</title>
+<meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
+<meta http-equiv="description" content="人才招聘网wap网站" />
+<meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
+<meta http-equiv="description" content="人才招聘网wap网站" />
+<meta content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+<meta name="MobileOptimized" content="240" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=yes" name="format-detection" />
+<meta content="email=no" name="format-detection" />
+<link rel="stylesheet" type="text/css" href="{yun:}$config.sy_weburl{/yun}/template/wap/css/wap.css"/>
+</head> 
+<body>
+<div class="main_body">
+<header class="header">
+<div class="header_cont">
+<!--<div class="nav_icon"><i></i><em></em></div>-->
+<div class="logo"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_wap_logo{/yun}" width="200" height="35"></div>
+<div class="header_user"><a href="member/"></a></div>
+</div>
+</header>
+{yun:}if $smarty.get.point{/yun}
+<div class="msg-err" style="opacity: 1;-webkit-animation:shake 0.5s linear 0s;">{yun:}$smarty.get.point{/yun}</div>
+{yun:}/if{/yun}
+<table class="mune_list">
+<tr>
+<td width="30%"><a href="{yun:}wapurl url=m:com{/yun}"><p class="mune_a"><i></i><em>职位搜索</em></p></a></td>
+<td width="30%" rowspan="2"><a href="{yun:}wapurl url=m:firm{/yun}"><p class="mune_c"><i></i><em>公司搜索</em></p></a></td>
+<td width="30%"><a href="{yun:}wapurl url=m:once{/yun}"><p class="mune_d"><i></i><em>微招聘</em></p></a></td>
+</tr>
+<tr>
+<td width="30%"> <a href="{yun:}wapurl url=m:tiny{/yun}"><p class="mune_b"><i></i><em>微简历</em></p></a></td>
+<td width="30%"> <a href="{yun:}wapurl url=m:news{/yun}"><p class="mune_e"><i></i><em>职场资讯</em></p></a></td>
+</tr>
+<tr>
+<td colspan="3"> <a href="{yun:}wapurl url=m:user{/yun}"><p class="mune_f">招人才</p></a></td>
+</tr>
+</table> 

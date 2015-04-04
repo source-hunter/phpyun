@@ -1,0 +1,60 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <script>
+function checknum(){
+	var time=$("#buy_time").val();
+	var integral=$("#integral").val();
+	$("#num").val(time*integral);
+	$("#integral_buy").val(time*integral);
+	$("#all_num").html(time*integral);
+}
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">购买评论管理</span></div>
+        <div class="my_table_box fltL mt10">
+          <table width="100%" border="0" cellspacing="1" cellpadding="1" class="my_table_msg">
+            <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+            <form name=alipayment action="index.php?c=buysave" method=post  target="supportiframe">
+              <input type="hidden" name="type" value="pl" />
+              <input type="hidden" name="buytype" value="2" />
+              <tr>
+                <th height="30">功能名称:</th>
+                <td>企业评论管理</td>
+              </tr>
+              <input type="hidden" name="unit_buy" value="{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}" />
+              <tr>
+                <th height="30">购买费用:</th>
+                <td>{yun:}if $config.integral_com_comments_type=="1"{/yun}增加{yun:}/if{/yun} <span>{yun:}$config.integral_com_comments{/yun}</span>
+                <input type="hidden" name="integral" id="integral" value="{yun:}$config.integral_com_comments{/yun}" >
+                 {yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}/月 </td>
+              </tr>
+              <tr>
+                <th height="30">购买时间:</th>
+                <td><input type="text" name="time" id="buy_time" value="1"  class="com_info_text"onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" size='5'style="width:40px"onblur="checknum();"/>
+                  <span style="line-height: 28px;margin-left:5px">月</span> </td>
+              </tr>
+              <tr>
+                <th height="30">购买价格:</th>
+                <td>{yun:}if $config.integral_com_comments_type=="1"{/yun}增加{yun:}/if{/yun} <span id='all_num'>{yun:}$config.integral_com_comments{/yun}</span><input type="hidden" id="num" value="{yun:}$config.integral_com_comments{/yun}"  />
+                  {yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}
+                  <input type="hidden" name="integral_buy" id="integral_buy" value="{yun:}$config.integral_com_comments{/yun}" /></td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td><p style=" width:430px;border:1px solid #FF6600; padding:5px; background-color:#FDF2CC; color:#393939; line-height:20px; margin:10px 0px;">您还有{yun:}if !$statis.integral{/yun}0{yun:}else{/yun}{yun:}$statis.integral{/yun}{yun:}/if{/yun}{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}.余额{yun:}$statis.pay{/yun}元</p></td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td height="40"><input type="hidden" name="banksub" value="提交"/>
+                  <input type="image" src="{yun:}$comstyle{/yun}/images/next.jpg" id="buy_vip_ad" value=确认订单 style="width:100px;height:30px;border:none;"></td>
+              </tr>
+            </form>
+          </table>
+        </div>
+        </span></div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

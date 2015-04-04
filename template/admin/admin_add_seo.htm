@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script src="js/jquery.insert.js"></script>
+<script language="javascript">
+<!--
+function checkform(myform){
+	if (myform.seoname.value=="") {
+	   parent.layer.msg('请填写名称！', 2, 2);
+      myform.seoname.focus();
+      return (false);
+  }
+   if (myform.ident.value=="") {
+	  parent.layer.msg('请填写SEO标识符！', 2, 2);
+      myform.ident.focus();
+      return (false);
+  }
+  if (myform.title.value=="") {
+	  parent.layer.msg('请填写title！', 2, 2);
+      myform.title.focus();
+      return (false);
+  }
+  if (myform.keywords.value=="") {
+	  parent.layer.msg('请填写keywords！', 2, 2);
+      myform.keyword.focus();
+      return (false);
+  }
+  if (myform.description.value=="") {
+  	parent.layer.msg('请填写description！', 2, 2);
+      myform.description.focus();
+      return (false);
+  }
+}
+//-->
+	$(function(){
+		$(".status").click(function(){
+			$("input[name=pid]").val($(this).attr("pid"));
+			$.layer({
+				type : 1,
+				title :'选择标签',
+				offset: [($(window).height() - 320)/2 + 'px', ''],
+				closeBtn : [0 , true],
+				border : [10 , 0.3 , '#000', true],
+				area : ['550px','280px'],
+				page : {dom :"#infobox"}
+			});
+		});
+	});
+	function clickseoSureBtn(){
+		var codewebarr="";
+		$("input[name=seocheckbox]:checked").each(function(){ //由于复选框一般选中的是多个,所以可以循环输出
+			if(codewebarr==""){codewebarr="{"+$(this).val()+"}";}else{codewebarr=codewebarr+" - {"+$(this).val()+"}";}
+		});
+		$("input[name='seocheckbox']").attr('checked',false);
+		var pid=$("input[name=pid]").val();
+		$('#'+pid).setCaret();
+		$('#'+pid).insertAtCaret(codewebarr);
+		layer.closeAll();
+	}
+	function change_list(id){
+		$(".seolist").hide();
+		$("#list_"+id).show();
+	}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div id="infobox" style="display:none;padding:0px 20px;">
+    <div class="admin_Prompt" style="width:500px; margin-top:10px;">
+        <div class="admin_Prompt_span">
+           提示：下面的标识符请根据页面对应添加，否则无法正常显示！
+        </div>
+    </div>
+    <form action="index.php" target="supportiframe" method="get" id="formstatus">
+        <input name="pid" value="0" type="hidden">
+        <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+        <div class="admin_seo_tck_box">
+         {yun:}assign var="sort" value=1{/yun}
+        {yun:}foreach item=rows key=key from=$seoconfig{/yun}
+            <span class="admin_seo_tck_box_tit"><a href="javascript:;" onClick="change_list('{yun:}$sort{/yun}')">{yun:}$key{/yun}</a></span>
+            {yun:}assign var="sort" value=$sort+1{/yun}
+        {yun:}/foreach{/yun}
+        {yun:}assign var="sort" value=1{/yun}
+        {yun:}foreach item=rows key=key from=$seoconfig{/yun}
+            	<div {yun:}if $sort!=1{/yun}style="display:none;"{yun:}/if{/yun} class="seolist" id="list_{yun:}$sort{/yun}">
+                {yun:}foreach item=row key=k from=$rows{/yun}
+                <div class="admin_seo_tck_box_list">
+                <input type="checkbox" name="seocheckbox" value="{yun:}$k{/yun}" id="{yun:}$k{/yun}" class="admin_seo_tck_box_check">
+                <span class="admin_seo_tck_box_l"><label for="{yun:}$k{/yun}">{yun:}$row{/yun}</span>
+               调用代码：[{yun:}$k{/yun}]</label>
+                </div>
+               {yun:}/foreach{/yun}
+               </div>
+            {yun:}assign var="sort" value=$sort+1{/yun}
+        {yun:}/foreach{/yun}
+        </div>
+        <p style="text-align:center; clear:both;">
+		<input class="submit_btn" type="button" value="确认"  onClick="clickseoSureBtn();" >&nbsp;&nbsp;
+		<input class="cancel_btn" type="button" value="取消" onclick="layer.closeAll();">
+		</p>
+    </form>
+</div>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Prompt">
+        <div class="admin_Prompt_span">
+           提示：如果您不是程序员或不清楚用法，请不要随意修改SEO标识符！<br/>
+           职位页伪静态规则例子：/job/[id].html
+        </div>
+        <div class="admin_Prompt_close"></div>
+    </div>
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>SEO信息管理</h6>
+</div>
+
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<form name="myform" target="supportiframe" action="index.php?m=seo&c=Save" method="post"   onSubmit="return checkform(this);">
+	<table width="100%" class="table_form" style="background:#fff;">
+    	<tr >
+			<th>页面名称：</th>
+			<td><input class="input-text" type="text" name="seoname" size="40" value="{yun:}$seo.seoname{/yun}"/></td>
+		</tr>
+         	<tr class="admin_table_trbg" >
+			<th>SEO标识符：</th>
+			<td><input class="input-text" type="text" name="ident" size="40" value="{yun:}$seo.ident{/yun}" id='ident'/></td>
+		</tr>
+        <tr >
+			<th>所属站点：</th>
+			<td>
+          <div class="all_Domain_name">
+         <input type="button" value="{yun:}if $seo.domain_name==""{/yun}全站{yun:}else{/yun}{yun:}$seo.domain_name{/yun}{yun:}/if{/yun}" class="all_Domain_button" id="domain_name">
+         <input type="hidden" id="domainid" value="{yun:}$seo.affiliation{/yun}" name="did">
+         <div class="all_Domain_name_box" id="domain_list" style="display:none;">
+    <span class="all_Domain_name_box_list"><input type="checkbox" class="domain" id="did" value="0+0" {yun:}if stripos($seo.affiliation,'0')!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> 全站</span> 
+              {yun:}foreach from=$domain item=v{/yun}
+              <span class="all_Domain_name_box_list"><input type="checkbox" class="domain" class="did" value="{yun:}$v.id{/yun}+{yun:}$v.title{/yun}" {yun:}if stripos($seo.affiliation,$v.id)!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> {yun:}$v.title{/yun}</span> 
+              {yun:}/foreach{/yun}
+              <div class="all_Domain_name_sub"><input type="button" value="确定" class="all_Domain_name_submit1" onClick="check_domain()">
+              <input type="button" value="取消" class="all_Domain_name_submit2" onClick="Close('domain_list')"></div>
+         </div>
+          </div>
+            </td>
+		</tr>
+        <tr  class="admin_table_trbg">
+			<th>伪静态规则：</th>
+			<td>
+             <input class="input-text" type="text" id="rewrite_url" name="rewrite_url" size="60" value="{yun:}$seo.rewrite_url{/yun}"/>注意：不填写则按phpyun规则执行，只有开启伪静态，此规则才起作用，搜索页不支持伪静态
+            </td>
+		</tr>
+        <tr >
+			<th>执行文件：</th>
+			<td>
+             <input class="input-text" type="text" id="php_url" name="php_url" size="60" value="{yun:}$seo.php_url{/yun}"/>程序所执行路径
+            </td>
+		</tr>
+	   	<tr class="admin_table_trbg" >
+			<th>title：</th>
+			<td>
+              <div style="height:5px;"></div>
+            <input class="input-text" type="text" id="title" name="title" size="60" value="{yun:}$seo.title{/yun}"/>
+            <input class="input-text status" type="button" name="select" pid="title" style="width:50px" value="选择"/>
+            </td>
+		</tr>
+		<tr >
+			<th>keywords：</th>
+			<td>
+              <div style="height:5px;"></div>
+			 <input class="input-text" type="text" id="keywords" name="keywords" size="60" value="{yun:}$seo.keywords{/yun}"/>
+            <input class="input-text status" type="button" name="select" pid="keywords" style="width:50px" value="选择"/>
+			</td>
+		</tr>
+    	<tr class="admin_table_trbg" >
+			<th>description：</th>
+			<td>
+              <div style="height:5px;"></div>
+			 <textarea name="description" id="description" cols="60" rows="5">{yun:}$seo.description{/yun}</textarea>
+              <input class="input-text status" type="button" name="select" pid="description" style="width:50px" value="选择"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+            <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+			{yun:}if is_array($seo){/yun}
+        	<input type="hidden" name="id" size="40" value="{yun:}$seo.id{/yun}"/>
+        	<input class="admin_submit4" type="submit" name="update" value="&nbsp;更 新&nbsp;"  />
+        	{yun:}else{/yun}
+    		<input class="admin_submit4" type="submit" name="add" value="&nbsp;添 加&nbsp;"  />
+     		{yun:}/if{/yun}
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+			</td>
+		</tr>
+	</table>
+</form>
+</div>
+</div>
+</body>
+</html>

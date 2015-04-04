@@ -1,0 +1,192 @@
+.job_preview_header {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 100%; HEIGHT: auto; TEXT-ALIGN: center
+}
+.job_preview_header .w950 {
+	BACKGROUND: url(../images/preview_header_bg.gif) no-repeat right 50%; MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; BORDER-BOTTOM: #adacce 1px solid; HEIGHT: 60px
+}
+.job_preview_header .w950 .logo {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 200px; HEIGHT: 50px
+}
+.job_preview_mainbody {
+	CLEAR: both; MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.job_preview_box {
+	MARGIN-TOP: 20px; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.job_preview_box_tit {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.job_preview_box_tit SPAN {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 16px; FLOAT: left; OVERFLOW: hidden; COLOR: #000000; LINE-HEIGHT: 30px; HEIGHT: 30px; TEXT-ALIGN: left
+}
+.job_preview_box_com_intro {
+	BORDER-RIGHT: #e1e1f4 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #e1e1f4 1px solid; MARGIN-TOP: 10px; PADDING-LEFT: 0px; BACKGROUND: url(../images/job_preview_com_intro_bg.gif) repeat-x; FLOAT: left; PADDING-BOTTOM: 5px; OVERFLOW: hidden; BORDER-LEFT: #e1e1f4 1px solid; WIDTH: 948px; PADDING-TOP: 5px; BORDER-BOTTOM: #e1e1f4 1px solid; HEIGHT: auto
+}
+.job_preview_box_com_intro DL {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 940px; HEIGHT: auto
+}
+.job_preview_box_com_intro DL DT {
+	BORDER-RIGHT: #eeeeee 1px solid; BORDER-TOP: #eeeeee 1px solid; MARGIN-TOP: 5px; DISPLAY: inline; FLOAT: left; MARGIN-LEFT: 10px; BORDER-LEFT: #eeeeee 1px solid; WIDTH: 200px; BORDER-BOTTOM: #eeeeee 1px solid; HEIGHT: 65px
+}
+.job_preview_box_com_intro DL DD {
+	FLOAT: right; WIDTH: 700px; COLOR: #000000; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_com_intro DL DD.tit {
+	DISPLAY: inline; FONT-WEIGHT: bold; FONT-SIZE: 14px; FLOAT: right; COLOR: #ff6600; LINE-HEIGHT: 20px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_com_intro DL DD .tit {
+	FLOAT: left; LINE-HEIGHT: 20px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_com_intro DL DD .textbox {
+	FLOAT: left; COLOR: #666666; LINE-HEIGHT: 20px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_cont {
+	MARGIN-TOP: 15px; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.job_preview_box_cont H2 {
+	BORDER-RIGHT: #e1e1f4 1px solid; BORDER-TOP: #e1e1f4 1px solid; BACKGROUND: #f7f7fd; FLOAT: left; OVERFLOW: hidden; BORDER-LEFT: #e1e1f4 1px solid; WIDTH: 948px; BORDER-BOTTOM: #e1e1f4 1px solid; HEIGHT: 25px
+}
+.job_preview_box_cont H2 SPAN {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FLOAT: left; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: 25px; TEXT-ALIGN: left
+}
+.job_preview_box_cont .cont {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 930px; HEIGHT: auto
+}
+.job_preview_box_cont .cont SPAN {
+	CLEAR: both; PADDING-RIGHT: 10px; MARGIN-TOP: 10px; PADDING-LEFT: 10px; FLOAT: left; PADDING-BOTTOM: 0px; OVERFLOW: hidden; WIDTH: 910px; COLOR: #666666; LINE-HEIGHT: 22px; PADDING-TOP: 0px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_cont .cont SPAN.btn {
+	CLEAR: both; PADDING-RIGHT: 10px; MARGIN-TOP: 10px; PADDING-LEFT: 10px; FLOAT: left; PADDING-BOTTOM: 0px; OVERFLOW: hidden; COLOR: #000000; PADDING-TOP: 0px; HEIGHT: 25px; TEXT-ALIGN: right
+}
+.job_preview_box_cont UL {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 910px; HEIGHT: auto
+}
+.job_preview_box_cont UL LI {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 400px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_cont UL LI.long {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 910px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_cont UL LI .tit {
+	PADDING-LEFT: 10px; FLOAT: left; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_cont UL LI .textbox {
+	FLOAT: left; COLOR: #666666; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_cont UL LI.long .textbox {
+	FLOAT: left; WIDTH: 800px; COLOR: #666666; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_com_info {
+	BORDER-RIGHT: #e1e1f4 1px solid; BORDER-TOP: #e1e1f4 1px solid; MARGIN-TOP: 15px; FLOAT: left; OVERFLOW: hidden; BORDER-LEFT: #e1e1f4 1px solid; WIDTH: 948px; BORDER-BOTTOM: #e1e1f4 1px solid; HEIGHT: auto
+}
+.job_preview_box_com_info H2 {
+	BACKGROUND: #f7f7fd; FLOAT: left; OVERFLOW: hidden; WIDTH: 948px; HEIGHT: 25px
+}
+.job_preview_box_com_info H2 SPAN {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FLOAT: left; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: 25px; TEXT-ALIGN: left
+}
+.job_preview_box_com_info .cont {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 20px; FLOAT: left; PADDING-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 910px; COLOR: #000000; LINE-HEIGHT: 23px; PADDING-TOP: 10px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.job_preview_box_com_info .cont B {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; COLOR: #ff6600
+}
+.job_preview_footer {
+	MARGIN-TOP: 20px; FLOAT: left; OVERFLOW: hidden; WIDTH: 100%; HEIGHT: 25px; TEXT-ALIGN: center
+}
+.job_preview_footer .w950 {
+	BACKGROUND: #e1e1f4; MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: 25px; TEXT-ALIGN: center
+}
+.resume_preview_header {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 100%; HEIGHT: auto; TEXT-ALIGN: center
+}
+.resume_preview_header .w950 {
+	BACKGROUND: url(../images/preview_header_bg.gif) no-repeat right 50%; MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; BORDER-BOTTOM: #adacce 1px solid; HEIGHT: 60px
+}
+.resume_preview_header .w950 .logo {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 200px; HEIGHT: 50px
+}
+.resume_preview_mainbody {
+	CLEAR: both; MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.resume_preview_box {
+	MARGIN-TOP: 10px; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.resume_preview_box_tit {
+	MARGIN-TOP: 10px; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.resume_preview_box_tit SPAN {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 16px; FLOAT: left; OVERFLOW: hidden; COLOR: #000000; LINE-HEIGHT: 30px; HEIGHT: 30px; TEXT-ALIGN: left
+}
+.resume_preview_box_tit SPAN.right {
+	PADDING-RIGHT: 10px; MARGIN-TOP: 2px; FONT-WEIGHT: normal; FONT-SIZE: 12px; FLOAT: right; OVERFLOW: hidden; COLOR: #004499; LINE-HEIGHT: 25px; HEIGHT: 25px; TEXT-ALIGN: left
+}
+.resume_preview_box_cont {
+	MARGIN-TOP: 10px; FLOAT: left; MARGIN-BOTTOM: 10px; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.resume_preview_box_cont H2 {
+	BACKGROUND: #333333; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: 25px
+}
+.resume_preview_box_cont H2 SPAN {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FLOAT: left; COLOR: #ffffff; LINE-HEIGHT: 25px; HEIGHT: 25px; TEXT-ALIGN: left
+}
+.resume_preview_box_cont .cont {
+	FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.resume_preview_box_cont .cont SPAN {
+	CLEAR: both; PADDING-RIGHT: 10px; MARGIN-TOP: 10px; PADDING-LEFT: 10px; FLOAT: left; PADDING-BOTTOM: 0px; OVERFLOW: hidden; WIDTH: 910px; COLOR: #666666; LINE-HEIGHT: 22px; PADDING-TOP: 0px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont .cont SPAN.btn {
+	CLEAR: both; PADDING-RIGHT: 10px; MARGIN-TOP: 10px; PADDING-LEFT: 10px; FLOAT: left; PADDING-BOTTOM: 0px; OVERFLOW: hidden; COLOR: #000000; PADDING-TOP: 0px; HEIGHT: 25px; TEXT-ALIGN: right
+}
+.resume_preview_box_cont UL {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.resume_preview_box_cont UL LI {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 400px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont UL LI.photo {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN-TOP: 5px; FLOAT: right; BORDER-LEFT: #cccccc 1px solid; WIDTH: 90px; MARGIN-RIGHT: 10px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 120px
+}
+.resume_preview_box_cont UL LI.long {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 910px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont UL LI.tit {
+	MARGIN-TOP: 5px; BACKGROUND: #eeeeee; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont UL LI .tit {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FLOAT: left; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont UL LI.tit .tit {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FLOAT: left; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont UL LI .textbox {
+	FLOAT: left; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont UL LI.long .textbox {
+	FLOAT: left; WIDTH: 750px; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont UL LI.tit .textbox {
+	FONT-WEIGHT: bold; FLOAT: left; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: auto; TEXT-ALIGN: left
+}
+.resume_preview_box_cont .table {
+	MARGIN-TOP: 5px; FLOAT: left; OVERFLOW: hidden; WIDTH: 950px; HEIGHT: auto
+}
+.resume_preview_box_cont .table TABLE {
+	FONT-SIZE: 12px; BACKGROUND: #cccccc; OVERFLOW: hidden; WIDTH: 948px; HEIGHT: auto
+}
+.resume_preview_box_cont .table TABLE.short {
+	BACKGROUND: #cccccc; FLOAT: left; OVERFLOW: hidden; WIDTH: 500px; HEIGHT: auto
+}
+.resume_preview_box_cont .table TABLE TH {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; BACKGROUND: #eeeeee; PADDING-BOTTOM: 0px; COLOR: #000000; LINE-HEIGHT: 20px; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+.resume_preview_box_cont .table TABLE TD {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: normal; BACKGROUND: #ffffff; PADDING-BOTTOM: 0px; COLOR: #000000; LINE-HEIGHT: 20px; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+.resume_preview_footer {
+	MARGIN-TOP: 20px; FLOAT: left; OVERFLOW: hidden; WIDTH: 100%; HEIGHT: 25px; TEXT-ALIGN: center
+}
+.resume_preview_footer .w950 {
+	BACKGROUND: #e1e1f4; MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 950px; COLOR: #000000; LINE-HEIGHT: 25px; HEIGHT: 25px; TEXT-ALIGN: center
+}

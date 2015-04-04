@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/slides.jquery.js" type="text/javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun} 
+<script language="javascript">
+$(function(){
+	$("#slides").slides({
+		preload: true,
+		preloadImage: '{yun:}$style{/yun}/images/loading.gif',
+		play: 5000,
+		pause: 2500,
+		hoverPause: true
+	});
+});
+
+</script> 
+<div class="redeem">
+<div class="redeem_top fl">
+  <div class="redeem_top_left fl">
+    <div class="redeem_top_left_h fl">兑换排行榜</div>
+    <div class="redeem_top_left_lists fl"> {yun:}foreach item=v key=j from=$paihang{/yun}
+      <div class="redeem_lone_items fl">
+        <div class="redeem_rank fl"> <img src="{yun:}$style{/yun}/images/0{yun:}$j+1{/yun}.png"> </div>
+        <div class="redeem_lbanner fl"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$v.pic{/yun}" width="60" height="52"> <a href="{yun:}url m=redeem url=c:show,id:`$v.id`{/yun}">{yun:}$v.name{/yun}</a> </div>
+      </div>
+      {yun:}/foreach{/yun} </div>
+  </div>
+  <div class="redeem_top_center fl">
+    <div class="redeem_raff fl"><em>积分兑换奖品，上千礼品任你挑选啦！</em></div>
+    <div class="redeem_cbanner fl">
+      <div class="Projector">
+        <div class="Projector_img">
+          <div id="slides" class="s_lb">
+            <div class="slides_container"> {yun:}adlist classid=34 item="lunbo" key=key{/yun}
+              <div class="slide">{yun:}$lunbo.html{/yun}</div>
+              {yun:}/adlist{/yun} </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="redeem_top_right fr">
+    <div class="redeem_top_left_h fl">TA们正在换好礼…</div>
+    <ul class="redeem_rlists fl">
+      {yun:}foreach item=v key=j from=$lipin{/yun}
+      <li>
+        <dl class="redeem_ritems fl">
+          <dt><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$v.pic{/yun}"width="60" height="60"></dt>
+          <dd><em>{yun:}$v.provinceid{/yun}&nbsp;{yun:}$v.cityid{/yun}&nbsp;{yun:}$v.username{/yun}</em><em>兑换了<a href="{yun:}url m=redeem url=c:show,id:`$v.id`{/yun}">{yun:}$v.name{/yun}</a></em><em>花了{yun:}$v.integral{/yun}积分</em><em>{yun:}$v.time{/yun}</em></dd>
+        </dl>
+      </li>
+      {yun:}/foreach{/yun}
+    </ul>
+  </div>
+  <script>marquee("2000",".redeem_top_right ul");</script> 
+</div>
+<div class="redeem_mainlists fl"> {yun:}foreach item=v key=j from=$row{/yun}
+  <div class="redeem_itemize redeem_blue fl"><em>{yun:}$v.name{/yun}</em><a href="{yun:}url m=redeem url=c:list,id:`$v.id`{/yun}">更多>></a></div>
+  <div class="redeem_goods_lists fl">
+    <div class="redeem_goods_top fl"> 
+    {yun:}foreach item=val key=jj from=$rows{/yun}
+      {yun:}if $v.id==$val.nid{/yun}      
+      <dl class="redeem_one fl">
+        <dt><a href="{yun:}url m=redeem url=c:show,id:`$val.id`{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$val.pic{/yun}" width="222" 
+
+height="248"></a></dt>
+        <dd> <a href="{yun:}url m=redeem url=c:show,id:`$val.id`{/yun}" class="redeem_one_h fl">{yun:}$val.name{/yun}</a>
+          <div class="redeem_one_text fl"><em><font color="#f00">{yun:}$val.integral{/yun}</font> 积分</br>
+            库存{yun:}$val.stock{/yun}个</em> {yun:}if $val.stock=='0'{/yun} <img src="{yun:}$style{/yun}/images/yun_ydw.png"> {yun:}else{/yun} <a href="{yun:}url m=redeem url=c:show,id:`$val.id`{/yun}" class="redeem_bth fr"><img src="{yun:}$style{/yun}/images/redeem_bth.png"></a> {yun:}/if{/yun} </div>
+        </dd>
+      </dl>     
+      {yun:}/if{/yun}
+      {yun:}/foreach{/yun} </div>
+  </div>
+  {yun:}/foreach{/yun} </div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

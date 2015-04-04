@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div id="wname"  style="display:none; width: 300px; "> 
+	<div style="height: 160px;" class="job_box_div">  
+	   <div class="job_box_inp">
+		<table class="table_form "style="width:100%">
+			<tr ><td  class='ui_content_wrap'>复制(CTRL+C)以下內容并添加到模板中</td></tr> 
+			<tr><td><input type="text" name="position" id='copy_url' class="input-text" size='45'/></td></tr> 
+		</table> 
+	   </div>
+	</div>
+</div> 
+<div  style="width:100%;overflow:hidden; padding:0;">
+<div class="infoboxp" style="">
+    <div class="infoboxp_top">
+        <h6>广告预览</h6>
+    </div>
+    <div class="infoboxp_top">
+   	 <h6>广告调用代码</h6>
+    </div>
+      <div class="company_job">
+            <div class="company_job_list_h1" style="line-height:34px; text-indent:10px;width:99%;">
+				{yun:}if $ad.is_end=='1'{/yun}
+				广告已过期，不可调用。
+				{yun:}elseif $ad.is_open=='0'{/yun}
+				广告停用，不可调用
+				{yun:}else{/yun} 
+                <a href="javascript:void(0);" onclick="copy_url('内部调用','{yun\:}ad cid={yun:}$ad.class_id{/yun} id={yun:}$ad.id{/yun}{\/yun}')">内部调用</a> | <a href="javascript:void(0);" onclick="copy_url('外部调用','&lt;script src=\'{yun:}$ad.src{/yun}\' language=\'javascript\'&gt;&lt;/script&gt;')">外部调用</a>
+				{yun:}/if{/yun}
+            </div>	
+    </div>
+    <div class="infoboxp_top">
+        <h6>广告调用方式</h6>
+    </div>
+    <div class="company_job">
+        <div class="company_job_list_h1" style="line-height:34px; text-indent:10px; width:99%;">
+        将JS代码复制 粘贴到需要投放该广告的页面（可以在<a href="index.php?m=admin_template"><font color="#FF0000">后台模板管理中</font></a>修改）
+        </div>	
+    </div>
+	<div class="infoboxp_top">
+	<h6>广告预览</h6>
+</div>
+<div style="width:100%;overflow:hidden;padding:0;">
+    <div class="subnav">
+        <div class="content-menu ib-a blue line-x">{yun:}$ad.html{/yun}
+            <!--script src='{yun:}$ad.src{/yun}' language='javascript'></script-->
+        </div>
+    </div>	
+</div>
+<div class="table-list"></div> 
+</div>
+</div>
+
+</body>
+</html>

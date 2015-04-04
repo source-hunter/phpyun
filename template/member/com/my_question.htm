@@ -1,0 +1,59 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+ 
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+  <div class=right_box>
+    <div class="xinxi-guanli" style="width:100%;float:left">
+      <div class="xinxi-title-bg">
+        <ul style="float:left">
+          <li {yun:}if $gettype=="0"||$gettype==""{/yun}class="hover"{yun:}/if{/yun} style="cursor:auto"><a href="index.php?c=my_question&type=0">我的提问</a></li>
+          <li {yun:}if $gettype=="1"{/yun}class="hover"{yun:}/if{/yun} style="cursor:auto"><a href="index.php?c=my_question&type=1">我的回答</a></li>
+          <li {yun:}if $gettype=="2"{/yun}class="hover"{yun:}/if{/yun} style="cursor:auto"><a href="index.php?c=my_question&type=2">我的评论</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="question">
+	<div class="resumelistbox01">
+        <div id=""> 
+		{yun:}if $gettype=="0"||$gettype==""{/yun} 
+          {yun:}foreach item=q_list from=$q_list{/yun}
+          <dl>
+            <div>
+              <div class="list-aside">
+                <p>{yun:}$q_list.answer_num{/yun}</p>
+                <p>回答</p>
+              </div>
+            </div>
+            <dt> <a target="_blank" href="{yun:}$config.sy_weburl{/yun}/ask/index.php?c=content&id={yun:}$q_list.id{/yun}" title="{yun:}$q_list.title{/yun}">{yun:}$q_list.title|strip_tags|mb_substr:0:40:'gbk'{/yun}</a> <span class="time">{yun:}$q_list.add_time|date_format:"%Y-%m-%d  %H:%M:%S"{/yun}</span> </dt>
+            <dd>{yun:}$q_list.answer_num{/yun}人回答、{yun:}$q_list.visit{/yun}人访问<span style='float:right;'><a href="javascript:void(0)" onclick="layer_del('确定要删除该职位？', 'index.php?c=my_question&act=del&id={yun:}$q_list.id{/yun}')">删除</a></span></dd>
+          </dl>
+          {yun:}foreachelse{/yun}
+          <dl>
+            <dt><div class="my_question_no"> <i class="my_question_no_icon"></i><em>暂无提问！</em></div></dt>
+            <dd></dd>
+          </dl>
+          {yun:}/foreach{/yun}  
+      
+      {yun:}else{/yun} 
+          {yun:}foreach item=q_list from=$q_list{/yun}
+          <dl class="my_qu_hd">
+            <dt> <a href="{yun:}$config.sy_weburl{/yun}/ask/index.php?c=content&id={yun:}$q_list.qid{/yun}" target="_blank" >{yun:}$q_list.title{/yun}</a> <span class="time">{yun:}$q_list.add_time|date_format:"%Y-%m-%d  %H:%M:%S"{/yun}</span> </dt>
+            <dd>我的{yun:}$typename{/yun}：<a target="_blank" href="{yun:}$config.sy_weburl{/yun}/ask/index.php?c=content&id={yun:}$q_list.qid{/yun}#{yun:}$q_list.aid{/yun}" title="{yun:}$q_list.a_content{/yun}">{yun:}$q_list.content|strip_tags|mb_substr:0:40:'gbk'{/yun}</a></dd>
+          </dl>
+          {yun:}foreachelse{/yun}
+          <dl>
+            <dt> <div class="my_question_no"> <i class="my_question_no_icon"></i><em>暂无{yun:}$typename{/yun}！</em></div></dt>
+            <dd></dd>
+          </dl>
+		{yun:}/foreach{/yun}  
+      {yun:}/if{/yun} 
+		  <div class="diggg">{yun:}$pagenav{/yun}</div>
+      </div>
+	  </div>
+  </div> 
+  </div> 
+  </div> 
+  </div> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

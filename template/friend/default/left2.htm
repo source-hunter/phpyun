@@ -1,0 +1,34 @@
+
+<div class="Personals_left">
+  <dl class="Personals_hy">
+    <dt><a href="{yun:}furl url=c:photo{/yun}"><img src="{yun:}$member.pic{/yun}" width="40" height="50"/></a></dt>
+    <dd><strong><a href="{yun:}furl url=c:profile,id:`$member.uid`{/yun}">{yun:}$member.nickname{/yun}</a></strong> {yun:}if $member.description{/yun}<a href="{yun:}furl url=c:info{/yun}" title="{yun:}$member.description{/yun}">{yun:}$member.description|mb_substr:0:13:'gbk'{/yun}</a>{yun:}else{/yun}<a href="{yun:}furl url=c:info{/yun}">亲，还没填写个性签名?</a>{yun:}/if{/yun} </dd>
+  </dl>
+  <div class="clear"></div>
+  <div class="Personals_left_h1"> 我的应用 </div>
+  <ul class="Personals_left_list">
+
+    <li {yun:}if $class==1{/yun}class="selected"{yun:}/if{/yun}><a class="app" href="{yun:}furl{/yun}"> <img src="{yun:}$friend_style{/yun}/images/feed.png"> 全部动静 </a> </li>
+    <li {yun:}if $class==3{/yun}class="selected"{yun:}/if{/yun}><a class="app" href="{yun:}furl url=c:myfriend{/yun}"> <img src="{yun:}$friend_style{/yun}/images/LhSrm99n018153.gif"> 我的好友 </a></li>
+    <li><a class="app" href="{yun:}furl url=c:profile,id:`$member.uid`{/yun}" title="与我相关"> <img src="{yun:}$friend_style{/yun}/images/matter-logo.gif"> 与我相关</a></li>
+    <li {yun:}if $class==2{/yun}class="selected"{yun:}/if{/yun}><a class="app" href="{yun:}furl url=c:messagelist{/yun}"><img src="{yun:}$friend_style{/yun}/images/Lyd9m2e023172.gif"> 留言板 </a></li>
+    <li {yun:}if $class==4{/yun}class="selected"{yun:}/if{/yun}><a class="app" href="{yun:}furl url=c:info{/yun}"> <img src="{yun:}$friend_style{/yun}/images/L074547241570HUA.gif"> 修改资料 </a></li>
+    <li><a class="app" href="{yun:}$config.sy_weburl{/yun}/ask" target="_blank"> <img src="{yun:}$friend_style{/yun}/images/s-icon.png"> 问答 </a></li>
+    <li><a class="app" href="{yun:}$config.sy_weburl{/yun}/member" target="_blank"> <img src="{yun:}$friend_style{/yun}/images/app.png"> 会员中心 </a></li>
+  </ul>
+  {yun:}if $member.usertype==1{/yun}
+  <div class="Personals_left_h2"> 最新职位 </div>
+  <ul class="Personals_left_list">
+    {yun:}joblist namelen=8  item=joblist limit=10{/yun}
+    <li><a class="app" target="_blank" href="{yun:}$joblist.job_url{/yun}"> {yun:}$joblist.name_n{/yun} </a> </li>
+    {yun:}/joblist{/yun}
+  </ul>
+  {yun:}elseif $member.usertype==2{/yun}
+  <div class="Personals_left_h2"> 最新人才 </div>
+  <ul class="Personals_left_list">
+    {yun:}userlist post_len=8 item=puserlist limit=10{/yun}
+    <li><a class="app" href="{yun:}url m=resume url=id:`$puserlist.id`{/yun}"> {yun:}$puserlist.username_n{/yun} </a> </li>
+    {yun:}/userlist{/yun}
+  </ul>
+  {yun:}/if{/yun}
+  </div>

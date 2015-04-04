@@ -1,0 +1,269 @@
+@charset "gb2312";
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+.popupfuntype {
+	border: 0 solid #FFFFFF;
+	left: 357px;
+	line-height: 24px;
+	position: absolute;
+	top: 250px;
+	width: 700px;
+	z-index: 91;
+}
+.pop-title {
+	border-bottom: 2px solid #87CAF7;
+	background: #fff;
+	color: #333;
+	font-size: 12px;
+	height: 40px;
+	padding: 0 10px;
+}
+.pop-title span {
+	color: #666666;
+	float: left;
+	font-size: 14px;
+	font-weight: bold;
+	display: block;
+	line-height: 24px;
+	margin-top: 10px;
+	padding-left: 10px;
+}
+.pop-title a {
+	color: #000;
+	margin-top: 10px;
+	float: right;
+}
+.pop-con {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-bottom: 4px solid #0066FF;
+	float: left;
+	width: 700px;
+	z-index: 90;
+}
+.pop-con-dl {
+	float: left;
+	width: 700px;
+	z-index: 92;
+}
+.dl-h {
+	background:#EFF6FF
+}
+.pop-con-dl dt {
+	color:#666666;
+	float: left;
+	font-size: 12px;
+	font-weight: bold;
+	text-align:right;
+	width: 130px;
+	padding-right:10px;
+}
+.pop-con-dl dd {
+	float: left;
+	width: 560px;
+	overflow:hidden
+}
+.pop-con-dl .pop-ul {
+	float: left;
+	z-index: 1;
+}
+.pop-con-dl .pop-ul .user_tck_box1 {
+	display:block;
+	float: left;
+	width: 170px;
+	padding-left:10px;
+	color:#666666;
+}
+.pop-ul li {
+	width:190px;
+	float:left
+}
+.pop-con-dl .pop-ul .tanchu {
+	width:168px;
+	border:1px solid #ccc;
+	border-bottom:none;
+	background:#FAFAFA;
+	color:#2255DD;
+	float:left;
+	position:relative;
+	z-index:2
+}
+.pop-con-dl .pop-ul .pop-ul-ul {
+	background:#fafafa;
+	border: 1px solid #C8C8C8;
+	float: left;
+	padding: 8px 15px 8px 5px;
+	width:536px;
+	z-index:1;
+	margin-top:-1px;
+	_height:0px;
+	_line-height:0px;
+	position:relative
+}
+.pop-con-dl .pop-ul .pop-ul-ul .user_tck_box2 {
+	width:170px;
+	float:left
+}
+
+.layout {
+    background: none repeat scroll 0 0 #FFFFFF;    
+    display: none; 
+    padding: 10px; 
+	/*top:260px; left: 250px;
+	border: 2px solid #FCC354;*/
+	position: absolute;
+   
+    width:600px;
+    z-index: 300;
+}
+.layout .tit {
+    border-bottom: 1px solid #EBEBEB;
+   
+	font-size:12px;
+	height:30px;
+	width:100%;
+	float:left
+}
+.layout .tit .span {
+    color: #333;
+    font-weight: bold;
+    margin-left: 10px;
+	line-height:23px;
+	width:53px; float:left;
+}
+
+
+#choosed,#job_choosed{
+    color: #FF0000;
+}
+#job_choosed  .text{
+	float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	max-width:100px;
+}
+.OK_Cancel {
+    float: right;
+}
+.layout .con {
+    padding: 7px 0;
+}
+.layout .con dl {
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    margin-right: 8px;
+    width: 134px;  
+}
+
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+.log_can_list dt img {
+}
+
+.log_can_list dt {
+    text-align: center;
+}
+
+.layout .con dt {
+    background: url(../images/index_sj_iconplus.png) no-repeat left center ;
+    cursor: pointer;
+    height: 25px;
+    padding-left: 18px;
+    position: relative;
+    width: 120px;
+    z-index: 1010;
+	color:#666;
+}
+.layout .con dt.cur {
+    background: url(../images/dt_hover_bg.gif) no-repeat left center ;
+    color: #FF6600;
+    padding-left: 22px;
+    z-index: 1040;
+}
+.layout .con dd {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D0D0D0;
+    box-shadow: 5px 5px 5px #888888;
+    display: none;
+    left: 10px;
+	position: absolute;
+    top: 24px;
+    width:590px;
+    z-index: 1030;
+}
+.layout .con dd ul {
+    float: none;
+    margin: 10px;
+}
+.dt_job_2{white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+.layout .con dd ul li {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 137px;
+}
+.layout .con dd ul input {
+    margin-right: 5px;
+}
+.dialog-content{width:760px; float:left; position:absolute;left:53px;top:0px;}
+
+.dialog-content .selected {
+    background:none;
+    min-height: 20px;
+}
+.dialog-content .selected li {
+    float: left;
+    margin-bottom: 4px;
+}
+.dialog-content .selected li a {
+    background: url(../images/pickpad.gif) no-repeat left top ;
+    cursor: default;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 2px;
+    padding-left: 8px;
+    white-space: nowrap;
+}
+.dialog-content .selected li .delete {
+    background: url(../images/pickpad.gif) no-repeat right top ;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+   /* margin-left: 6px;*/
+    text-indent: -99999px;
+    width: 20px;
+}
+.dialog-content .selected li a:hover {
+    background-position: left bottom;
+    color: #333333;
+	text-decoration:none
+}
+.dialog-content .selected li a:hover .delete {
+    background-position: right bottom;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

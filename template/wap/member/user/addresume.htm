@@ -1,0 +1,547 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun} 
+<script src="{yun:}$wap_style{/yun}/js/resume.js" language="javascript"></script> 
+<script>var weburl='{yun:}$config_wapdomain{/yun}';</script>
+<div class="resume-cont"> <a href="javascript:checkshow('info');" id="infobutton" class="resume-cont_p" style="display:none">
+  <div class="resume-cont_h1" ><span>基本资料</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="info">
+    <div class="resume-cont_h2" onclick="checkhide('info');"><span >基本资料</span></div>
+    <div class="resume-cont_wate">
+    <form id="resumeInfo" action="index.php?c=info" method="post" onsubmit="return checkinfo()">
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 姓 名</dt>
+        <dd>
+          <input type="text" name="name" value="{yun:}$resume.name{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 性 别</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select name="sex">
+              {yun:}foreach from=$userdata.user_sex item=v{/yun}
+              <option value="{yun:}$v{/yun}" {yun:}if $resume.sex==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+              {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>{yun:}if $config.user_idcard=="1"{/yun}<font color="#ff0000">*</font>{yun:}/if{/yun}身份证号码</dt>
+        <dd>
+          <input type="text" name="idcard" value="{yun:}$resume.idcard{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 出生年月</dt>
+        <dd>
+          <input type="text" name="birthday" id="birthday" value="{yun:}$resume.birthday{/yun}" class="reinputText" onkeyup="this.value=this.value.replace(/[^0-9-]/g,'')">
+          <div style=" margin-left:-12px;">格式：1988-08-08</div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 现居住地</dt>
+        <dd>
+          <input type="text" name="living" id="living" value="{yun:}$resume.living{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 教育程度</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select name="edu">
+              {yun:}foreach from=$userdata.user_edu item=v{/yun}
+              <option value="{yun:}$v{/yun}" {yun:}if $resume.edu==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+              {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 工作经验</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select name="exp">
+              {yun:}foreach from=$userdata.user_word item=v{/yun}
+              <option value="{yun:}$v{/yun}" {yun:}if $resume.exp==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+              {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 手机</dt>
+        <dd>
+          <input type="text" name="telphone" id="telphone" value="{yun:}$resume.telphone{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 电子邮件</dt>
+        <dd>
+          <input type="text" name="email" id="email" value="{yun:}$resume.email{/yun}"  class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>身高（CM）</dt>
+        <dd>
+          <input type="text" name="height" value="{yun:}$resume.height{/yun}" class="reinputText" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>民族</dt>
+        <dd>
+          <input type="text" name="nationality" value="{yun:}$resume.nationality{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>体重（kg）</dt>
+        <dd>
+          <input type="text" name="weight" value="{yun:}$resume.weight{/yun}" class="reinputText" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>座机</dt>
+        <dd>
+          <input type="text" name="telhome" value="{yun:}$resume.telhome{/yun}"  class="reinputText" onkeyup="this.value=this.value.replace(/[^0-9-]/g,'')">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt> 婚姻</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select name="marriage">
+              {yun:}foreach from=$userdata.user_marriage item=v{/yun}
+              <option value="{yun:}$v{/yun}" {yun:}if $resume.marriage==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+              {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>户籍所在地</dt>
+        <dd>
+          <input type="text" name="domicile" value="{yun:}$resume.domicile{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>详细地址</dt>
+        <dd>
+          <input type="text" name="address" value="{yun:}$resume.address{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>个人主页</dt>
+        <dd>
+          <input type="text" name="homepage" value="{yun:}$resume.homepage{/yun}" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 自我评价</dt>
+        <dd>
+          <textarea class="textAreaMsg tip" name="description" id="description" placeholder="请输入你的发展方向，500字以内" en="Please input your career direction,limited to 500 characters.">{yun:}$resume.description{/yun}</textarea>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('expect');" id="expectbutton" class="resume-cont_p">
+  <div class="resume-cont_h1"><span>求职意向</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="expect" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('expect');"><span>求职意向</span></div>
+    <div class="resume-cont_wate">
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font>简历名称</dt>
+        <dd>
+          <input type="text" value="{yun:}$row.name{/yun}" id="expect_name" class="reinputText">
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font>期望从事行业</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select id="hy">
+              {yun:}foreach item=v from=$industry_index key=k{/yun}
+              <option value="{yun:}$v{/yun}" {yun:}if $row.hy==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+              {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font>期望从事职位</dt>
+        <input type="hidden" id="job_classid" value="{yun:}$row.job_classid{/yun}" />
+        <dd>
+              <input type="button" id="jobclassbutton" value="{yun:}$jobname{/yun}" class="reinputText" onclick="checkshowjob('job');" style="height:28px; background:#fff"/>
+              <div class="job_search_box_jobclass" style="display:none; float:left;width:100%;height:auto; z-index:100; position:absolute; background-color:#FFF;">
+        	<ul>
+            	{yun:}foreach from=$job_index item=v{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchjobclass 0" jobclassid="{yun:}$v{/yun}" parentid="0">{yun:}$job_name[$v]{/yun}</li>
+                {yun:}foreach from=$job_type[$v] item=v1{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchjobclass1 {yun:}$v{/yun}" jobclassid="{yun:}$v1{/yun}" parentid="{yun:}$v{/yun}">{yun:}$job_name[$v1]{/yun}</li>
+                {yun:}foreach from=$job_type[$v1] item=v2{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchjobclass2 {yun:}$v1{/yun}" jobclassid="{yun:}$v2{/yun}" parentid="{yun:}$v1{/yun}">{yun:}$job_name[$v2]{/yun}</li>
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun} 
+           	</ul>
+    	</div>
+        <input type="hidden" name="job1" id="job1" value="" />
+        <input type="hidden" name="job1_son" id="job1_son" value="" />
+        <input type="hidden" name="job_post" id="job_post" value="" />
+        <input type="hidden" name="job_classid" id="job_classid" value="" />
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font>期望工作地点</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:31%">
+              <select id="provinceid" onchange="checkcity(this.value,'1');">
+                <option value="">请选择</option>
+                {yun:}foreach from=$city_index item=v{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.provinceid==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+            <div class="selectOption" style="width:31%">
+              <select  id="cityid" onchange="checkcity(this.value,'2');">
+                <option value="">请选择</option>
+                {yun:}foreach from=$city_type[$row.provinceid] item=v{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.cityid==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+            <div class="selectOption" style="width:31%">
+              <select id="three_cityid">
+                <option value="">请选择</option>
+                {yun:}foreach from=$city_type[$row.cityid] item=v{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.three_cityid==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font> 期望月薪水</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:70%">
+              <select id="salary">
+				{yun:}foreach item=v from=$userdata.user_salary{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.salary==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+            元/月 </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt><font color="#ff0000">*</font>到岗时间</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select id="report">
+				{yun:}foreach item=v from=$userdata.user_report{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.report==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+        <input type="hidden" id="eid" value="{yun:}$row.eid{/yun}" />
+          <input type="submit" onclick="saveexpect();" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('skill');" id="skillbutton" class="resume-cont_p">
+  <div class="resume-cont_h1" ><span>专业技能</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="skill" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('skill');"><span>专业技能</span></div>
+	{yun:}foreach item=v from=$skill{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+      <dl class="resume-cont_wate_list">
+        <dt>技能类别：</dt>
+        <dd>{yun:}$userclass_name[$v.skill]{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>熟练程度：</dt>
+        <dd>{yun:}$userclass_name[$v.ing]{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>技能名称：</dt>
+        <dd>{yun:}$v.name{/yun}&nbsp;</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>掌握时间：</dt>
+        <dd>{yun:}$v.longtime{/yun}个月</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd> <a class="resume_xg_a resume_xg" href="index.php?c=addresumeson&type=skill&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}">修改</a>
+        <a class="resume_xg_a resume_sc" href="javascript:void(0)" onclick="isdel('index.php?c=addresume&type=skill&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}')">删除</a> </dd>
+      </dl>
+    </div>
+    {yun:}/foreach{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+    <dl class="resume-cont_wate_list">
+    <a class="resume_xg_a resume_tj" href="index.php?c=addresumeson&type=skill&eid={yun:}$row.id{/yun}">添加</a>
+    </dl>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('work');" id="workbutton" class="resume-cont_p">
+  <div class="resume-cont_h1" ><span>工作经历</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="work" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('work');"><span>工作经历</span></div>
+	{yun:}foreach item=v from=$work{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+      <dl class="resume-cont_wate_list">
+        <dt>单位名称：</dt>
+        <dd>{yun:}$v.name{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>工作时间：</dt>
+        <dd>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>所在部门：</dt>
+        <dd>{yun:}$v.department{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>担任职位：</dt>
+        <dd>{yun:}$v.title{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>工作内容：</dt>
+        <dd>{yun:}$v.content{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd> <a class="resume_xg_a resume_xg" href="index.php?c=addresumeson&type=work&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}">修改</a>
+        <a class="resume_xg_a resume_sc" href="javascript:void(0)" onclick="isdel('index.php?c=addresume&type=work&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}')">删除</a> </dd>
+      </dl>
+    </div>
+    {yun:}/foreach{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+    <dl class="resume-cont_wate_list">
+    <a class="resume_xg_a resume_tj" href="index.php?c=addresumeson&type=work&eid={yun:}$row.id{/yun}">添加</a>
+    </dl>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('project');" id="projectbutton" class="resume-cont_p">
+  <div class="resume-cont_h1" ><span>项目经历</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="project" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('project');"><span>项目经历</span></div>
+	{yun:}foreach item=v from=$project{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+      <dl class="resume-cont_wate_list">
+        <dt>项目名称：</dt>
+        <dd>{yun:}$v.name{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>项目时间：</dt>
+        <dd>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>项目环境：</dt>
+        <dd>{yun:}$v.sys{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>担任职位：</dt>
+        <dd>{yun:}$v.title{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>项目内容：</dt>
+        <dd>{yun:}$v.content{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd> <a class="resume_xg_a resume_xg" href="index.php?c=addresumeson&type=project&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}">修改</a>
+        <a class="resume_xg_a resume_sc" href="javascript:void(0)" onclick="isdel('index.php?c=addresume&type=project&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}')">删除</a> </dd>
+      </dl>
+    </div>
+    {yun:}/foreach{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+    <dl class="resume-cont_wate_list">
+    <a class="resume_xg_a resume_tj" href="index.php?c=addresumeson&type=project&eid={yun:}$row.id{/yun}">添加</a>
+    </dl>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('edu');" id="edubutton" class="resume-cont_p">
+  <div class="resume-cont_h1" ><span>教育经历</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="edu" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('edu');"><span>教育经历</span></div>
+	{yun:}foreach item=v from=$edu{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+      <dl class="resume-cont_wate_list">
+        <dt>学校名称：</dt>
+        <dd>{yun:}$v.name{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>在校时间：</dt>
+        <dd>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>所学专业：</dt>
+        <dd>{yun:}$v.specialty{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>担任职位：</dt>
+        <dd>{yun:}$v.title{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>专业描述：</dt>
+        <dd>{yun:}$v.content{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd> <a class="resume_xg_a resume_xg" href="index.php?c=addresumeson&type=edu&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}">修改</a>
+        <a class="resume_xg_a resume_sc" href="javascript:void(0)" onclick="isdel('index.php?c=addresume&type=edu&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}')">删除</a> </dd>
+      </dl>
+    </div>
+    {yun:}/foreach{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+    <dl class="resume-cont_wate_list">
+    <a class="resume_xg_a resume_tj" href="index.php?c=addresumeson&type=edu&eid={yun:}$row.id{/yun}">添加</a>
+    </dl>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('training');" id="trainingbutton" class="resume-cont_p">
+  <div class="resume-cont_h1" ><span>培训经历</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="training" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('training');"><span>培训经历</span></div>
+	{yun:}foreach item=v from=$training{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+      <dl class="resume-cont_wate_list">
+        <dt>培训中心：</dt>
+        <dd>{yun:}$v.name{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>培训时间：</dt>
+        <dd>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>培训方向：</dt>
+        <dd>{yun:}$v.title{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>培训描述：</dt>
+        <dd>{yun:}$v.content{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd> <a class="resume_xg_a resume_xg" href="index.php?c=addresumeson&type=training&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}">修改</a>
+        <a class="resume_xg_a resume_sc" href="javascript:void(0)" onclick="isdel('index.php?c=addresume&type=training&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}')">删除</a> </dd>
+      </dl>
+    </div>
+    {yun:}/foreach{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+    <dl class="resume-cont_wate_list">
+    <a class="resume_xg_a resume_tj" href="index.php?c=addresumeson&type=training&eid={yun:}$row.id{/yun}">添加</a>
+    </dl>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('cert');" id="certbutton" class="resume-cont_p">
+  <div class="resume-cont_h1" ><span>证书</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="cert" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('cert');"><span>证书</span></div>
+	{yun:}foreach item=v from=$cert{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+      <dl class="resume-cont_wate_list">
+        <dt>证书全称：</dt>
+        <dd>{yun:}$v.name{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>有效时间：</dt>
+        <dd>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>颁发单位：</dt>
+        <dd>{yun:}$v.title{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>证书描述：</dt>
+        <dd>{yun:}$v.content{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd> <a class="resume_xg_a resume_xg" href="index.php?c=addresumeson&type=cert&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}">修改</a>
+        <a class="resume_xg_a resume_sc" href="javascript:void(0)" onclick="isdel('index.php?c=addresume&type=cert&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}')">删除</a> </dd>
+      </dl>
+    </div>
+    {yun:}/foreach{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+    <dl class="resume-cont_wate_list">
+    <a class="resume_xg_a resume_tj" href="index.php?c=addresumeson&type=cert&eid={yun:}$row.id{/yun}">添加</a>
+    </dl>
+    </div>
+  </div>
+</div>
+<div class="resume-cont"> <a href="javascript:checkshow('other');" id="otherbutton" class="resume-cont_p">
+  <div class="resume-cont_h1" ><span>附加信息</span><i class="resume-icon"></i></div>
+  </a>
+  <div class="resume-cont_zk" id="other" style="display:none">
+    <div class="resume-cont_h2" onclick="checkhide('other');"><span>附加信息</span></div>
+	{yun:}foreach item=v from=$other{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+      <dl class="resume-cont_wate_list">
+        <dt>其他标题：</dt>
+        <dd>{yun:}$v.title{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>其他描述：</dt>
+        <dd>{yun:}$v.content{/yun}</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd> <a class="resume_xg_a resume_xg" href="index.php?c=addresumeson&type=other&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}">修改</a>
+        <a class="resume_xg_a resume_sc" href="javascript:void(0)" onclick="isdel('index.php?c=addresume&type=other&eid={yun:}$row.id{/yun}&id={yun:}$v.id{/yun}')">删除</a> </dd>
+      </dl>
+    </div>
+    {yun:}/foreach{/yun}
+    <div class="resume-cont_wate resume-cont_wate_yt">
+    <dl class="resume-cont_wate_list">
+    <a class="resume_xg_a resume_tj" href="index.php?c=addresumeson&type=other&eid={yun:}$row.id{/yun}">添加</a>
+    </dl>
+    </div>
+  </div>
+</div>
+
+{yun:}include file="$wapstyle/public.htm"{/yun}
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

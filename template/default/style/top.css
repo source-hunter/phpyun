@@ -1,0 +1,18 @@
+u{ text-decoration:none}
+.post_Top_box{width:299px;height:290px; background:#fff;border:1px solid #ccc; padding:10px; float:left; margin-right:8px;margin-bottom:10px; overflow:hidden}
+.post_Top_box_title{width:100%;height:24px; }
+.Top_box_line{border-bottom:2px solid #f196c1;}
+.post_Top_box_title strong{ float:left; display:inline-block; color: #333333;
+    font-size: 14px; display:block; background:;}
+.Top_box_line strong{ background:url(../images/Top1.gif) no-repeat 0 -16px; padding-left:10px;}
+.Top_box_line2{ border-bottom:2px solid #a6dead;}
+.Top_box_line2 strong{ background:url(../images/Top1.gif) no-repeat 0 -32px; padding-left:10px;}
+.Top_box_line3{ border-bottom:2px solid #9cb6ff;}
+.Top_box_line3 strong{ background:url(../images/Top1.gif) no-repeat 0 -52px; padding-left:10px;}
+.post_Top_box_list{width:100%; float:left; padding-top:10px;}
+.post_Top_box_list li{width:100%; float:left;height:26px; line-height:26px;}
+.post_Top_box_list li span{width:18px;height:13px; text-align:center; line-height:14px; display:inline-block; float:left; background:url(../images/Top1.gif) no-repeat -18px 0;color:#fff; margin-right:10px; margin-top:5px; font-weight:bold; padding:0}
+.post_Top_box_list li  .Top_box_span{ background:url(../images/Top1.gif) no-repeat 0 0;}
+.post_Top_box_list li  a{ float:left; display:inline-block; line-height:26px;overflow:hidden;float:left; display:inline-block; line-height:26px;overflow:hidden;text-overflow: ellipsis;white-space: nowrap;}
+.post_Top_box_list li  em{ float:right;color:#7C7C7C}
+.post_Top_box_list li .fl{margin-left:5px;}

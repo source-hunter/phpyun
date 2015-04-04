@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}-{yun:}$config.sy_webname{/yun}</title>
+<link rel="stylesheet" href="{yun:}$friend_style{/yun}/style/css.css" type="text/css">
+<script>
+var weburl="{yun:}$config.sy_weburl{/yun}";
+</script>
+<script src="{yun:}$friend_style{/yun}/js/reply.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script>
+function search_keyword(){
+	var keyword=$("#keyword").val();
+	if(keyword=="搜索好友..."){
+		layer.msg('请输入需要搜索的关键字', 2,8);
+		return false;
+	}
+}
+</script>
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('.png,.adv_cot,.friend_mune .nav-shadow i');
+</script>
+<![endif]-->
+</head>
+<body>
+<div class="top icon3">
+  <div class="top_cot">
+    <div class="top_left fl">欢迎来到{yun:}$config.sy_webname{/yun}！&nbsp;&nbsp;</div>
+           <div class="top_right_re fr">
+     <div class="top_right">
+       <div class="yun_topNav fr"> <a class="yun_navMore" href="javascript:;">网站导航</a>
+            <div class="yun_webMoredown" style="display:none">
+              <div class="yun_top_nav_box"> {yun:}navmap key=key item=navmap{/yun}
+                <div class="yun_top_nav_h1"><a href="{yun:}$navmap.url{/yun}" {yun:}if $navmap.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$navmap.name{/yun}</a></div>
+                <ul>
+                  {yun:}foreach from=$navmap.list item=maplist{/yun}
+                  <li><a href="{yun:}$maplist.url{/yun}" {yun:}if $maplist.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$maplist.name{/yun}</a></li>
+                  {yun:}/foreach{/yun}
+                </ul>
+                {yun:}/navmap{/yun} </div>
+            </div>
+          </div>
+		<SCRIPT LANGUAGE='JavaScript' src='{yun:}$config.sy_weburl{/yun}/index.php?m=includejs&c=RedLoginHead'></SCRIPT>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="friend_header ">
+  <div class="friend_logo"><a href="{yun:}$config.sy_weburl{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_logo{/yun}"  class="png"></a></div>
+  <div class="friend_mune">
+  <i class="tl"></i>
+  <i class="tr"></i>
+  <i class="bl"></i>
+  <i class="br"></i>
+  <i class="nav-shadow"><i></i></i>
+    <div class="friend_mune_cont">
+      <ul>
+        <li {yun:}if $class==1{/yun}class="answers_current"{yun:}/if{/yun}><a href="{yun:}furl{/yun}">首页</a></li>
+        <li {yun:}if $class==2{/yun}class="answers_current"{yun:}/if{/yun}><a href="{yun:}furl url=c:profile,id:`$member.uid`{/yun}">个人主页</a></li>
+        <li {yun:}if $class==3{/yun}class="answers_current"{yun:}/if{/yun}><a href="{yun:}furl url=c:myfriend{/yun}">好友</a></li>
+		<li ><a href="{yun:}aurl{/yun}">问答</a></li>
+        <li><a href="{yun:}$config.sy_weburl{/yun}">人才网首页</a></li>
+      </ul>
+      <div class="friend_mune_right">
+        <div class="friend_seach">
+        <form action="{yun:}$config.sy_weburl{/yun}/friend/index.php" method="get" name="Myform" onSubmit="return search_keyword();">
+        <input type="hidden" name="c" value="addfriend" />
+          <input type="text" value="搜索好友..." class="friend_text placeholder" name="nm" onclick="if(this.value=='搜索好友...'){this.value=''}" onblur="if(this.value==''){this.value='搜索好友...'}" id="keyword">
+          <input type="submit" value="" class="friend_submit">
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

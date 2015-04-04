@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script> 
+function checked_name(){
+	var name=$.trim($("#name").val()); 
+	if(name==''){ 
+		parent.layer.msg('类别名称不能为空！', 2, 8);return false;
+	}
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"> 
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Filter"> 
+<span class="complay_top_span fl">奖品类别</span>	 
+	<form action="index.php?m=reward&c=group" name="myform" method="post" onSubmit="return checked_name();"  target="supportiframe">
+	 <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+	<span class="admin_Filter_span">&nbsp;类别名称：</span><input  class="admin_Filter_search" type="text" name="name" id='name' size="55" style="float:left" value="{yun:}$info.name{/yun}"> 
+	<span class="company_job_a" style="float:left; margin-top:0px;">
+	{yun:}if $info.id{/yun}
+	<input value="{yun:}$info.id{/yun}" type="hidden" name='id'/>
+	<input class="company_job_subbut" type="submit" name="submit" value="修改"/>
+	{yun:}else{/yun}
+	<input class="company_job_subbut" type="submit" name="submit" value="添加"/>
+	{yun:}/if{/yun} 
+	</span>
+	</form>  
+</div>
+<div class="clear"></div>
+<div class="table-list">
+  <div class="admin_table_border">
+  <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form action="index.php" name="myform" method="get"  id='myform' target="supportiframe" > 
+<table width="100%">
+	<thead>
+			<tr class="admin_table_top">
+		    <th style="width:60px;"><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+			<th style="width:60px;">编号</th>
+			<th align="left">类别名称</th>
+			<th class="admin_table_th_bg">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    {yun:}foreach item=v from=$list{/yun}
+    <tr align="center">
+	    <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+    	<td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+   	 	<td class="od" align="left">{yun:}$v.name{/yun}</td>
+    	<td> <a href="index.php?m=reward&c=group&id={yun:}$v.id{/yun}"class="status admin_cz_sh" >修改</a> |  <a href="javascript:void(0)" onClick="layer_del('确定要删除？','index.php?m=reward&c=delgroup&del={yun:}$v.id{/yun}')" class="admin_cz_sc">删除</a>
+        </td>
+  </tr>
+  {yun:}/foreach{/yun}
+  <tr style="background:#f1f1f1;">
+    <td colspan="4"><input class="admin_submit4"   type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+  </tr>
+  </tbody>
+  </table>
+  <input type="hidden" name="m" value="reward">
+  <input type="hidden" name="c" value="delgroup">
+  <input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

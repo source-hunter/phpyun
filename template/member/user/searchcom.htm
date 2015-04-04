@@ -1,0 +1,75 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"> <a href="index.php?c=blacklist">公司搜索</a> </li>
+    </ul>
+  </div>
+  <div class="remindbox01 mt10">
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div class="resume_box_list">
+      <div class="searchcom_search">
+      <form action="" method="get">
+      <input type="hidden" name="c" value="searchcom" />
+      <input class="searchcom_text" type="text" name="keyword">
+<input class="searchcom_submit" type="submit" value="搜索">
+</form>
+</div>
+      <div class="clear"></div>
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+      <form action="index.php?c=searchcom&act=shielda" target="supportiframe" method="post" id='myform'>
+        <table border="0" cellspacing="1" cellpadding="0" class="resume" style="width:690px;">
+          <tr>
+          <th>&nbsp;</th>
+            <th>公司名称</th>
+            <th> 城市</th>
+            <th> 状态</th>
+            <th >操作</th>
+          </tr>
+          {yun:}foreach item=v from=$rows{/yun}
+          <tr>
+          <td><input type="checkbox" name="uid[]" value="{yun:}$v.uid{/yun}"></td>
+          <td>{yun:}$v.name{/yun}</td>
+          <td>{yun:}$v.provinceid{/yun} {yun:}$v.cityid{/yun}</td>
+          <td>{yun:}if $v.status==1{/yun}<font color="#FF0000">已屏蔽</font>{yun:}else{/yun}未屏蔽{yun:}/if{/yun}</td>
+          <td><a href="javascript:void(0)" onclick="layer_del('确定屏蔽该公司么？', 'index.php?c=searchcom&act=shield&uid={yun:}$v.uid{/yun}'); ">屏蔽</a></td>
+          </tr>
+         {yun:}/foreach{/yun}
+          <tr>
+          <td ><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'></td>
+          <td colspan="4" style="text-align:left">全选 <input class="searchcom_sub" type="button" value="屏蔽公司" onclick="return really_read('uid[]');"></td>
+          </tr>
+         </form> 
+        </table>
+      </div>
+    </div>
+    <div class="diggg" style="width:700px">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+</div>
+<script>
+function really_read(name){ 
+	var chk_value="";    
+	$('input[name="'+name+'"]:checked').each(function(){    
+		if(chk_value==""){
+			chk_value=$(this).val();
+		}else{
+			chk_value=chk_value+","+$(this).val();
+		}
+	}); 
+	if(chk_value.length==0){
+		layer.msg("请选择要屏蔽的公司！",2,8);return false;
+	}else{
+		layer.confirm("确定要屏蔽公司吗？",function(){
+			$.post("index.php?c=searchcom",{ids:chk_value,ajax:1},function(){
+				layer.msg("屏蔽成功！",2,9);
+				window.location.href="index.php?c=blacklist"
+			})
+		});
+	} 
+}
+</script>
+{yun:}include file="$userstyle/footer.htm"{/yun} 

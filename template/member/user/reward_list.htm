@@ -1,0 +1,27 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> {yun:}include file="$userstyle/left.htm"{/yun}
+  <div class="mian_right fltR mt12">
+    <div class="tabmenubox01 mt9">
+      <ul>
+        <li class="cur">兑换记录</li>
+      </ul>
+    </div>
+    <div >
+      <div id="gms_showclew"></div>
+      <div class="resumelistbox01 mt10">
+        <div class="resume_box_list">
+          <div class="List_Ope List_Title "> <span class="List_Title_span List_Title_w120">商品名称</span> <span class="List_Title_span List_Title_w80">消耗积分</span> <span class="List_Title_span List_Title_w80">兑换数量</span> <span class="List_Title_span List_Title_w80"> 兑换时间</span><span class="List_Title_span List_Title_w80"> 联系电话</span> <span class="List_Title_span List_Title_w80"> 联系人</span> <span class="List_Title_span List_Title_w80"> 备注</span> <span class="List_Title_span List_Title_w80">状态</span> </div>
+          {yun:}foreach from=$rows item=log{/yun}
+          <div class="List_Ope List_Ope_bor"> <span class="List_Title_span List_Title_w120 mt10">{yun:}$log.name{/yun}</span> <span class="List_Title_span List_Title_w80 mt10">{yun:}$log.integral{/yun}</span> <span class="List_Title_span List_Title_w80 mt10">{yun:}$log.num{/yun}(件)</span> <span class="List_Title_span List_Title_w80 mt10">{yun:}$log.ctime|date_format:'%Y-%m-%d %H:%M:%S'{/yun} </span><span class="List_Title_span List_Title_w80 mt10">{yun:}$log.linktel{/yun} </span><span class="List_Title_span List_Title_w80 mt10">{yun:}$log.linkman{/yun} </span><span class="List_Title_span List_Title_w80 mt10">{yun:}$log.body{/yun} </span> <span class="List_Title_span List_Title_w80 mt10">{yun:}if $log.status=="0"{/yun} <span class="wate_verify">等待审核</span>| <a href="javascript:void(0)" onclick="layer_del('确定要取消？', 'index.php?c=reward_list&act=del&id={yun:}$v.id{/yun}');">取消兑换</a>{yun:}/if{/yun}
+            {yun:}if $log.status=="1"{/yun} <span class="y_verify">已审核</span> {yun:}/if{/yun}
+            {yun:}if $log.status=="2"{/yun} <span class="n_verify">未通过</span> | <a href="javascript:;" class="looklist" statusbody="{yun:}$log.statusbody{/yun}">查看原因</a> {yun:}/if{/yun} </span> </div>
+          {yun:}foreachelse{/yun}
+          <div class="msg_no">您还没有兑换记录。</div>
+          {yun:}/foreach{/yun}
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

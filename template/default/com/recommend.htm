@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box,.fast_issuance');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script>var integral_pricename='{yun:}$config.integral_pricename{/yun}'; var weburl="{yun:}$config.sy_weburl{/yun}";</script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<style>
+body{ overflow-x:hidden}
+#contentDiv ul li {
+    list-style:none;
+}
+.td_title1 {
+	color: #222;
+}
+.td04 {
+	COLOR: #00659c;
+	TEXT-INDENT: 0px
+}
+.mail{ padding-top:20px; margin-bottom:20px;}
+.mail li{height:28px; line-height:28px;}
+.mail li span{width:130px; text-align:right; display:block; float:left}
+.zhiw1{width:680px; background:#e0f0ff;font-size:12px;}
+.zhiw{width:680px; background:#efeeee;font-size:12px; float:left; list-style:none; font-size:14px;color:#666;}
+.zhiw li{width:300px; line-height:33px; float:left; margin-left:20px;_margin-left:10px; list-style:none;white-space: normal; word-break: break-all;
+
+}.content{ margin-top:10px;}
+ul{ padding:0; margin:0;}
+</style>
+
+<script>
+function sendjob(){
+	var femail = $("#femail").val();
+	var myemail = $("#myemail").val();
+	var authcode = $("#authcode").val();
+	var html =  $("#html").html();
+	var id = "{yun:}$Info.id{/yun}";
+
+	if(femail=="" || myemail=="" || authcode==""){
+		layer.msg('请完整填写信息！', 2, 3);return false;  
+	}
+	$.post("index.php?m=com&c=recommend",{femail:femail,myemail:myemail,authcode:authcode,id:id},function(data){		
+		if(data==1){ 
+			layer.msg('邮件发送成功！', 2,9);return false;	
+		}else if(data==""){ 	
+			layer.msg('未知错误，请联系管理员！', 2,0);return false;
+		}else{ 
+			layer.msg(data, 2,0);return false;
+		}
+	});
+}
+</script>
+<div style="clear:both"></div>
+<div style="width:100%">
+<div style="width:978px; margin:10px auto 0; background:#FAFAFA;border:1px solid #E0E6EA; padding:20px 0px; ">
+<div style="width:680px;margin:0 auto;">
+<div style="width:680px;font-size:14px;height:260px; margin-bottom:10px; background:#fff;">
+<div style="line-height:40px; line-height:40px;color:#fff; text-indent:10px; background:#F6572F; font-size:16px; font-family:'microsoft yahei';">推荐职位给好友</div>
+<ul class="mail">
+<li style="margin-top:10px;"><span><font color="red">*</font> 朋友的E-mail：</span><input type="text" id="femail" value="" name="femail" style="border:1px solid #ccc;width:200px;height:25px; line-height:25px;" /></li>
+<li style="margin-top:10px;"><span><font color="red">*</font> 朋友对您的昵称：</span><input type="text" id="myemail"  value="" name="myemail" style="border:1px solid #ccc;width:140px;height:25px; line-height:25px;" /> <i style="font-size:12px; font-style:normal;color:#666">让朋友知道是您推荐的职位，与其他垃圾邮件推广职位区分</i></li>
+<li style="margin-top:10px;height:40px;"><span><font color="red">*</font> 验证码：</span><input id="authcode" type="text" tabindex="3"  style="width:60px; float:left; margin-top:5px; margin-right:5px; border:1px solid #ccc;width:80px;height:25px; line-height:25px;" maxlength="4" name="authcode"><img id="vcode_img" src="include/authcode.inc.php" >&nbsp;<a href="javascript:check_code();">看不清?</a>
+</li>
+<li><span>&nbsp;</span><input type="button" onClick="sendjob();" value="发送"  style="width:100px;height:33px; background:#F6572F;color:#fff; cursor:pointer;font-family:'microsoft yahei'; font-size:16px;border:none;"></li>
+</ul>
+</div>
+<div style="width:680px;font-size:14px; font-family:'宋体';margin-bottom:10px;">
+<div style="line-height:40px; line-height:40px;color:#fff; text-indent:10px; background:#F6572F; font-size:16px; font-family:'microsoft yahei';">推荐职位: <a href="{yun:}url m=com url=c:comapply,id:`$Info.id`{/yun}"  target="_blank" style="color:#fff;">{yun:}$Info.jobname{/yun}</a>  </strong>
+
+ </div>
+ 
+      <ul class="zhiw">
+      	 <li>招聘人数:{yun:}$Info.job_number{/yun} </li>	
+        
+         <li>学历要求:{yun:}$Info.job_edu{/yun}</li>
+         <li>年龄要求:{yun:}$Info.job_age{/yun}</li>
+         <li>职位类型:{yun:}$Info.job_type{/yun}</font></li>
+          <li>语言要求:{yun:}$Info.lang_info{/yun} </li>	
+          <li>工作经验要求:{yun:}$Info.job_exp{/yun} </li>
+          <li>薪资待遇:{yun:}$Info.job_salary{/yun} </li>	
+
+         
+        
+             <li>电子信箱:<a href="{yun:}url m=com url=c:comapply,id:`$Info.id`{/yun}"  target="_blank">登录网站后查看</a></li>
+    <li>联系电话:<a href="{yun:}url m=com url=c:comapply,id:`$Info.id`{/yun}"  target="_blank">登录网站后查看</a> </li>
+     <li>工作地点：{yun:}$Info.job_city_one{/yun}{yun:}$Info.job_city_two{/yun}</li>
+         <li>有效期至：{yun:}$Info.edate|date_format:'%Y年%m月%d日'{/yun}</li>
+                   <li style="width:660px;">福利待遇:{yun:}$Info.welfare_info{/yun} </li>	
+</ul>
+
+      <br/>
+<ul class="zhiw"><li style="width:640px">职位描述:{yun:}$Info.description{/yun}</li></ul>
+      <table width="100%"  border="0"  cellpadding="6"  cellspacing="0">
+        <tbody>
+          <tr bgcolor="#FFFFFF">
+            <td height="30"  align="center"> [ <a href="{yun:}url m=com url=c:comapply,id:`$Info.id`{/yun}"  target="_blank">发送简历</a> ]
+              
+              &nbsp; [ <a href="{yun:}curl url=id:`$Info.uid`,tp:post{/yun}"  target="_blank">查看该公司其他职位</a> ] </td>
+          </tr>
+        </tbody>
+      </table>
+      </p>
+         <br/>
+         <div style="background: #EFEEEE">
+<div style="line-height:40px; line-height:40px;color:#fff; text-indent:10px; background:#F6572F; font-size:16px; font-family:'microsoft yahei';">公司简介：{yun:}$Info.name{/yun}</div>
+   	 <ul class="zhiw">
+    <li>从事行业:{yun:}$Info.job_hy{/yun} </li>
+    <li>企业性质:{yun:}$Info.job_pr{/yun} </li>
+    <li>企业规模:{yun:}$Info.job_mun{/yun} </li>
+    <li>创办时间:{yun:}$Info.sdate{/yun} </li>
+    <li>公司地址:{yun:}$Info.address{/yun}</li>
+     <li>联 系 人:{yun:}$Info.linkman{/yun} </li>
+      <li>邮政编码: {yun:}$Info.zip{/yun}</li>
+     <li> 公司主页:{yun:}$Info.website{/yun}</li>
+     </ul>
+      <br/>
+       
+         <div class="clear"></div>
+   <div style="white-space: normal; word-break: break-all; font-size:14px; line-height:33px; padding:10px;">
+                           {yun:}$Info.content{/yun}
+          </div>       </div>
+      <p>
+<div class="clear"></div>
+
+      <div style=" ;line-height:30px; text-indent:10px; ">
+
+      &nbsp;   &nbsp;<a href='{yun:}$config.sy_weburl{/yun}'  target='_blank'>{yun:}$config.sy_webname{/yun}</a> {yun:}$Info.now{/yun} <br/>
+      <br/>
+      </div>
+</div>
+</div>
+</div></div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

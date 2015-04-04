@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+    <div class="infoboxp_top"><h6>站外调用</h6>
+    <div class="infoboxp_right">
+    	<a href="index.php?m=datacall" class=" infoboxp_tj">数据调用管理</a></div>
+	</div>
+    
+    <div class="infoboxp_top"><h6>调用代码</h6></div>
+<div class="company_job" style="line-height:34px;text-indent:10px;">
+            <div class="company_job_list_h1">
+           <a href="javascript:;" onclick="prompt('复制(CTRL+C)以下內容并添加到模板中', '{yun\:}call id={yun:}$smarty.get.id{/yun}{\/yun}')">内部调用</a> | 
+           <a href="javascript:;" onclick="prompt('复制(CTRL+C)以下內容并添加到模板中', '&lt;script src=\'{yun:}$config.sy_weburl{/yun}/index.php?m=call&id={yun:}$smarty.get.id{/yun}\' language=\'javascript\'&gt;&lt;/script&gt;')">外部调用</a>
+        </div>
+    </div>
+    <div class="infoboxp_top"><h6>调用方式</h6></div>
+<div class="company_job" style="line-height:34px; text-indent:10px;">
+            <div class="company_job_list_h1">
+        将调用代码复制 粘贴到需要投放该广告的页面（可以在<a href="?m=admin_template"><font color="#FF0000">后台模板管理中</font></a>修改）
+        </div>
+    </div>
+    <div class="infoboxp_top"><h6>样式预览</h6></div>
+    <div class="subnav">
+        <div class="content-menu ib-a blue line-x">
+    <script src='{yun:}$config.sy_weburl{/yun}/index.php?m=call&id={yun:}$smarty.get.id{/yun}' language='javascript'></script>
+        </div>
+    </div>
+</div>
+</body>
+</html>

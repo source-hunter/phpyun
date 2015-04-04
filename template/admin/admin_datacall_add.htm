@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>添加数据调用</h6>
+</div>
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<form name="myform" action="index.php?m=datacall&c=add" method="post" target="supportiframe">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+<input type="hidden" value="{yun:}$smarty.get.type{/yun}" name="type">
+<table width="100%" class="table_form" style="background:#fff;">
+        <tr class="admin_table_trbg" >
+            <th>调用名称：</th>
+            <td><input type="text"  value="{yun:}$info.name{/yun}" name="name" class="input-text"></td>
+        </tr>
+        <tr>
+            <th>模板：</th>
+            <td><textarea name="code" rows="10" cols="80">{yun:}if $info.code{/yun}{yun:}$info.code{/yun}{yun:}else{/yun}<ul>
+    <!--循环开始-->
+    <loop>
+        <li><a href="{url}">{name}</a></li>
+    </loop>
+    <!--循环结束-->
+</ul>{yun:}/if{/yun}</textarea> <a href="#sm">查看说明</a></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+            <th>排序方式：</th>
+            <td>
+            <select name="byorder">
+            {yun:}foreach item=row key=k from=$datacall.order{/yun}
+                <option value="{yun:}$k{/yun}" {yun:}if $info.byorder==$k{/yun}selected{yun:}/if{/yun}>{yun:}$row{/yun}</option>
+			{yun:}/foreach{/yun}
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <th>标题长度：</th>
+            <td><input type="text" value="{yun:}$info.titlelen{/yun}" name="titlelen" class="input-text">字节数</td>
+        </tr>
+        <tr class="admin_table_trbg" >
+            <th>内容长度：</th>
+            <td><input type="text" value="{yun:}$info.infolen{/yun}" name="infolen" class="input-text">字节数</td>
+        </tr>
+        <tr>
+            <th>调取条数：</th>
+            <td><input type="text" value="{yun:}$info.num{/yun}" name="num" class="input-text"></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+            <th>更新间隔时间：</th>
+            <td><input type="text" value="{yun:}$info.edittime{/yun}" name="edittime" class="input-text">分</td>
+        </tr>
+        <tr>
+            <th>链接打开方式：</th>
+            <td>
+            <select name="urltype">
+                <option value="1" {yun:}if $info.urltype=="1"{/yun}selected{yun:}/if{/yun}>新窗口</option>
+                <option value="2" {yun:}if $info.urltype=="2"{/yun}selected{yun:}/if{/yun}>原窗口</option>
+            </select>
+             新窗口打开，请在a标签中添加{target}
+            </td>
+        </tr>
+         {yun:}foreach item=row key=k from=$datacall.where{/yun}
+        <tr>
+            <th>{yun:}$row.0{/yun}：</th>
+            <td>
+            <select name="{yun:}$k{/yun}">
+             	{yun:}foreach item=ra key=key from=$row{/yun}
+                	{yun:}if $key!=0{/yun}
+                	<option value="{yun:}$key{/yun}" {yun:}if $where.$k==$key{/yun}selected{yun:}/if{/yun}>{yun:}$ra{/yun}</option>
+                    {yun:}/if{/yun}
+                {yun:}/foreach{/yun}
+            </select>
+            </td>
+        </tr>
+        {yun:}/foreach{/yun}
+        <tr class="admin_table_trbg" >
+            <th>时间格式：</th>
+            <td>
+            <select name="timetype">
+                <option value="Y-m-d" {yun:}if $info.timetype=="Y-m-d"{/yun}selected{yun:}/if{/yun}>2013-01-01</option>
+                <option value="m-d" {yun:}if $info.timetype=="m-d"{/yun}selected{yun:}/if{/yun}>08-08</option>
+				<option value="H:i" {yun:}if $info.timetype=="H:i"{/yun}selected{yun:}/if{/yun}>18:05</option>
+                <option value="Y-m-d H:i" {yun:}if $info.timetype=="Y-m-d H:i"{/yun}selected{yun:}/if{/yun}>2013-01-01 18:05</option>
+            </select>
+            </td>
+        </tr>
+         <tr>
+            <td align="center" colspan="2">
+            {yun:}if $info.id{/yun}
+            <input name="id" type="hidden" value="{yun:}$info.id{/yun}">
+            <input class="admin_submit4" type="submit" name="submit" value="&nbsp;修 改&nbsp;" />
+            {yun:}else{/yun}
+            <input class="admin_submit4" type="submit" name="submit" value="&nbsp;添 加&nbsp;" />
+            {yun:}/if{/yun}
+            <input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+        </tr>
+</table>
+</form>
+</div>
+</div>
+<div class="infoboxp" style="background:#F7FBFC;border:1px solid #d8dce5">
+<div class="infoboxp_top">
+<a name="sm"></a>
+<h6  style="text-indent:10px;">调用说明</h6>
+</div>
+<ul>
+{yun:}foreach item=row key=k from=$datacall.field{/yun}
+	<li style="height:25px; margin-top:5px; padding-left:10px;"><span style="width:150px;display:block; float:left;">{yun:}$row{/yun}</span>   <span style="width:150px;display:block; float:left;">代码：{{yun:}$k{/yun}}</span> </li>
+{yun:}/foreach{/yun}
+</ul>
+</div>
+</body>
+</html>

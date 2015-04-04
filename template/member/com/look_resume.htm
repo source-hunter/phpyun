@@ -1,0 +1,78 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<link href="{yun:}$comstyle{/yun}/images/index_style.css" type=text/css rel=stylesheet>
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">我浏览的简历</span> </div>
+        <div class=admin_textbox_04>
+          <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+          <form action="index.php?c=look_resume&act=del" method="post" target="supportiframe" id='myform'>
+            <div class=table>
+              <div id="job_checkbokid">
+                <div class="job_news_list job_news_list_h1"> <span class="job_news_list_span job_w30">&nbsp;</span> <span class="job_news_list_span job_w190">求职意向</span> <span class="job_news_list_span job_w90">姓名</span> <span class="job_news_list_span job_w50">性别</span> <span class="job_news_list_span job_w50">学历</span> <span class="job_news_list_span job_w100">工作经验</span> <span class="job_news_list_span job_w120">浏览时间</span> <span class="job_news_list_span job_w100">操作</span> </div>
+                {yun:}foreach item=v from=$rows{/yun}
+                <div class="job_news_list"> <span class="job_news_list_span job_w30">
+                  <input type='checkbox' name="delid[]" value="{yun:}$v.id{/yun}" style="border:0px;">
+                  </span> <span class="job_news_list_span job_w190">{yun:}$v.jobname{/yun}</span> <span class="job_news_list_span job_w90"><a href="{yun:}url m=resume url=id:`$v.resume_id`{/yun}" target="_blank" class="uesr_name_a">{yun:}$v.name{/yun}&nbsp;</a></span> <span class="job_news_list_span job_w50">{yun:}$v.sex{/yun}&nbsp;</span> <span class="job_news_list_span job_w50">{yun:}$v.edu{/yun}&nbsp;</span> <span class="job_news_list_span job_w100">{yun:}$v.exp{/yun}&nbsp;</span> <span class="job_news_list_span job_w120">{yun:}$v.datetime|date_format:'%Y-%m-%d %H:%M'{/yun}</span> <span class="job_news_list_span job_w100">{yun:}if $v.userid_msg==1{/yun} <font color="red">已邀请</font> {yun:}else{/yun} <a href="javascript:;" uid="{yun:}$v.uid{/yun}" username="{yun:}$v.name{/yun}" class="sq_resume" style="position:relative; "> 邀请面试</a> {yun:}/if{/yun} 
+                  &nbsp;|&nbsp;<a href="javascript:void(0)" onclick="layer_del('确定要删除？','{yun:}$now_url{/yun}&act=del&id={yun:}$v.id{/yun}')">删除</a></span> </div>
+                {yun:}foreachelse{/yun}
+                <div class="msg_no">您还没有浏览过简历。</div>
+                {yun:}/foreach{/yun} </div>
+            </div>
+            {yun:}if $rows{/yun}
+            <div class="fltL"> <span class="fltL job_new_de">
+              <input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'>
+              全选</span>
+              <INPUT class="btn_02" type="button" name="subdel" value="批量删除" onclick="return really('delid[]');">
+            </div>
+            &nbsp;
+            <div class="diggg">{yun:}$pagenav{/yun}</div>
+            {yun:}/if{/yun}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id='job_box' style="display:none;float:left">
+  <div class="city_1">
+    <dl class="city_3">
+      <dt> <span class="city_01">面试职位：</span>
+        <select id='jobname'>
+        </select>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">联系人：</span>
+        <input size='5'  id='linkman' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">联系电话：</span>
+        <input size='10'  id='linktel' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">面试时间：</span>
+        <input size='34' id='intertime' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">面试地址：</span>
+        <input size='34' id='address' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3"  >
+      <dt><span class="city_01">面试备注：</span>
+        <textarea id="content" cols="40" rows="5" class="resyme_text"></textarea>
+    </dl>
+    <dl class="city_3" id="resume_job" style="height:40px;">
+      <dt><span class="city_01">&nbsp;</span>
+        <input type="hidden" id="uid" value="">
+        <input type="hidden" id="username" value="">
+        <input class="resume_sub_yq" id="click_invite" type="button" value="邀请面试"  >
+    </dl>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

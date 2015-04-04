@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/news.css" type="text/css">
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+  <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > 职场资讯</div>
+  <div class="left_sidebar fr">
+
+    <div class="news_left fl" style="margin-bottom:10px;"><div class="left_sidebar_new"> 资讯分类</div>
+      <div class="news_left_tlists">
+        <ul>
+   
+
+		  {yun:}articleclass   item=arcgroupright urlstatic=1 key=key len=4 pt_len=12 pd_len=40 t_len=15{/yun}
+			<li><a href="{yun:}$arcgroupright.url{/yun}" class="icon2">{yun:}$arcgroupright.name{/yun}</a></li>
+		{yun:}/articleclass{/yun}
+
+        </ul>
+      </div>
+    </div>
+  
+ 
+    <div class="news_left fl m5">
+   <div class="left_sidebar_new">  推荐文章</div>
+      <div class="news_left_cont"> {yun:}article limit=6 type=tj pic=1 t_len=7 urlstatic=1 item=news_jian{/yun}
+        <dl>
+          <dt><a href="{yun:}$news_jian.url{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$news_jian.newsphoto{/yun}" alt="{yun:}$news_jian.title{/yun}" style="width:106px; height:69px;" /></a></dt>
+          <dd><strong><a href="{yun:}$news_jian.url{/yun}" title="{yun:}$news_jian.title{/yun}">{yun:}$news_jian.title{/yun}</a></strong>{yun:}$news_jian.description|mb_substr:0:22:'gbk'{/yun}<a href="{yun:}$news_jian.url{/yun}">[详情]</a></dd>
+        </dl>
+        {yun:}/article{/yun} </div>
+    </div>
+	
+
+    <div class="news_left fl m5">
+    <div class="left_sidebar_new"> 热点文章</div>
+      <div class="news_left_cont">
+        <ul>
+          {yun:}article limit=6 order=hits t_len=17 urlstatic=1 item=news_hits{/yun}
+          <li><a href="{yun:}$news_hits.url{/yun}" class="icon2">{yun:}$news_hits.title{/yun}</a></li>
+          {yun:}/article{/yun}
+        </ul>
+      </div>
+    </div>
+	
+  </div>
+  <div class="news_right_sidebar fl"> {yun:}article nid=auto.nid ispage=1 urlstatic=1 limit=10  t_len=30 item=news{/yun}
+    <div class="news_right_list fl">
+      <div class="news_right_list_h1"><a href="{yun:}$news.url{/yun}">{yun:}$news.title{/yun}</a> <em>{yun:}$news.time{/yun}</em></div>
+      <div class="news_right_list_p"> {yun:}$news.description|mb_substr:0:100:'gbk'{/yun} </div>
+    </div>
+    {yun:}/article{/yun}
+    <div class="clear"></div>
+    <div class="clear"></div>
+    <div class="pages"> {yun:}$pagenav{/yun} </div>
+  </div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

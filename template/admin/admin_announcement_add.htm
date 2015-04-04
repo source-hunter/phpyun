@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" /> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script language="javascript">
+<!--
+KindEditor.ready(function(K) {
+	K.create('#content', {
+		items : ['source',
+		'bold', 'italic', 'underline',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist','emoticons', 'image'],afterBlur:function(){this.sync();} 
+	});
+});
+function checkform(myform)
+{
+  if (myform.title.value=="") 
+  { 
+	  parent.layer.msg('请填写公告标题！', 2,2);
+      myform.title.focus();
+      return (false);
+  }
+
+  if (myform.keyword.value=="") 
+  { 
+	   parent.layer.msg('请填写公告关键字！', 2,2);
+      myform.keyword.focus();
+      return (false);
+  } 
+    if (myform.description.value=="") 
+  { 
+	  parent.layer.msg('请填写公告描述！', 2,2);
+      myform.description.focus();
+      return (false);
+  }
+}
+$(document).ready(function(){
+	$("#did").click(function(){
+		var checked=$("#did").attr("checked");
+		if(checked=="checked"){
+			$(".did").attr("checked","checked");
+		}else{
+			$(".did").attr("checked",false);
+		}
+	})
+	$(".did").click(function(){
+		if(document.getElementById('did').checked){
+			document.getElementById('did').checked = document.getElementById('did').checked&0;
+		}
+	})
+})
+//-->
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<span class="admin_title_span">添加公告</span>
+<div class="infoboxp_right"><a href="index.php?m=admin_announcement" class="infoboxp_tj">公告列表</a></div>
+</div>
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=admin_announcement&c=save" method="post" encType="multipart/form-data"  onSubmit="return checkform(this);">
+	<table width="100%" class="table_form" style="background:#fff;">
+    
+		<tr >
+			<th>公告标题：</th>
+			<td><input class="input-text" type="text" name="title" size="40" value="{yun:}$announcement.title{/yun}"/></td>
+		</tr>
+        <tr >
+          <th>使用范围：</th>
+          <td>
+      <div class="all_Domain_name">
+     <input type="button" value="{yun:}if $announcement.domain_name==""{/yun}全站{yun:}else{/yun}{yun:}$announcement.domain_name{/yun}{yun:}/if{/yun}" class="all_Domain_button" id="domain_name">
+     <input type="hidden" id="domainid" value="{yun:}$announcement.domain{/yun}" name="did">
+     <div class="all_Domain_name_box" id="domain_list" style="display:none;">
+<span class="all_Domain_name_box_list"><input type="checkbox" class="domain" id="did" value="0+0" {yun:}if stripos($announcement.did,'0')!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> 全站</span> 
+          {yun:}foreach from=$domain item=v{/yun}
+          <span class="all_Domain_name_box_list"><input type="checkbox" class="domain" class="did" value="{yun:}$v.id{/yun}+{yun:}$v.title{/yun}" {yun:}if stripos($announcement.did,$v.id)!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> {yun:}$v.title{/yun}</span> 
+          {yun:}/foreach{/yun}
+          <div class="all_Domain_name_sub"><input type="button" value="确定" class="all_Domain_name_submit1" onClick="check_domain()">
+          <input type="button" value="取消" class="all_Domain_name_submit2" onClick="Close('domain_list')"></div>
+     </div>
+      </div>
+          </td>
+        </tr>
+	   	<tr class="admin_table_trbg" >
+			<th>关 键 词：</th>
+			<td>
+			 <input class="input-text" type="text" name="keyword" size="50" value="{yun:}$announcement.keyword{/yun}"/>(多关键字，请用，隔开，请不要为空)
+			</td>
+		</tr>
+    		<tr >
+
+			<th>描　　述：</th>
+			<td>
+			 <textarea name="description" cols="55" rows="3">{yun:}$announcement.description{/yun}</textarea>
+			</td>
+		</tr>
+    	   	<tr class="admin_table_trbg" >
+			<th>公告内容： </th>
+			<td>
+			<textarea  id="content" name="content" cols="100" rows="8" style="width:700px;height:300px;">{yun:}$announcement.content{/yun}</textarea>
+			</td>
+		</tr>
+
+		<tr>
+			<td align="center" colspan="2">
+            <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+			{yun:}if $announcement.id{/yun}
+        	<input type="hidden" name="id" size="40" value="{yun:}$announcement.id{/yun}"/>
+            <input type="hidden" name="lasturl" value="{yun:}$lasturl{/yun}">
+        	<input class="admin_submit4" type="submit" name="update" value="&nbsp;更 新&nbsp;"  />
+        	{yun:}else{/yun}
+    		<input class="admin_submit4" type="submit" name="add" value="&nbsp;添 加&nbsp;"  />
+     		{yun:}/if{/yun}
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+			</td>
+		</tr>
+        
+	</table>
+	
+</form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{yun:}include file="$friendstyle/header.htm"{/yun}
+<div class="Personals_content">
+<div class="py_cont">
+{yun:}include file="$friendstyle/left2.htm"{/yun}
+<div class="Personals_cont">
+  <div class="Personals_my_all">我的好友 </div>
+  <div class="Personals_my_good_h1">
+    <ul>
+      <li><a href="{yun:}furl url=c:addfriend{/yun}">添加好友</a></li>
+      <li><a href="{yun:}furl url=c:applyfriend{/yun}">好友申请</a></li>
+      <li class="Personals_my_on">管理好友</li>
+    </ul>
+  </div>
+  {yun:}if $list{/yun}
+  <div class="Personals_my_all_seach">
+    <form action="index.php" method="get">
+      <input type="hidden" name="c" value="myfriend" />
+      <input type="text" value="" class="seach_all_text placeholder" name="keyword">
+      <input type="submit" value="搜索" class="seach_all_submit"  />
+    </form>
+  </div>
+  <div class="Personals_my_all_list"> 
+  {yun:}foreach from=$list item=list{/yun}
+    <dl class="Personals_my_all_list_dl">
+      <dt><a href="{yun:}furl url=c:profile,id:`$list.nid`{/yun}" class="friend_name" title="{yun:}$list.nickname{/yun}"><img src="{yun:}$list.pic_big{/yun}"width="152" height="152" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);"></a></dt>
+      <dd><a href="{yun:}furl url=c:profile,id:`$list.nid`{/yun}" class="friend_name" title="{yun:}$list.nickname{/yun}">{yun:}$list.nickname{/yun}</a></dd>
+      <dd><a href="javascript:void(0)"  onclick="layer_del('确定要删除该好友？', '{yun:}furl url=c:myfriend,delid:`$list.nid`{/yun}');" title="删除好友">删除好友</a></dd>
+    </dl>
+    {yun:}/foreach{/yun} 
+	</div>
+  {yun:}else{/yun}
+  <div class="Personals_my_all_no">您还没有好友！赶紧添加好友吧！畅旺朋友圈！</div>
+  {yun:}/if{/yun}
+  <div class="clear"></div>
+  <div>
+    <div class="pages">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+{yun:}include file="$friendstyle/right.htm"{/yun}
+</div>
+</div>
+{yun:}include file="$friendstyle/footer.htm"{/yun}

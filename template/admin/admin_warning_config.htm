@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position:absolute;"></div>
+<div class="admin_h1_bg infoboxp_topIjf">
+<span class="admin_title_span"><a href="index.php?m=warning">预警列表</a></span>
+   <span class="admin_title_span">预警配置</span>    
+
+</div>
+<div class="main_tag">
+
+<div class="tag_box">
+
+
+<div>
+<table width="100%" class="table_form">
+    <tr class="admin_table_trbg">
+	<th width="220">每天发布职位：</th>
+		<td>
+         <input class="input-text" type="text" name="warning_addjob" id="warning_addjob" value="{yun:}$config.warning_addjob{/yun}" size="13" maxlength="255" onKeyUp="this.value=this.value.replace(/[^0-9.]/g,'')"/>条，        
+         <select id="warning_addjob_type">
+        <option value="1" {yun:}if $config.warning_addjob_type=="1"{/yun}selected{yun:}/if{/yun}>是</option>
+        <option value="2" {yun:}if $config.warning_addjob_type=="2"{/yun}selected{yun:}/if{/yun}>否</option>
+        </select> 锁定帐号
+        </td>
+	</tr>
+    <tr>
+	<th width="220">每天下载简历：</th>
+		<td>
+         <input class="input-text" type="text" name="warning_downjob" id="warning_downresume" value="{yun:}$config.warning_downresume{/yun}" size="13" maxlength="255" onKeyUp="this.value=this.value.replace(/[^0-9.]/g,'')"/>条，        
+         <select id="warning_downresume_type">
+        <option value="1" {yun:}if $config.warning_downresume_type=="1"{/yun}selected{yun:}/if{/yun}>是</option>
+        <option value="2" {yun:}if $config.warning_downresume_type=="2"{/yun}selected{yun:}/if{/yun}>否</option>
+        </select> 锁定帐号
+        </td>
+	</tr>
+    <tr class="admin_table_trbg">
+	<th width="220">每天发布简历：</th>
+		<td>
+         <input class="input-text" type="text" name="warning_addresume" id="warning_addresume" value="{yun:}$config.warning_addresume{/yun}" size="13" maxlength="255" onKeyUp="this.value=this.value.replace(/[^0-9.]/g,'')"/>份，        
+         <select id="warning_addresume_type">
+        <option value="1" {yun:}if $config.warning_addresume_type=="1"{/yun}selected{yun:}/if{/yun}>是</option>
+        <option value="2" {yun:}if $config.warning_addresume_type=="2"{/yun}selected{yun:}/if{/yun}>否</option>
+        </select> 锁定帐号
+        </td>
+	</tr>
+    <tr>
+    <tr class="admin_table_trbg">
+		<td colspan="2" align="center">
+        <input class="admin_submit4" id="integral" type="button" name="config" value="提交" />&nbsp;&nbsp;
+        <input class="admin_submit4" type="reset" value="重置" /></td>
+	</tr>
+</table>
+</div>
+
+</div>
+</div>
+</div>
+<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+<script>
+$(function(){
+	$("#integral").click(function(){
+		$.post("index.php?m=warning&c=config",{
+			config : $("#integral").val(),
+			warning_addjob_type : $("#warning_addjob_type").val(),
+			warning_addjob : $("#warning_addjob").val(),
+			warning_downresume_type : $("#warning_downresume_type").val(),
+			warning_downresume : $("#warning_downresume").val(),
+			warning_addresume_type : $("#warning_addresume_type").val(),
+			warning_addresume : $("#warning_addresume").val(),
+			warning_recharge_type : $("#warning_recharge_type").val(),
+			pytoken : $("#pytoken").val()
+		},function(data,textStatus){
+			config_msg(data);
+		});
+	});
+})
+</script>
+</body>
+</html>

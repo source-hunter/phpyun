@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png;
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_seach.css" type="text/css">
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<script>
+function searchtype(id){
+	$(".search_cur").removeClass("search_cur");
+	$("#type"+id).addClass("search_cur");
+	$(".contentBox_cont").hide();
+	$("#type_"+id).show();
+}
+function showtype(id){
+	$("#job"+id).addClass('current');
+	$("#job_"+id).html('[收起]');
+	$("#job_"+id).attr('href','javascript:hidetype(\''+id+'\');');
+}
+function hidetype(id){
+	$("#job"+id).removeClass('current');
+	$("#job_"+id).html('[展开]');
+	$("#job_"+id).attr('href','javascript:showtype(\''+id+'\');');
+} 
+</script>
+<div class="yun_body">
+  <div class="yun_content">
+    <div class="current_Location icon"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}url m=user{/yun}">招人才</a></div>
+    <div class="clear"></div>
+    <div class="search_Looking_work">
+    <form method="get" action="index.php" onsubmit="return search_keyword(this);">
+    <input type="hidden" name="m" value="user" />
+    <input type="hidden" name="c" value="search" />
+      <div class="search_Look_left">
+        <input type="text" name="keyword" id="userkeyword" value="请输入要搜索的关键字：例如会计" onclick="if(this.value=='请输入要搜索的关键字：例如会计'){this.value=''}" placeholder="请输入要搜索的关键字：例如会计" onblur="if(this.value==''){this.value='请输入要搜索的关键字：例如会计'}" class="search_Look_text placeholder">
+      </div>
+      <input type="submit" value=" " class="search_submit">
+     </form> 
+    </div>
+    <div class="search_Look_tag"> 关键字：
+{yun:}key limit=8 recom=1 type=5 item=key{/yun} <a href="{yun:}$key.url{/yun}">{yun:}$key.key_name{/yun}</a> {yun:}/key{/yun}
+     </div>
+    <div class="clear"></div>
+    <!--行业类别-->
+    <div class="maincenter">
+      <div id="sortBox">
+        <div class="search_menuBox">
+          <ul>
+           
+            <li class="search_cur" id="typejob" onmousemove="searchtype('job');">职位招聘</li>
+             <li id="typehy" onmousemove="searchtype('hy');">行业招聘</li>
+            <li id="typecity" onmousemove="searchtype('city');" style="border-right:none;">地区招聘</li>
+          </ul>
+        </div>
+        <div class="contentBox"> 
+          <!-- 行业招聘 start-->
+        <div class="contentBox_cont" id="type_hy" style="display:none">
+        <div class="Industry_list">
+        {yun:}foreach item=v from=$industry_index{/yun}
+        <a href="index.php?m=user&c=search&hy={yun:}$v{/yun}">{yun:}$industry_name[$v]{/yun}</a>
+        {yun:}/foreach{/yun}
+        </div>
+        </div>
+          <!--   行业招聘 end--> 
+          <!-- 职位招聘 start-->
+          <div class="contentBox_cont" id="type_job" style="display:block">
+          {yun:}foreach item=v from=$job_index{/yun}
+            <div class="Category_tit">
+              <h2>{yun:}$job_name[$v]{/yun}</h2>
+            </div>
+            <div class="layout">
+              {yun:}foreach item=val from=$job_type[$v]{/yun}
+              <dl>
+                <dt><a href="index.php?m=user&c=search&job1_son={yun:}$val{/yun}">{yun:}$job_name[$val]{/yun}</a> <a href="javascript:showtype('{yun:}$val{/yun}');" class="spread " id="job_{yun:}$val{/yun}">[展开]</a></dt>
+                <dd id="job{yun:}$val{/yun}">
+                {yun:}foreach item=value from=$job_type[$val]{/yun}
+                <a href="index.php?m=user&c=search&job_post={yun:}$value{/yun}"> {yun:}$job_name[$value]{/yun}</a>
+                {yun:}/foreach{/yun}
+                </dd>
+              </dl>
+              {yun:}/foreach{/yun}
+            </div>
+            {yun:}/foreach{/yun}
+            
+          </div>
+          <!--   职位招聘 end--> 
+          <!-- 地区招聘 start-->
+          <div class="contentBox_cont" id="type_city" style="display:none">
+            {yun:}foreach item=v from=$city_index{/yun}
+            <dl class="yun_search_city_list">
+              <dt>{yun:}$city_name[$v]{/yun}</dt>
+              <dd>
+              {yun:}foreach item=val from=$city_type[$v]{/yun}
+              <a href="index.php?m=user&c=search&cityid={yun:}$val{/yun}">{yun:}$city_name[$val]{/yun}</a>
+              {yun:}/foreach{/yun}
+              </dd>
+            </dl>
+			{yun:}/foreach{/yun}
+
+          </div>
+          <!--   地区招聘 end--> 
+ </div>
+ </div>
+</div>
+<!--行业类别 end-->
+<div class="search_post_jj">
+<div class="search_post_jj_h1"><span>最新人才</span></div>
+      {yun:}userlist pic=0 post_len=20 limit=5 item=userlist{/yun}
+<dl class="User_left_list">
+<dt>
+<a href="{yun:}url m=resume url=id:`$userlist.id`{/yun}">
+<img width="80" height="100" alt="{yun:}$userlist.username_n{/yun}" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_member_icon{/yun}',2);" src="{yun:}$userlist.photo{/yun}">
+</a>
+</dt>
+<dd>
+<a class="seach_user_name" href="{yun:}url m=resume url=id:`$userlist.id`{/yun}">{yun:}$userlist.username_n{/yun}</a>
+学历：{yun:}$userlist.edu_n{/yun}
+<div  style="max-height:54px;_height:54px; overflow:hidden">
+应聘：{yun:}$userlist.job_post_n{/yun}
+</div>
+<span>
+<a class="Orange" href="{yun:}url m=resume url=id:`$userlist.id`{/yun}">[详细]</a>
+</span>
+</dd>
+</dl>
+{yun:}/userlist{/yun}
+</div>
+</div>
+</div>
+
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

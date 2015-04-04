@@ -1,0 +1,44 @@
+{yun:}include file="$askstyle/header.htm"{/yun} 
+<div class="answers_content">
+<div class="answers_cont">
+<div class="answers_left">
+	<div class="answers_news_title"><span>个人关注问题</span></div>
+	<div id="order_add_time"  name="order">
+		
+		{yun:}if empty($question){/yun}
+			<div class="answers_left_list">暂无关注！</div>
+		{yun:}else{/yun}
+			{yun:}foreach from=$question item=qlist{/yun}
+			<div class="answers_left_list">
+				<div class="answers_left_list_cont">
+					<h2 ><a class="question_link" target="_blank" href="{yun:}aurl url=c:content,id:`$qlist.id`{/yun}"  id="title_{yun:}$qlist.id{/yun}">{yun:}$qlist.title{/yun}</a></h2>
+					<div class="answers_discuss">{yun:}$qlist.content|strip_tags|mb_substr:0:100:'gbk'{/yun}</div>
+					<div class="answers_feed-meta">
+						<a href="javascript:void(0);" class="answers_feed-meta_gz" onclick="del_attention('{yun:}$qlist.id{/yun}','1');">取消关注</a>
+						<a href="javascript:void(0)" class="answers_feed-meta_ll"> （{yun:}$qlist.visit{/yun}）浏览</a>
+						<a class="answers_feed-meta_hd" href="javascript:void(0)"> （{yun:}$qlist.answer_num{/yun}）回答 </a>
+						<a href="javascript:void(0);" onclick="forward_sinaweibo('{yun:}$qlist.id{/yun}')" class="answers_feed-meta_xl">新浪微博</a>
+						<a href="javascript:void(0);" onclick="forward_tencentweibo('{yun:}$qlist.id{/yun}')" class="answers_feed-meta_tx">腾讯微博</a>
+						{yun:}$qlist.add_time|date_format:"%Y-%m-%d %H:%M:%S"{/yun}
+					</div> 
+				</div>
+				<div class="answers_left_list_right"> 
+					<img src="{yun:}$qlist.pic{/yun}" width="40" height="40" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);">
+ 				</div>
+			</div>
+			{yun:}/foreach{/yun} 
+		{yun:}/if{/yun}
+		<div class="clear"></div>
+		<div class="pages">{yun:}$pagenav{/yun}</div>
+	</div> 
+</div>
+<div class="answers_right">
+{yun:}include file="$askstyle/right.htm"{/yun} 
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$askstyle/footer.htm"{/yun} 
+</body>
+</html>

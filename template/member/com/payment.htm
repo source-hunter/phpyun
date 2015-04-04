@@ -1,0 +1,255 @@
+{yun:}include file="$comstyle/header.htm"{/yun} 
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun} 
+    <script>
+function paycheck(type){
+	var type; 
+	if(type=="bank"){
+		document.getElementById('payform').action="index.php?c=payment&act=paybank";
+		$(".alipaytype").hide();
+		$(".paybank").show();
+		$("#payform").attr("target","supportiframe");
+	}else if(type!="balance"){
+		if(type=="alipay"){
+			document.getElementById('payform').action="../api/alipay/alipayto.php";
+		}
+		if(type=="alipaydual"){
+			document.getElementById('payform').action="../api/alipaydual/alipayto.php";
+		}
+		if(type=="tenpay"){
+			document.getElementById('payform').action="../api/tenpay/index.php";
+		}
+		$(".paybank").hide();
+		$(".alipaytype").show();
+		$("#payform").attr("target","_blank");
+	} 
+	if(type=="99bill" || type=="paypal" || type=="cncard"){ 
+		layer.msg('此接口暂未开放！', 2, 0);
+		document.getElementById('py1').checked="checked";
+	}
+}
+$(function(){
+	$("#check-balance").attr("checked",false);
+	$("input[name='is_invoice']").attr("checked",false);
+	$("#is_invoice_0").attr("checked",true);   
+	$("input[name='pay_bank']").eq(0).attr("checked",true);  
+	{yun:}if $company.link_null==''{/yun}
+	$("input[name='linkway']").attr("checked",false); 
+	$("#linkway_1").attr("checked",true);
+	{yun:}/if{/yun}	 
+});
+function invoice(type){
+	if(type=='1'){$(".invoice_title").show();}else{$(".invoice_title").hide();}	
+}
+function payform(){ 
+	var pay_bank=$("input[name='pay_bank']:checked").val();
+	var linkway=$("input[name='linkway']:checked").val();
+	{yun:}if $config.sy_com_invoice=='1'&&$order.invoice=='1'&&$order.order_type==''{/yun}
+	var invoice_title=$.trim($("#invoice_title").val()); 
+	var is_invoice=$("input[name='is_invoice']:checked").val();
+	if(is_invoice=='1'&&invoice_title==''){
+		layer.msg('请输入发票抬头！', 2, 2);return false;
+	} 
+	if(linkway=='2'&&is_invoice=='1'){
+		var link_man=$.trim($("input[name='link_man']").val());
+		var link_moblie=$.trim($("input[name='link_moblie']").val());
+		var address=$.trim($("input[name='address']").val());
+		if(link_man==''||link_man=='联系人'||link_moblie==''||link_moblie=='联系电话'||address==''||address=='寄送地址'){
+			layer.msg('联系人、联系电话、寄送地址均不能为空！', 2, 2);return false;
+		}
+	}
+	{yun:}/if{/yun}
+	if($("#check-balance").attr("checked")!='checked'&&pay_bank!='bank'){ 
+		$.layer({
+			type : 1,
+			title : '账户充值',
+			closeBtn : [0 , true], 
+			offset: [($(window).height() - 320)/2 + 'px', ''],
+			border : [10 , 0.3 , '#000', true],
+			area : ['340px','180px'],
+			page : {dom : '#infobox'}
+		});  
+	} 
+}
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">订单确认</span></div>
+        <div class="">
+			 <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+          <form name="alipayment"  id="payform" action="{yun:}if $config.alipaytype=='1'&&$config.alipay=='1'{/yun}../api/alipay/alipayto.php{yun:}elseif $config.alipaytype=='2'&&$config.alipay=='1'{/yun}../api/alipaydual/alipayto.php{yun:}elseif $config.tenpay=='1'&&$config.alipay=='0'{/yun}../api/tenpay/index.php{yun:}/if{/yun}" method="post" {yun:}if $config.tenpay=='1'||$config.alipay=='1'{/yun}target="_blank"{yun:}/if{/yun} onsubmit="return payform();">
+
+            <div class="clear"></div>
+            <div class="pay_ment_box">
+           <div class="pay_ment_box_left">
+          <div class="pay_ment_box_n"> 订单号：{yun:}$order.order_id{/yun}
+             <INPUT type="hidden" name="dingdan" value="{yun:}$order.order_id{/yun}"/>
+             </div>
+           <div class="pay_ment_jiner">支付金额</div>
+           <div class="pay_ment_jiner_n"><strong>￥{yun:}$order.order_price{/yun}</strong> 元 (订单金额：￥{yun:}$order.order_price{/yun})</div>
+              <INPUT type="hidden" name="aliorder" value="{yun:}$order.order_id{/yun}" />
+                <INPUT type="hidden"  value="{yun:}$order.id{/yun}" name='oid' id='oid'/>
+                <INPUT type="hidden" name="alimoney" value="{yun:}$order.order_price{/yun}"/>
+                <INPUT type="hidden" name="pay_type" value="{yun:}$order.pay_type{/yun}"/> 
+           </div>
+           {yun:}if $config.sy_com_invoice=='1'&&$order.invoice=='1'&&$order.order_type==''{/yun}
+              <div class="pay_ment_box_right">
+             是否需要发票：<input type="radio" value="1" name='is_invoice' onclick="invoice('1');" {yun:}if $order.is_invoice=='1'{/yun}checked="checked"{yun:}/if{/yun} id='is_invoice_1' style=" vertical-align:middle; margin-right:5px;" ><label for="is_invoice_1">是</label> 
+				<input type="radio" value="0" name='is_invoice'  id='is_invoice_0' onclick="invoice('2');" {yun:}if $order.is_invoice!='1'{/yun}checked="checked"{yun:}/if{/yun} style=" vertical-align:middle; margin-right:5px;" ><label for="is_invoice_0">否</label> 
+              </div>
+          
+           
+			
+			  <div class="payment_fp" style="float:left">
+            
+                <div class="invoice_title" style="display:none">
+                <div class="payment_fp_touch">
+              <div class="payment_fp_tt" >发票抬头： <input type="text" class='com_info_text' name='invoice_title' id="invoice_title" style="float:none"></div>    
+              {yun:}if $company.link_null==''{/yun}
+              <div class="payment_fp_tt" ><input name='linkway' type='radio' value='1' id="linkway_1" checked="checked" onclick="invoice_link('1')">使用企业联系方式&nbsp;&nbsp;（{yun:}$company.linkman{/yun}&nbsp;{yun:}$company.linktel{/yun}&nbsp;{yun:}$company.address{/yun}）</div> 
+				{yun:}/if{/yun}
+              <div class="payment_fp_tt" ><input name='linkway' type='radio' {yun:}if $company.link_null{/yun}checked="checked"{yun:}/if{/yun} value='2' id="linkway_2" onclick="invoice_link('2')"/>使用新联系方式</div>  
+				<div class="payment_fp_touch_in" {yun:}if $company.link_null==''{/yun}style="display:none"{yun:}/if{/yun}>
+					<input type="text" placeholder="联系人" name="link_man" onblur="if(this.value==''){this.value='联系人'}" onclick="if(this.value=='联系人'){this.value=''}" value="联系人" class="payment_fp_touch_text payment_fp_touch_text_p">
+					<input type="text" onblur="if(this.value==''){this.value='联系电话'}" name="link_moblie" onclick="if(this.value=='联系电话'){this.value=''}" placeholder="联系电话"  value="联系电话" style='width:100px;' class="payment_fp_touch_text">
+					<input type="text" onblur="if(this.value==''){this.value='寄送地址'}" name="address" onclick="if(this.value=='寄送地址'){this.value=''}" placeholder="寄送地址"  value="寄送地址" class="payment_fp_touch_text">
+				</div>  
+              </div>
+            </div>   </div>
+			</div> 
+			{yun:}/if{/yun}
+			
+            <div class="clear"></div>
+             <div class="choose-pay_new"> <div class="choose-pay-type_e">选择支付方式</div></div>
+            <div class="payment_choose"> 
+				<div class="payway"> 
+					{yun:}if $config.tenpay=='1'||$config.bank=='1'||$config.alipay=='1'{/yun}
+					<div class="payment_zfb">在线支付</div>
+				  <ul class="paytype-list bank-list">
+					{yun:}if $config.alipay=='1'{/yun}
+					<li class="item">
+					  <input id="check-alipay" class="radio" type="radio" checked="checked" name="pay_bank" value="directPay" onclick="paycheck('alipay');">
+					  <label class="bank bank--alipay" for="check-alipay">支付宝</label>
+					</li>
+					{yun:}/if{/yun}
+					{yun:}if $config.tenpay=='1'{/yun}
+					<li class="item">
+					  <input id="check-tenpay" class="radio" type="radio"  name="pay_bank" {yun:}if $config.alipay=='0'{/yun}checked="checked"{yun:}/if{/yun} value="tenpay" onclick="paycheck('tenpay');">
+					  <label class="bank bank--tenpay " for="check-tenpay">财付通{yun:}$config.alipay{/yun}</label>
+					</li>
+					{yun:}/if{/yun}
+					{yun:}if $config.bank=='1'{/yun}
+					<li class="item">
+					  <input id="check-bank" class="radio" type="radio"  name="pay_bank" value="bank" onclick="paycheck('bank');">
+					  <label class="bank bank--yinlian" for="check-bank"><span class='pay_Money' style="float:left;padding-top:5px;width:100%;text-align:center;">银行汇款</span></label>
+					</li>
+					{yun:}/if{/yun}
+				  </ul>
+				{yun:}else{/yun}
+				<div class="con_banner_no" style="width:300px;"><span></span><em>网站已关闭支付接口，请联系管理员</em></div>
+				{yun:}/if{/yun}
+				{yun:}if $config.bank=='1'{/yun}
+				<div class="paybank item" {yun:}if $config.tenpay=='1'||$config.alipay=='1'{/yun}style="display:none"{yun:}/if{/yun}>
+					<div class="payment_zfb">银行汇款</div>
+					<textarea class="bank" style="height:100px;width:550px;font-size:12px;cursor:text;line-height:18px" name='order_remark'>{yun:}$order_remark{/yun}</textarea>
+				</div>
+				{yun:}/if{/yun}
+              {yun:}if $config.alipaytype=='1'&&$config.alipay=='1'{/yun} 
+				<div class="alipaytype">
+					<div class="payment_zfb">网上银行支付</div>
+					<ul class="paytype-list bank-list">
+						<li class="item">
+							<input type="radio" class="radio" value="ICBCB2C" id="bank-type-ICBCB2C" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="中国工商银行" for="bank-type-ICBCB2C" class="bank bank--icbc">中国工商银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="CMB" id="bank-type-CMB" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="招商银行" for="bank-type-CMB" class="bank bank--cmb">招商银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="CCB" id="bank-type-CCB" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="中国建设银行" for="bank-type-CCB" class="bank bank--ccb">中国建设银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="ABC" id="bank-type-ABC" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="中国农业银行" for="bank-type-ABC" class="bank bank--abc">中国农业银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="COMM" id="bank-type-1020" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="交通银行" for="bank-type-1020" class="bank bank--boc">交通银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="BOCB2C" id="bank-type-BOCB2C" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="中国银行" for="bank-type-BOCB2C" class="bank bank--bofc">中国银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="CIB" id="bank-type-CIB" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="兴业银行" for="bank-type-CIB" class="bank bank--cib">兴业银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="CEBBANK" id="bank-type-CEBBANK" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="光大银行" for="bank-type-CEBBANK" class="bank bank--cebb">光大银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="SPDB" id="bank-type-SPDB" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="上海浦东发展银行" for="bank-type-SPDB" class="bank bank--spdb">上海浦东发展银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="GDB" id="bank-type-GDB" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="广东发展银行" for="bank-type-GDB" class="bank bank--gdb">广东发展银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="CITIC" id="bank-type-CITIC" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="中信银行" for="bank-type-CITIC" class="bank bank--zxyh">中信银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="CMBC" id="bank-type-CMBC" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="中国民生银行" for="bank-type-CMBC" class="bank bank--cmbc">中国民生银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="SPABANK" id="bank-type-SPABANK" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="平安银行" for="bank-type-SPABANK" class="bank bank--pingan">平安银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="BJBANK" id="bank-type-BJBANK" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="北京银行" for="bank-type-BJBANK" class="bank bank--bob">北京银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="BJRCB" id="bank-type-BJRCB" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="北京农商银行" for="bank-type-BJRCB" class="bank bank--bjrcb">北京农商银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="PSBC-DEBIT" id="bank-type-PSBC-DEBIT" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="中国邮政储蓄银行" for="bank-type-PSBC-DEBIT" class="bank bank--pspc">中国邮政储蓄银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="SHRCB" id="bank-type-SHRCB" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="上海农商银行" for="bank-type-SHRCB" class="bank bank--shrcb">上海农商银行</label>
+						</li>
+						<li class="item">
+							<input type="radio" class="radio" value="HZCBB2C" id="bank-type-HZCBB2C" name="pay_bank" onclick="paycheck('alipay');">
+							<label title="杭州银行" for="bank-type-HZCBB2C" class="bank bank--hzcb">杭州银行</label>
+						</li>
+					</ul>
+				</div> 
+				{yun:}/if{/yun}
+				</div>
+            </div> 
+			{yun:}if $config.tenpay=='1'||$config.bank=='1'||$config.alipay=='1'{/yun}<div class="payment_fk"><input id="dingdan_submit" class="pay_ment_fk_q" type="submit" value="去付款" name="nextstep" /></div>{yun:}/if{/yun}
+            <div style=" float:left"> </div> 
+          </form>
+        </div> 
+        <div id="infobox" style="display:none;">
+			<div style="margin-top:20px; margin-left:30px;">
+            <div style="width:100%; line-height:23px;">请在新打开的支付页面上完成付款，付款完成前请不要关闭此窗口。
+           如您在支付过程中遇到问题，请联系客服：{yun:}$config.sy_freewebtel{/yun}
+           </div>
+				 <a style="padding-left:2px;float:left; display:block; margin-right:10px;" href="index.php?c=paylog"><img  src="{yun:}$comstyle{/yun}/images/laster1.gif" /></a> 
+				 <a href="index.php?c=payment&id={yun:}$order.id{/yun}"><img src="{yun:}$comstyle{/yun}/images/laster2.gif" /></a>
+			 </div>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

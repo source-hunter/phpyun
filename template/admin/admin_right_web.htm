@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="admin_atatic_chart fl" id="main2" style="height:300px;"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="js/echarts_plain.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('main2')); 
+        var option = {tooltip : {trigger: 'axis'},legend: {data:['{yun:}$name{/yun}']},
+    calculable : false,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : [{yun:}foreach name=foo from=$list item=daylist{/yun}{yun:}if $smarty.foreach.foo.index>0{/yun},{yun:}/if{/yun}'{yun:}$daylist.td{/yun}'{yun:}/foreach{/yun}]
+        }
+    ],
+    yAxis : [{type : 'value'}],
+    series : [
+        {
+            name:'{yun:}$name{/yun}',
+            type:'line',
+            symbol:'emptyCircle',
+            smooth:false,
+            itemStyle: {
+                normal: {
+                    areaStyle: {
+                        width: 2,
+						color:'rgb(191,227,249)'
+					}
+                }
+            },
+            data:[{yun:}foreach name=foo from=$list item=daylist{/yun}{yun:}if $smarty.foreach.foo.index>0{/yun},{yun:}/if{/yun}{yun:}$daylist.cnt{/yun}{yun:}/foreach{/yun}]
+        }
+    ]
+};
+        // 为echarts对象加载数据 
+        myChart.setOption(option); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<div class="content_firm">
+<div class="firm_left">
+<div class="firm_left_h1"><span>精细筛选</span> <a href="{yun:}url m=firm{/yun}">清空</a><br></div>
+<div class="firm_left_close">
+{yun:}if $smarty.get.hy || $smarty.get.pr || $smarty.get.mun{/yun}
+<div class="firm_left_close_p">已选择：</div>
+{yun:}/if{/yun}
+{yun:}if $smarty.get.hy{/yun}
+<span class="firm_left_close_span">从事行业：{yun:}$industry_name[$smarty.get.hy]{/yun}<a href="{yun:}seacrh_url m=firm untype=hy,page{/yun}"><em></em></a></span>
+{yun:}/if{/yun}
+{yun:}if $smarty.get.pr{/yun}
+<span class="firm_left_close_span">企业性质：{yun:}$comclass_name[$smarty.get.pr]{/yun}<a href="{yun:}seacrh_url m=firm untype=pr,page{/yun}"><em></em></a></span>
+{yun:}/if{/yun}
+{yun:}if $smarty.get.mun{/yun}
+<span class="firm_left_close_span">企业规模：{yun:}$comclass_name[$smarty.get.mun]{/yun}<a href="{yun:}seacrh_url m=firm untype=mun,page{/yun}"><em></em></a></span>
+{yun:}/if{/yun}
+</div>
+  <div class="firm_left_cont">
+    <div class="firm_seach_top_list">
+      <div class="firm_seach_top_l" onclick="check_type('job_hy');">从事行业</div>
+      <div class="firm_seach_top_r" id="job_hy" {yun:}if $smarty.get.hy{/yun}style="display:none;"{yun:}/if{/yun}>
+       <a href="{yun:}seacrh_url m=firm untype=hy,page{/yun}" {yun:}if $smarty.get.hy==''{/yun} class="firm_a_atc"{yun:}/if{/yun}>不限</a> 
+       {yun:}foreach from=$industry_index key=j item=v{/yun}
+       <a href="{yun:}seacrh_url m=firm untype=hy,page hy=$v{/yun}" {yun:}if $smarty.get.hy==$v{/yun} class="firm_a_atc"{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</a>
+       {yun:}/foreach{/yun}
+      </div>
+    </div>
+    <div class="firm_seach_top_list">
+      <div class="firm_seach_top_l" id="pr" onclick="check_type('job_pr');">企业性质</div>
+      <div class="firm_seach_top_r" id="job_pr" {yun:}if $smarty.get.pr{/yun}style="display:none;"{yun:}/if{/yun}> 
+      <a href="{yun:}seacrh_url m=firm untype=pr,page{/yun}" {yun:}if $smarty.get.pr==''{/yun} class="firm_a_atc"{yun:}/if{/yun}>不限</a> 
+      {yun:}foreach from=$comdata.job_pr key=j item=v{/yun}
+      <a href="{yun:}seacrh_url m=firm untype=pr,page pr=$v{/yun}" {yun:}if $smarty.get.pr==$v{/yun} class="firm_a_atc"{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</a>
+      {yun:}/foreach{/yun} 
+      </div>
+    </div>
+    <div class="firm_seach_top_list">
+      <div class="firm_seach_top_l" id="mun" onclick="check_type('job_mun');">企业规模</div>
+      <div class="firm_seach_top_r" id="job_mun" {yun:}if $smarty.get.mun{/yun}style="display:none;"{yun:}/if{/yun}> 
+      <a href="{yun:}seacrh_url m=firm untype=mun,page{/yun}"{yun:}if $smarty.get.mun==''{/yun} class="firm_a_atc"{yun:}/if{/yun}>不限</a> 
+      {yun:}foreach from=$comdata.job_mun key=j item=v{/yun}
+      <a href="{yun:}seacrh_url m=firm  untype=mun,page mun=$v{/yun}"{yun:}if $smarty.get.mun==$v{/yun} class="firm_a_atc"{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</a> 
+      {yun:}/foreach{/yun}
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function check_type(id){
+	$("#"+id).toggle(); 
+}
+</script>

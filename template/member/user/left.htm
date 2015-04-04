@@ -1,0 +1,45 @@
+<div class="left_sidebar">
+<div class="left_sidebar_h2 left_sidebar_h1_no"><span class="left_sidebar_h2_span"><a  href="index.php">我的求职主页</a></span></div>
+<div class="left_sidebar_h1 left_sidebar_h1_no"><span class="left_sidebar_h1_span">我的简历</span></div>
+<ul class="left_sidebar_nav">
+<li><a href="index.php?c=resume" >我的简历  </a></li> 
+{yun:}if $config.user_number>$myresumenum{/yun}
+<li><a href="index.php?c=expect&add={yun:}$uid{/yun}">创建简历</a></li> 
+{yun:}else{/yun}
+<li><a href="javascript:void(0)" onclick="layer.msg('你的简历数已经达到系统设置的简历数了',2,8);return false;">创建简历</a></li> 
+{yun:}/if{/yun}       
+<li><a href="index.php?c=look">简历被浏览 </a></li>     
+<li><a href="index.php?c=look_job">浏览的职位 </a></li>  
+</ul>
+<div class="left_sidebar_h1"><span class="left_sidebar_h1_span left_sidebar_h1_span_icon2">应聘管理</span></div>
+<ul class="left_sidebar_nav">
+<li><a href="index.php?c=msg">邀请面试</a></li>        
+<li><a href="index.php?c=job">申请记录</a></li> 
+<li><a href="index.php?c=commsg">求职咨询 </a></li>           
+<li><a href="index.php?c=favorite">收藏记录</a></li>  
+<li><a href="index.php?c=atn">关注企业</a></li> 
+</ul>
+<div class="left_sidebar_h1"><span class="left_sidebar_h1_span left_sidebar_h1_span_icon3">求职工具</span></div>
+<ul class="left_sidebar_nav">
+<li><a href="index.php?c=blacklist">公司黑名单</a></li>            
+<li><a href="index.php?c=privacy">隐私设置</a></li>      
+<li><a href="index.php?c=finder">职位搜索器</a></li>       
+<li><a href="index.php?c=log">操作日志</a></li>                 
+</ul>
+<div class="left_sidebar_h1"><span class="left_sidebar_h1_span left_sidebar_h1_span_icon4">问答管理</span></div>
+<ul class="left_sidebar_nav">
+<li><a href="index.php?c=my_question&type=0">我的提问 </a></li>        
+<li><a href="index.php?c=my_question&type=1">我的回答</a></li>    
+<li><a href="index.php?c=my_question&type=2">我的评论</a></li>          
+<li><a href="{yun:}$config.sy_weburl{/yun}/friend/">好友管理</a></li>    
+</ul>
+<div class="left_sidebar_h1"><span class="left_sidebar_h1_span left_sidebar_h1_span_icon5">账户信息</span></div>
+<ul class="left_sidebar_nav">
+<li><a href="index.php?c=info">基本信息</a></li>             
+<li><a href="index.php?c=passwd">修改密码</a></li>                
+<li><a href="index.php?c=binding">账户绑定</a></li>        
+<li><a href="index.php?c=message">留言反馈</a></li>              
+<li><a href="index.php?c=sysnews">系统消息</a></li>        
+<li><a href="javascript:void(0)" onClick="logout('index.php?act=logout')">退出登录</a></li>            
+</ul>
+</div>

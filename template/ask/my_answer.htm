@@ -1,0 +1,44 @@
+{yun:}include file="$askstyle/header.htm"{/yun}
+<div class="answers_content">
+<div class="answers_cont"> 
+<div class="answers_left">
+<div class="answers_news_title"><span>我回答的问题</span></div>
+<div class="clear"></div> 
+
+{yun:}if empty($my_answer){/yun}
+	<div class="answers_left_list">暂无回答！</div>
+{yun:}else{/yun}
+	{yun:}foreach from=$my_answer item=list{/yun}
+	<div class="answers_left_list"> 
+		<div class="answers_left_list_cont">
+			<h2><a class="question_link" target="_blank" href="{yun:}aurl url=c:content,id:`$list.qid`{/yun}#{yun:}$list.id{/yun}" >{yun:}$list.q_title{/yun}</a></h2>
+			<div class="answers_feed-meta">我的回答：{yun:}$list.content{/yun}</div>
+			<div class="answers_feed-meta"> 
+			<a href="javascript:void(0);" class="answers_feed-meta_pl"
+			{yun:}if $list.comment>'0'{/yun}onclick="get_comment('{yun:}$list.id{/yun}','{yun:}$list.qid{/yun}','0','1');"{yun:}/if{/yun} >该回答有({yun:}$list.comment{/yun})条评论</a>
+			<a href="javascript:void(0);" class="answers_feed-meta_zan"> ({yun:}$list.support{/yun})人支持我的观点</a> 
+			{yun:}$list.add_time|date_format:"%Y-%m-%d %H:%M:%S"{/yun}
+			</div>
+			<div class="answers_discuss" style="display:none" id="div_{yun:}$list.id{/yun}">
+				<div class="answers_discuss_cont" id="review_{yun:}$list.id{/yun}"></div>
+			</div>
+		</div> 
+		<div class="answers_left_list_right" onmouseover="get_user_info('my_answer_','{yun:}$list.id{/yun}','{yun:}$list.uid{/yun}');" onmouseout="hide_user_info('my_answer_','{yun:}$list.id{/yun}')"  id='my_answer_{yun:}$list.id{/yun}' style=" cursor:pointer"> 
+			<img src="{yun:}$list.pic{/yun}" width="55" height="55" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);">
+			 
+		</div>
+	</div>
+	{yun:}/foreach{/yun} 
+{yun:}/if{/yun}
+<div class="clear"></div><div class="clear"></div>
+<div class="pages">{yun:}$pagenav{/yun}</div>
+</div>
+<div class="answers_right">
+ {yun:}include file="$askstyle/right.htm"{/yun} 
+</div>
+</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$askstyle/footer.htm"{/yun}
+</body>
+</html>

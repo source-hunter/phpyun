@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBliC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<TITLE>个人用户管理平台 - {yun:}$config.sy_webname{/yun} - Powered by PHPYun.</TITLE>
+<meta http-equiv=Content-Type content="text/html; charset=GBK">
+<SCRIPT type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/setday.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/member_public.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/public.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js"></SCRIPT>
+<link href="{yun:}$userstyle{/yun}/images/m_css.css" type="text/css" rel="stylesheet">
+<link href="{yun:}$userstyle{/yun}/images/m_header.css" type="text/css" rel="stylesheet">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('.png,.#bg');
+</script>
+<![endif]-->
+<meta content="MSHTML 6.00.6000.16939" name="Generator">
+</head>
+<BODY>
+<script>
+var weburl="{yun:}$config.sy_weburl{/yun}";
+</script>
+<div class="header">
+   
+  <div class="w950">
+    <div class="logo mt10 fltL"> <a href="{yun:}$config.sy_weburl{/yun}" target="_blank" title='返回网站首页'><IMG alt="{yun:}$config.sy_webname{/yun}" src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_member_logo{/yun}" class="png"></a><a href="{yun:}$config.sy_weburl{/yun}" target="_blank" title='返回网站首页'class="member_logo_fh"></a> </div>
+    
+    <div class="top_right_re fltR">
+<div class="top_right">
+    <div class="yun_topNav fr"> <a class="yun_navMore png" href="javascript:void(0)">网站导航</a>
+        <div class="yun_webMoredown" style="display:none">
+          <div class="yun_top_nav_box"> {yun:}navmap key=key item=navmap{/yun}
+            <div class="yun_top_nav_h1"><a href="{yun:}$navmap.url{/yun}" {yun:}if $navmap.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$navmap.name{/yun}</a></div>
+            <ul>
+              {yun:}foreach from=$navmap.list item=maplist{/yun}
+              <li><a href="{yun:}$maplist.url{/yun}" {yun:}if $maplist.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$maplist.name{/yun}</a></li>
+              {yun:}/foreach{/yun}
+            </ul>
+            {yun:}/navmap{/yun} </div>
+        </div>
+      </div>
+        {yun:}if $cookie.remind_num>0{/yun}
+ <div class="header_Remind fr header_Remind_hover" style=" margin-top:13px;"> <em class="header_Remind_em "><i class="header_Remind_msg"></i></em>  
+      <div class="header_Remind_list" style="display:none;">
+     <div class="header_Remind_list_a"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=msg" class="fl">邀请面试</a> <span class="header_Remind_list_r fr">({yun:}$cookie.userid_msg{/yun})</span></div>
+     <div class="header_Remind_list_a"><a href="{yun:}$config.sy_weburl{/yun}/friend/index.php?c=applyfriend" class="fl">邀请好友</a> <span class="header_Remind_list_r fr">({yun:}$cookie.friend1{/yun})</span></div>
+      <div class="header_Remind_list_a"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=xin" class="fl">站内信</a> <span class="header_Remind_list_r fr">({yun:}$cookie.friend_message1{/yun})</span></div>
+      <div class="header_Remind_list_a"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=sysnews" class="fl">系统消息 </a><span class="header_Remind_list_r fr">({yun:}$cookie.sysmsg1{/yun})</span></div>
+     <div class="header_Remind_list_a"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=commsg" class="fl">企业回复咨询</a> <span class="header_Remind_list_r fr">({yun:}$cookie.usermsg{/yun})</span></div>
+      </div>
+      </div>
+       {yun:}/if{/yun}      <div class="header_seach_State fltR">  <span class="header_seach_State_name">你好！{yun:}$username{/yun}</span>| <a  href="javascript:void(0)" onClick="logout('index.php?act=logout')" class="header_seach_State_a">退出登录</a> </div>
+  </div>
+</div>
+  </div>
+</div>

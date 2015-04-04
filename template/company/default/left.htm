@@ -1,0 +1,34 @@
+     <div class="left_sidebar fl">
+    <div class="left_h1 fl  hbg">
+      <div class="left_h1_l fl hbg"></div>
+      <div class="left_h1_c fl hbg">企业详情</div>
+      <div class="left_h1_r fr hbg"></div>
+    </div>
+    <div class="left_comapply fl m5">
+      <div class="left_comapply_cont fl">
+        <ul>
+          <li><a href="{yun:}curl url=id:$id{/yun}" {yun:}if $smarty.get.tp==""{/yun}class="menus_a1"{yun:}/if{/yun} class="icon2">公司简介</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:post{/yun}" {yun:}if $smarty.get.tp==post{/yun}class="menus_a1"{yun:}/if{/yun} class="icon2">招聘职位</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:news{/yun}" {yun:}if $smarty.get.tp==news{/yun}class="menus_a1"{yun:}/if{/yun} class="icon2">新闻中心</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:product{/yun}" {yun:}if $smarty.get.tp==product{/yun}class="menus_a1"{yun:}/if{/yun} class="icon2" >产品展示</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:show{/yun}" {yun:}if $smarty.get.tp==show{/yun}class="menus_a1"{yun:}/if{/yun} class="icon2">环境展示</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:position{/yun}" {yun:}if $smarty.get.tp==position{/yun}class="menus_a1"{yun:}/if{/yun} class="icon2">地理位置</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:connection{/yun}" {yun:}if $smarty.get.tp==connection{/yun}class="menus_a1"{yun:}/if{/yun} class="icon2">联系我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="left_h1 fl  hbg m10">
+    <div class="left_h1_l fl hbg"></div>
+    <div class="left_h1_c fl hbg">招聘职位</div>
+    <div class="left_h1_r fr hbg"></div>
+    </div>
+    <div class="left_comapply fl m5">
+      <div class="left_comapply_cont fl">
+        <ul>
+          {yun:}joblist limit=5 uid=@id item=job{/yun}
+<li><a href="{yun:}$job.job_url{/yun}"  class="icon2">{yun:}$job.name{/yun}</a></li>
+{yun:}/joblist{/yun}
+        </ul>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,59 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="fm">
+  <form action="index.php" method="get">
+    <input type="hidden" name="m" value="firm" />
+    <div class="seach_post" style="padding-bottom:10px;">
+      <input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}"  class="seach_post_text placeholder" placeholder="请输入关键字/职位/地点搜索" />
+      <div class="selectOption_sex" style="width:100%;">
+      <select name="hy" class="seach_post_select" style="margin-top:2px;">
+        <option value="">选择行业</option> 
+		{yun:}foreach from=$industry_index item=v{/yun}
+		<option value="{yun:}$v{/yun}" {yun:}if $smarty.get.hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+		 {yun:}/foreach{/yun} 
+      </select>
+     </div>  
+
+   	<div class="job_search_box_button">
+		<button id="cityclassbutton" type="button" onclick="checkshowjob('city');">请选择工作地区</button>
+		<div class="job_search_box_city" style="display:none; float:left;width:100%;height:auto; z-index:100; position:absolute; background-color:#FFF;">
+        	<ul>
+            	{yun:}foreach from=$city_index item=v{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchcity 0" cityid="{yun:}$v{/yun}" parentid="0">{yun:}$city_name[$v]{/yun}</li>
+                {yun:}foreach from=$city_type[$v] item=v1{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchcity1 {yun:}$v{/yun}" cityid="{yun:}$v1{/yun}" parentid="{yun:}$v{/yun}">{yun:}$city_name[$v1]{/yun}</li>
+                {yun:}foreach from=$city_type[$v1] item=v2{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchcity2 {yun:}$v1{/yun}" cityid="{yun:}$v2{/yun}" parentid="{yun:}$v1{/yun}">{yun:}$city_name[$v2]{/yun}</li>
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun} 
+           	</ul>
+    	</div>
+        <input type="hidden" name="provinceid" id="provinceid" value="" />
+        <input type="hidden" name="cityid" id="cityid" value="" />
+        <input type="hidden" name="three_cityid" id="three_cityid" value="" />        
+        <input type="hidden" name="citylevel" id="citylevel" value="2" />
+	</div>
+
+    
+	<input type="submit" value="搜索"class="seach_post_sub" />
+	</div>  
+   
+  </form>
+</div>
+<section>
+  <div class="main"> {yun:}comlist ispage=1 firm=1 firmpic=1 ismsg=1 hy=auto.hy pr=auto.pr mun=auto.mun provinceid=auto.provinceid cityid=auto.cityid three_cityid=auto.three_cityid keyword=auto.keyword limit=20 islt=4 item=list{/yun} <a href="{yun:}wapurl url=m:firm,c:show,id:`$list.uid`{/yun}"class="index_post_list_b index_post_list_b_com">
+    <h3>{yun:}$list.name|mb_substr:0:12:'gbk'{/yun} </h3>
+    <i>{yun:}$list.job_city_one{/yun}-{yun:}$list.job_city_two{/yun}</i> </a> {yun:}/comlist{/yun} </div>
+</section>
+{yun:}if $total<=0{/yun}
+  {yun:}if $smarty.get.keyword!="" {/yun} 
+  <div class="wap_member_no">没有搜索到企业</div>
+  {yun:}else{/yun}
+  <div class="wap_member_no">暂无企业</div>
+  {yun:}/if{/yun}
+  {yun:}else{/yun}
+  <div class="pages"> {yun:}$pagenav{/yun}</div>
+  {yun:}/if{/yun}
+<div>
+{yun:}include file="$wapstyle/public.htm"{/yun}
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

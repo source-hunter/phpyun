@@ -1,0 +1,53 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li><a href="index.php?c=sysnews">系统消息</a></li>
+      <li class="cur"><a href="index.php?c=commsg">求职咨询</a> </li>
+      <li><a href="index.php?c=message">留言反馈</a></li>
+      <li><a href="index.php?c=seemessage">留言列表</a></li>
+      <li><a href="index.php?c=xin">站内信</a> </li>
+    </ul>
+  </div>
+    <div id="gms_showclew"></div>
+      <div id="" class="resume_box_list">
+         <div class="List_Ope List_Title ">
+           <span class="List_Title_span List_Title_w170">职位名称</span>
+           <span class="List_Title_span List_Title_w360">公司名称</span>			
+           <span class="List_Title_span List_Title_w110">咨询时间</span>	
+           <span class="List_Title_span List_Title_w100">操作</span>	
+         </div>
+         {yun:}foreach item=log from=$rows{/yun}
+          <div class="List_Ope List_Ope_Advisory ">
+       <span class="List_Title_span List_Title_w170">
+<a href="{yun:}url m=com url=c:comapply,id:`$log.jobid`{/yun}" class="List_Title_span_com">{yun:}$log.job_name{/yun}</a> 
+        </span>
+        <span class="List_Title_span List_Title_w360"><a href="{yun:}curl url=id:`$log.job_uid`{/yun}">{yun:}$log.com_name{/yun}</A></span>			
+       <span class="List_Title_span List_Title_w110">{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</span>	 	
+        <span class="List_Title_span List_Title_w100"><a href="javascript:void(0)"  onclick="layer_del('确定要删除？', 'index.php?c=commsg&act=del&id={yun:}$log.id{/yun}');" class="List_dete" >删除</a></span>	
+<div class="List_Title_content_Advisory"><i class="List_Title_content_Advisory_i"></i><span class="List_Title_content_Advisory_r">{yun:}if $log.reply!=""{/yun}<a href="javascript:;" class="" id="{yun:}$log.id{/yun}"> </a>{yun:}else{/yun}该企业还未回复{yun:}/if{/yun}</span><span class="List_Title_conten_tit">我的咨询内容：</span>{yun:}$log.content{/yun}</span>
+         {yun:}if $log.reply!=""{/yun}
+           <div class="List_Title_content List_Title_content_Advisory_bor"  id="msg{yun:}$log.id{/yun}">
+         <em class="List_Title_content_Advisory_r2"> <span class="List_Title_conten_tit">回复时间：</span>{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</em>
+          <span class="List_Title_conten_tit List_Title_conten_tit_cor">企业回复：</span><span class="List_Title_conten_b">{yun:}$log.reply{/yun}</span>
+         </div>
+         {yun:}/if{/yun}
+          
+        </div>
+         </div>
+           
+         {yun:}foreachelse{/yun}
+          
+         <div class="msg_no"> 您还没有咨询信息。</div>
+         
+          {yun:}/foreach{/yun}
+         
+      
+      </div>
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+    </div>
+
+  </div>
+{yun:}include file="$userstyle/footer.htm"{/yun} 

@@ -1,0 +1,84 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<link href="{yun:}$userstyle{/yun}/images/css/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/jquery.uploadify-3.1.min.js"></script> 
+<script>
+$(document).ready(function(e) {
+	$("#buttonbtn").live("click",function(){
+		layer.confirm("确定需要重新上传？",function(){ 
+			var names = document.getElementsByName("id[]");
+			var i=0;
+			var ids='';
+			for(i;i<names.length;i++){
+				if(ids==""){ids=names[i].value;}else{ids=ids+","+names[i].value;}
+			}
+			$.post("index.php?c=show&act=delshow",{ids:ids},function(msg){ 
+				window.location.href='index.php?c=show';window.event.returnValue = false;return false;
+			}); 
+		});
+	})
+});
+</script> 
+<script type="text/javascript">
+
+var img_id_upload=new Array();//初始化数组，存储已经上传的图片名
+var i=0;//初始化数组下标
+var eid="{yun:}$smarty.get.eid{/yun}"
+$(function() {
+	$('#file_upload').uploadify({
+		'auto':false,//关闭自动上传
+		'removeTimeout':0,//文件队列上传完成1秒后删除
+		'swf':'{yun:}$config.sy_weburl{/yun}/js/uploadify.swf',
+		'uploader':'{yun:}$config.sy_weburl{/yun}/index.php?m=user&c=saveshow&eid='+eid,//暂时放在前台com.class.php文件中
+		'method':'post',//方法，服务端可以用$_POST数组获取数据
+		'buttonText':'选择图片',//设置按钮文本
+		'multi': true,//允许同时上传多张图片
+		'uploadLimit': 10,//一次最多只允许上传10张图片
+		'fileTypeDesc':'Image Files',//只允许上传图像
+		'fileTypeExts':'*.gif; *.jpg; *.png',//限制允许上传的图片后缀
+		'fileSizeLimit':'20000KB',//限制上传的图片不得超过200KB 
+		'onUploadSuccess':function(file,data,response){//每次成功上传后执行的回调函数，从服务端返回数据到前端 
+			if(data!='2'){
+				var type=data.split("||");
+				var html="<li style=\"clear:both;\"><div class=\"edit_photo_box\"><div class=\"edit_photo_pic\"><a href=\"javascript:void(0)\"><img id=\""+type[2]+"\" class=\"photo-slt\" width=\"120\" height=\"90\" alt=\""+type[0]+"\" src=\"."+type[1]+"\" imgangle=\"0\"></a></div></div><div class=\"edit_photo_value\"><p><label for=\"photo-title\"> 标题：</label><input id=\"title_"+type[2]+"\" class=\"form-input\" type=\"text\" value=\""+type[0]+"\" name=\"title_"+type[2]+"\" maxlength=\"50\"><span id=\"span_title_title_"+type[2]+"\" style=\"display: none;\"></span></p><input name='id[]' type='hidden' value='"+type[2]+"'/></div></li>";
+				$("#albums_pic_list").append(html);
+			} 
+		},
+		'onQueueComplete' : function(queueData) {//上传队列全部完成后执行的回调函数   
+			$(".admin_note").hide();
+			$("#albums_pic_list").wrap("<form action='index.php?c=show&act=saveshow' target=\"supportiframe\" method='post' id=\"myform\"></form>");		
+			$("#myform").append("<div class=\"sub_btn\" style='text-align:center;width:100%;'><input type='hidden' name='eid' value='"+eid+"'><input class=\"btn_01\" type=\"submit\" value=\"保存文件\" name=\"submitbtn\">&nbsp;&nbsp;<input class=\"btn_01\" type=\"button\" value=\"重新上传\" id=\"buttonbtn\"></div>");
+			$("#myform").before("<iframe id=\"supportiframe\" name=\"supportiframe\" onload=\"returnmessage('supportiframe');\" style=\"display:none\"></iframe>"); 
+		}   
+	});
+});
+</script>
+<div class="w950"> {yun:}include file="$userstyle/left.htm"{/yun}
+  <div class="mian_right fltR mt12 re">
+    <div class="tabmenubox01 mt9">
+      <ul>
+        <li class="cur"> <a href="index.php?c=resume">我的简历</a></li>
+        <li> <a href="index.php?c=look">简历被浏览</a></li>
+        <li> <a href="index.php?c=privacy">隐私设置</a></li>
+        <li> <a href="index.php?c=subscribe">订阅设置</a></li>
+      </ul>
+    </div>
+   
+    <div class='right_box'>
+      <div class='admincont_box'>
+        <div class="admin_note">
+          <div class="index_photo_new fltL mt10">
+            <input type="file" name="file_upload" id="file_upload" />
+            <div class="file_button"> <a href="javascript:void(0)" onclick="$('#file_upload').uploadify('settings', 'formData',{'typeCode':'1215154',uid:{yun:}$uid{/yun}});$('#file_upload').uploadify('upload','*')" class="show-pic_sc">立即上传</a> <a href="javascript:$('#file_upload').uploadify('cancel','*')">重置上传队列</a> </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div  class='photos-every-edit'>
+          <ul id='albums_pic_list'>
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel="stylesheet" href="images/codecss/codemirror.css">
+<link rel="stylesheet" href="images/codecss/paraiso-dark.css">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script src="js/codejs/codemirror.js"></script>
+<script src="js/codejs/javascript.js"></script>
+<script src="js/codejs/active-line.js"></script>
+<script src="js/codejs/matchbrackets.js"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>修改模板</h6>
+  </div>
+ 
+
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" action="index.php?m=admin_template&c=savetp"  target="supportiframe" id="formstatus" method="post">
+	<div class="table-list">
+    <div class="admin_table_border" style="width:100%; overflow:hidden">
+    <table class="table_form table_form_bg" style="border:none;width:100%">
+		<tr >
+			
+			<td><span style=" display:inline-block">文件名：</span>{yun:}$tp_info.name{/yun}<input readonly type="hidden" class="input-text" name="name" value="{yun:}$tp_info.name{/yun}"><span style="width:120px; margin-left:50px; display:inline-block; text-align:right;">所在路径：</span>{yun:}$tp_info.path{/yun}<input type="hidden" value="{yun:}$tp_info.path{/yun}" name="tp_path"></td>
+           </tr>
+ 
+        <tr>
+		
+			<td>
+ 			<textarea  id="code" name="code" cols="200" rows="38">{yun:}$tp_info.content{/yun}</textarea></td>
+		</tr>
+		<tr>
+			<td >
+            <div style="width:500px; text-align:right">
+            <input class="admin_submit4" type="submit" name="submit" value="&nbsp;提  交&nbsp;"  />
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+            <input type="hidden" name="safekey" value="{yun:}$tp_info.safekey{/yun}" >
+            <input  type="hidden" name="dir" value="{yun:}$tp_info.dir{/yun}"  />
+        	</div>
+			</td>
+		</tr>
+	</table> 
+	<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+    </div> </div>
+</form>
+
+</div>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"),{lineNumbers: true,styleActiveLine: true,matchBrackets: true});
+   editor.setOption("theme", "paraiso-dark");
+</script>
+</body>
+</html>

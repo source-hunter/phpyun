@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+<script src="{yun:}$style{/yun}/js/reg_ajax.js" type="text/javascript"></script>  
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<!--content  start-->
+<div class="yun_content">
+  <div class="yun_mc">
+    <div class="yun_mc_cont">
+      <div class="model-prompt">
+        <div class="yun-img"> <img width="100px;" height="100px;" src="{yun:}$smarty.session.sina.pic{/yun}"> </div>
+        <div class="yun_model-text">
+          <p> 来自新浪微博的 <b>{yun:}$smarty.session.sina.nickname{/yun}</b> ，你好。 </p>
+          <p>最后一步 ，就可以直接登录{yun:}$config.sy_webname{/yun}啦！</p>
+         
+        </div>
+      </div>
+      <div class="yun-item">
+        <div class="item_list"> <span class="yun_chose_bel"> 选择会员类型： </span> </div>
+        <div class="item_list_sub">
+          <input type="submit" value=" " class="yun_sub_11" onclick="window.location.href='{yun:}$config.sy_weburl{/yun}/index.php?m=sinaconnect&c=sinabind&usertype=1'">
+          <input type="submit" value=" " class="yun_sub_12" onclick="window.location.href='{yun:}$config.sy_weburl{/yun}/index.php?m=sinaconnect&c=sinabind&usertype=2'">
+             <input type="submit" value=" " class="yun_sub_13" onclick="window.location.href='{yun:}url m=login url=usertype:2{/yun}'">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--content  end--> 
+{yun:}include file="$tplstyle/footer.htm"{/yun}

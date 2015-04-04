@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]-->
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link href="{yun:}$style{/yun}/style/top.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+<div class="current_Location icon">
+您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > 排行榜
+</div>
+<div class="clear"></div>
+<div class="post_Top_box fr">
+<div class="post_Top_box_title Top_box_line2"><strong>竞价职位</strong></div>
+<ul class="post_Top_box_list">
+{yun:}joblist limit=10 order=xuanshang  bid=1  namelen=8  state=1 item=job_jia key=key{/yun}
+<li><span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+<a href="{yun:}$job_jia.job_url{/yun}" target="_blank" style="width:110px;">{yun:}$job_jia.name{/yun}</a>
+<u class="fl">{yun:}$job_jia.job_city_one{/yun}</u>
+<em>{yun:}$job_jia.xuanshang{/yun}{yun:}$config.integral_pricename{/yun}</em></li>
+{yun:}/joblist{/yun}
+</ul>
+</div>
+
+<div class="post_Top_box fr" style="margin-right:0px;">
+<div class="post_Top_box_title Top_box_line"><strong>最新公司</strong></div>
+<ul class="post_Top_box_list">
+{yun:}comlist limit=10 order=lastupdate   item=com_list key=key{/yun}
+<li><span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+<a href="{yun:}$com_list.com_url{/yun}" target="_blank">{yun:}$com_list.name|mb_substr:0:15:'gbk'{/yun}</a>
+<em>{yun:}$com_list.lastupdate|date_format:"%Y-%m-%d"{/yun}</em></li>
+{yun:}/comlist{/yun}
+</ul>
+</div>
+<div class="post_Top_box">
+<div class="post_Top_box_title Top_box_line"><strong>最新职位</strong></div>
+<ul class="post_Top_box_list">
+{yun:}joblist order=lastupdate namelen=8 state=1  key=key limit=10 item=job_list{/yun}
+<li><span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+<a style="width:115px;" target="_blank" href="{yun:}$job_list.job_url{/yun}">{yun:}$job_list.name_n{/yun}</a>
+<u class="fl">{yun:}$job_list.job_city_one{/yun}-{yun:}$job_list.job_city_two{/yun}</u>
+<em>{yun:}$job_list.lastupdate|date_format:"%Y-%m-%d"{/yun}</em></li>
+{yun:}/joblist{/yun}
+</ul>
+</div>
+<div class="post_Top_box">
+<div class="post_Top_box_title Top_box_line2"><strong>最新人才</strong></div>
+<ul class="post_Top_box_list">
+{yun:}userlist limit=10 order=lastupdate  t_len=20 item=user_list key=key{/yun}
+<li>
+<span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+<a href="{yun:}url m=resume url=id:`$user_list.id`{/yun}" target="_blank" style="width:100px;">{yun:}$user_list.username{/yun}</a>
+<u class="fl">{yun:}$user_list.job_post|mb_substr:0:8:'gbk'{/yun}</u>
+<em>{yun:}$user_list.lastupdate|date_format:"%Y-%m-%d"{/yun}</em></li>
+{yun:}/userlist{/yun}
+</ul>
+</div>
+<div class="post_Top_box"  style="margin-right:0px;">
+<div class="post_Top_box_title Top_box_line3"><strong>热门关键字</strong></div>
+<ul class="post_Top_box_list">
+{yun:}key order=num item=keylist limit=10 key=key  len=8{/yun}
+<li>
+<span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+<a href="{yun:}$keylist.url{/yun}" target="_blank" style="width:110px;">{yun:}$keylist.key_name{/yun}</a>
+<u class="fl">{yun:}$keylist.type_name{/yun} </u>
+<em>{yun:}$keylist.num{/yun}</em></li>
+{yun:}/key{/yun}
+</ul>
+</div>
+<div class="post_Top_box" >
+<div class="post_Top_box_title Top_box_line3"><strong>热门资讯</strong></div>
+    <ul class="post_Top_box_list">
+	{yun:}article t_len=20 order=hits item=a_list urlstatic=1 limit=10 key=key{/yun}
+		{yun:}if $a_list.id{/yun}
+		<li>
+			<span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+			<a href="{yun:}$a_list.url{/yun}" target="_blank">{yun:}$a_list.title{/yun}</a>
+			<em>{yun:}$a_list.hits{/yun}</em>
+		</li>
+		{yun:}/if{/yun}
+	{yun:}/article{/yun}
+    </ul>
+</div>
+<div class="post_Top_box">
+<div class="post_Top_box_title Top_box_line"><strong>热门会员</strong></div>
+<ul class="post_Top_box_list">
+{yun:}userlist limit=10 order=ant_num item=user_hot key=key top=1{/yun}
+<li><span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+<a href="{yun:}$user_hot.user_url{/yun}" target="_blank" style="width:140px;">{yun:}$user_hot.m_name{/yun}</a>
+<u class="fl">{yun:}$user_hot.job_city_one{/yun}-{yun:}$user_hot.job_city_two{/yun}</u>
+<em>{yun:}$user_hot.ant_num{/yun}</em></li>
+{yun:}/userlist{/yun}
+</ul>
+</div>
+<div class="post_Top_box" style="margin-right:0px;">
+<div class="post_Top_box_title Top_box_line2"><strong>最新会员</strong></div>
+<ul class="post_Top_box_list">
+{yun:}mlist limit=10 order=reg_date item=member_list key=key{/yun}
+<li><span {yun:}if $key+1<='3'{/yun}class="Top_box_span"{yun:}/if{/yun}>{yun:}$key+1{/yun}</span>
+<a href="{yun:}$member_list.url{/yun}" target="_blank"  style="width:110px">{yun:}$member_list.username{/yun}</a>
+<em>{yun:}$member_list.reg_date|date_format:"%Y-%m-%d"{/yun}</em></li>
+{yun:}/mlist{/yun}
+</ul>
+</div>
+<div class="clear"></div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

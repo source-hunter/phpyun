@@ -1,0 +1,37 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+   {yun:}include file="$userstyle/ul_nav.htm"{/yun}
+    <div id="gms_showclew"></div>
+      <div  class="resume_box_list">
+      
+		<div class="resume_Prompt">您已收藏 <span style="color:red;">{yun:}$fnum{/yun}</span> 条职位,如果没有申请，请赶快申请吧，不要错位工作的机会！</div>
+            <div class="List_Ope List_Title mt12">
+       <span class="List_Title_span List_Title_w260">收藏的职位</span>	 	
+       <span class="List_Title_span List_Title_w110">薪资待遇</span>	
+        <span class="List_Title_span List_Title_w120">工作地点</span>	
+       <span class="List_Title_span List_Title_w120">收藏时间</span>	 	
+       <span class="List_Title_span List_Title_w80">操作</span>	
+      </div>
+        {yun:}if empty($rows){/yun}
+               <div class="msg_no">你还没有收藏职位哦！<a href="{yun:}url m=com {/yun}" class="msg_no_sq">马上去找工作</a></div>
+          {yun:}else{/yun}
+          {yun:}foreach item=job from=$rows{/yun}
+                <div class="List_Ope List_Ope_bor">
+       <span class="List_Title_span List_Title_w260"><a href="{yun:}url m=com url=c:comapply,id:`$job.job_id`{/yun}" target="_blank" title="{yun:}$job.job_name{/yun}"  class="List_Title_span_com">{yun:}$job.job_name{/yun}</a> 
+       <div><a href="{yun:}curl url=id:`$job.com_id`{/yun}" target="_blank" title="{yun:}$job.com_name{/yun}">{yun:}$job.com_name{/yun}</a> </div>
+       </span>	 	
+       
+       <span class="List_Title_span List_Title_w110"> &nbsp;{yun:}$comclass_name[$job.salary]{/yun}</span>	
+        <span class="List_Title_span List_Title_w120">&nbsp;{yun:}$city_name[$job.provinceid]{/yun}-{yun:}$city_name[$job.cityid]{/yun}</span>	
+       <span class="List_Title_span List_Title_w120">&nbsp;{yun:}$job.datetime|date_format:'%Y-%m-%d'{/yun}</span></span>	 	
+       <span class="List_Title_span List_Title_w80"><a href="javascript:void(0)"   onclick="layer_del('确定要删除？', 'index.php?c=favorite&act=del&id={yun:}$job.id{/yun}');" class="re_sc">删除</a></span>	
+      </div>
+          {yun:}/foreach{/yun}
+          {yun:}/if{/yun}
+      </div>
+      <div class="diggg" style="float:right; margin-top:10px;">{yun:}$pagenav{/yun}</div>
+    </div>
+  </div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

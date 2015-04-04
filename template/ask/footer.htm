@@ -1,0 +1,34 @@
+{yun:}include file="$tplstyle/footer.htm"{/yun}
+<div id="TB_window" style=" display: none;" class="ask_report"> 
+	<div id="TB_ajaxContent" class="ask_report_cont">
+		<div class="ask_report_top">
+			<select name="reason" id='reason'>
+				{yun:}foreach from=$reason item=reason{/yun}
+				<option value='{yun:}$reason.id{/yun}'>{yun:}$reason.name{/yun}</option>
+				{yun:}/foreach{/yun}
+			</select>
+		</div>
+        <div class="clear"></div>
+		<div class="ask_report_top_sub">
+			<input type='button' value="提交" onclick="reason()" class="ask_report_top_bth"/> 
+			<input type='hidden' value="" id='eid' name='eid'>
+			<input type='hidden' value="" id='type' name='type'>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+function get_show(eid,type){//eid=举报的问答id/回答id/评论id,type 类型 1问题/2回答/3评论 
+	$("#eid").val(eid);
+	$("#type").val(type); 
+	$.layer({
+		type : 1,
+		title :'举报问答',
+		offset: [($(window).height() - 220)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['350px','170px'],
+		page : {dom :"#TB_window"}
+	}); 
+} 
+</script> 
+<div id="uclogin" style="display:none"></div>

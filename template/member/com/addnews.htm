@@ -1,0 +1,61 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun} 
+    <script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script> 
+    <script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script> 
+    <script language="javascript">
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('textarea[name="body"]', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : false,
+items : [
+'bold', 'italic', 'underline',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist']
+});
+});
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">添加新闻</span></div>
+        <div class=admin_textbox_02>
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form name="MyForm" target="supportiframe" method="post" action="{yun:}$now_url{/yun}&act=save" onsubmit="return CheckPost();">
+          <input name="action" type="hidden" value="save">
+          <ul>
+            <li>
+              <div class=tit><font color="#FF0000">*</font> 新闻标题：</div>
+              <div class=textbox>
+                <INPUT type="text" size="45" name="title" value="{yun:}$editrow.title{/yun}"class="com_info_text" style="width:280px;">
+                <span id="by_name"  class="errordisplay">新闻标题不能为空！</span></div>
+            </li>
+            <li>
+              <div class=tit><font color="#FF0000">*</font> 新闻描述：</div>
+              <div class=textbox>
+                <textarea name="body" id="description" style="height:200px; width:450px;" >{yun:}$editrow.body{/yun}</textarea>
+                <span id="by_description" class="errordisplay">新闻描述不能为空!</span></div>
+            </li>
+          </ul>
+          </div>
+          <div class=admin_submit>
+          <div class=condition>&nbsp;</div>
+          <div class=sub_btn><span>
+            <input name="id" value="{yun:}$smarty.get.id{/yun}" type="hidden"/>
+            <input class="btn_01" type="submit" name="submitBtn" value=" 提 交 操 作 ">
+            </span></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script language=javascript>
+function CheckPost(){
+var html = editor.text();
+var ifcheck=check_form(MyForm.title.value=="",'by_name')&check_form(html=="",'by_description');
+if(ifcheck==0) return false;
+}
+</script> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

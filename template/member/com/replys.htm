@@ -1,0 +1,32 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun} 
+<script>
+function Showsub(){
+	if($("#content").val()==""){layer.msg('ÇëÌîĞ´ÁôÑÔÄÚÈİ£¡', 2, 2);return false;}			
+}
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">ÁôÑÔ»Ø¸´</span><span class=remind></span></div>
+        <div class=admin_note2>
+          <table width="100%" border="0" cellspacing="1" cellpadding="0" class="my_table_msg" >
+            <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+            <FORM name=MyForm onsubmit="return Showsub();" target="supportiframe" action='index.php?c=replys&act=save' method="post" >
+              <input type="hidden" name="keyid" value="{yun:}$id{/yun}" />
+              <tr>
+                <th height="30">ÄÚÈİ:</th>
+                <td style="text-align:left"><textarea id="content" name="content" cols="60" rows="6" class="meg_textarea"></textarea></td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+                <td height="60" style="text-align:left"><input type="submit" name="replys_message" class="btn_01" value="»Ø¸´" ></td>
+              </tr>
+            </form>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

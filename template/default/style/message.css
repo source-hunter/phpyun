@@ -1,0 +1,16 @@
+@charset "gb2312";
+/* CSS Document */
+* {margin: 0;padding: 0;}
+.prompt_message{width:980px; margin:0px auto}
+.prompt_message_cont{width:978px;border:1px solid #eae5e5; background:#fff; padding-top:60px; float:left; margin-top:45px;}
+.prompt_message_cont_c{width:770px; padding-left:200px; float:left; padding-bottom:40px;}
+.prompt_message_img{width:140px; float:left}
+.prompt_message_right{width:630px; float:left}
+.prompt_message_right_h1{ font-size:30px;color:#3b8ee3;font-family:microsoft yahei,宋体;}
+.prompt_message_right_p{ font-size:14px;color:#7b7c7e; line-height:33px; margin-top:5px;}
+.prompt_message_right_s{color:#db5201; font-size:18px;font-family:microsoft yahei,宋体;}
+.prompt_message_touch{width:100%;border-top:1px solid #f2efef;background:#f7f7f7; float:left; padding-top:30px; padding-bottom:30px;font-size:18px;font-family:microsoft yahei,宋体; text-align:center;color:#5b5b5b}
+.prompt_message_touch_tel{ font-size:24px;color:#db5201}
+.prompt_message_bottom{width:100%;height:80px; float:left}
+.prompt_message_right_member{ display:block;width:230px;height:50px;font-family:microsoft yahei,宋体;font-size:20px;color:#fff; line-height:50px; text-align:center; background:#db5201; margin-top:10px;}
+.prompt_message_right_member:hover{ background:#F60;color:#fff; text-decoration:none}

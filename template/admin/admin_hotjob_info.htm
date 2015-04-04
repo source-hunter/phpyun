@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script src="js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('#bg');
+</script>
+<![endif]-->
+
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>  
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+
+<script src="js/admin_public.js" language="javascript"></script> 
+<script src="js/show_pub.js"></script> 
+<script>  
+function check_form(){
+	var hot_pic=$("#hot_pic").val();//默认logo
+	var pic=$("input[name=hot_pic]").val();
+	var start = $("#time_start").val();	
+	var end = $("#time_end").val();
+	if(start==""||end=="")
+	{ 
+		parent.layer.msg('开始时间，结束时间不能为空！', 2, 2);
+		return false
+	}else{
+		var st=toDate(start);
+		var ed=toDate(end);
+		if(st>ed){ 	
+			parent.layer.msg('开始时间不得大于结束时间！', 2, 2);
+			return false
+		}
+	}
+	if(hot_pic=="" && pic==""){
+		parent.layer.msg('企业展示LOGO不能为空！', 2, 2);
+		return false
+	}
+}
+</script>
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+.table_form tr{height:40px;}
+</style>
+<title>后台管理</title>
+</head>
+<body> 
+	<div id="houtai_div"  style="width:468px;height:450px; overflow:auto; overflow-x:hidden"> 
+		<div class="common-form">
+			<form name="myform" action="index.php?m=admin_company&c=save" method="post" id="myform" enctype="multipart/form-data" onSubmit="return check_form();" target="supportiframe"> 
+		   <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+			<table width="100%" class="table_form contentWrap"> 
+				<tr>
+					<td align="right"><div  style="width:59px;">企业名称:</div></td>
+					<td id="comname" align="left">
+					{yun:}$hotjob.username{/yun}<input name="username" type="hidden" value="{yun:}$hotjob.username{/yun}">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">会员级别:</td>
+					<td id="ratname" align="left">
+						{yun:}$hotjob.rating{/yun}<input name="rating" type="hidden" value="{yun:}$hotjob.rating{/yun}">
+					</td>
+				</tr>
+				  <tr>
+					<td align="right">企业展示LOGO:</td>
+					<td id="logo" align="left">
+                    <input type="hidden" name="defpic" id="hot_pic" value="{yun:}$hotjob.hot_pic{/yun}">
+					<input type="file" name="hot_pic">
+                     <div>{yun:}if $hotjob.hot_pic{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$hotjob.hot_pic{/yun}">{yun:}/if{/yun}</div>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">服务价格:</td>
+					<td align="left">
+					<input type="text" name="service_price" id="service_price" class="input-text" size="5" value="{yun:}$hotjob.service_price{/yun}" onKeyUp="this.value=this.value.replace(/[^0-9.]/g,'')">元
+					</td>
+				</tr>
+				  <tr>
+					<td align="right">开始时间:</td>
+					<td align="left">
+			<link href="{yun:}$config.sy_weburl{/yun}/js/time/jscal2.css" type="text/css" rel="stylesheet">
+			<script src="{yun:}$config.sy_weburl{/yun}/js/time/calendar.js" type="text/javascript"></script>
+			<script src="{yun:}$config.sy_weburl{/yun}/js/time/en.js" type="text/javascript"></script>
+			<input id="time_start" class="input-text" type="text" readonly size="20" value="{yun:}$hotjob.time_start|date_format:'%Y-%m-%d'{/yun}" name="time_start">
+			<script type="text/javascript">
+			Calendar.setup({
+			weekNumbers: true,
+			inputField : "time_start",
+			trigger : "time_start",
+			dateFormat: "%Y-%m-%d",
+			showTime: false,
+			onSelect : function() {this.hide();}
+			});
+			</script>
+					</td>
+				</tr>
+				  <tr>
+					<td align="right">结束时间:</td>
+					<td align="left">
+			   <input id="time_end" class="input-text" type="text" readonly size="20" value="{yun:}$hotjob.time_end|date_format:'%Y-%m-%d'{/yun}" name="time_end">
+			<script type="text/javascript">
+			Calendar.setup({
+			weekNumbers: true,
+			inputField : "time_end",
+			trigger : "time_end",
+			dateFormat: "%Y-%m-%d",
+			showTime: false,
+			onSelect : function() {this.hide();}
+			});
+			</script>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">备注:</td>
+					<td id="beizhu" align="left">
+				   <textarea name="beizhu" rows="3" cols="50" class="text">{yun:}$hotjob.beizhu{/yun}</textarea>
+					</td>
+				</tr>
+				  <tr>
+					<td align="right">排序:</td>
+					<td align="left">
+						<input class="input-text" id="sort" value="{yun:}$hotjob.sort{/yun}" name="sort" size="5"> 小前大后
+					</td>
+				</tr>
+			<tr>
+			<td colspan="2" align="center">
+				<input name="uid" id="com_uid" type="hidden" value="{yun:}$hotjob.uid{/yun}">
+				{yun:}if $hotjob.id{/yun}
+					 <input id="hotjob_id"  name="id" type="hidden" value="{yun:}$hotjob.id{/yun}">
+					<input class="admin_submit4" name="hotup" type="submit" value="修改" id="dosubmit">  
+				{yun:}else{/yun}
+				  <input class="admin_submit4" name="hotad" type="submit" value="提交" id="dosubmit">
+				{yun:}/if{/yun}
+			</td>
+			 </table>
+			 </form>
+		</div> 
+	</div>  
+</body>
+</html>

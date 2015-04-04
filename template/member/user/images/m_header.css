@@ -1,0 +1,67 @@
+@charset "gb2312";
+*{ margin:0; padding:0}
+body{ font-size:12px; background:url(../images/bg.jpg) repeat; font-family:microsoft yahei,宋体;  overflow-x:hidden;width:100%;height:100%; position:relative}
+a{ text-decoration:none;color:#666}
+a:hover{ text-decoration:underline;color:#f60}
+ul,li,ol{ list-style:none;}
+img{border:none;}
+em,i{ font-style:normal}
+.fltL{float:left;}
+.fltR{float:right;}
+.clear{ clear:both}
+.mt10{ margin-top:10px;}
+.mt5{ margin-top:5px;}
+.mt20{ margin-top:20px;}
+.mt12{ margin-top:12px;}
+.w950{width:1000px; margin:0 auto}
+input,textarea{font-family:microsoft yahei,宋体;}
+.re{ position:relative}
+/*头部*/
+.header{width:100%;height:63px;background:#076dd3}
+.logo{ width:300px; position:relative}
+.member_logo_fh{width:73px;height:72px; background:url(../images/fh.png) no-repeat; display:block; position:absolute;right:-40px;top:0px;} 
+.logo img{ width:300px; height:45px; float:left;} 
+.header_seach{width:250px; margin-top:15px;}
+.header_seach .he_input{width:174px;height:29px; line-height:29px; border:none;text-indent:10px; font-size:14px; float:left; overflow:hidden; background:url(../images/yon_text.jpg) no-repeat;color:#9ab8e5; font-size:13px;}
+.he_submit{width:36px;height:35px; background:url(../images/bth1.jpg) no-repeat;border:none; float:left; cursor:pointer}
+.header_seach_State{color:#fff; margin-top:15px; font-size:14px;}
+.header_seach_State_news{ display:inline-block; background:url(../images/skin_dark_s.png) no-repeat left center; padding-left:20px; margin-right:5px;}
+.header_seach_State .header_seach_State_a{color:#fff; margin-left:5px;}
+.header_seach_State_name{ display:inline-block; margin-right:5px;margin-left:5px;}
+/*左侧*/
+.left_sidebar{width:183px; float:left; background:#fff;border:1px solid #ddd; margin-top:12px;}
+.left_sidebar_h2{width:100%;height:40px; line-height:40px; background:#f7f7f7}
+.left_sidebar_h2_span{ font-size:15px; font-weight:bold; line-height:40px; padding-left:30px;color:#4b6b9e; background:url(../images/icon.png) no-repeat 8px center}
+.left_sidebar_h2 a{color:#4b6b9e;}
+.left_sidebar_h1{width:100%;height:32px; background:#fafafa;border:1px solid #ddd; float:left;border-left:none;border-right:none;}
+.left_sidebar_h1_span{ font-size:14px; font-weight:bold; line-height:32px; padding-left:30px;color:#666; background:url(../images/icon6.png) no-repeat 8px center}
+.left_sidebar_h1_span_icon2{ background:url(../images/icon2.png) no-repeat 8px center}
+.left_sidebar_h1_span_icon3{ background:url(../images/icon3.png) no-repeat 8px center}
+.left_sidebar_h1_span_icon4{ background:url(../images/icon4.png) no-repeat 8px center}
+.left_sidebar_h1_span_icon5{ background:url(../images/icon5.png) no-repeat 8px center}
+.left_sidebar_nav { width:163px;padding-left:20px; padding-top:5px; padding-bottom:10px; float:left}
+.left_sidebar_nav li{width:78px; float:left;height:30px; line-height:30px; font-size:14px;}
+
+/*右侧*/
+.index_mian_right{width:805px; float:right;}
+.mian_right{width:805px; float:right;min-height:725px;_height:725px; background:#fff; padding-bottom:10px; }
+.foot{ background: #3281CB;border-top: 4px solid #0B67A7; color: #FFFFFF;height: 50px;line-height: 50px;margin-top: 20px;text-align: center;width: 100%;}
+.foot a {color: #FFFFFF;}
+.diggg{width:100%; font-weight:normal; text-align:right; padding-top:10px; padding-bottom:10px; float:left}
+.diggg a{ display:inline-block;border:1px solid #ccc; padding:5px 10px; margin-right:10px;color:#666}
+.diggg  .selected{ background:#3281CB;color:#fff; }
+.diggg em{ display:inline-block;border:1px solid #ccc; padding:5px 10px; margin-right:10px;color:#666}
+#bg{background:#000;filter:Alpha(opacity=45);opacity:0.4; bottom: 0;display: none;left: 0;position:fixed;_position:absolute;right: 0;top: 0;width: 100%;height: 100%;z-index: 1001;}
+
+.header_Remind{ display:inline;width:40px;height:30px;  position:relative; float:right}
+.header_Remind_list_a{width:113px;float:left; line-height:22px; padding-left:5px;}
+.header_Remind b{color:#F00}
+.header_Remind_list{width:122px;border:1px solid #ccc; background:#fff; position:absolute;left:0px;top:29px; padding-right:6px; padding-bottom:5px;; z-index:500; padding-top:5px; font-size:12px;}
+.header_Remind_hover{ position:relative;  z-index:9999999;}
+.header_Remind_hover .header_Remind_list_a{  float:left;line-height:23px;color:#666;}
+.header_Remind_hover .header_Remind_list_a a{ display:inline-block;float:left}
+.header_Remind_em{ display:inline-block;background: url(../images/yun_t_menu1.png) no-repeat 33px 10px;display: block;float: left;height: 30px;padding-left: 10px;position: relative;text-align: left;width: 40px;z-index:600;cursor:pointer;}
+.header_Remind_em_hover{width:38px;border-left:1px solid #ccc;border-right:1px solid #ccc;background:#fff url(../images/yun_t_menu2.png) no-repeat 33px 10px;color:#666}
+.header_Remind_msg{ display:inline-block;width:17px;height:13px; background:url(../images/xf.gif) no-repeat; margin-top:5px;}
+.header_Remind_em_hover .header_Remind_msg{ background:url(../images/xf_h.gif) no-repeat;}
+.header_Remind_list_r{color:#f60; font-size:14px;}

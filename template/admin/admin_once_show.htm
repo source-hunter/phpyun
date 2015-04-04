@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top"><h6>招聘详情</h6></div>
+<div class="main_tag" >
+<div class="tag_box"> 
+	<table width="100%" class="table_form" style="background:#fff; font-size:14px;">
+		<tr class="admin_table_trbg">
+			<th width="120">(店面)名称：</th>
+			<td>{yun:}$show.companyname{/yun}</td></tr>
+		<tr >
+			<th>职位名称：</th>
+			<td>{yun:}$show.title{/yun}</td>
+		</tr>
+		<tr  class="admin_table_trbg">
+			<th>人　　数：</th>
+			<td>{yun:}$show.mans{/yun}
+			</td>
+		</tr>
+		<tr >        
+            <th>要　　求：</th>
+            <td>{yun:}$show.require{/yun}
+            </td>
+		</tr>
+        <tr class="admin_table_trbg">        
+            <th>qq：</th>
+            <td>{yun:}$show.qq{/yun}
+            </td>
+		</tr>
+        <tr >        
+            <th>email：</th>
+            <td>{yun:}$show.email{/yun}
+            </td>
+		</tr>
+        <tr class="admin_table_trbg">        
+            <th>有效时间：</th>
+            <td>{yun:}$show.edate|date_format:"%Y-%m-%d"{/yun}
+            </td>
+		</tr>
+		<tr>
+			<th>企业名称：</th>
+			<td>{yun:}$show.companyname{/yun}
+			</td>
+		</tr>
+    	<tr class="admin_table_trbg">
+			<th>电　　话：</th>
+			<td>{yun:}$show.phone{/yun}
+			</td>
+		</tr>
+        <tr>
+			<th>联 系 人：</th>
+			<td>{yun:}$show.linkman{/yun}         
+			</td>
+		</tr>
+        <tr class="admin_table_trbg">
+			<th>地　　址：</th>
+			<td>{yun:}$show.address{/yun}
+			</td>
+		</tr>        
+		<tr>
+			<th width="120">时　　间：</th>
+			<td>{yun:}$show.ctime|date_format:"%Y-%m-%d"{/yun}</td>
+        </tr>		
+            <tr class="admin_table_trbg">
+            <th width="120">状　　态：</th>
+            <td>{yun:}if $show.status=="1"{/yun}<font color="blue">已审核</font>{yun:}else{/yun}<font color="red">未审核</font>{yun:}/if{/yun}</td>
+        </tr>
+	</table>
+</div></div></div>
+</body>
+</html>

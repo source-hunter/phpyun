@@ -1,0 +1,220 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<script>
+function Close(id){
+	$("#"+id).hide();
+	$("#bg").hide();
+}
+function Next(){
+	$("#one_tip").hide();
+	$("#two_tip").show();
+}
+function break_job(num){
+	if(num=='0'){ 
+		layer.confirm('每个正常职位将扣除{yun:}$config.integral_jobefresh{/yun}{yun:}$config.integral_pricename{/yun}，确定要刷新？',function(){
+			layer.load('执行中，请稍候...',0);
+			$.post("{yun:}$config.sy_weburl{/yun}/index.php?m=ajax&c=Refresh_job",{},function(data){
+				layer.closeAll();
+				if(data==1){
+					layer.msg("职位刷新成功！",2,9,function(){location.reload();});
+				}else{
+					layer.msg(data,2,8);
+				}
+			})
+		}); 
+	}else{
+		layer.load('执行中，请稍候...',0);
+		$.post("{yun:}$config.sy_weburl{/yun}/index.php?m=ajax&c=Refresh_job",{},function(data){
+			layer.closeAll();
+			if(data==1){
+				layer.msg("职位刷新成功！",2,9,function(){location.reload();});
+			}else{
+				layer.msg(data,2,8);
+			}
+		})
+	}
+	
+}
+</script>
+<div class="w950"> 
+<div style="position:relative; z-index:1005">
+  <div class="Description_Layer"> 
+    <div class="Tip_Information" id="one_tip" {yun:}if $company.hy!=""{/yun}style="display:none"{yun:}/if{/yun}>
+      <div>
+        <div class="Tip_Information_k"></div>
+        <div class="Tip_Information_jt"></div>
+      </div>
+      <div class="Tip_Information_cont">
+        <div class="re">
+          <div class="Tip_Information_close" onclick="Close('one_tip');"></div>
+        </div>
+        <div class="Tip_Information_p">
+          <p><span>请先完善企业资料：</span>先完善企业信息才能发布职位需求哦！</p>
+        </div>
+        <div class="Tip_Information_bot"><a href="javascript:Next();" class="Tip-next">下一步</a> </div>
+      </div>
+    </div> 
+    <div class="Recruitment_Layer" id="two_tip"  style="display:none">
+      <div class="Tip_Information">
+        <div>
+          <div class="Tip_Information_gl"></div>
+          <div class="Tip_Information_jt2"></div>
+          <div class="Recruitment_fb"></div>
+        </div>
+        <div class="Tip_Information_cont">
+          <div class="re">
+            <div class="Tip_Information_close" onclick="Close('two_tip');"></div>
+          </div>
+          <div class="Tip_Information_p">明确招聘需求，细化招聘条件，精准锁定人才！ </div>
+          <div class="Tip_Information_bot"><a href="javascript:Close('two_tip');" class="Tip-next">知道了</a> </div>
+        </div>
+      </div>
+    </div>
+  </div>    </div> 
+  <div class="index_admin_mainbody">
+  {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class="right_box">
+      <div  class="index_data_left">
+       <div class="Gain_integral"><span class="Gain_integral_span"><a href="{yun:}url url=c:integral{/yun}">如何获取积分?</a><i class="Gain_integral_icon"></i></span></div>
+     <div class="index_data_name"><span class="bold">您好！</span>
+     	<span class="funds_cor funds_cor_name">
+        {yun:}if $company.name{/yun}{yun:}$company.name{/yun}{yun:}else{/yun}
+        <a href="index.php?c=info" style="color:red;">您还未完善企业信息，点击完善！</a>{yun:}/if{/yun}&nbsp;&nbsp;&nbsp;
+		<a href="{yun:}$config.sy_weburl{/yun}/company/index.php?id={yun:}$uid{/yun}" target="_blank" style="color:#1aa3ea; font-size:12px;">浏览企业</a>
+        </span>
+     </div>
+     <div class="index_data_username"><span class="index_data_user_l">企业认证：</span>
+    	{yun:}if $company.email_status=="1"{/yun} 
+	   <a title="已邮件验证" href="index.php?c=binding" class="index_data_rz"><span class="sjyz png fltL"></span> 邮箱已认证</a>
+		{yun:}else{/yun} 
+		<a title="邮件未验证" href="index.php?c=binding" class="index_data_rz"> <span class="sjyzw png fltL"></span>邮箱未认证</a>
+		{yun:}/if{/yun}
+		{yun:}if $company.moblie_status=="1"{/yun} 
+		<a title="已手机验证" href="index.php?c=binding" class="index_data_rz"><span class="maileyz png fltL"></span>手机已认证</a>
+		{yun:}else{/yun} 
+		<a title="手机未验证" href="index.php?c=binding" class="index_data_rz"><span class="maileyzw png fltL"></span>手机未认证</a>
+		{yun:}/if{/yun}
+		{yun:}if $company.yyzz_status=="1"{/yun} 
+		<a title="营业执照已验证" href="index.php?c=binding" id="biza" class="index_data_rz"><span id="bizicon" class="zzyz png fltL"></span>营业执照已验证</a> {yun:}else{/yun} 
+		<a title="营业执照未验证" href="index.php?c=binding" id="biza" class="index_data_rz"><span id="bizicon" class="zzyzw png fltL"></span>营业执照未认证</a> {yun:}/if{/yun} </div>  
+		<div class="index_data_username"><span class="index_data_username_a">用户名：
+		<a title="{yun:}$username{/yun}" href="index.php" target="_blank"  class="index_js_cor index_js_name">{yun:}$username{/yun}</a></span>  您当前为<span class="funds_mf">[{yun:}$statis.rating_name{/yun}]</span>       {yun:}if $company_rating.type=='1'{/yun}<div class="index_js_kt" > <!--套餐模式 -->{yun:}if $company_rating.rating=='0'{/yun}&nbsp;&nbsp;<a  href="index.php?c=right" class="index_kt_sub">开通会员</a>{yun:}/if{/yun}</div>{yun:}/if{/yun}
+	   {yun:}if $company_rating.type=='2'&&$days{/yun} 
+			到期天数：{yun:}$days{/yun}天
+			到期时间：{yun:}$statis.vip_etime|date_format:'%Y-%m-%d'{/yun} 
+		{yun:}/if{/yun}</div>
+     <div class="my_funds"><span class="bold">我的资金：</span>账户余额：<span class="funds_cor bold">{yun:}$statis.pay{/yun}</span> 元  您的{yun:}$config.integral_pricename{/yun}：<span class="funds_cor bold">{yun:}$statis.integral{/yun}</span>{yun:}$config.integral_priceunit{/yun}
+     <a href='index.php?c=pay' class="my_funds_x">充值</a>
+     <a href="index.php?c=paylog&consume=ok" class="my_funds_x">余额详情</a>
+     <a href="index.php?c=paylog&consume=ok"  class="my_funds_x">消费明细</a>
+     </div>
+     
+      </div>
+      <div  class="index_data_right">
+      <div class="index_data_logo">
+      {yun:}if $company.logo{/yun} 
+      <img src=".{yun:}$company.logo{/yun}" width="185" height="75"/> 
+      {yun:}else{/yun} 
+      <a href="index.php?c=info#for_logo" class="no_for_logo">点击上传企业LOGO</a>
+      {yun:}/if{/yun} 
+      </div>
+     <div class="index_data_t"> 上次登录时间：{yun:}$member.login_date|date_format:'%Y-%m-%d %H:%M'{/yun}</div>
+      <div class="index_data_t">  浏览统计：已被访问 <span class="funds_cor bold">{yun:}$company.hits{/yun}</span> 次</div>
+      </div>
+      <div class="index_Management">
+      <div class="index_Management_box">
+      <div class="index_Management_box_h1"><span class="index_Management_box_h1_span">职位管理</span><a href="index.php?c=search" class="index_Management_box_more">查看详情>></a></div>
+     <div class="index_Management_c"> 公司正常的职位 <span class="funds_cor bold">{yun:}$normal_job_num{/yun}</span>  条 剩余职位数 <span class="funds_cor bold">{yun:}if $statis.vip_etime>time()||$statis.vip_etime=="0"{/yun}{yun:}if $statis.rating_type==1{/yun}{yun:}$statis.job_num{/yun}{yun:}else{/yun}无限{yun:}/if{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span> 条</div>
+     <div class="index_Management_c"> 贵公司还有 <span class="funds_cor bold">{yun:}if $statis.vip_etime>time()||$statis.vip_etime=="0"{/yun}{yun:}if $statis.rating_type==1{/yun}{yun:}$statis.breakjob_num{/yun}{yun:}else{/yun}无限{yun:}/if{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span>  次免费刷新</div>
+      <a href="index.php?c=jobadd" class="index_Management_bth">发布新职位</a><a href="javascript:break_job('{yun:}if $statis.vip_etime>time()||$statis.vip_etime=='0'{/yun}{yun:}if $statis.rating_type==1{/yun}{yun:}$statis.breakjob_num{/yun}{yun:}else{/yun}无限{yun:}/if{/yun}{yun:}else{/yun}0{yun:}/if{/yun}');" class="index_Management_bth2">刷新职位</a>
+      </div>
+         <div class="index_Management_box">
+      <div class="index_Management_box_h1"><span class="index_Management_box_h1_span">简历管理</span><a href="index.php?c=hr" class="index_Management_box_more">查看详情>></a></div>
+      <div class="index_Management_c"> 贵公司共收到 <span class="funds_cor bold">{yun:}$des_resume{/yun}</span>  份简历</div>
+      <div class="index_Management_c"> 其中未查看的简历 <span class="funds_cor bold">{yun:}$de_resume{/yun}</span>  份</div>
+      <div class="index_Management_c"> 共发出  <span class="funds_cor bold">{yun:}$invite_resume{/yun}</span> 份面试邀请</div>
+      
+      </div>
+         <div class="index_Management_box index_Management_box_no">
+      <div class="index_Management_box_h1"><span class="index_Management_box_h1_span">下载管理</span><a href="index.php?c=down" class="index_Management_box_more">查看详情>></a></div>
+     <div class="index_Management_c">  贵公司已下载简历 <span class="funds_cor bold">{yun:}$down_resume{/yun}</span>  份 </div>
+     <div class="index_Management_c">  贵公司还可下载简历 <span class="funds_cor bold">{yun:}$statis.down_resume{/yun}</span>  份</div> 
+      </div>
+      
+      
+      </div>
+       <div style="clear:both"></div>
+            <div class="index_jl_box">
+              <div class="xinxi-title-bg">
+                <ul id="details-ul" style="float:left ">
+                  <li class="hover" name="1"><span>可能感兴趣的简历</span></li>
+                  <li name="2"><span>关注我公司的人才</span></li>
+                </ul>
+              </div>
+              <div style="clear:both"></div>
+              <div class="right-box-xbg">
+                <div class="xinxi-guanli-box" id="details-con-1" >
+                 <div class="index_box_cont">
+                 <table width="100%"   border="0" cellpadding="0" cellspacing="1" class="index_table">
+                    <tr class="right-box-xbg_t">
+                    <td width="170"><p>意向职位</p></td>
+                      <td width="80" height="20"><p>姓名</p></td>
+                      <td width="100"><p>学历</p></td>
+                      <td width="100"><p>工作经验</p></td>
+                      <td width="150"><p>期望工作地点</p></td>
+                      <td width="100"><p>更新日期</p></td>
+                    </tr> 
+                    {yun:}userlist hy=auto.hy cityid=auto.cityid limit=10 item=ulist{/yun}
+                    <tr style="background-color:#ffffff;">
+                      <td style="text-align:left; padding-left:10px;">{yun:}$ulist.job_post{/yun}</td>
+                      <td height="30"><a href="{yun:}url m=resume url=id:`$ulist.id`{/yun}" target="_blank" title="{yun:}$ulist.username_n{/yun}">{yun:}$ulist.username_n{/yun}</a></td>
+                      <td>{yun:}$ulist.edu_n{/yun}</td>
+                      <td>{yun:}$ulist.exp_n{/yun}</td>
+                      <td>{yun:}$ulist.job_city_one{/yun} {yun:}$ulist.job_city_two{/yun}</td>
+                      <td>{yun:}$ulist.lastupdate{/yun}</td>
+                    </tr>
+ 
+                    {yun:}/userlist{/yun}
+                   {yun:}if empty($ulist){/yun}
+  					 <tr style="background-color:#ffffff;height:25px;">
+                      <td colspan="6">暂无可能感兴趣的简历。</td>
+                    </tr>
+                   {yun:}/if{/yun}
+                  </table>
+                 </div>
+                </div>
+                <div class="xinxi-guanli-box" id="details-con-2" style="display:none;">
+				<div class="index_box_cont">
+                 <table width="100%"   border="0" cellpadding="0" cellspacing="1" class="index_table">
+                    <tr class="right-box-xbg_t">
+                    <td width="170"><p>意向职位</p></td>
+                      <td width="80" height="20"><p>姓名</p></td>
+                      <td width="100"><p>学历</p></td>
+                      <td width="100"><p>工作经验</p></td> 
+                      <td width="150"><p>期望工作地点</p></td>
+                      <td width="100"><p>关注日期</p></td>
+                    </tr> 
+                    {yun:}userlist where_uid=@where_uid item=list limit=10{/yun}
+                    <tr style="background-color:#ffffff;">
+                      <td style="text-align:left; padding-left:10px;">{yun:}$list.job_post{/yun}</td>
+                      <td height="30"><a href="{yun:}url m=resume url=id:`$list.id`{/yun}" target="_blank" title="{yun:}$list.username_n{/yun}">{yun:}$list.username_n{/yun}</a></td>
+                      <td>{yun:}$list.edu_n{/yun}</td>
+                      <td>{yun:}$list.exp_n{/yun}</td>
+                    
+                      <td>{yun:}$list.job_city_one{/yun} {yun:}$list.job_city_two{/yun}</td>
+                      <td>{yun:}$list.lastupdate{/yun}</td>
+                    </tr>
+                    {yun:}/userlist{/yun}
+                   {yun:}if empty($list){/yun}
+  					 <tr style="background-color:#ffffff;height:25px;">
+                      <td colspan="6">暂无关注我公司的人才。</td>
+                    </tr>
+                   {yun:}/if{/yun}
+                  </table>
+                 </div>
+                </div>
+               </div>
+              </div>
+            </div>
+          </div>  
+         </div>   
+{yun:}include file="$comstyle/footer.htm"{/yun}

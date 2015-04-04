@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link href="{yun:}$style{/yun}/style/Micro_resume.css" rel="stylesheet" type="text/css" />
+<style>
+* {margin:0;padding:0;}
+body,div{margin:0;padding:0;}
+.content_firm{float:left;width:100%;margin: 0 auto;position: relative;}
+</style>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+<div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="index.php?m=once">微招聘</a> > {yun:}$o_info.title{/yun}</div>
+
+<div class="fast_show_left">
+<div class="fast_show_post">
+<div class="fast_show_top">
+<div class="fast_show_top_h1">{yun:}$o_info.title{/yun}</div>
+<div class="fast_show_top_xz">截止日期：{yun:}$o_info.edate|date_format:"%Y-%m-%d"{/yun}</div>
+
+<div class="fast_show_top_date">浏览：{yun:}$o_info.hits{/yun} | 发布日期：{yun:}$o_info.ctime|date_format:"%Y-%m-%d"{/yun}</div>
+</div>
+<div class="fast_show_com_name">{yun:}$o_info.companyname{/yun}</div>
+<div class="fast_show_list"><i class="fast_icon fast_icon_rs"></i>招聘人数：{yun:}$o_info.mans{/yun}人</div>
+<div class="fast_show_list"><i class="fast_icon fast_icon_touch"></i>联&nbsp;系&nbsp;人：{yun:}$o_info.linkman{/yun}</div>
+<div class="fast_show_list"><i class="fast_icon fast_icon_pho"></i>联系电话:<font color="#FF0000"><strong>{yun:}$o_info.phone{/yun}</font></strong> / 邮箱: {yun:}$o_info.email{/yun} / QQ: {yun:}$o_info.qq{/yun}</div>
+<div class="fast_show_list"><i class="fast_icon fast_icon_map"></i>联系地址：{yun:}$o_info.address{/yun}</div>
+<div class="fast_show_com_name">具体要求</div>
+<div class="fast_show_com_name_p">{yun:}$o_info.require{/yun}</div>
+</div>
+<div class="fast_show_post m10">
+<div class="fast_show_post_new">最新招聘</div>
+<ul class="fast_show_post_list">
+{yun:}fast limit=6 delid=auto.id item=list{/yun}
+<li>
+<div class="fast_show_post_new_d"><a href="{yun:}url m=once url=c:show,id:`$list.id`{/yun}" class="fast_show_post_n_name">{yun:}$list.title{/yun}</a>   <em class="fast_show_post_new_em">{yun:}$list.ctime|date_format:"%Y-%m-%d"{/yun}</em></div>
+<div  class="fast_show_post_new_d">招聘人数：{yun:}$list.mans{/yun}人  | 联系人：{yun:}$list.linkman{/yun} | {yun:}$list.companyname{/yun}</div>
+</li>
+{yun:}/fast{/yun} 
+</ul>
+</div>
+</div>
+<div class="fast_show_right">
+<div class="fast_show_right_tips">
+<div class="fast_show_right_tips_h1">温馨提示：</div>
+为方便一些普工类企业(如饭店,店面,个体户等)发布招聘信息,特设定了无需注册,即可发布简短招聘的功能,在给大家提供了更多的信息的同时也存在的问题是,我们无法对这些发布者做核实.
+★以下信息由企业或个体工商户自行提供，该企业或个体工商户负责信息内容的真实性、准确性和合法性。网站对此不承担任何保证或连带责任.
+</div>
+
+
+</div>
+
+
+ </div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

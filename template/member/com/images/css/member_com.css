@@ -1,0 +1,95 @@
+input, button, select, textarea, table {
+	font: 12px/1.5 Tahoma, Helvetica, Arial;
+}
+.my_freedom .my_table tbody td {
+	width: 10%;
+}
+.my_table {
+	text-align: center;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+ul {
+	list-style:none;
+}
+.grow_mod_wrap {
+	border: 1px solid #E5E5E5;
+	float:right;
+	WIDTH:745PX;
+	background:#fff;
+}
+.grow_mod_wrap .order_title {
+	margin-top:10px;
+	position: relative;
+}
+.order_title {
+	font-size: 12px;
+	margin-bottom: 10px;
+	padding-left: 15px;
+}
+.grow_mod_title {
+	font-family: Microsoft Yahei;
+	height: 25px;
+	line-height: normal;
+	margin-bottom: 5px;
+	position: relative;
+}
+.grow_mod_wrap .order_title a {
+	font-weight: 400;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+a:link{
+	text-decoration: none;
+}
+a {
+	color: #325E7F;
+}
+.my_table {
+	background-color: #FFFFFF;
+	margin: 0 0 30px;
+	text-align: center;
+	width: 744px;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.my_table thead th, .my_table tbody th {
+	background: none repeat scroll 0 0 #F2F2F2;
+	border: 1px solid #D4D4D4;
+	padding: 8px 5px;
+}
+.my_table tbody th .fm_bank, .my_table tbody th .fm_k, .my_table tbody th .fm_vip_group, .my_table tbody th .fm_super_group, .my_table tbody th .fm_photo, .my_table tbody th .fm_higher {
+	line-height: 15px;
+}
+.my_table th.self, .my_table td.self, .my_table .double .self {
+	background-color: #FFD59E;
+	border-color: #E9B97A -moz-use-text-color #E9B97A #E9B97A;
+	border-style: solid none solid solid;
+	border-width: 1px 0 1px 1px;
+}
+.my_freedom .my_table tbody th {
+	background-color: #FFFFFF;
+	font-weight: normal;
+	text-align: left;
+	width: 16%;
+}
+.my_table td {
+	border: 1px solid #D4D4D4;
+	padding: 8px 5px;
+}
+.my_table tbody th a {
+	display: inline-block;
+	line-height: 22px;
+	padding-left: 15px;
+}
+a:link {
+	text-decoration: none;
+}
+.my_table .double th, .my_table .double td, .my_freedom .my_table .double th {
+	background-color: #FFFAF1;
+}

@@ -1,0 +1,919 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+h1{width:90%;height:40px; display:block; float:left;}
+.dom_m{float:left; width:100%;}
+.dom_m .add{height:17px;}
+.dom_m .add a{width:auto; height:17px; text-align:center;}
+</style>
+<script>
+	var dom_sort="{yun:}$row.dom_sort{/yun}";
+	$(document).ready(function(e){
+		//页面滚动	
+		var scrollbottom= $(document).height() - $(window).height() - $(window).scrollTop();
+		if(parseInt(scrollbottom)<200){
+			$("#resumenume").parent().css("bottom",(350-(parseInt(scrollbottom)))+"px");
+		}else if($(window).scrollTop()<200){
+			$("#resumenume").parent().css("top","200px");
+		}else{
+			$("#resumenume").parent().css("bottom","150px");
+		}
+		if($(window).scrollTop()<83){
+			$("#resumenume").css("position","");
+		}
+		$("#resumenume").parent().slideDown();
+		if(document.body.style.overflow!="hidden"&&document.body.scroll!="no" && document.body.scrollHeight>document.body.offsetHeight){
+			$("#resumenume").hide();
+		}else{
+			$(window).scroll(function() {
+				var scrolltop = $(this).scrollTop();
+				var scrollbottom= $(document).height() - $(this).height() - $(this).scrollTop();
+				if(parseInt(scrolltop)>83){
+					$("#resumenume").css("position","fixed");
+					$("#resumenume").css("top","0px");
+				}else{
+					$("#resumenume").css("position","");
+					$("#resumenume").css("top",parseInt(scrolltop)+"px");
+				}
+				if(parseInt(scrollbottom)<200){
+					$("#resumenume").parent().css("bottom",((200-scrollbottom)+150)+"px");
+				}else{
+					$("#resumenume").parent().css("bottom","150px");
+				}
+			});
+		}
+	});
+</script>
+<div class="w950">
+{yun:}include file="$tplstyle/public_search/index_search.htm"{/yun}
+  {yun:}include file="$userstyle/userleft.htm"{/yun}
+  <link href="{yun:}$userstyle{/yun}/images/yun_tck.css" type="text/css" rel="stylesheet">
+  <script type="text/javascript" src="{yun:}$userstyle{/yun}/js/resume.js"></SCRIPT>
+  <script type="text/javascript" src="{yun:}$userstyle{/yun}/js/jquery.scrollto.js"></SCRIPT>
+  <!--script type="text/javascript" src="{yun:}$style{/yun}/js/index.js"></SCRIPT-->
+  <script type="text/javascript" src="{yun:}$userstyle{/yun}/js/search.js"></SCRIPT>
+  <div class="expect_left fltL" id="resume">
+    <div class="jianli_boxtit04 mt5"> <span class="s1"> 填写简历</span> <em style="width:200px; float:left;"><font color="#FF0000">*</font> 号项为必填项</em> <span style="float:right;"><a href="index.php" class="jianli_fh_index">返回我的求职主页</a></span></div>
+    <div class="clear"></div>
+    <div class="expect_cont">
+      <div class="jianli_list mt10"> <b>基本资料</b><a id="info_botton" onclick="checkmore('info');" class="jianli_list_add"><em>修改</em></a></div>
+     <div class="clear"></div> <!-- 用户已填写基本资料-->
+     <div class="clear"></div>
+      <div class="expect_cont_box" id="getinfo" {yun:}if $resume.name==""{/yun}style="display:none"{yun:}/if{/yun}>
+        <ul class="expect_amend">
+          <li style="height:30px;"><span>您的姓名：</span><strong>{yun:}$resume.name{/yun}</strong>，{yun:}$userclass_name[$resume.sex]{/yun}</li>
+          <li><span>出生年月：</span>{yun:}$resume.birthday{/yun}</li>
+          <li><span>工作经验：</span>{yun:}$userclass_name[$resume.exp]{/yun}</li>
+          <li><span>教育程度：</span>{yun:}$userclass_name[$resume.edu]{/yun}</li>
+          <li><span>联系手机：</span>{yun:}$resume.telphone{/yun}</li>
+		  <li><span>现居住地：</span>{yun:}$resume.living{/yun}</li>
+		  <li><span>电子邮件：</span>{yun:}$resume.email{/yun}</li>
+		  {yun:}if $config.user_idcard=="1"{/yun}<li><span>身份证号码：</span>{yun:}$resume.idcard{/yun}</li> {yun:}/if{/yun}
+		  {yun:}if $resume.basic_info=='1'{/yun}
+			<li><span>身高/体重：</span>{yun:}$resume.height{/yun}cm/{yun:}$resume.weight{/yun}kg</li>
+          <li><span>婚育状况：</span>{yun:}$userclass_name[$resume.marriage]{/yun}</li>
+          <li><span>民族：</span>{yun:}$resume.nationality{/yun}</li>
+          <li><span>座机：</span>{yun:}$resume.telhome{/yun}</li>
+          <li><span>个人主页：</span>{yun:}$resume.homepage{/yun}</li>
+		   <li class="expect_amend_end"><span>户籍所在地：</span>{yun:}$resume.domicile{/yun}</li>
+		   <li class="expect_amend_end"> <span>详细地址：</span>{yun:}$resume.address{/yun}</li>
+          {yun:}/if{/yun}
+          <li class="expect_amend_end"><span>自我评价：</span><em>{yun:}$resume.description{/yun}</em></li>
+        </ul>
+      </div>
+      <div class="clear"></div><!-- 用户未填写基本资料--><div class="clear"></div>
+      <div class="expect_Not_filled" id="saveinfo" {yun:}if $resume.name!=""{/yun}style="display:none"{yun:}/if{/yun}>
+        <div class="formbox02">
+        <iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form name="MyForm" method="post" action="index.php?c=info" target="supportiframe" onsubmit="return CheckPost();">
+          <ul>
+            <li class="short">
+              <div class="name"><b>*</b> 姓 名：</div>
+              <div class="text">
+                <input name="name" id="username" type="text" maxlength="50" value="{yun:}$resume.name{/yun}" class="info_text"/>
+				<span id="by_name"  style="display:none">请正确填写姓名</span>
+              </div>
+            </li>
+            <li class="short">
+              <div class="name"><b>*</b> 性 别：</div>
+              <div class="text">
+                {yun:}foreach from=$userdata.user_sex item=v key=key{/yun}
+              <input id="sex{yun:}$v{/yun}" type="radio" 
+			  {yun:}if $resume.sex==$v{/yun}checked="checked"{yun:}elseif $resume.sex=="" && $key==0 {/yun}checked="checked"{yun:}/if{/yun}
+			  value="{yun:}$v{/yun}" name="sex" id="sex">
+              <label for="sex{yun:}$v{/yun}">{yun:}$userclass_name[$v]{/yun}</label>
+              {yun:}/foreach{/yun}
+              <span id="by_sex"  style="display:none">请选择性别</span>
+              </div>
+            </li>
+
+			{yun:}if $config.user_idcard=="1"{/yun}
+            <li class="short">
+              <div class="name"><b>*</b>身份证号码：</div>
+              <div class="text">
+                <input name="idcard" id="idcard" type="text" size="30" maxlength="20" value="{yun:}$resume.idcard{/yun}" onkeyup="this.value=this.value.replace(/[^0-9Xx.]/g,'')" class="info_text"/>
+                <span id="by_idcard"  style="display:none">请正确填写身份证号码</span> </div>
+            </li>
+			{yun:}/if{/yun}
+            <li class="short">
+              <div class="name"> <b>*</b> 出生年月：</div>
+              <div class="text">
+                <link href="{yun:}$config.sy_weburl{/yun}/js/time/jscal2.css" type="text/css" rel="stylesheet">
+                <script src="{yun:}$config.sy_weburl{/yun}/js/time/calendar.js" type="text/javascript"></script>
+                <script src="{yun:}$config.sy_weburl{/yun}/js/time/en.js" type="text/javascript"></script>
+                <input id="birthday" type="text" readonly="" size="10" value="{yun:}if $resume.birthday==""{/yun}1988-08-08{yun:}else{/yun}{yun:}$resume.birthday{/yun}{yun:}/if{/yun}" name="birthday" class="text_date_cs">
+                <script type="text/javascript">
+					Calendar.setup({
+						weekNumbers: true,
+						inputField : "birthday",
+						trigger : "birthday",
+						dateFormat: "%Y-%m-%d",
+						showTime: false,
+						onSelect : function() {this.hide();}
+					});
+				</script>
+				<span id="by_birthday"  style="display:none">请选择出生年月</span>
+              </div>
+            </li>
+            <li class="short">
+              <div class="name"><b>*</b> 现居住地：</div>
+              <div class="text">
+                <input class="info_text" type="text" value="{yun:}$resume.living{/yun}" size="30" id="living" name="living">
+				<span id="by_living"  style="display:none">请填写现居住地</span>
+              </div>
+            </li>
+
+            <li class="short">
+              <div class="name"><b>*</b> 教育程度：</div>
+              <div class="text text_seclet_cur3">
+                <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $resume.edu==''{/yun}value="请选择教育程度"{yun:}else{/yun} value="{yun:}$userclass_name[$resume.edu]{/yun}"{yun:}/if{/yun} id="educ" onclick="search_show('job_educ');">
+                <input type="hidden" id="educid" name="edu" value="{yun:}$resume.edu{/yun}"/>
+                <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_educ">
+                  <ul class="Search_Condition_box_list">
+                    {yun:}foreach from=$userdata.user_edu key=j item=v{/yun}
+                    <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','educ','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                    {yun:}/foreach{/yun}
+                  </ul>
+                </div>
+				<span id="by_educid"  style="display:none">请选择教育程度</span>
+              </div>
+            </li>
+            <li class="short">
+              <div class="name"> <b>*</b> 工作经验：</div>
+              <div class="text text_seclet_cur4">
+                <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $resume.exp==''{/yun}value="请选择工作经验"{yun:}else{/yun} value="{yun:}$userclass_name[$resume.exp]{/yun}"{yun:}/if{/yun} id="exp" onclick="search_show('job_exp');">
+                <input type="hidden" id="expid" name="exp" value="{yun:}$resume.exp{/yun}"/>
+                <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_exp">
+                  <ul class="Search_Condition_box_list">
+                    {yun:}foreach from=$userdata.user_word key=j item=v{/yun}
+                    <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','exp','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                    {yun:}/foreach{/yun}
+                  </ul>
+                </div>
+				<span id="by_expid"  style="display:none">请选择工作经验</span>
+              </div>
+            </li>
+            <li class="short">
+              <div class="name"><b>*</b> 手机：</div>
+              <div class="text">
+                <input name="telphone" id="telphone" type="text" value="{yun:}$resume.telphone{/yun}" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" class="info_text"/>
+                <span id="by_telphone"  style="display:none">请正确填写手机号码</span> </div>
+            </li>
+
+            <li class="short">
+              <div class="name"> <b>*</b> 电子邮件：</div>
+              <div class="text">
+                <input name="email" id="email" type="text" size="30" value="{yun:}$resume.email{/yun}" class="info_text"/>
+                <span id="by_email"  class="errordisplay">邮件格式错误</span> </div>
+            </li>
+			 {yun:}if $resume.basic_info=='1'{/yun}
+            <li class="short">
+              <div class="name"> 身高：</div>
+              <div class="text">
+                <input type="text" name="height" id="height" value="{yun:}$resume.height{/yun}" size="10" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  class="info_text"/>
+                <em>CM</em> </div>
+              <div class="name_60"> 民族：</div>
+              <div class="text">
+                <input type="text" name="nationality" id="nationality" value="{yun:}$resume.nationality{/yun}" size="10" class="info_text"/>
+              </div>
+            </li>
+            <li class="short">
+              <div class="name" >体重：</div>
+              <div class="text">
+                <input type="text" name="weight" id="weight" value="{yun:}$resume.weight{/yun}" size="10" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" class="info_text"/>
+                <em> kg</em> </div>
+              <div class="name_60"> 婚姻：</div>
+              <div class="text text_seclet_cur4">
+                <input class="SpFormLBut text_seclet_w134 " type="button" {yun:}if $resume.marriage==''{/yun}value="请选择"{yun:}else{/yun}value="{yun:}$userclass_name[$resume.marriage]{/yun}"{yun:}/if{/yun} id="marriage" onclick="search_show('job_marriage');">
+                <input type="hidden" id="marriageid" name="marriage" value="{yun:}$resume.marriage{/yun}"/>
+                <div  class="cus-sel-opt-panel cus-sel-opt-panel-w132 cus-sel-opt-panel-H132" style="display:none" id="job_marriage">
+                  <ul class="Search_Condition_box_list">
+                    {yun:}foreach from=$userdata.user_marriage key=j item=v{/yun}
+                    <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','marriage','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                    {yun:}/foreach{/yun}
+                  </ul>
+                </div>
+              </div>
+            </li>
+			<li class="short">
+              <div class="name"> 座机：</div>
+              <div class="text">
+                <input name="telhome" id="telhome" type="text" size="30" value="{yun:}$resume.telhome{/yun}" onkeyup="this.value=this.value.replace(/[^0-9-.]/g,'')" class="info_text"/>
+              </div>
+            </li>
+			<li class="short">
+              <div class="name"> 户籍所在地：</div>
+              <div class="text">
+                <input class="info_text" type="text" value="{yun:}$resume.domicile{/yun}" size="30" id="domicile" name="domicile">
+              </div>
+            </li>
+			 <li class="short">
+              <div class="name">  详细地址：</div>
+              <div class="text">
+                <input name="address"  id="address" type="text" value="{yun:}$resume.address{/yun}" size="40" class="info_text">
+                <span id="by_address"  style="display:none">请填写详细地址</span></div>
+            </li>
+            <li class="short">
+              <div class="name"> 个人主页/博客：</div>
+              <div class="text">
+                <input name="homepage" id="homepage" type="text" maxlength="255" size="40" value="{yun:}$resume.homepage{/yun}" class="info_text"/>
+              </div>
+            </li>
+            {yun:}/if{/yun}
+
+
+            <li class="short">
+              <div class="name"> <b>*</b>自我评价：</div>
+              <div class="text">
+                <textarea name="description" id="description" class="infor_textarea " placeholder="简单介绍下自己，让用人企业更关注你！">{yun:}$resume.description{/yun}</textarea>
+				<span id="by_description"  style="display:none">请填写自我评价</span>
+              </div>
+            </li>
+            <li class="short">
+              <div class="name">&nbsp;</div>
+              <div class="text">
+              	<input type="hidden" id="getinfoid" value="{yun:}if $resume.name!=""{/yun}1{yun:}/if{/yun}">
+                <input type="submit" name="submitBtn" value=" " class="expect_sub2" />
+                <img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" onclick="checkClose('info');" style="cursor:pointer;">
+              </div>
+            </li>
+          </ul>
+          </form>
+        </div>
+      </div>
+	<div class="clear"></div>
+      <div class="jianli_list"> <b>求职意向</b><a id="expect_botton" onclick="checkmore('expect');" class="jianli_list_add"><em>修改</em></a></div>
+
+      <div class="clear"></div><!-- 用户已填写求职意向--><div class="clear"></div>
+
+      <div class="expect_cont_box" id="getexpect" >
+        <ul class="expect_amend" id="expect">
+          <li><span>简历名称：</span>{yun:}$row.name{/yun}</li>
+          <li><span>到岗时间：</span>{yun:}$userclass_name[$row.report]{/yun}</li>
+          <li><span>期望从事行业：</span>{yun:}$industry_name[$row.hy]{/yun}</li>
+          <li><span>期望工作地点：</span>{yun:}$city_name[$row.provinceid]{/yun} {yun:}$city_name[$row.cityid]{/yun} {yun:}$city_name[$row.three_cityid]{/yun}</li>
+          <li><span>期望月薪水：</span>{yun:}$userclass_name[$row.salary]{/yun}</li>
+		  <li><span>期望工作性质：</span>{yun:}$userclass_name[$row.type]{/yun}</li>
+          <li class="expect_amend_end"><span>期望从事职位：</span><em>{yun:}$job_classname{/yun}</em></li>
+        </ul>
+      </div>
+      <div class="clear"></div>
+    <div class="clear"></div>  <!-- 用户未填写求职意向--><div class="clear"></div>
+      <div class="clear"></div>
+      <div class="expect_Not_filled" id="saveexpect" style="display:none;">
+        <div class="formbox02">
+          <ul class="expect_cont_Fill">
+            <li>
+              <div class="name"> <b>*</b>简历名称：</div>
+              <div class="text">
+                <input name="name" type="text" value="{yun:}$row.name{/yun}" maxlength="100"  placeholder="例如: 求销售员工作 2年工作经验"  id="expect_name" class="expect_text info_text"/>
+              </div>
+            </li>
+			<li>
+              <div class="name"><b>*</b> 期望从事行业：</div>
+              <div class="text">
+                <div class="text_seclet_cur0 text_seclet_w250 fltL">
+                  <input class="SpFormLBut text_seclet_w250 text_seclet_cur4" type="button" {yun:}if $row.hy{/yun} value="{yun:}$industry_name[$row.hy]{/yun}" {yun:}else{/yun} value="请选择行业" {yun:}/if{/yun} id="hy" onclick="search_show('job_hy');">
+                  <input type="hidden" id="hyid" name="hy"  {yun:}if $row.hy {/yun} value="{yun:}$row.hy{/yun}"{yun:}/if{/yun}/>
+                  <div  class="cus-sel-opt-panel" style="display:none" id="job_hy">
+                    <ul>
+                      {yun:}foreach item=v from=$industry_index key=k{/yun}
+                      <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','hy','{yun:}$industry_name[$v]{/yun}');"> {yun:}$industry_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+           	<li>
+              <div class="name"><b>*</b> 期望从事职位：</div>
+              <div class="text" style="width:400px; overflow:hidden">
+                <input type="button"{yun:}if $job_classname{/yun}value="{yun:}$job_classname{/yun}"{yun:}else{/yun} value=" 请选择 "{yun:}/if{/yun}style=" float:left;" class="expect_text" onclick="index_job();" id="workadds_job" >
+				<input name='job_class' id='job_class' {yun:}if $row.job_classid {/yun} value="{yun:}$row.job_classid{/yun}"{yun:}/if{/yun} type='hidden' />
+              </div>
+            </li>
+
+            <li>
+              <div class="name"><b>*</b> 期望工作地点：</div>
+              <div class="text">
+                <div class="text_seclet text_seclet_cur fltL">
+                  <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $row.provinceid{/yun} value="{yun:}$city_name[$row.provinceid]{/yun}" {yun:}else{/yun}value="请选择省份"{yun:}/if{/yun} id="province" onclick="search_show('job_province');">
+                  <input type="hidden" id="provinceid" name="provinceid" value="{yun:}$row.provinceid{/yun}" />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_province">
+                    <div style="width:100%;  overflow:auto; overflow-x:hidden"> <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$city_index key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="select_city('{yun:}$v{/yun}','province','{yun:}$city_name[$v]{/yun}','citys','city');"> {yun:}$city_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text_seclet text_seclet_cur fltL">
+                  <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $row.cityid{/yun} value="{yun:}$city_name[$row.cityid]{/yun}" {yun:}else{/yun}value="请选择城市"{yun:}/if{/yun} id="citys" onclick="search_show('job_citys');">
+                  <input type="hidden" id="citysid" name="citysid" value="{yun:}$row.cityid{/yun}" />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_citys">
+                    <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$city_type[$row.provinceid] key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="select_city('{yun:}$v{/yun}','citys','{yun:}$city_name[$v]{/yun}','three_city','city');"> {yun:}$city_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="text_seclet text_seclet_cur fltL" id="cityshowth" {yun:}if $row.three_cityid==''{/yun}style="display:none"{yun:}/if{/yun}>
+                  <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $row.three_cityid{/yun} value="{yun:}$city_name[$row.three_cityid]{/yun}" {yun:}else{/yun}value="请选择区县"{yun:}/if{/yun} id="three_city" onclick="search_show('job_three_city');">
+                  <input type="hidden" id="three_cityid" name="three_cityid" value="{yun:}$row.three_cityid{/yun}" />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_three_city">
+                    <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$city_type[$row.cityid] key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','three_city','{yun:}$city_name[$v]{/yun}');"> {yun:}$city_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+
+
+              </div>
+            </li>
+            <li>
+              <div class="name"><b>*</b> 期望月薪水：</div>
+              <div class="text" style="width:400px;">
+                <div class=" text_seclet text_seclet_cur2 fltL">
+                  <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $row.salary{/yun} value="{yun:}$userclass_name[$row.salary]{/yun}" {yun:}else{/yun} value="请选择薪水" {yun:}/if{/yun}  id="salary" onclick="search_show('job_salary');">
+                  <input type="hidden" id="salaryid" name="salary" {yun:}if $row.salary {/yun} value="{yun:}$row.salary{/yun}"{yun:}/if{/yun} />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_salary">
+                    <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$userdata.user_salary key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','salary','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+                <em>元/月</em> </div>
+            </li>
+			<li>
+              <div class="name"><b>*</b> 期望工作性质：</div>
+              <div class="text" style="width:400px;">
+                <div class=" text_seclet text_seclet_cur3 fltL">
+                  <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $row.type{/yun} value="{yun:}$userclass_name[$row.type]{/yun}" {yun:}else{/yun} value="请选择工作性质" {yun:}/if{/yun}  id="type" onclick="search_show('job_type');">
+                  <input type="hidden" id="typeid" name="type" {yun:}if $row.type {/yun} value="{yun:}$row.type{/yun}"{yun:}/if{/yun} />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_type">
+                    <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$userdata.user_type key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','type','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+               </div>
+            </li>
+            <li>
+              <div class="name"><b>*</b> 到岗时间：</div>
+              <div class="text">
+                <div class="text_seclet text_seclet_cur4 fltL">
+                  <input class="SpFormLBut text_seclet_w158" type="button" {yun:}if $row.report{/yun} value="{yun:}$userclass_name[$row.report]{/yun}" {yun:}else{/yun}value="请选择到岗时间"{yun:}/if{/yun} id="report" onclick="search_show('job_report');">
+                  <input type="hidden" id="reportid" name="report" value="{yun:}$row.report{/yun}" />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w156" style="display:none" id="job_report">
+                    <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$userdata.user_report key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','report','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="name">&nbsp;</div>
+              <div class="text"> <a href="javascript:;" onclick="saveexpect();"> {yun:}if $smarty.get.e{/yun} <img src="{yun:}$userstyle{/yun}/images/jlxg.jpg" title="修改"> {yun:}else{/yun} <img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"> {yun:}/if{/yun} </a>
+              <img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" onclick="checkClose('expect');" style="cursor:pointer;"> <input id="dom_m_sort" type="hidden" name="dom_m_sort" value="{yun:}$row.dom_sort{/yun}" />
+               </div>
+            </li>
+          </ul>
+        </div>
+		</div>
+		<div class="clear"></div>
+		<div id="dom0" style="height:auto; width:100%; position:static;">
+		<div id="m0" class="dom_m"><div class="jianli_list"><h1  ><b>教育经历</b></h1><a id="edu_botton" onclick="checkmore2('edu');" class="jianli_list_add"><em>添加</em></a></div>
+      <!-- 用户已填写教育经历-->
+      <div class="expect_cont_box" id="eduList">
+      {yun:}foreach item=v from=$edu{/yun}
+      <div class="expect_tj_list" id="edu{yun:}$v.id{/yun}" onmousemove="movelook('edu','{yun:}$v.id{/yun}');" onmouseout="outlook('edu','{yun:}$v.id{/yun}');">
+      <div><div class="expect_modify"><a href="javascript:getresume('edu','{yun:}$v.id{/yun}');">修改</a><a href="javascript:resume_del('edu','{yun:}$v.id{/yun}');">删除</a></div></div>
+        <ul class="expect_amend" id="edu_{yun:}$v.id{/yun}">
+          <li><span>学校名称：</span>{yun:}$v.name{/yun}</li>
+          <li><span>在校时间：</span>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</li>
+          <li><span>所学专业：</span>{yun:}$v.specialty{/yun}</li>
+          <li><span>担任职位：</span>{yun:}$v.title{/yun}</li>
+          <li class="expect_amend_end"><span>专业描述：</span><em>{yun:}$v.content{/yun}</em></li>
+        </ul>
+      </div>
+      {yun:}/foreach{/yun}
+       </div>
+       <div class="clear" id="edu_add"></div>
+        <div class="formbox02" id="edu" style="display:none;">
+          <ul>
+            <li>
+              <div class="name"> 学校名称：</div>
+              <div class="text">
+                <input type="text" value="" size="40" name="name" id="edu_name"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 在校时间：</div>
+              <div class="text">
+                <input class="text_seclet text_seclet_w130 " type="text" name="sdate" value="" size="15" readonly="" id="edu_sdate">
+                <script type="text/javascript">
+				Calendar.setup({
+					weekNumbers: true,
+					inputField : "edu_sdate",
+					trigger : "edu_sdate",
+					dateFormat: "%Y-%m-%d",
+					showTime: false,
+					onSelect : function() {this.hide();}
+				});
+            </script>
+                <em>到</em>
+                <input class="text_seclet text_seclet_w130 " type="text" name="edate" value="" size="15" readonly="" id="edu_edate">
+                <script type="text/javascript">
+				Calendar.setup({
+					weekNumbers: true,
+
+					inputField : "edu_edate",
+					trigger : "edu_edate",
+					dateFormat: "%Y-%m-%d",
+					showTime: false,
+					onSelect : function() {this.hide();}
+				});
+            </script>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 所学专业：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="specialty" id="edu_specialty"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 担任职位：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="title" id="edu_title"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 专业描述：</div>
+              <div class="text">
+                <textarea rows="5" cols="50" name="content" id="edu_content" class="infor_textarea "></textarea>
+              </div>
+            </li>
+          </ul>
+          <input type="hidden" id="eduid" />
+          <div class="formbox_right" id="educz"><a href="javascript:;" onclick="saveedu();" ><img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"></a><a onclick="checkClose2('edu');"><img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" title="删除" ></a></div>
+        </div>
+         <div class="add Add_expect" id="Addedu"> <a href="javascript:void(0);" onclick="checkmore2('edu');">添加教育经历</a></div>
+      </div>
+		<!---------------------教育经历 end---------------------------------------->
+		<!---------------------培训 begin---------------------------------------->
+		<div class="clear"></div>
+		<div id="m1" class="dom_m"><div class="jianli_list"><h1 ><b>培训经历</b></h1><a id="training_botton" onclick="checkmore2('training');" class="jianli_list_add"><em>添加</em></a></div>
+		<div class="clear"></div> <!-- 用户已填写培训 经历-->
+      <div class="expect_cont_box" id="trainingList">
+      {yun:}foreach item=v from=$training{/yun}
+      <div class="expect_tj_list" id="training{yun:}$v.id{/yun}" onmousemove="movelook('training','{yun:}$v.id{/yun}');" onmouseout="outlook('training','{yun:}$v.id{/yun}');">
+      <div><div class="expect_modify"><a href="javascript:getresume('training','{yun:}$v.id{/yun}');">修改</a><a href="javascript:resume_del('training','{yun:}$v.id{/yun}');">删除</a></div></div>
+        <ul class="expect_amend" id="training_{yun:}$v.id{/yun}">
+          <li><span>培训中心：</span>{yun:}$v.name{/yun}</li>
+          <li><span>培训时间：</span>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</li>
+          <li><span>培训方向：</span>{yun:}$v.title{/yun}</li>
+          <li class="expect_amend_end"><span>培训描述：</span><em>{yun:}$v.content{/yun}</em></li>
+        </ul>
+    </div>
+      {yun:}/foreach{/yun}
+        </div>
+        <div class="clear" id="training_add"></div>
+        <div class="formbox02" id="training" style="display:none;">
+          <ul>
+            <li>
+              <div class="name"> 培训中心：</div>
+              <div class="text">
+                <input type="text" value="" size="40" name="name" id="training_name"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 培训时间：</div>
+              <div class="text">
+                <input class="text_seclet text_seclet_w130 " type="text" name="sdate" value="" size="15" readonly="" id="training_sdate">
+                <script type="text/javascript">
+					Calendar.setup({
+						weekNumbers: true,
+						inputField : "training_sdate",
+						trigger : "training_sdate",
+						dateFormat: "%Y-%m-%d",
+						showTime: false,
+						onSelect : function() {this.hide();}
+					});
+                </script>
+                <em>到</em>
+                <input class="text_seclet text_seclet_w130 " type="text" name="edate" value="" size="15" readonly="" id="training_edate">
+                <script type="text/javascript">
+					Calendar.setup({
+						weekNumbers: true,
+						inputField : "training_edate",
+						trigger : "training_edate",
+						dateFormat: "%Y-%m-%d",
+						showTime: false,
+						onSelect : function() {this.hide();}
+					});
+                </script>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 培训方向：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="title" id="training_title"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 培训描述：</div>
+              <div class="text">
+                <textarea rows="5" cols="50" name="content" id="training_content" class="infor_textarea "></textarea>
+              </div>
+            </li>
+          </ul>
+          <input type="hidden" id="trainingid" />
+          <div class="formbox_right" id="trainingcz"><a href="javascript:;" onclick="savetraining();"><img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"></a><a onclick="checkClose2('training');"><img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" title="删除" ></a></div>
+        </div>
+        <div class="add Add_expect" id="Addtraining"> <a href="javascript:void(0);" onclick="checkmore2('training');">添加培训经历</a></div>
+      </div>
+      <!-------------培训---End------------------->
+      <div class="clear"></div>
+	  <div id="m2" class="dom_m"><div class="jianli_list"><h1 ><b>专业技能</b></h1><a id="skill_botton" class="jianli_list_add" onclick="checkmore2('skill');"><em>添加</em></a></div>
+      <div class="clear"></div><!-- 用户已填写专业技能-->
+      <div class="expect_cont_box" id="skillList">
+      {yun:}foreach from=$skill item=v{/yun}
+      <div class="expect_tj_list" id="skill{yun:}$v.id{/yun}" onmousemove="movelook('skill','{yun:}$v.id{/yun}');" onmouseout="outlook('skill','{yun:}$v.id{/yun}');">
+
+      <div><div class="expect_modify"><a href="javascript:getresume('skill','{yun:}$v.id{/yun}');">修改</a><a href="javascript:resume_del('skill','{yun:}$v.id{/yun}');">删除</a></div></div>
+
+        <ul class="expect_amend" id="skill_{yun:}$v.id{/yun}">
+		  <li><span>技能名称：</span>{yun:}$v.name{/yun}</li>   
+          <li><span>掌握时间：</span>{yun:}$v.longtime{/yun}年</li>
+          <li><span>技能类别：</span>{yun:}$userclass_name[$v.skill]{/yun}</li>
+          <li><span>熟练程度：</span>{yun:}$userclass_name[$v.ing]{/yun}</li>  
+        </ul>
+        </div>
+        {yun:}/foreach{/yun}
+      </div>
+
+      <div class="clear" id="skill_add"></div>
+        <div class="formbox02 " id="skill" style="display:none;">
+          <ul>
+		    <li>
+              <div class="name"> 技能名称：</div>
+              <div class="text">
+                <input type="text" name="name" value="" id="skill_name" class="info_text"/>
+                例：英语、C语言、速记 <span id="by_name" class="errordisplay">不能为空</span> </div>
+            </li>
+            <li>
+              <div class="name"> 技能类别：</div>
+              <div class="text">
+                <div class="text_seclet text_seclet_cur2">
+                  <input class="SpFormLBut text_seclet_w134" type="button"  value="请选择技能类别" id="skillc" name="skillc" onclick="search_show('job_skillc');">
+                  <input type="hidden" id="skillcid" name="skill" value="" />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w132 cus-sel-opt-panel-H72" style="display:none" id="job_skillc">
+                    <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$userdata.user_skill key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','skillc','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+              </div>			  
+              <div class="name_60" style="width:90px;"> 熟练程度：</div>
+              <div class="text">
+                <div class="text_seclet  text_seclet_cur2">
+                  <input class="SpFormLBut  text_seclet_w134" type="button"  value="请选择熟练程度" id="level" name="level" onclick="search_show('job_level');">
+                  <input type="hidden" id="levelid" name="level" />
+                  <div  class="cus-sel-opt-panel cus-sel-opt-panel-w132 " style="display:none; height:92px;" id="job_level">
+                    <ul class="Search_Condition_box_list">
+                      {yun:}foreach from=$userdata.user_ing key=j item=v{/yun}
+                      <li><a href="javascript:;" onclick="selects('{yun:}$v{/yun}','level','{yun:}$userclass_name[$v]{/yun}');"> {yun:}$userclass_name[$v]{/yun}</a></li>
+                      {yun:}/foreach{/yun}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 掌握时间：</div>
+              <div class="text">
+                <input type="text" name="longtime" size='5' value="" id="skill_longtime"class="info_text"/>年</div>
+            </li>
+
+            <li>
+              <div class="name">&nbsp;</div>
+              <div class="text">
+              	<input type="hidden" id="skillid" name="skillid" />
+                <div id="skillcz"><a href="javascript:;" onclick="saveskill();"><img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"></a> <a onclick="javascript:checkClose2('skill');"><img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" title="取消" ></a></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      <div class="add Add_expect" id="Addskill"> <a href="javascript:void(0);" onclick="checkmore2('skill');">添加专业技能</a></div>
+      </div>
+     <!-------------------专业技能-----END---------------------->
+      <!-------------------工作经历-----Begin-------------------->
+      <div class="clear"></div>
+	  <div id="m3" class="dom_m"><div class="jianli_list"><h1 ><b>工作经历</b></h1><a id="work_botton" onclick="checkmore2('work');" class="jianli_list_add"><em>添加</em></a></div>
+   <div class="clear"></div>   <!-- 用户已填写工作经历-->
+      <div class="expect_cont_box" id="workList">
+      {yun:}foreach item=v from=$work{/yun}
+      <div class="expect_tj_list" id="work{yun:}$v.id{/yun}" onmousemove="movelook('work','{yun:}$v.id{/yun}');" onmouseout="outlook('work','{yun:}$v.id{/yun}');">
+            <div><div class="expect_modify"><a href="javascript:getresume('work','{yun:}$v.id{/yun}');">修改</a><a href="javascript:resume_del('work','{yun:}$v.id{/yun}');">删除</a></div></div>
+        <ul class="expect_amend" id="work_{yun:}$v.id{/yun}">
+          <li><span>单位名称：</span>{yun:}$v.name{/yun}</li>
+          <li><span>工作时间：</span>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至 {yun:}if $v.edate{/yun}{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}&nbsp;&nbsp;至今{yun:}/if{/yun}</li>
+          <li><span>所在部门：</span>{yun:}$v.department{/yun}</li>
+          <li><span>担任职位：</span>{yun:}$v.title{/yun}</li>
+          <li class="expect_amend_end"><span>工作内容：</span><em>{yun:}$v.content{/yun}</em></li>
+        </ul>
+        </div>
+        {yun:}/foreach{/yun}
+      </div>
+
+
+        <div class="clear" id="work_add"></div>
+        <div class="formbox02" style="display:none;" id="work">
+          <ul>
+            <li>
+              <div class="name"> 单位名称：</div>
+              <div class="text">
+                <input type="text" value="" size="40" name="name" id="work_name"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 工作时间：</div>
+              <div class="text">
+                <input class="text_seclet text_seclet_w130 " type="text" name="sdate" value="" size="15" readonly="" id="work_sdate"/>
+                <script type="text/javascript">
+				Calendar.setup({
+					weekNumbers: true,
+					inputField : "work_sdate",
+					trigger : "work_sdate",
+					dateFormat: "%Y-%m-%d",
+					showTime: false,
+					onSelect : function() {this.hide();}
+				});
+            </script>
+            
+                <em>到</em>
+                <input class="text_seclet text_seclet_w130 " type="text" name="edate" value="" size="15" readonly="" id="work_edate">
+				<input type='checkbox' value='1' onclick="totoday()" id='totoday'><label for='totoday'>至今</label>
+                <script type="text/javascript">
+				Calendar.setup({
+					weekNumbers: true,
+					inputField : "work_edate",
+					trigger : "work_edate",
+					dateFormat: "%Y-%m-%d",
+					showTime: false,
+					onSelect : function() {this.hide();$("#totoday").attr("checked",false);}
+				});
+            </script>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 所在部门：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="department" id="work_department"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 担任职位：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="title" id="work_title"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 工作内容：</div>
+              <div class="text">
+                <textarea rows="5" cols="50" name="content" id="work_content" class="infor_textarea "></textarea>
+              </div>
+            </li>
+          </ul>
+          <input type="hidden" id="workid" />
+          <div class="formbox_right" id="workcz"><a href="javascript:;" onclick="savework();"><img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"></a><a onclick="javascript:checkClose2('work');"><img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" title="取消" ></a></div>
+        </div>
+        <div class="add Add_expect" id="Addwork"><a href="javascript:void(0);" onclick="checkmore2('work');">添加工作经历</a></div>
+</div>
+     <!-------------------工作 -----END---------------------->
+      <!-----------项目经历--Begin-------------->
+      <div class="clear"></div>
+	  <div id="m4" class="dom_m"><div class="jianli_list"><h1 ><b>项目经历</b></h1><a id="project_botton" onclick="checkmore2('project');" class="jianli_list_add"><em>添加</em></a></div>
+    <div class="clear"></div>  <!-- 用户已填写项目经历-->
+      <div class="expect_cont_box" id="projectList">
+      {yun:}foreach item=v from=$project{/yun}
+      <div class="expect_tj_list" id="project{yun:}$v.id{/yun}" onmousemove="movelook('project','{yun:}$v.id{/yun}');" onmouseout="outlook('project','{yun:}$v.id{/yun}');">
+            <div><div class="expect_modify"><a href="javascript:getresume('project','{yun:}$v.id{/yun}');">修改</a><a href="javascript:resume_del('project','{yun:}$v.id{/yun}');">删除</a></div></div>
+        <ul class="expect_amend" id="project_{yun:}$v.id{/yun}">
+          <li><span>项目名称：</span>{yun:}$v.name{/yun}</li>
+          <li><span>项目时间：</span>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}至{yun:}$v.edate|date_format:"%Y-%m-%d"{/yun}</li>
+          <li><span>项目环境：</span>{yun:}$v.sys{/yun}</li>
+          <li><span> 担任职位：</span>{yun:}$v.title{/yun}</li>
+          <li class="expect_amend_end"><span>项目内容：</span><em>{yun:}$v.content{/yun}</em></li>
+        </ul>
+        </div>
+      {yun:}/foreach{/yun}
+ </div>
+		<div class="clear" id="project_add"></div>
+        <div class="formbox02" id="project" style="display:none;">
+          <ul>
+            <li>
+              <div class="name"> 项目名称：</div>
+              <div class="text">
+                <input type="text" value="" size="40" name="name" id="project_name"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 项目时间：</div>
+              <div class="text">
+                <input class="text_seclet text_seclet_w130 " type="text" name="sdate" value="" size="15" readonly="" id="project_sdate">
+                <script type="text/javascript">
+					Calendar.setup({
+						weekNumbers: true,
+						inputField : "project_sdate",
+						trigger : "project_sdate",
+						dateFormat: "%Y-%m-%d",
+						showTime: false,
+						onSelect : function() {this.hide();}
+					});
+                </script>
+                <em>到</em>
+                <input class="text_seclet text_seclet_w130 " type="text" name="edate" value="" size="15" readonly="" id="project_edate">
+                <script type="text/javascript">
+					Calendar.setup({
+						weekNumbers: true,
+						inputField : "project_edate",
+						trigger : "project_edate",
+						dateFormat: "%Y-%m-%d",
+						showTime: false,
+						onSelect : function() {this.hide();}
+					});
+                </script>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 项目环境：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="sys" id="project_sys"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 担任职位：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="title" id="project_title"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 项目内容：</div>
+              <div class="text">
+                <textarea rows="5" cols="50" name="content" id="project_content" class="infor_textarea "></textarea>
+              </div>
+            </li>
+          </ul>
+          <input type="hidden" id="projectid" />
+          <div class="formbox_right" id="projectcz"><a href="javascript:;" onclick="saveproject();"><img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"></a><a onclick="checkClose2('project');"><img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" title="删除" ></a></div>
+        </div>
+        <div class="add Add_expect" id="Addproject"><a href="javascript:void(0);" onclick="checkmore2('project');">添加项目经历</a></div>
+</div>
+      
+      <!-------------证书---Begin------------------->
+      <div class="clear"></div>
+	  <div id="m5" class="dom_m"><div class="jianli_list"><h1 ><b name="m_cert">证书</b></h1><a id="cert_botton" onclick="checkmore2('cert');" class="jianli_list_add"><em>添加</em></a></div>
+      <div class="clear"></div><!-- 用户已填写培训 经历-->
+      <div class="expect_cont_box" id="certList">
+      {yun:}foreach item=v from=$cert{/yun}
+      <div class="expect_tj_list" id="cert{yun:}$v.id{/yun}" onmousemove="movelook('cert','{yun:}$v.id{/yun}');" onmouseout="outlook('cert','{yun:}$v.id{/yun}');">
+      <div><div class="expect_modify"><a href="javascript:getresume('cert','{yun:}$v.id{/yun}');">修改</a><a href="javascript:resume_del('cert','{yun:}$v.id{/yun}');">删除</a></div></div>
+        <ul class="expect_amend" id="cert_{yun:}$v.id{/yun}">
+          <li><span>证书全称：</span>{yun:}$v.name{/yun}</li>
+          <li><span>颁发时间：</span>{yun:}$v.sdate|date_format:"%Y-%m-%d"{/yun}</li>
+          <li><span>颁发单位：</span>{yun:}$v.title{/yun}</li>
+          <li class="expect_amend_end"><span>证书描述：</span><em>{yun:}$v.content{/yun}</em></li>
+        </ul>
+      </div>
+      {yun:}/foreach{/yun}
+      </div>
+      <div class="clear" id="cert_add"></div>
+        <div class="formbox02" id="cert" style="display:none;">
+          <ul>
+            <li>
+              <div class="name"> 证书全称：</div>
+              <div class="text">
+                <input type="text" value="" size="40" name="name" id="cert_name"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name">颁发时间：</div>
+              <div class="text">
+                <input class="text_seclet text_seclet_w130 " type="text" name="sdate" value="" size="15" readonly="" id="cert_sdate">
+                <script type="text/javascript">
+					Calendar.setup({
+						weekNumbers: true,
+						inputField : "cert_sdate",
+						trigger : "cert_sdate",
+						dateFormat: "%Y-%m-%d",
+						showTime: false,
+						onSelect : function() {this.hide();}
+					});
+                </script>  
+              </div>
+            </li>
+            <li>
+              <div class="name"> 颁发单位：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="title" id="cert_title"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 证书描述：</div>
+              <div class="text">
+                <textarea rows="5" cols="50" name="content" id="cert_content" class="infor_textarea "></textarea>
+              </div>
+            </li>
+          </ul>
+          <input type="hidden" id="certid" />
+          <div class="formbox_right" id="certcz"><a href="javascript:;" onclick="savecert();"><img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"></a><a onclick="checkClose2('cert');"><img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" title="取消" ></a></div>
+        </div>
+        <div class="add Add_expect" id="Addcert"> <a href="javascript:void(0);" onclick="checkmore2('cert');">添加证书</a></div>
+      </div>
+      <!-------------附加信息---Begin------------------->
+      <div class="clear"></div>
+	  <div id="m6" class="dom_m"><div class="jianli_list"><h1 ><b name="m_other">附加信息</b></h1><a id="other_botton" onclick="checkmore2('other');" class="jianli_list_add"><em>添加</em></a></div>
+     <div class="clear"></div> <!-- 用户已填写附加信息-->
+            <div class="expect_cont_box" id="otherList">
+      {yun:}foreach item=v from=$other{/yun}
+      <div class="expect_tj_list" id="other{yun:}$v.id{/yun}" onmousemove="movelook('other','{yun:}$v.id{/yun}');" onmouseout="outlook('other','{yun:}$v.id{/yun}');">
+      <div><div class="expect_modify"><a href="javascript:getresume('other','{yun:}$v.id{/yun}');">修改</a><a href="javascript:resume_del('other','{yun:}$v.id{/yun}');">删除</a></div></div>
+        <ul class="expect_amend" id="other_{yun:}$v.id{/yun}">
+          <li><span>其他标题：</span>{yun:}$v.title{/yun}</li>
+          <li class="expect_amend_end"><span>其他描述：</span><em>{yun:}$v.content{/yun}</em></li>
+        </ul>
+      </div>
+      {yun:}/foreach{/yun}
+     </div>
+      <div class="clear" id="other_add"></div>
+        <div class="formbox02" id="other" style="display:none;">
+          <ul>
+            <li>
+              <div class="name"> 其他标题：</div>
+              <div class="text">
+                <input type="text" value="" size="20" name="title" id="other_title"class="info_text"/>
+              </div>
+            </li>
+            <li>
+              <div class="name"> 其他描述：</div>
+              <div class="text">
+                <textarea rows="5" cols="50" name="content" id="other_content" class="infor_textarea "></textarea>
+              </div>
+            </li>
+          </ul>
+          <input type="hidden" id="otherid" />
+          <div class="formbox_right" id="othercz"><a href="javascript:;" onclick="saveother();"><img src="{yun:}$userstyle{/yun}/images/jlbc.jpg" title="保存"></a><a onclick="checkClose2('other');"><img src="{yun:}$userstyle{/yun}/images/jlsc.jpg" title="取消" ></a></div>
+        </div>
+         <div class="add Add_expect" id="Addother"><a href="javascript:void(0);" onclick="checkmore2('other');">添加附加信息</a></div>
+      <div class="operatebox03 mt10">
+        <input name="eid" id="eid" type="hidden" value="{yun:}$smarty.get.e{/yun}"/>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<input name="urlid" type="hidden" id="urlid" value="{yun:}$config.sy_weburl{/yun}"  />
+<div id="bg" style="display:none;"></div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

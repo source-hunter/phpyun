@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position:absolute;"></div>
+<div class="infoboxp_top infoboxp_topIjf">
+    <span class="infoboxp_top_span">用户设置</span>
+	<span class="infoboxp_top_span_sz"><a href="index.php?m=userconfig">个人设置</a></span>
+    <span class="infoboxp_top_span_sz infoboxp_top_span_sz_in"><a href="index.php?m=userconfig&c=com">企业设置</a></span>
+    <span class="infoboxp_top_span_sz"><a href="index.php?m=userconfig&c=avatar">会员头像</a></span>
+</div>
+<div class="main_tag">
+<div class="tag_box"><div>
+<table width="100%" class="table_form">
+  <tr class="admin_table_trbg">
+          <th width="220">参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+ <tr>
+		<th width="220">开启企业会员审核：</th>
+		<td>
+		    <input type="radio" name="com_status" value="1" id="com_status_0" {yun:}if $config.com_status==1{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_status_0">不审核</label>
+		    <input type="radio" name="com_status" value="0" id="com_status_1" {yun:}if $config.com_status!=1{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_status_1">审核</label></td>
+            <td width="160">com_status</td>
+	</tr>
+ 	   <tr class="admin_table_trbg">
+		<th width="220">企业会员模式：</th>
+		<td>
+		    <input type="radio" name="com_vip_type" value="1" id="com_vip_type1_0" {yun:}if $config.com_vip_type==1{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_vip_type1_0">时间模式</label>
+		    <input type="radio" name="com_vip_type" value="2" id="com_vip_type1_1" {yun:}if $config.com_vip_type==2{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_vip_type1_1">套餐模式</label>
+            <input type="radio" name="com_vip_type" value="0" id="com_vip_type1_2" {yun:}if $config.com_vip_type==0{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_vip_type1_2">同时开启</label></td>
+            <td width="160">com_vip_type</td>
+	</tr>
+    <tr>
+		<th width="220">强制邮箱认证：</th>
+		<td>
+		    <input type="radio" name="com_enforce_emailcert" value="1" id="RadioGroup1_0" {yun:}if $config.com_enforce_emailcert==1{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_enforce_emailcert" value="0" id="RadioGroup1_1" {yun:}if $config.com_enforce_emailcert!=1{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label></td>
+            <td width="160">com_enforce_emailcert</td>
+	</tr>
+    <tr  class="admin_table_trbg">
+		<th width="220">强制手机认证：</th>
+		<td>
+		    <input type="radio" name="com_enforce_mobilecert" value="1" id="RadioGroup1_0" {yun:}if $config.com_enforce_mobilecert==1{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_enforce_mobilecert" value="0" id="RadioGroup1_1" {yun:}if $config.com_enforce_mobilecert!=1{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label></td>
+            <td width="160">com_enforce_mobilecert</td>
+	</tr>
+    <tr>
+		<th width="220">强制营业执照认证：</th>
+		<td>
+		    <input type="radio" name="com_enforce_licensecert" value="1" id="RadioGroup1_0" {yun:}if $config.com_enforce_licensecert==1{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_enforce_licensecert" value="0" id="RadioGroup1_1" {yun:}if $config.com_enforce_licensecert!=1{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label></td>
+            <td width="160">com_enforce_licensecert</td>
+	</tr>
+    <tr class="admin_table_trbg">
+		<th width="220">强制设置地理位置：</th>
+		<td>
+		    <input type="radio" name="com_enforce_setposition" value="1" id="RadioGroup1_0" {yun:}if $config.com_enforce_setposition==1{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_enforce_setposition" value="0" id="RadioGroup1_1" {yun:}if $config.com_enforce_setposition!=1{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label></td>
+            <td width="160">com_enforce_setposition</td>
+	</tr>
+ 	<tr>
+		<th width="220">开启求职咨询：</th>
+		<td>
+		    <input type="radio" name="com_message" value="1" id="com_message_0" {yun:}if $config.com_message==1{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_message_0">开启</label>
+		    <input type="radio" name="com_message" value="0" id="com_message_1" {yun:}if $config.com_message!=1{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_message_1">关闭</label></td>
+            <td width="160">com_message</td>
+	</tr>
+   <tr class="admin_table_trbg">
+		<th width="220">举报虚假人才：</th>
+		<td>
+		    <input type="radio" name="com_report" value="1" id="com_report_0" {yun:}if $config.com_report==1{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_report_0">开启</label>
+		    <input type="radio" name="com_report" value="0" id="com_report_1" {yun:}if $config.com_report!=1{/yun}checked{yun:}/if{/yun}>
+		    <label for="com_report_1">关闭</label></td>
+            <td width="160">com_report</td>
+	</tr>
+	 <tr>
+		<th width="220">企业搜索器数量：</th>
+		<td><input class="input-text tips_class" type="text" name="com_finder" id="com_finder" value="{yun:}$config.com_finder{/yun}" size="20" maxlength="255" onKeyUp="this.value=this.value.replace(/[^0-9.]/g,'')"/>个</td>
+        <td width="160">com_finder</td>
+	</tr>
+    <tr>
+		<th width="220">上传公司LOGO大小：</th>
+		<td><input class="input-text tips_class" type="text" name="com_pickb" id="com_pickb" value="{yun:}$config.com_pickb{/yun}" size="20" maxlength="255" onKeyUp="this.value=this.value.replace(/[^0-9.]/g,'')"/>KB <font color="gray" style="display:none">说明：1024KB=1M</font></td>
+        <td width="160">com_pickb</td>
+	</tr>
+
+	   <tr class="admin_table_trbg">
+		<th width="220">企业上传图片大小：</th>
+		<td><input class="input-text tips_class" type="text" name="com_uppic" id="com_uppic" value="{yun:}$config.com_uppic{/yun}" size="20" maxlength="255" onKeyUp="this.value=this.value.replace(/[^0-9.]/g,'')"/> <font color="gray" style="display:none">KB</font></td>
+        <td width="160">com_uppic</td>
+	</tr>
+    <tr>
+		<th width="220">一句话招聘审核：</th>
+		<td>
+		    <input type="radio" name="com_fast_status" value="0" id="RadioGroup1_0" {yun:}if $config.com_fast_status==0{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_fast_status" value="1" id="RadioGroup1_1" {yun:}if $config.com_fast_status!=0{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label></td>
+            <td width="160">com_fast_status</td>
+	</tr>
+        <tr class="admin_table_trbg">
+		<th width="220">企业职位发布审核：</th>
+		<td>
+		    <input type="radio" name="com_job_status" value="0" id="RadioGroup1_0" {yun:}if $config.com_job_status==0{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_job_status" value="1" id="RadioGroup1_1" {yun:}if $config.com_job_status!=0{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label></td>
+            <td width="160">com_job_status</td>
+	</tr>
+      <tr>
+		<th width="220">企业认证审核：</th>
+		<td>
+		    <input type="radio" name="com_cert_status" value="1" id="RadioGroup1_0" {yun:}if $config.com_cert_status==1{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_cert_status" value="0" id="RadioGroup1_1" {yun:}if $config.com_cert_status!=1{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label></td>
+            <td width="160">com_cert_status</td>
+	</tr>
+        <tr class="admin_table_trbg">
+		<th width="220">会员到期后或超出范围启用{yun:}$config.integral_pricename{/yun}模式：</th>
+		<td>
+		    <input type="radio" name="com_integral_online" value="1" id="RadioGroup1_0" {yun:}if $config.com_integral_online==1{/yun}checked{yun:}/if{/yun}>
+		    <label>开启</label>
+		    <input type="radio" name="com_integral_online" value="0" id="RadioGroup1_1" {yun:}if $config.com_integral_online!=1{/yun}checked{yun:}/if{/yun}>
+		    <label>关闭</label>
+            <font color="gray">注:关闭的情况，会员到期后，则功能不能用</font>
+       	</td>
+        <td width="160">com_integral_online</td>
+	</tr>
+
+    <tr>
+		<th width="220">企业注册默认等级：</th>
+        {yun:}if is_array($qy_rows){/yun}
+		<td>
+        	{yun:}foreach item=v from=$qy_rows{/yun}
+		    <input type="radio" name="com_rating" value="{yun:}$v.id{/yun}" id="rating_{yun:}$v.id{/yun}" {yun:}if $config.com_rating==$v.id{/yun}checked{yun:}/if{/yun}>
+		    <label for="rating_{yun:}$v.id{/yun}">{yun:}$v.name{/yun}</label>&nbsp;&nbsp;
+		    {yun:}/foreach{/yun}
+        </td>
+        <td width="160">com_rating</td>
+        {yun:}else{/yun}
+          <td>
+        	暂无等级，<a href="index.php?m=userconfig&c=comclass" style="color:red;">添加会员等级</a>
+            <input type="hidden" name="com_rating" value="0">
+        	</td>
+        {yun:}/if{/yun}
+	</tr>
+	<tr  >
+		<td colspan="3" align="center">
+        <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+        <input class="admin_submit4" id="mconfig" type="button" name="config" value="提交" />&nbsp;&nbsp;
+        <input class="admin_submit4" type="reset" value="重置" /></td>
+	</tr>
+</table>
+</div>
+
+</div>
+</div>
+<script>
+$(function(){
+	$("#mconfig").click(function(){
+		$.post("index.php?m=userconfig&c=save",{
+			config : $("#mconfig").val(),
+			com_pickb : $("#com_pickb").val(),
+			com_enforce_emailcert : $("input[name=com_enforce_emailcert]:checked").val(),
+			com_enforce_mobilecert : $("input[name=com_enforce_mobilecert]:checked").val(),
+			com_enforce_licensecert : $("input[name=com_enforce_licensecert]:checked").val(),
+			com_enforce_setposition : $("input[name=com_enforce_setposition]:checked").val(),
+			com_uppic : $("#com_uppic").val(),
+			com_finder : $("#com_finder").val(),
+			com_rating : $("input[name=com_rating]:checked").val(),
+			com_integral_online : $("input[name=com_integral_online]:checked").val(),
+			com_fast_status : $("input[name=com_fast_status]:checked").val(),
+			com_job_status : $("input[name=com_job_status]:checked").val(),
+			com_cert_status : $("input[name=com_cert_status]:checked").val(),
+			com_vip_type : $("input[name=com_vip_type]:checked").val(),
+			com_message : $("input[name=com_message]:checked").val(),
+			com_report : $("input[name=com_report]:checked").val(),
+			com_status : $("input[name=com_status]:checked").val(),
+			pytoken:$("#pytoken").val()
+		},function(data,textStatus){
+			config_msg(data);
+		});
+	});
+})
+</script></div>
+</body>
+</html>

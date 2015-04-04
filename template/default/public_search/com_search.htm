@@ -1,0 +1,140 @@
+<div class="Post_select fl "> 
+  <div class="Post_select_list fl">
+  <div class="Post_select_left"><span>行业类别</span></div>
+   <div class="Post_select_right">
+   {yun:}foreach item=v key=key from=$industry_index{/yun}
+   <a {yun:}if $key>9{/yun}style="display:none;"{yun:}/if{/yun} href="{yun:}if !in_array($v,$hyclass) && !empty($hyclass){/yun}{yun:}seacrh_url m=com hy=$v,`$getinfo.hy` untype=hy{/yun}{yun:}elseif in_array($v,$hyclass){/yun}{yun:}seacrh_url m=com{/yun}{yun:}else{/yun}{yun:}seacrh_url m=com hy=$v untype=hy{/yun}{yun:}/if{/yun}" class="com_vid {yun:}if $getinfo.hy==$v{/yun}com_selected{yun:}/if{/yun} {yun:}if in_array($v,$hyclass){/yun}com_selected{yun:}/if{/yun} {yun:}if $key>9{/yun}listhy{yun:}/if{/yun}"><i class="com_checkbox"></i><span class="com_text">{yun:}$industry_name[$v]{/yun}</span></a>   
+   {yun:}/foreach{/yun}
+   </div>
+    <div><div class="Post_select_more" id="buttonhy"><a href="javascript:checkmore('hy');" class="com_more">更多</a></div></div>
+   </div>
+   
+  <div class="Post_select_list fl">
+  <div class="Post_select_left"><span class="com_po_l">职位类别</span></div>
+   <div class="Post_select_right">
+   {yun:}if $getinfo.job1_son!=""{/yun}
+   {yun:}foreach item=v key=key from=$job_type[$getinfo.job1_son]{/yun}
+   <a {yun:}if $key>9{/yun}style="display:none;"{yun:}/if{/yun} href="{yun:}if !in_array($v,$jobpost) && !empty($jobpost){/yun}{yun:}seacrh_url m=com job_post=$v,`$getinfo.job_post` untype=job_post{/yun}{yun:}elseif in_array($v,$jobpost){/yun}{yun:}seacrh_url m=com{/yun}{yun:}else{/yun}{yun:}seacrh_url m=com job_post=$v untype=job_post{/yun}{yun:}/if{/yun}" class="com_vid {yun:}if in_array($v,$jobpost){/yun}com_selected{yun:}/if{/yun} {yun:}if $key>9{/yun}listjob{yun:}/if{/yun}"><i class="com_checkbox"></i><span class="com_text">{yun:}$job_name[$v]{/yun}</span></a>   
+   {yun:}/foreach{/yun}
+   {yun:}elseif $getinfo.job1!=""{/yun}
+    {yun:}foreach item=v key=key from=$job_type[$getinfo.job1]{/yun}
+    <a {yun:}if $key>9{/yun}style="display:none;"{yun:}/if{/yun} href="{yun:}seacrh_url m=com job1_son=$v untype=job1_son,job_post{/yun}" class="com_vid {yun:}if $key>9{/yun}listjob{yun:}/if{/yun}"><span class="com_text"> {yun:}$job_name[$v]{/yun}</span></a> 
+    {yun:}/foreach{/yun} 
+
+   {yun:}else{/yun}
+    {yun:}foreach item=v key=key from=$job_index{/yun}
+    <a {yun:}if $key>9{/yun}style="display:none;"{yun:}/if{/yun} href="{yun:}seacrh_url m=com job1=$v untype=job1,job1_son,job_post{/yun}" class="com_vid {yun:}if $key>9{/yun}listjob{yun:}/if{/yun}"><span class="com_text"> {yun:}$job_name[$v]{/yun}</span></a> 
+    {yun:}/foreach{/yun}   
+    {yun:}/if{/yun}         
+   </div>
+      <div><div class="Post_select_more" id="buttonjob"><a href="javascript:checkmore('job');" class="com_more">更多</a>
+      </div>  </div>
+    </div>
+<script>
+function ONshowcity2(id,key){
+	var gettype=$("#gettype").val();
+	var num=(parseInt(key/5)+1)*5;
+	$.get("index.php?".url,{id:id,ajax:1},function(data){
+		$("#CityList"+num).html(data);
+		$("#CityList"+num).show();
+		$("#city"+id).addClass("com_selected_bg");
+	})
+}
+function ONhidecity2(id,key){
+	var num=(parseInt(key/5)+1)*5;
+	$("#CityList"+num).hide();
+	$("#city"+id).removeClass("com_selected_bg");
+}
+</script>   
+    
+     <div class="Post_select_list Post_select_list_end fl">
+  <div class="Post_select_left"><span>企业地区</span></div>
+   <div class="Post_select_right">
+   {yun:}if $getinfo.provinceid!=''{/yun}
+   {yun:}foreach item=v key=key from=$city_type[$getinfo.provinceid]{/yun}
+   <div class="com_seach_list">
+   <a id="city{yun:}$v{/yun}" onmousemove="ONshowcity('{yun:}$v{/yun}','{yun:}$key{/yun}')" onmouseout="ONhidecity('{yun:}$v{/yun}','{yun:}$key{/yun}')" {yun:}if $key>9{/yun}style="display:none;"{yun:}/if{/yun} href="{yun:}if !in_array($v,$cityidclass) && !empty($cityidclass){/yun}{yun:}seacrh_url m=com cityid=$v,`$getinfo.cityid` untype=cityid{/yun}{yun:}elseif in_array($v,$cityidclass){/yun}{yun:}seacrh_url m=com{/yun}{yun:}else{/yun}{yun:}seacrh_url m=com cityid=$v untype=cityid{/yun}{yun:}/if{/yun}" class="com_vid {yun:}if in_array($v,$cityidclass){/yun}com_selected{yun:}/if{/yun} {yun:}if $key>9{/yun}listcity{yun:}/if{/yun}"><i class="com_checkbox"></i><span class="com_text">{yun:}$city_name[$v]{/yun}</span>
+   
+ 
+ </a>   <div class="com_group" id="CityList{yun:}$key+1{/yun}">
+   <ul>
+   		
+        <li><a href="{yun:}seacrh_url m=com cityid=$val untype=cityid{/yun}" class="com_vid "><i class="com_checkbox"></i><span class="com_text">北京</span></a> </li> 
+
+              <li><a href="{yun:}seacrh_url m=com cityid=$val untype=cityid{/yun}" class="com_vid "><i class="com_checkbox"></i><span class="com_text">北京</span></a> </li>         <li><a href="{yun:}seacrh_url m=com cityid=$val untype=cityid{/yun}" class="com_vid "><i class="com_checkbox"></i><span class="com_text">北京</span></a> </li>         <li><a href="{yun:}seacrh_url m=com cityid=$val untype=cityid{/yun}" class="com_vid "><i class="com_checkbox"></i><span class="com_text">北京</span></a> </li>       
+            
+    </ul>
+    </div>
+  
+ </div>
+   {yun:}/foreach{/yun}
+   {yun:}else{/yun}
+   {yun:}foreach item=v key=key from=$city_index{/yun}
+   <a {yun:}if $key>9{/yun}style="display:none;"{yun:}/if{/yun} href="{yun:}seacrh_url m=com provinceid=$v untype=provinceid,cityid{/yun}" class="com_vid {yun:}if $key>9{/yun}listcity{yun:}/if{/yun}"><span class="com_text">{yun:}$city_name[$v]{/yun}</span></a>   
+   {yun:}/foreach{/yun}
+   {yun:}/if{/yun}
+   </div>
+   <div><div class="Post_select_more" id="buttoncity"><a href="javascript:checkmore('city');" class="com_more">更多</a></div></div>
+  </div>
+   <div class="com-list-wrapper">
+     <span class="pro-hover pro-hover_left" id="salary" onmousemove="selecttype('salary');"><span class="text">期望月薪</span><i class="triangle"></i></span> 
+     <span class="pro-hover" id="mun" onmousemove="selecttype('mun');"><span class="text">企业规模</span><i class="triangle"></i></span> 
+     <span class="pro-hover" id="edu" onmousemove="selecttype('edu');"><span class="text">学历</span><i class="triangle"></i></span> 
+     <span class="pro-hover" id="exp" onmousemove="selecttype('exp');"><span class="text">工作经验</span><i class="triangle"></i></span> 
+     <span class="pro-hover" id="sex" onmousemove="selecttype('sex');"><span class="text">性别</span><i class="triangle"></i></span> 
+      <form method="get">
+      {yun:}foreach item=v key=key from=$getinfo{/yun}
+      {yun:}if $key!="" && $key!="keyword"{/yun}
+      <input type="hidden" name="{yun:}$key{/yun}" value="{yun:}$v{/yun}" />
+      {yun:}/if{/yun}
+      {yun:}/foreach{/yun}
+     <input type="text" name="keyword" value="关键字" onclick="if(this.value=='关键字'){this.value=''}" onblur="if(this.value==''){this.value='关键字'}" class="com_pro_seach placeholder">
+     <input type="submit" value="筛选" class="com_pro_submit">
+     </form>
+     <div class="ks-popup" id="salarylist" style="display:none;">
+     {yun:}foreach item=v from=$comdata.job_salary{/yun}
+	 <a href="{yun:}seacrh_url m=com salary=$v untype=salary{/yun}" class="com_vid com_vid_sele"><i class="com_checkbox"></i><span class="com_text">{yun:}$comclass_name[$v]{/yun} </span></a>  
+ 	 {yun:}/foreach{/yun}                         
+     </div>
+     <div class="ks-popup" id="munlist" style="display:none;">
+     {yun:}foreach item=v from=$comdata.job_mun{/yun}
+	 <a href="{yun:}seacrh_url m=com mun=$v untype=mun{/yun}" class="com_vid com_vid_sele"><i class="com_checkbox"></i><span class="com_text">{yun:}$comclass_name[$v]{/yun} </span></a>  
+ 	 {yun:}/foreach{/yun}    
+     </div> 
+     <div class="ks-popup" id="edulist" style="display:none;">
+     {yun:}foreach item=v from=$comdata.job_edu{/yun}
+	 <a href="{yun:}seacrh_url m=com edu=$v untype=edu{/yun}" class="com_vid com_vid_sele"><i class="com_checkbox"></i><span class="com_text">{yun:}$comclass_name[$v]{/yun} </span></a>
+ 	 {yun:}/foreach{/yun} 
+     </div> 
+     <div class="ks-popup" id="explist" style="display:none;">
+     {yun:}foreach item=v from=$comdata.job_exp{/yun}
+	 <a href="{yun:}seacrh_url m=com exp=$v untype=exp{/yun}" class="com_vid com_vid_sele"><i class="com_checkbox"></i><span class="com_text">{yun:}$comclass_name[$v]{/yun} </span></a>
+ 	 {yun:}/foreach{/yun}  
+     </div>
+     <div class="ks-popup" id="sexlist" style="display:none;">
+     {yun:}foreach item=v from=$comdata.job_sex{/yun}
+	 <a href="{yun:}seacrh_url m=com sex=$v untype=sex{/yun}" class="com_vid com_vid_sele"><i class="com_checkbox"></i><span class="com_text">{yun:}$comclass_name[$v]{/yun} </span></a>  
+ 	 {yun:}/foreach{/yun}                 
+     </div>
+     
+     </div>
+   </div>
+<div class="clear"></div>
+<input type="hidden" id="gettype" value="{yun:}$gettype{/yun}"/>
+<script>
+function checkmore(id){
+	$(".list"+id).show();
+	$("#button"+id).html('<a href="javascript:checkhide(\''+id+'\');" class="com_more_sq">收起</a>');
+}
+function checkhide(id){
+	$(".list"+id).hide();
+	$("#button"+id).html('<a href="javascript:checkmore(\''+id+'\');" class="com_more">更多</a>');
+}
+function selecttype(id){
+	$(".pro-hover_cur").attr("class","pro-hover");
+	$("#"+id).attr("class","pro-hover pro-hover_cur");
+	$("#salary").addClass("pro-hover_left");
+	$(".ks-popup").hide();
+	$("#"+id+"list").show();
+}
+</script>

@@ -1,0 +1,63 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li > <a href="index.php?c=resume">我的简历</a></li>
+      <li> <a href="index.php?c=look">简历被浏览</a></li>
+      <li class="cur"> <a href="index.php?c=look_job">浏览的职位</a></li>
+      <li> <a href="index.php?c=privacy">隐私设置</a></li>
+    </ul>
+  </div>
+  <div class="remindbox01 mt10" >
+    <div id="gms_showclew"></div>
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form action="index.php" method="get" target="supportiframe" id='myform'>
+    <input type="hidden" name="c" value="look_job" />
+    <input type="hidden" name="act" value="del" />
+    <div class="resumelistbox01 mt10">
+      <div class="resume_box_list">
+       <div class="List_Ope List_Title">
+       <span class="List_Title_span List_Title_span_n">&nbsp;</span>
+       <span class="List_Title_span List_Title_w60">ID </span>	
+       <span class="List_Title_span List_Title_w230">职位名称</span>	 	
+       <span class="List_Title_span List_Title_w120">薪资待遇</span>	
+        <span class="List_Title_span List_Title_w100">工作地点</span>	 	
+       <span class="List_Title_span List_Title_w80">浏览时间</span>	 	
+       <span class="List_Title_span List_Title_w100">操作</span>	
+      </div> 
+          {yun:}foreach item=log from=$look{/yun}
+           <div class="List_Ope List_Ope_bor">
+       <span class="List_Title_span List_Title_span_n"><input type=checkbox name="del[]" value="{yun:}$log.id{/yun}" class="List_Title_span_check"></span>
+       <span class="List_Title_span List_Title_w60 mt10">{yun:}$log.id{/yun}&nbsp;</span>	
+       <span class="List_Title_span List_Title_w230">
+       <div class=""><a href="{yun:}url m=com url=c:comapply,id:`$log.jobid`{/yun}" target="_blank" class="List_Title_span_com">{yun:}$log.jobname{/yun}</a> </div>
+       <a href="{yun:}curl url=id:`$log.com_id`{/yun}" target="_blank">{yun:}$log.comname{/yun}</A>&nbsp;
+      
+       </span>	
+        	
+       <span class="List_Title_span  List_Title_w120 mt10">{yun:}$log.salary{/yun}</span>	  
+       <span class="List_Title_span List_Title_w100 mt10">{yun:}$log.provinceid{/yun}-{yun:}$log.cityid{/yun}</span>		
+       <span class="List_Title_span List_Title_w80 mt10">{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</span>	 	
+       <span class="List_Title_span List_Title_w100 mt10"><a href="javascript:void(0)"  onclick="layer_del('确定要删除？','index.php?c=look_job&act=del&id={yun:}$log.id{/yun}');" class="List_dete"> 删除</a></span>	
+      </div>
+         {yun:}foreachelse{/yun}  
+          <div class="msg_no">
+           您还没有浏览过的职位。
+          </div>
+          {yun:}/foreach{/yun} 
+		   {yun:}if $look{/yun} 
+		  <div class="List_Ope List_Ope_bg">
+       <span class="List_Title_span List_Title_span_n"><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)' class="List_Title_span_check_n mt5"></span><INPUT type="button" name="subdel" value="批量删除" onclick="return really('del[]');"class="Bulk_Delete">
+      </div>
+	  <div class="diggg" style="width:710px;">{yun:}$pagenav{/yun}</div>
+	  {yun:}/if{/yun} 
+      </div>
+    </div>
+    
+    </form>
+  </div>
+</div>
+</div> 
+{yun:}include file="$userstyle/footer.htm"{/yun} 

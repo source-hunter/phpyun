@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+ <div class="company_job">
+  <span class="admin_title_span">微信搜索关键字</span>
+    <div class="company_job_list_h1">
+      <form action="index.php" name="myform" method="get">
+        <span class="company_m6" style="float:left;margin-left:10px;">
+        <input name="m" value="wx" type="hidden"/>
+        <input name="c" value="keyword" type="hidden"/>
+        <input class="company_job_text" type="text" name="keyword"  size="25" style="float:left"/>
+        <input class="company_job_new_sub"  type="submit" name="news_search" value="检索关键字"/>
+        &nbsp;</span> 
+      </form>
+       <div class="infoboxp_right"> 
+        <a href="index.php?m=wx&c=wxnav" class="infoboxp_tj">菜单管理</a>
+        <a href="index.php?m=wx" class="infoboxp_tj">客户端设置</a>
+        <a href="index.php?m=wx&c=binduser" class="infoboxp_tj">用户绑定列表</a>
+        <a href="index.php?m=wx&c=wxlog" class="infoboxp_tj">用户操作日志</a>
+    </div>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php?m=admin_keyword&c=del" target="supportiframe" name="myform" id='myform' method="post"> 
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th><label for="chkall">
+                  <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+              <th>编号</th>
+              <th align="left">关键字</th>
+              <th align="left">搜索次数</th>
+              <th align="left">最近搜索用户</th>
+              <th align="left">绑定ID（OpenId）</th>
+              <th>搜索时间</th>
+            </tr>
+          </thead>
+          <tbody>
+          {yun:}foreach item=v key=key from=$keyList{/yun}
+          <tr align="center">
+            <td><input type="checkbox" class="check_all" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+             <td class="ud" align="left">{yun:}$v.key_name{/yun}</td>
+            <td class="ud" align="left">{yun:}$v.num{/yun}</td>
+            <td class="ud" align="left">{yun:}$v.wxuser{/yun}</td>
+            <td class="od" align="left">{yun:}$v.wxid{/yun}</td>
+            <td>{yun:}$v.wxtime|date_format:"%Y-%m-%d"{/yun}</td>          
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="3" ><input  class="admin_submit4" type="button" name="delsub" value="批量删除" onClick="return really('del[]')" />
+             </td>
+            <td colspan="4" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+        </table>
+		<input type="hidden" name="pytoken" id="pytoken"  value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

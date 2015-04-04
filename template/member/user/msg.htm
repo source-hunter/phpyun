@@ -1,0 +1,73 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"><a href="javascript:void(0);">面试邀请</a></li>
+    </ul>
+  </div>
+  <div class="remindbox01 mt10">
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div id="" class="resume_box_list">
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <div class="List_Ope List_Title ">
+           <span class="List_Title_span List_Title_w170">面试职位</span>
+           <span class="List_Title_span List_Title_w170">公司名称</span>			
+           <span class="List_Title_span List_Title_w110">邀请时间</span>	
+           <span class="List_Title_span List_Title_w110">状态</span>
+           <span class="List_Title_span List_Title_w150">操作</span>	
+         </div>
+          {yun:}foreach item=log from=$rows{/yun}
+           <div class="List_Ope List_Ope_Advisory">
+           <span class="List_Title_span List_Title_w170"><a href="{yun:}url m=com url=c:comapply,id:`$log.jobid`{/yun}" class="List_Title_span_com">{yun:}$log.jobname{/yun}</a></span>
+           <span class="List_Title_span List_Title_w170"><a href="{yun:}curl url=id:`$log.fid`{/yun}">{yun:}$log.fname{/yun}</a></span>			
+           <span class="List_Title_span List_Title_w110">{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</span>
+           <span class="List_Title_span List_Title_w110">{yun:}if $log.is_browse=="1"{/yun}<font color="#f60">未查看</font>{yun:}elseif $log.is_browse=="2"{/yun}已查看{yun:}/if{/yun}</span>
+           <span class="List_Title_span List_Title_w150"> <a href="javascript:getcont('{yun:}$log.id{/yun}');">查看</a> | <a href="javascript:void(0)"  onclick="layer_del('您确定要删除？', 'index.php?c=msg&act=del&id={yun:}$log.id{/yun}'); ">删除</a> | 
+			<a href="javascript:void(0);"  onclick="layer_del('您确定要屏蔽该公司并删除该邀请？','index.php?c=msg&act=shield&id={yun:}$log.id{/yun}');">屏蔽</a></span></div>
+          {yun:}foreachelse{/yun}<div class="msg_no">您还没有邀请信息。</div> {yun:}/foreach{/yun}
+        
+    </div>
+    <div class="diggg">{yun:}$pagenav{/yun}</div>
+    
+    
+  </div>
+</div>
+</div>
+</div>
+<div id="getcont" style="width:350px;height:250px; display:none;">
+<div style=" padding:10px;">
+<div class="audition_list"><span class="audition_list_span">面试职位：</span><em class="audition_list_em" id="jobname"></em></div>
+<div class="audition_list"><span class="audition_list_span">联系人： </span><em class="audition_list_em" id="linkman"></em></div>
+<div class="audition_list"><span class="audition_list_span">联系电话：</span><em class="audition_list_em" id="linktel"></em></div>
+<div class="audition_list"><span class="audition_list_span">面试时间：</span><em class="audition_list_em" id="intertime"></em></div>
+<div class="audition_list"><span class="audition_list_span">面试地址：</span><em class="audition_list_em" id="address"></em></div>
+<div class="audition_list"><span class="audition_list_span">面试备注：</span><em class="audition_list_em" id="content"></em></div>
+</div>
+</div>
+<script>
+function getcont(id){
+	$.post("index.php?c=msg&act=ajax",{id:id},function(data){
+		var data=eval('('+data+')');
+		$("#jobname").html(data.jobname);
+		$("#linkman").html(data.linkman);
+		$("#linktel").html(data.linktel);
+		$("#intertime").html(data.intertime);
+		$("#address").html(data.address);
+		$("#content").html(data.content);
+		$.layer({
+			type : 1,
+			title :'邀请信息',
+			offset: [($(window).height() - 235)/2 + 'px', ''],
+			shade: [0],
+			closeBtn : [0 , true],
+			border : [10 , 0.3 , '#000', true],
+			area : ['350px','auto'],
+			page : {dom :"#getcont"}
+		});
+	})
+}
+</script>
+{yun:}include file="$userstyle/footer.htm"{/yun}

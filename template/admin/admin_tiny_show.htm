@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>简历详情</h6>
+</div>
+<div class="main_tag" >
+<div class="tag_box"> 
+	<table width="100%" class="table_form" style="background:#fff; font-size:14px;">
+		<tr class="admin_table_trbg">
+			<th width="120">姓名：</th>
+			<td>{yun:}$rows.username{/yun}</td></tr>
+		<tr>
+			<th>性别：</th>
+			<td>{yun:}$userclass_name[$rows.sex]{/yun}</td>
+		</tr>
+		<tr class="admin_table_trbg">
+			<th>工作年限：</th>
+			<td>{yun:}$userclass_name[$rows.exp]{/yun}
+			</td>
+		</tr>
+		<tr>        
+            <th>意向职位：</th>
+            <td>{yun:}$rows.job{/yun}
+            </td>
+		</tr>
+		<tr class="admin_table_trbg">
+			<th>手机：</th>
+			<td>{yun:}$rows.mobile{/yun}
+			</td>
+		</tr>
+    		<tr>
+			<th>自我介绍：</th>
+			<td>{yun:}$rows.production{/yun}
+			</td>
+		</tr>
+		<tr  class="admin_table_trbg">
+			<th width="120">时　　间：</th>
+			<td>{yun:}$rows.time|date_format:"%Y-%m-%d"{/yun}</td>
+        </tr>		
+      		<tr>
+            <th width="120">状　　态：</th>
+            <td>{yun:}if $rows.status=="1"{/yun}<font color="blue">已审核</font>{yun:}else{/yun}<font color="red">未审核</font>{yun:}/if{/yun}</td>
+        </tr>
+	</table>
+</div></div></div>
+</body>
+</html>

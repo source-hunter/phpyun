@@ -1,0 +1,121 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+<div class=right_box>
+<div class=admincont_box >
+<div class=admin_tit><span class="admin_tit_bg">咨询列表</span></div>
+<div class="clear"></div>
+<div class=admin_note2>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+ <div class="resume_box_list">
+<div class="List_Ope List_Title ">
+<span class="List_Title_span List_Title_w110" style=" text-align:left">咨询人 </span>
+ <span class="List_Title_span List_Title_w230">职位名称</span>
+ <span class="List_Title_span List_Title_w170">咨询时间</span>
+ <span class="List_Title_span List_Title_w100">回复状态 </span>
+ <span class="List_Title_span List_Title_w100">操作</span>
+</div>
+ {yun:}foreach from=$rows item=msg{/yun}
+ <div class="List_Ope List_Ope_bor">
+    <span class="List_Title_span List_Title_w110" style="text-align:left"><a href="{yun:}url m=resume url=id:`$msg.uid`{/yun}">{yun:}$msg.username{/yun}</a> </span>
+ <span class="List_Title_span List_Title_w230">
+<a href="{yun:}url m=com url=c:comapply,id:`$msg.jobid`{/yun}">{yun:}$msg.job_name{/yun}</a>
+</span>
+ <span class="List_Title_span List_Title_w170">{yun:}$msg.datetime|date_format:'%Y-%m-%d'{/yun}</span>
+ <span class="List_Title_span List_Title_w100">{yun:}if $msg.reply!=""{/yun}<a href="javascript:void(0)" onclick="show_reply('{yun:}$msg.reply{/yun}')">查看回复</a>{yun:}else{/yun}<span onclick="reply_msg('{yun:}$msg.id{/yun}',URLdecode('{yun:}"GB2312"|iconv:"UTF-8":$msg.content|nl2br|urlencode{/yun}'));" style="cursor:pointer">点击回复</span>{yun:}/if{/yun}</span>
+ <span class="List_Title_span List_Title_w100"><a href="javascript:void(0)" onclick="layer_del('您确定要删除？', 'index.php?c=msg&act=del&id={yun:}$msg.id{/yun}'); ">删除</a></span>
+<span class="List_Title_conten_tit" style="display:block;width:730px; float:left; padding-left:10px;">咨询内容：{yun:}$msg.content|mb_substr:0:20:'gbk'{/yun}</span>
+</div>
+
+{yun:}foreachelse{/yun}
+<div class="msg_no">您还没有咨询记录。</div>
+
+{yun:}/foreach{/yun}
+</div>
+<div class="diggg" style="margin-top:10px;">{yun:}$pagenav{/yun}</div>
+<script>
+function URLdecode(str) {
+	var ret = "";
+	for(var i=0;i<str.length;i++) {
+			var chr = str.charAt(i);
+			if(chr == "+") {
+					ret += " ";
+			}else if(chr=="%") {
+					var asc = str.substring(i+1,i+3);
+					if(parseInt("0x"+asc)>0x7f) {
+							ret += decodeURI("%"+ str.substring(i+1,i+9));
+							i += 8;
+					}else {
+							ret += String.fromCharCode(parseInt("0x"+asc));
+							i += 2;
+					}
+			}else {
+					ret += chr;
+			}
+	}
+	return ret;
+} 
+function show_reply(msg){
+	$("#msgs").html(msg);
+	$.layer({
+		type : 1,
+		title :'查看回复',
+		offset: [($(window).height() - 300)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['400px','200px'],
+		page : {dom :"#showmsg"}
+	});
+}
+function reply_msg(id,content){
+	$("#msgid").val(id);
+	$.layer({
+		type : 1,
+		title :'咨询内容',
+		offset: [($(window).height() - 300)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['440px','300px'],
+		page : {dom :"#status_div"}
+	});
+	$(".admin_Operating_sh_h1 div").html(content);
+ }
+function check_msg(){
+	if($.trim($("#content").val())==""){
+		layer.msg('回复内容不能为空！', 2, 2);return false;
+	}
+}
+</script>
+<div id="showmsg"  style="display:none; width: 400px;">
+	<div>
+    <div id="infobox">
+		 <div class="admin_Operating_sh" style="padding:10px; ">
+		<div class="admin_Operating_sh_h1" style="padding:5px;">回复内容：<div style="height:80px;overflow:auto;" id="msgs"></div></div>
+
+		<div class="admin_Operating_sub" style="margin-top:10px;"> 
+          &nbsp;&nbsp;<input type="button" id="zxxCancelBtn" onClick="layer.closeAll();" class="cancel_btn" value='确认'></div>
+		</div>
+    </div>
+  </div>
+</div>
+<div id="status_div"  style="display:none; width: 440px;">
+	<div class="" >
+    <div id="infobox">
+      <form action="index.php?c=msg&act=save" target="supportiframe" method="post" id="formstatus" onsubmit="return check_msg();">
+		 <div class="admin_Operating_sh" style="padding:10px; ">
+		<div class="admin_Operating_sh_h1" style="padding:5px;">咨询内容：<div style="height:100px;overflow:auto;"></div></div>
+		<div class="admin_Operating_sh_sm">我的回复：</div>
+        <div><input type="hidden" id="msgid" name="id" value="" />
+        <textarea id="content" name="reply" class="admin_Operating_text"></textarea></div>
+		<div class="admin_Operating_sub" style="margin-top:10px;"> <input type="submit"  name='submit' value='确认' class="submit_btn">
+          &nbsp;&nbsp;<input type="button" id="zxxCancelBtn" onClick="layer.closeAll();" class="cancel_btn" value='取消'></div>
+		</div>
+        <input name="msgid" value="0" id='msgid' type="hidden">
+      </form>
+    </div>
+  </div>
+</div>
+</div> </div></div>
+</div></div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

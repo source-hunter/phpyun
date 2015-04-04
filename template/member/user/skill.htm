@@ -1,0 +1,80 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950">
+{yun:}include file="$userstyle/userleft.htm"{/yun}
+<div class="w740 fr">
+  <div class="attentionbox01 mt8">*号项为必填项</div>
+  <div class="resumelistbox01 mt8">
+    <table width="740" border="0" cellspacing="1" cellpadding="0" class="resume">
+      <tr>
+        <th nowrap>技能类别</th>
+        <th nowrap>熟练程度</th>
+        <th nowrap>技能名称</th>
+        <th nowrap>掌握时间</th>
+        <th nowrap>操作</th>
+      </tr>
+      {yun:}foreach from=$rows item=skill{/yun}
+      {yun:}assign var="user_ing" value=$skill.ing{/yun}
+      {yun:}assign var="user_skill" value=$skill.skill{/yun}
+      <tr>
+        <td nowrap>{yun:}$userclass_name[$user_skill]{/yun}</td>
+        <td nowrap>{yun:}$userclass_name[$user_ing]{/yun}</td>
+        <td nowrap>{yun:}$skill.name{/yun}</td>
+        <td nowrap>{yun:}$skill.longtime{/yun}个月</td>
+        <td nowrap><a title="修改" href="{yun:}$now_url{/yun}&edit={yun:}$skill.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/editico.gif" alt="修改"  align="absmiddle"/></a> <a href="{yun:}$now_url{/yun}&del={yun:}$skill.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/deleteico.gif"  alt="删除" align="absmiddle"/></a> </td>
+      </tr>
+      {yun:}/foreach{/yun}
+    </table>
+  </div>
+  <div class="formbox02 mt10">
+  <FORM name="MyForm" action='' method="POST" onsubmit="return CheckPost();">
+    <ul>
+      <li>
+        <div class="name"> 技能类别</div>
+        <div class="text">
+          <select name="skill">            
+        {yun:}foreach from=$userdata.user_skill key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $row.skill==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+		{yun:}/foreach{/yun}
+          </select>
+        </div>
+      </li>
+      <li>
+        <div class="name"> 熟练程度</div>
+        <div class="text">
+          <select name="ing"> 
+          {yun:}foreach from=$userdata.user_ing key=j item=v{/yun}
+         <option value='{yun:}$v{/yun}' {yun:}if $row.ing==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+		{yun:}/foreach{/yun}
+          </select>
+        </div>
+      </li>
+      <li>
+        <div class="name"> 技能名称</div>
+        <div class="text">
+          <input type="text" name="name" value="{yun:}$row.name{/yun}"  />
+          例：英语、C语言、速记 <span id="by_name"  class="errordisplay">不能为空</span> </div>
+      </li>
+      <li>
+        <div class="name"> 掌握时间</div>
+        <div class="text">
+          <input type="text" name="longtime" size='5' value="{yun:}$row.longtime{/yun}"  />
+          个月 <span id="by_longtime"  class="errordisplay">不能为空</span> </div>
+      </li>
+    </ul>
+    </div>
+    <div class="operatebox03 mt10">
+    <input name="eid" type="hidden" value="{yun:}$smarty.get.e{/yun}"/>
+    <input name="id" type="hidden" value="{yun:}$smarty.get.edit{/yun}"/>
+    <input type="submit" name="submit" value=" 提 交" class="btn01" />
+  </form>
+</div>
+</div>
+</div> 
+<SCRIPT language=javascript>
+	function CheckPost()
+	{
+	  var ifcheck=check_form(document.MyForm.name.value=="",'by_name')&check_form(document.MyForm.longtime.value=="",'by_longtime');
+		if(ifcheck==0) return false;
+	}
+  </SCRIPT>
+{yun:}include file="$userstyle/footer.htm"{/yun}

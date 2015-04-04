@@ -1,0 +1,108 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> {yun:}include file="$userstyle/left.htm"{/yun} 
+  <script>
+function changesta(status,type){
+	$.post("index.php?c=subscribe&act=set",{status:status,type:type},function(data){
+		var data=eval('('+data+')');
+		if(data.url=='1'){
+			parent.layer.msg(data.msg, Number(data.tm), Number(data.st),function(){location.reload();});return false;
+		}else{
+			parent.layer.msg(data.msg, Number(data.tm), Number(data.st),function(){location.href=data.url;});return false;
+		} 
+	})
+}
+function checkhy(){
+	$.layer({
+		type : 1,
+		title : '行业类别',
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['560px','auto'],
+		page : {dom : '#hylist'}
+	});
+}
+function closelayer(){
+	layer.closeAll();
+}
+function determine(){
+	var hyid="";
+	$(".industry:checked").each(function(){ 
+		if(hyid==""){hyid=$(this).val();}else{hyid=hyid+","+$(this).val();}
+	});
+	if(hyid){
+		$.post("index.php?c=subscribe&act=set",{hyid:hyid},function(data){
+			layer.msg('设置成功！', 2,9);
+			location.reload();
+		})
+	}else{
+		layer.msg('请选择行业类别！', 2,8);
+	}
+}
+function unset(unsetid){
+	$.post("index.php?c=subscribe&act=set",{unsetid:unsetid},function(data){
+		$("#industry"+unsetid).remove();
+	})
+}
+</script>
+  <div class="mian_right fltR mt12">
+    <div class="tabmenubox01 mt9">
+      <ul>
+        <li > <a href="index.php?c=resume">我的简历</a></li>
+        <li> <a href="index.php?c=look">简历被浏览</a></li>
+        <li> <a href="index.php?c=look_job">浏览的职位</a></li>
+        <li> <a href="index.php?c=privacy">隐私设置</a></li>
+        <li class="cur"> <a href="index.php?c=subscribe">订阅设置</a></li>
+      </ul>
+    </div>
+    <div class="dy_Sectors">
+      <div class="dy_Sectors_h1"><span>选择行业类别：</span>
+        <input class="Sectors_text" type="button" value="选择需要订阅的行业" onclick="checkhy();">
+      </div>
+      <div class="clear"></div>
+      <div class="dy_Sectors_box_h1">
+        <div class="dy_Sectors_h2_left">您已订阅的行业：</div>
+        <div class="dy_Sectors_box">
+          <ul class="selected clearfix">
+            {yun:}foreach item=v from=$resume.hylist{/yun}
+            <li id="industry{yun:}$v{/yun}"><a href="javascript:unset('{yun:}$v{/yun}');"><span class="text">{yun:}$industry_name[$v]{/yun}</span><span class="delete" >移除</span></a></li>
+            {yun:}/foreach{/yun}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="dy_Sectors_tck" id="hylist" style="display:none;">
+      <div class="dy_Sectors_box_cont">
+        <ul>
+          {yun:}foreach item=v from=$industry_index{/yun}
+          <li style="margin-top:5px;">
+            <input type="checkbox" value="{yun:}$v{/yun}" {yun:}if in_array($v,$resume.hylist){/yun}checked="checked"{yun:}/if{/yun} class="dy_Sectors_check industry">
+            <span>{yun:}$industry_name[$v]{/yun}</span></li>
+          {yun:}/foreach{/yun}
+        </ul>
+        <div class="Sectors_tips_ture"> <a class="Sectors_tips_sub1" href="javascript:determine();">确认</a> <a class="Sectors_tips_sub2" href="javascript:closelayer();">取消</a> </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="pri_h2"><span>邮件订阅</span></div>
+    <div class="pri_p">
+      <p> <span>
+        <input class="pri_rad" type="radio" onclick="changesta('1','email_dy');" {yun:}if $resume.email_dy==1{/yun}checked="checked"{yun:}/if{/yun} name="email_dy">
+        开启 </span> 立即订阅，请放心我们和您一样讨厌垃圾邮件 </p>
+      <p> <span>
+        <input class="pri_rad" type="radio" onclick="changesta('0','email_dy');" {yun:}if $resume.email_dy!=1{/yun}checked="checked"{yun:}/if{/yun} name="email_dy">
+        关闭 </span> 将订阅的每日招聘信息关闭；您的邮箱将不再收到每日推荐邮件 </p>
+    </div>
+    <div class="pri_h2" style="margin-top:20px;"><span>短信订阅</span></div>
+    <div class="pri_p">
+      <p> <span>
+        <input class="pri_rad" type="radio" onclick="changesta('1','msg_dy');" {yun:}if $resume.msg_dy==1{/yun}checked="checked"{yun:}/if{/yun} name="msg_dy">
+        开启 </span> 立即订阅，不要错过每一个合适的公司； </p>
+      <p> <span>
+        <input class="pri_rad" type="radio" onclick="changesta('0','msg_dy');" {yun:}if $resume.msg_dy!=1{/yun}checked="checked"{yun:}/if{/yun} name="msg_dy">
+        关闭 </span> 将订阅的每日人才信息关闭；您的手机将不再收到每日推荐 </p>
+    </div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun} 

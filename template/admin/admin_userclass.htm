@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script>
+function checksort(id){
+	$("#sort"+id).hide();
+	$("#input"+id).show();
+	$("#input"+id).focus();
+}
+function subsort(id){
+	var sort=$("#input"+id).val();
+	var pytoken=$("#pytoken").val();
+	$.post("index.php?m=userclass&c=ajax",{id:id,sort:sort,pytoken:pytoken},function(data){
+		$("#sort"+id).html(sort);
+		$("#sort"+id).show();
+		$("#input"+id).hide();
+		if(data!='1'){config_msg(data);}else{location.reload();}
+	})
+}
+function checkname(id){
+	$("#name"+id).hide();
+	$("#inputname"+id).show();
+	$("#inputname"+id).focus();
+}
+function subname(id){
+	var name=$("#inputname"+id).val();
+	if($.trim(name)==""){
+		parent.layer.msg("类别名称不能为空！",2,8,function(){location.reload();});return false;
+	}
+	var pytoken=$("#pytoken").val();
+	$.post("index.php?m=userclass&c=ajax",{id:id,name:name,pytoken:pytoken},function(data){
+		$("#name"+id).html(name);
+		$("#name"+id).show();
+		$("#inputname"+id).hide();
+		if(data!='1'){config_msg(data);}else{location.reload();}
+	})
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+{yun:}include file="$adminstyle/add_class.htm"{/yun}
+<span id="temp"></span>
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<span class="admin_title_span">个人会员分类</span>
+ <a  href="javascript:void(0)" onClick="add_class('个人会员分类','300','200','#wname','index.php?m=userclass&c=save')" class="admin_infoboxp_tj">添加类别</a>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<div class="table-list">
+<div class="admin_table_border">
+<form action="index.php?m=userclass&c=del" method="post" id='myform' target="supportiframe">
+<table width="100%">
+	<thead>
+	<tr class="admin_table_top">
+        <th width="50"><label for="chkall"> <input type="checkbox" id='chkAll' onclick='CheckAll(this.form)' /></label></th>
+		<th width="60">分类编号</th>
+        <th width="400">分类名称<span class="clickup">(点击修改)</span></th>
+
+		<th>
+		 {yun:}if empty($id){/yun}
+		分类变量名
+        {yun:}else{/yun}
+        分类排序
+        {yun:}/if{/yun}
+		</th>
+		<th width="180" class="admin_table_th_bg">操作</th>
+	</tr>
+	</thead>
+	<tbody>
+    {yun:}if empty($id){/yun}
+	{yun:}foreach item=v key=key from=$position{/yun}
+
+	<tr align="center" {yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun} id="list{yun:}$v.id{/yun}">
+    	<td width="50"><input type="checkbox" value="{yun:}$v.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+		<td class="ud">{yun:}$v.id{/yun}</td>
+		<td align="left">一级分类：<span onClick="checkname('{yun:}$v.id{/yun}');" id="name{yun:}$v.id{/yun}" style="cursor:pointer;">{yun:}$v.name{/yun}</span>
+        <input class="input-text hidden" type="text" id="inputname{yun:}$v.id{/yun}" value="{yun:}$v.name{/yun}" onBlur="subname('{yun:}$v.id{/yun}');"></td>
+
+        <td class="ud"><input type="text" name="variable" class="input-text" value="{yun:}$v.variable{/yun}" size="20" disabled/></td>
+		<td class="ud"><A href="index.php?m=userclass&c=up&id={yun:}$v.id{/yun}">分类管理</A> | <A
+			href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=userclass&c=del&delid={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</A></td>
+	</tr>
+
+
+{yun:}/foreach{/yun}
+{yun:}/if{/yun}
+	{yun:}if $id{/yun}
+	<tr align="center">
+    	<td width="50"><input type="checkbox" value="{yun:}$class1.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+		<td class="ud" width="60">{yun:}$class1.id{/yun}</td>
+		<td align="left">一级分类：<span onClick="checkname('{yun:}$class1.id{/yun}');" id="name{yun:}$class1.id{/yun}" style="cursor:pointer;">{yun:}$class1.name{/yun}</span>
+        <input class="input-text hidden" type="text" id="inputname{yun:}$class1.id{/yun}" value="{yun:}$class1.name{/yun}" onBlur="subname('{yun:}$class1.id{/yun}');"></td>
+        <td class="ud"></td>
+		<td class="ud" width="180"><A href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=userclass&c=del&delid={yun:}$class1.id{/yun}');"class="admin_cz_sc">删除</A></td>
+	</tr>
+	{yun:}foreach item=v from=$class2{/yun}
+	<tr align="center" id="msg{yun:}$v.id{/yun}">
+    	<td width="50"><input type="checkbox" value="{yun:}$v.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+		<td class="ud">{yun:}$v.id{/yun}</td>
+		<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┗<span onClick="checkname('{yun:}$v.id{/yun}');" id="name{yun:}$v.id{/yun}" style="cursor:pointer;">{yun:}$v.name{/yun}</span>
+        <input class="input-text hidden" type="text" id="inputname{yun:}$v.id{/yun}" value="{yun:}$v.name{/yun}" onBlur="subname('{yun:}$v.id{/yun}');"></td>
+        <td><span onClick="checksort('{yun:}$v.id{/yun}');" id="sort{yun:}$v.id{/yun}" style="cursor:pointer;">{yun:}$v.sort{/yun}</span>
+        <input class="input-text hidden" type="text" id="input{yun:}$v.id{/yun}" size="10" value="{yun:}$v.sort{/yun}" onBlur="subsort('{yun:}$v.id{/yun}');"></td>
+		<td class="ud"><A href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=userclass&c=del&delid={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</A></td>
+	</tr>
+
+	{yun:}/foreach{/yun}
+	{yun:}/if{/yun}
+  <tr style="background:#f1f1f1;">
+    <td align="center"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></td>
+    <td colspan="4" >
+    <label for="chkAll2">全选</label>&nbsp;
+      <input class="admin_submit4"  type="button" name="delsub" value="删除所选"  onclick="return really('del[]')"/></td>
+    </tr>
+	</tbody>
+</table>
+<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

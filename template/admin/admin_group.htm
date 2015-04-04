@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="./images/reset.css" rel="stylesheet" type="text/css" />
+<link href="./images/system.css" rel="stylesheet" type="text/css" />
+
+<link href="./images/table_form.css" rel="stylesheet" type="text/css" />
+
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+
+<title></title>
+<script language="javascript">
+function check_group(t1,t2){
+	var t1,t2;
+	if(t1!=""){
+		document.getElementById("group"+t1).checked="checked";	
+	}
+	if(t2!=""){
+		document.getElementById("group"+t2).checked="checked";	
+	}
+}
+</script>
+</head>
+<body class="body_ifm">
+
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_h1_bg infoboxp_topIjf">
+<span class="infoboxp_top_span">添加用户组</span>
+<span class="infoboxp_top_span_sz infoboxp_top_span_sz_in ">
+	<a href=" javascript:history.back(-1);" class="infoboxp_tj">管理员组列表</a> 
+</span>
+
+</div>
+<div class="clear"></div>
+<div class="common-form">
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=admin_user&c=savagroup" method="post" id="myform">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+<input type="hidden" value="{yun:}$admin_group[0]{/yun}" name="groupid" />
+<table width="100%" style="background:#fff;">
+	<tr>
+		<td width="150" height="30" align="center" style="border-right:1px solid #CCC;">用户组名称</td>
+		<td  style="padding-left:10px;">
+        <input type="text" name="group_name" id="realname" class="input-text" size="40" value="{yun:}$admin_group[1]{/yun}"></input>
+        </td>
+	</tr>
+    <tr>
+    	<td colspan="2" style="height:1px; background-color:#CCC"></td>
+    </tr>
+	<tr>
+		<td  width="120" align="center" style="border-right:1px solid #CCC;">用户组权限</td>
+		<td>
+            {yun:}foreach item=v from=$navigation{/yun}
+            <table width="100%" bgcolor="#dfdfdf">
+            <tr>
+                <td height="30" style="padding-left:10px">
+                <input type="checkbox"	name="power[]" value="{yun:}$v.id{/yun}" id="group{yun:}$v.id{/yun}" {yun:}if @in_array($v.id,$power){/yun} checked="checked"{yun:}/if{/yun}>
+                <label for="group{yun:}$v.id{/yun}">{yun:}$v.name{/yun}</label>
+                </td>
+            </tr>
+            <tr>
+            <td>
+                {yun:}foreach item=val from=$one_menu[$v.id]{/yun}
+            	<table width="100%" bgcolor="#f7f7f7">
+                <tr>
+                <td height="30" style="padding-left:40px;">
+                    <input type="checkbox" name="power[]" value="{yun:}$val.id{/yun}" id="group{yun:}$val.id{/yun}" {yun:}if @in_array($val.id,$power){/yun} checked="checked"{yun:}/if{/yun}  onClick="check_group({yun:}$v.id{/yun},'')">
+                    <label for="group{yun:}$val.id{/yun}">{yun:}$val.name{/yun}</label>
+                </td>
+                </tr>
+                <tr>
+                <td bgcolor="#fdfeff" height="30" style="padding-left:70px;">
+                    {yun:}foreach item=value from=$two_menu[$val.id]{/yun}
+                    <div style="float:left; width:120px; height:30px; line-height:30px; ">
+                    <input type="checkbox" name="power[]" value="{yun:}$value.id{/yun}" id="group{yun:}$value.id{/yun}" {yun:}if @in_array($value.id,$power){/yun} checked="checked"{yun:}/if{/yun} onClick="check_group({yun:}$v.id{/yun},{yun:}$val.id{/yun})">
+                    <label for="group{yun:}$value.id{/yun}">{yun:}$value.name{/yun}</label>
+                	</div>
+                	{yun:}/foreach{/yun}
+                </td>
+                </tr>
+                {yun:}/foreach{/yun}
+                 </table>
+               </td>
+               </tr>
+               </table>
+         {yun:}/foreach{/yun}
+    	</td>
+		</tr>
+	<tr>
+		<td colspan="2" align="center" height="40" style="border-top:1px solid #CCC;">
+           <input class="admin_submit4" name="add_group" type="submit" value="提交" id="dosubmit">
+</td>
+</table>
+</form>
+</div>
+</div></div>
+</body>
+</html>

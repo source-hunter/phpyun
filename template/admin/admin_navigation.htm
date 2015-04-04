@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<title></title>
+</head>
+<body style="padding:10px;">
+<div class="common-form">
+
+<table width="100%" class="table_form contentWrap">
+<tr>
+<td width="380" colspan="15" style="font-size:18px; font-weight:bold; text-align:center;">导航管理(请勿乱加，会导致后台崩溃)</td>
+</tr>
+<tr>
+<td width="80" colspan="15" style="font-size:14px; font-weight:bold;">添加导航</td>
+</tr>
+<form name="myform" action="index.php?m=admin_nav&c=add" method="post" id="myform">
+<tr>
+<td>选择分类</td>
+<td><select name="keyid">
+<option value="0">选择分类</option>
+{yun:}foreach item=v from=$navigation{/yun}
+    {yun:}assign var="one_menu_id" value=$v.id{/yun}
+    <option value="{yun:}$v.id{/yun}">{yun:}$v.name{/yun}</option>
+    {yun:}foreach item=val from=$one_menu[$v.id]{/yun}
+    <option value="{yun:}$val.id{/yun}">　　┗{yun:}$val.name{/yun}</option>
+
+    {yun:}/foreach{/yun}
+{yun:}/foreach{/yun}
+</select></td>
+<td>导航名称</td>
+<td><input type="text" name="name" id="realname" class="input-text" size="30" value=""></td>
+<td>链接地址</td>
+<td colspan="10"><input type="text" name="url" id="realname" class="input-text" size="30" value="">(一,二级可以不填)</td>
+</tr>
+<tr>
+<td>排序</td>
+<td><input type="text" name="sort" id="realname" class="input-text" size="10" value=""></td>
+<td>CLASS样式名称</td>
+<td><input type="text" name="classname" id="classname" class="input-text" size="10" value="">(一级填写，二三级不填)</td>
+<td>隐藏</td>
+<td>
+<select name="display">
+<option value="0">否</option>
+<option value="1">是</option>
+</select>
+</td>
+<td colspan="9">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+<input name="add_nav" type="submit" value="提交" class="button" id="dosubmit">
+</form>
+</td>
+</tr>
+<tr>
+<td width="80" colspan="15" style="font-size:14px; font-weight:bold;">导航管理</td>
+</tr>
+<tr style="font-weight:bold;font-size:16px;text-align:center;">
+<td>编号</td>
+<td colspan="2">导航名称</td>
+<td colspan="3">链接地址</td>
+<td colspan="2">样式名称</td>
+<td colspan="2">排序</td>
+<td colspan="2">是否快捷</td>
+<td colspan="2">隐藏</td>
+<td colspan="2">操作</td>
+</tr>
+{yun:}foreach item=v from=$navigation{/yun}
+    <form name="myform" action="index.php?m=admin_nav&c=edit" method="post" id="myform">
+    <tr style="text-align:center;">
+    <td>{yun:}$v.id{/yun}</td>
+    <td colspan="2">一级分类<input type="text" name="name" id="realname" class="input-text" size="20" value="{yun:}$v.name{/yun}"></td>
+    <td colspan="3"><input type="text" name="url" id="realname" class="input-text" size="40" value="{yun:}$v.url{/yun}"></td>
+        <td colspan="2"><input type="text" name="classname" id="classname" class="input-text" size="10" value="{yun:}$v.classname{/yun}">
+
+    <td colspan="2"><input type="text" name="sort" id="realname" class="input-text" size="10" value="{yun:}$v.sort{/yun}">
+    </td>
+    <input type="hidden" name="id" value="{yun:}$v.id{/yun}">
+    <td colspan="4"></td>
+    <td style="height:15px;" colspan="2">
+    <input name="update_nav" type="submit" value="更新" class="button" id="dosubmit" style="height:20px;padding-top:0px;">
+    <input name="del_nav" type="submit" value="删除" class="button" id="dosubmit" style="height:20px;padding-top:0px;"></td>
+    </tr>
+	<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+{yun:}foreach item=val from=$one_menu[$v.id]{/yun}
+<form name="myform" action="index.php?m=admin_nav&c=edit" method="post" id="myform">
+<tr style="text-align:center;">
+<td>{yun:}$val.id{/yun}</td>
+<td colspan="2">　　　二级分类┗<input type="text" name="name" id="realname" class="input-text" size="20" value="{yun:}$val.name{/yun}"></td>
+<td colspan="3"><input type="text" name="url" id="realname" class="input-text" size="40" value="{yun:}$val.url{/yun}"></td>
+        <td colspan="2"><input type="text" name="classname" id="classname" class="input-text" size="10" value="{yun:}$val.classname{/yun}">
+<td colspan="2"><input type="text" name="sort" id="realname" class="input-text" size="10" value="{yun:}$val.sort{/yun}">
+</td>
+<input type="hidden" name="id" value="{yun:}$val.id{/yun}">
+<td colspan="4"></td>
+<td style="height:15px;" colspan="2">
+<input name="update_nav" type="submit" value="更新" class="button" id="dosubmit" style="height:20px;padding-top:0px;">
+<input name="del_nav" type="submit" value="删除" class="button" id="dosubmit" style="height:20px;padding-top:0px;"></td>
+</tr>
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+</form>
+     {yun:}foreach item=value from=$two_menu[$val.id]{/yun}
+    <form name="myform" action="index.php?m=admin_nav&c=edit" method="post" id="myform">
+    <tr style="text-align:center;">
+    <td>{yun:}$value.id{/yun}</td>
+    <td colspan="2">　　　　　　三级分类┗<input type="text" name="name" id="realname" class="input-text" size="20" value="{yun:}$value.name{/yun}"></td>
+    <td colspan="3"><input type="text" name="url" id="realname" class="input-text" size="40" value="{yun:}$value.url{/yun}"></td>
+            <td colspan="2"><input type="text" name="classname" id="classname" class="input-text" size="10" value="{yun:}$value.classname{/yun}">
+
+    <td colspan="2"><input type="text" name="sort" id="realname" class="input-text" size="10" value="{yun:}$value.sort{/yun}">
+    </td>
+    <input type="hidden" name="id" value="{yun:}$value.id{/yun}">
+    <td colspan="3">
+    <select name="menu">
+    <option value="1" {yun:}if $value.menu eq "1"{/yun} selected {yun:}/if{/yun}>否</option>
+    <option value="2" {yun:}if $value.menu eq "2"{/yun} selected {yun:}/if{/yun}>是</option></select>
+    </td>
+    <td>
+    <select name="display">
+    <option value="0"  {yun:}if $value.display neq "1"{/yun} selected {yun:}/if{/yun}>否</option>
+    <option value="1"  {yun:}if $value.display eq "1"{/yun} selected {yun:}/if{/yun}>是</option></select>
+    </td>
+    <td style="height:15px;" colspan="2">
+    <input name="update_nav" type="submit" value="更新" class="button" id="dosubmit" style="height:20px;padding-top:0px;">
+    <input name="del_nav" type="submit" value="删除" class="button" id="dosubmit" style="height:20px;padding-top:0px;"></td>
+    </tr>
+	<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+    {yun:}/foreach{/yun}
+{yun:}/foreach{/yun}
+{yun:}/foreach{/yun}
+</table>
+</body>
+</html>

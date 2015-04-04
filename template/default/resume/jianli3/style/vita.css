@@ -1,0 +1,177 @@
+@charset "gb2312";
+*{ margin:0; padding:0;}
+body{ font-size:12px;color:#555555; background:#f1f1f1;width:100%;height:100%;}
+em{ font-style:normal}
+a{ text-decoration:none;color:#666;}
+ul,li{ list-style:none}
+.vita_body{width:835px; margin:0 auto; overflow:hidden;}
+.vita_cur{width:100%;height:30px; position:relative; margin-top:20px;}
+.vita_cur_right{ position:absolute;right:0px;top:0px;}
+.vita_cur_right b{color:#f60;}
+.vita_content{width:100%; background:#fff; float:left}
+.vita_Basic{width:815px; float:left; padding:20px 10px 0;color:#716c6c; position:relative}
+.vita_Basic_photo{width:90px;height:120px; background:#fff;border:1px solid #E4DFDF; padding:5px; position:absolute;right:30px;top:10px;}
+.vita_Basic_info{width:580px; padding-left:25px; float:left}
+.vita_name{ font-size:26px; font-family:Î¢ÈíÑÅºÚ;color:#000}
+.vita_name_nl{ font-size:16px;color:#4B4B4B; font-family:ËÎÌå}
+.sf_yz{ font-size:12px; font-family:ËÎÌå; margin-left:3px;color:#390}
+.vita_line{width:100%;height:2px;filter:Alpha(opacity=10); opacity:0.1; background:#fff; margin-top:5px;}
+.vita_Basic_info_t{width:100%; padding:10px 0; font-size:14px;color:#383838}
+.vita_Basic_icon{ display:inline-block; padding-left:18px; background:url(../images/r_icon.png) no-repeat 0 0; margin-right:10px;}
+.vita_Basic_Age{ background-position:0 -29px}
+.vita_Basic_Exp{background-position:0 -56px}
+.vita_Basic_Edu{background-position:0 -88px}
+.vita_Basic_add{background-position:0 -122px}
+.vita_Basic_info_c{ line-height:30px;}
+.vita_Basic_info_b{ line-height:30px;}
+.vita_Identity{ display:inline-block; margin-right:10px;}
+.vita_list_h1{width:100%; float:left; margin-top:10px;height:36px; }
+.vita_list_h1_span{ display:inline-block;width:100%;height:40px; line-height:40px; text-indent:10px; float:left;color:#4B4B4B; font-size:14px; font-weight:bold;border-bottom:1px solid #e4dfdf; background:#F5F5F5 ;
+}
+.vita_list_h1_i{width:4px;height:26px; display:inline-block; margin-left:2px; float:left;}
+.vita_list_cont{ float:left;width:770px; padding-left:25px;}
+.vita_Intention{width:330px;line-height:48px; float:left; position:relative; border-bottom:1px dotted #dfdfdf; margin-right:20px;_margin-right:10px; font-size:14px;}
+.vita_Intention img{ vertical-align:middle}
+.vita_Intention_em{color:#383838}
+.vita_Intention_w420{width:400px;}
+.vita_Intention_cor{color:#0064D3}
+.vita_list{width:100%; float:left;}
+.vita_Intention_i{width:6px;height:6px; display:inline-block; position:absolute;left:0px;top:11px;}
+.vita_skill{width:100%; float:left; padding-top:15px;font-size:14px;color:#282828}
+.vita_skill_introduction{width:100%; float:left}
+.vita_introduction_a{ float:left; line-height:28px;}
+.vita_date{ width:100%; padding-left:10px;}
+.vita_dw_name{width:220px; font-weight:bold; font-size:14px;color:#535559;padding-left:10px;}
+.vita_dw_bm{width:180px;}
+.vita_dw_zw{width:230px;}
+.vita_skill_Intention{width:735px; padding-left:10px; position:relative; float:left;line-height:28px; font-size:14px;}
+.vita_Opera{width:100%; padding-top:10px; padding-bottom:10px; text-align:center; float:left}
+.vita_footer{width:100%; float:left; text-align:center; padding:10px 0;}
+.vita_Opera_btn_1{ background:#C30;border:none;}
+.vita_Basic_top_line{width:100%;height:3px; float:left}.rem_chlose_left{width:180px;height:60px; line-height:60px; text-align:center; background:#f60; font-size:18px; font-family:microsoft yahei,ËÎÌå;color:#fff;}
+.resume_template{ width:140px;height:50px; line-height:50px;font-size:16px; color:#993; cursor:pointer; background:#e7e7e7 url(../images/jianli_jt.gif) no-repeat 150px center; margin-top:10px; padding-left:40px; font-family:microsoft yahei,ËÎÌå;}
+.resume_template a{ display:block;}
+.resume_template_bg{ background:#898887;color:#fff;}
+.resume_template_mor{ background:#898887 url(../images/jianli_jt2.gif) no-repeat 150px center;color:#fff;}
+.resume_template_mor a{color:#fff;}
+.fairs_introduction_p {width:800px; float:left;font-size:14px;line-height:25px;color:#282828;padding:20px 0 20px 0;}
+.fairs_introduction_img li {width:215px;margin-right:25px;_marin-left:15px;float:left;border:1px solid #e2e2e2;background:#fff;padding:2px;}
+.fairs_introduction_img li img {display:block}
+.vita_Opera_cz{width:100%; float:left; padding-top:10px; padding-bottom:10px; text-align:center}
+.vita_btn_1{ display:inline-block;width:130px;height:38px; background:#f60;color:#fff; font-family:14px;border:none; font-weight:bold; cursor:pointer}
+.vita_red{ background:#127ba2}
+.fixed_left {float: left;left: 50px;position: fixed;_position:absolute;top: 200px;}
+.container {margin: 0 auto;overflow: hidden;text-align: left;width: 835px;}
+.head {line-height: 50px;text-align: right;}
+.logo_1 {  float: left;height: 53px;margin-top: 35px;width: 301px;}
+.re_touch a{color:#f60; text-decoration:underline; margin-right:5px;}
+.city_1 {
+	background: none repeat scroll 0 0 #FFFFFF;
+	color: #666666;
+	line-height: 24px;
+	width:100%;
+	float:left
+}
+.city_1 .city_2 dt {
+	color: #000000;
+	font-weight: bold;
+}
+.city_1 .city_2 dd {
+	float: left;
+	height: 25px;
+	line-height: 20px;
+	margin-left: 5px;
+	width: 100px;
+}
+.city_1 .city_2 dd textarea {
+	width:200px;
+	float:left border-color: #CCCCCC #DBDBDB #DBDBDB #CCCCCC;
+	border-radius: 2px 2px 2px 2px;
+	border-style: solid;
+	border-width: 1px;
+}
+.city_1 .city_2 a {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+}
+.city_1 .city_2 a:hover {
+	background: #FFCC99;
+	text-decoration: none;
+}
+.city_1 .city_2 input {
+	display: block;
+	float: left;
+	height: 15px;
+	margin-top: 3px;
+	width: 12px;
+}
+.city_1 .city_3 {
+	float: left;
+	margin-top: 10px;
+	width: 360px;
+}
+.city_1 .city_3 dt {
+	color: #000000;
+	float: left;
+	width: 360px;
+}
+.city_1 .city_3 .resyme_text {
+	width:230px;
+	float:left;
+	border-color: #CCCCCC #DBDBDB #DBDBDB #CCCCCC;
+	border-radius: 2px 2px 2px 2px;
+	border-style: solid;
+	border-width: 1px;
+	font-size:12px;
+	height:95px;
+	line-height:23px;
+	padding:2px;
+}
+.city_1 .city_3 dd {
+	float: left;
+	margin-left: 5px;
+	width: 90px;
+}
+.city_1 .city_3 a {
+	display: block;
+	height: 20px;
+	line-height: 20px;
+}
+.city_1 .city_3 a:hover {
+	background:#FFCC99;
+	color: #3300FF;
+	text-decoration: none;
+}
+.city_1 .city_3 input {
+	display: block;
+	float: left;
+}
+.click {
+	background: url(../images/btn1.jpg) no-repeat scroll 0 0 transparent;
+	border: 0 none;
+	color: #003366;
+	cursor: pointer;
+	display: block;
+	height: 28px;
+	line-height: 28px;
+	margin-bottom: 5px;
+	margin-top: 15px;
+	width: 95px;
+}
+.city_01 {
+	display: block;
+	float: left;
+	line-height: 22px;
+	width:80px;
+	text-align:right;
+	font-size:14px;
+}.resume_sub_yq{width:76px;height:26px; line-height:26px; text-align:center; cursor:pointer;color:#963; background:url(../images/yun_firm_sub1.jpg) no-repeat;border:none;}.btn_1 {
+	background:#0d8bd7;
+	border: medium none;
+	color: #fff;
+	cursor: pointer;
+	height: 33px;
+	width:130px;
+	font-weight:bold; 
+}

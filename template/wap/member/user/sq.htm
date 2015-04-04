@@ -1,0 +1,24 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun} 
+
+<div class="wap_member_comp_h1 mt10"><span>申请的职位</span></div>
+
+<div class="wap_member_post_list">
+
+{yun:}foreach item=v from=$rows{/yun}
+<div class="wap_member_post_list_b">
+<h3><a href="{yun:}wapurl m=com url=c:view,id:`$v.job_id`{/yun}" class="wap_m_post_user">{yun:}$v.job_name{/yun}</a></h3>
+<aside>{yun:}$v.com_name{/yun}</aside>
+<i >{yun:}$v.datetime|date_format:"%Y-%m-%d"{/yun}</i>
+<em class="user_size">{yun:}$v.city{/yun}</em>
+<div class="user_Browse">{yun:}if $v.is_browse==2{/yun}<span class="Already_Browse">对方已浏览简历</span>
+{yun:}else{/yun}<span class="Already_Browse_no">对方未浏览简历<span>{yun:}/if{/yun}
+<a href="javascript:void(0)" class="user_Browse_Delete" onclick="isdel('index.php?c=sq&del={yun:}$v.id{/yun}')">删除</a></div>
+</div>
+{yun:}foreachelse{/yun}
+暂无申请记录
+{yun:}/foreach{/yun}
+
+</div>
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

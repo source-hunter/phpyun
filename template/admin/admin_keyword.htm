@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/jscolor/jscolor.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script src="js/show_pub.js"></script>
+<script>
+function keywords(key_name,type,color,size,bold,tuijian,num,id){
+	$("#id").val(id);
+	$("#key_name").val(key_name);
+	$("#size").val(size);
+	$("#type").val(type);
+	if(color!=""){
+		$("#color").val(color);
+		$("#color").attr("style","background-color:#"+color);
+	}else{
+		$("#color").attr("style","");
+		$("#color").val('');
+	}
+	$("#num").val(num);
+	$("#bold_"+bold).attr("checked",true);
+	$("#tuijian_"+tuijian).attr("checked",true);
+	add_class('关键字管理','355','300','#status_div','');
+}
+
+</script>
+<title>后台管理</title>
+<!--[if IE 6]>
+<script src="./js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('.png,.header_bg,.header .logo, .left_menu h3 span,.shortcut_menu,.header .nav li a,.header .nav li,.admin_cz_bj,.admin_bg');
+</script>
+<![endif]-->
+</head>
+<body class="body_ifm">
+<div id="status_div"  style="display:none;">
+    <div id="infobox" style=" width:355px" >
+      <form action="index.php?m=admin_keyword&c=save" target="supportiframe" method="post" id="formstatus">
+      <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+		<table cellspacing='2' cellpadding='3'>
+			<tr><td style="width:90px">关键字名称：</td><td><input id="key_name" class="input-text" type="text" value=""   name="key_name"><font color="gray">例：phpyun</font></td></tr>
+			<tr><td>关键字类型：</td><td><select id="type" name="type">
+				{yun:}foreach key=k item=v from=$keywordarr{/yun}
+				<option value="{yun:}$k{/yun}">{yun:}$v{/yun}</option>
+				{yun:}/foreach{/yun}
+			  </select></td></tr>
+			<tr><td>字体大小：</td><td><input class="input-text" type="text" id="size" name="size" size="20" value="" /><font color="gray">例：12px</font></td></tr>
+			<tr><td>字体颜色：</td><td>
+            <input class="input-text color" readonly type="text" id="color" name="color" size="20" value="" /></td></tr>
+			<tr><td>是否加粗：</td><td><input type="radio" name="bold" value="0" id="bold_0">&nbsp;否<input  id="bold_1" type="radio" name="bold" value="1">&nbsp;是 </td></tr>
+			<tr><td>是否推荐：</td><td><input type="radio" name="tuijian" value="0"  id="tuijian_0">&nbsp;否<input type="radio" id="tuijian_1" name="tuijian" value="1" >&nbsp;是 </td></tr>
+			<tr><td>搜索次数：</td><td><input class="input-text" type="text" id="num" name="num" size="10" value="" /><font color="gray">例：大前小后</font></td></tr>
+			<tr style="text-align:center;margin-top:10px"><td colspan='2' > <input type="submit"  value='确认' class="submit_btn">
+          &nbsp;&nbsp;<input type="button" onClick="layer.closeAll();" class="cancel_btn" value='取消'></td></tr>
+		</table>
+        <input type="hidden" name="id" id="id" value="" />
+      </form>
+    </div>
+</div>
+<div class="infoboxp"> 
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Filter">
+	<span class="complay_top_span fl">关键字管理</span>	
+    <form action="index.php" name="myform" method="get">
+      <input name="m" value="admin_keyword" type="hidden"/>
+	  <input type="hidden" name="check" value="{yun:}$smarty.get.check{/yun}"/>
+	  <input type="hidden" name="type" value="{yun:}$smarty.get.type{/yun}"/>
+      <span class="admin_Filter_span"> 检索类型：</span> 
+	  <div class="admin_Filter_text formselect"  did='dtype'>
+		  <input type="button" value="{yun:}if $smarty.get.type{/yun}{yun:}$keywordarr[$smarty.get.type]{/yun}{yun:}else{/yun}全部{yun:}/if{/yun}" class="admin_Filter_but"  id="btype">
+		  <input type="hidden" id='type' value="{yun:}$smarty.get.type{/yun}" name='type'>
+		  <div class="admin_Filter_text_box" style="display:none" id='dtype'>
+			  <ul>
+			  {yun:}foreach from=$keywordarr key=k item=kv{/yun}
+			  <li><a href="javascript:void(0)" onClick="formselect('{yun:}$k{/yun}','type','{yun:}$kv{/yun}')">{yun:}$kv{/yun}</a></li>
+			  {yun:}/foreach{/yun} 
+			  </ul>  
+		  </div>
+		</div> 
+      <input class="company_job_text"  type="text" name="keyword"  size="25" style="float:left">
+      <input class="admin_Filter_bth" type="submit" name="news_search" style="cursor:pointer;" value="检索"/>
+	  <span class='admin_search_div'>
+		  <div class="admin_adv_search"><div class="admin_adv_search_bth">高级搜索</div></div>   
+	  </span>
+       <a href="javascript:void(0)" onClick="keywords('','','','','','','','')" class="admin_infoboxp_tj">添加关键字</a>
+    </form>  
+</div>
+{yun:}include file="admin/admin_search.htm"{/yun}
+ 
+<div class="table-list">
+  <div class="admin_table_border">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form action="index.php?m=admin_keyword&c=del" name="myform" method="post"  target="supportiframe" id='myform'>
+    <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+      <table width="100%">
+        <thead>
+          <tr class="admin_table_top">
+            <th width="50"><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+            <th align="left">
+			{yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=id m=admin_keyword untype=order,t{/yun}">编号<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=id m=admin_keyword untype=order,t{/yun}">编号<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+            <th align="left" width="30%">热门关键字</th>
+            <th align="left">关键字类型</th>
+            <th align="left">
+			{yun:}if $smarty.get.t=="num" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=num m=admin_keyword untype=order,t{/yun}">搜索次数<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=num m=admin_keyword untype=order,t{/yun}">搜索次数<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+            <th align="left">加粗</th>
+            <th align="left">推荐</th>
+            <th align="left">审核</th>
+            <th align="left" class="admin_table_th_bg" width="80">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        {yun:}foreach item=v from=$rows{/yun}
+        {yun:}assign var="type" value=$v.type{/yun}
+        <tr id="list{yun:}$v.id{/yun}">
+          <td align="center"><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+          <td><span>{yun:}$v.id{/yun}</span></td>
+          <td align="left" class="td1"><font color="#{yun:}$v.color{/yun}">{yun:}$v.key_name{/yun}</font></td>
+          <td  align="left">{yun:}$keywordarr[$v.type]{/yun}</td>
+          <td  align="left">{yun:}$v.num{/yun}</td>
+          <td id="bold{yun:}$v.id{/yun}">{yun:}if $v.bold=="1"{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=admin_keyword&c=recup','{yun:}$v.id{/yun}','0','bold');"><img src="../data/ajax_img/doneico.gif"></a>{yun:}else{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=admin_keyword&c=recup','{yun:}$v.id{/yun}','1','bold');"><img src="../data/ajax_img/errorico.gif"></a>{yun:}/if{/yun}</td>
+          <td id="tuijian{yun:}$v.id{/yun}">{yun:}if $v.tuijian=="1"{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=admin_keyword&c=recup','{yun:}$v.id{/yun}','0','tuijian');"><img src="../data/ajax_img/doneico.gif"></a>{yun:}else{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=admin_keyword&c=recup','{yun:}$v.id{/yun}','1','tuijian');"><img src="../data/ajax_img/errorico.gif"></a>{yun:}/if{/yun}</td>
+          <td id="check{yun:}$v.id{/yun}">{yun:}if $v.check=="1"{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=admin_keyword&c=recup','{yun:}$v.id{/yun}','0','check');"><img src="../data/ajax_img/doneico.gif"></a>{yun:}else{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=admin_keyword&c=recup','{yun:}$v.id{/yun}','1','check');"><img src="../data/ajax_img/errorico.gif"></a>{yun:}/if{/yun}</td>
+          <td><span style="cursor:pointer;" onClick="keywords('{yun:}$v.key_name{/yun}','{yun:}$v.type{/yun}','{yun:}$v.color{/yun}','{yun:}$v.size{/yun}','{yun:}$v.bold{/yun}','{yun:}$v.tuijian{/yun}','{yun:}$v.num{/yun}','{yun:}$v.id{/yun}')" class="admin_cz_bj">修改</span> | 
+<a href="javascript:void(0)"  class="admin_cz_sc" onClick="layer_del('确定要删除？', 'index.php?m=admin_keyword&c=del&id={yun:}$v.id{/yun}');">删除</a></td>
+        </tr>
+        {yun:}/foreach{/yun}
+        <tr style="background:#f1f1f1;">
+          <td align="center"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></td>
+          <td colspan="2" >
+          <label for="chkAll2">全选</label>&nbsp;
+          <input class="admin_submit4"  type="button" name="delsub" value="删除所选"  onclick="return really('del[]')"/></td>
+          <td colspan="6" class="digg">{yun:}$pagenav{/yun}</td>
+        </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
+<div id="bg" class="admin_bg"></div>
+</body>
+</html>

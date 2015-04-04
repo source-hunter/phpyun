@@ -1,0 +1,80 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<script src="{yun:}$config.sy_weburl{/yun}/js/search.js" type="text/javascript"></script>
+{yun:}include file="$tplstyle/public_search/index_search.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">    
+	  <div class="tabmenubox01 mt9">
+		<ul>
+		  <li class="cur"><a href="javascript:void(0);">职位搜索器</a></li>
+		</ul>
+	  </div> 
+	<div style="clear:both"></div>
+	<div style="flaot:left" class="formbox02">
+		<iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <div class="search_item_title">搜索条件设置</div>
+      <div style="clear:both"></div>
+		<form action="index.php?c=finder&act=save" method="post" target="supportiframe" name="MyForm"> 
+			<ul class="Finder_box">
+				<li><span class="Finder_span">搜索器名称：</span><input name="name" type='text' style="width:260px" value="{yun:}$info.name{/yun}" class="Finder_span_text"></li>
+				<li><span class="Finder_span">关键字：</span><input name="keyword" type='text' style="width:260px" value="{yun:}$parav.keyword{/yun}" class="Finder_span_text"></li>
+ 				<li><span class="Finder_span">行业类别：</span><select name="hy">
+				<option value="">--请选择--</option>
+				{yun:}foreach from=$industry_index item=industry_index{/yun}
+				<option value="{yun:}$industry_index{/yun}" {yun:}if $parav.hy==$industry_index{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$industry_name[$industry_index]{/yun}</option>
+				{yun:}/foreach{/yun}
+				</select>
+				</li>
+				<li><span class="Finder_span">职位类别：</span> 
+				<span style="float:left"><input id="index_job_class_val" class="expect_text" type="button" onclick="index_job('{yun:}$parav.jobids{/yun}');" style=" float:left;" {yun:}if $parav.jobname{/yun}value=" {yun:}$parav.jobname{/yun} "{yun:}else{/yun}value=" 请选择职位类别 "{yun:}/if{/yun}></span>
+					<input id="job_class" type="hidden" name="jobids" value="{yun:}$parav.jobids{/yun}">
+				</li>
+				<li><span class="Finder_span">工作地区：</span> 
+				<span style="float:left"><input id="city" class="SpFormLBut text_seclet_w158" type="button" onclick="index_city();" {yun:}if $parav.cityid{/yun}value="{yun:}$city_name[$parav.cityid]{/yun}"{yun:}else{/yun}value="请选择省份"{yun:}/if{/yun}>
+					<input id="cityid" type="hidden" value="{yun:}$parav.city{/yun}" name="cityid"></span> 
+				</li>
+				<li><span class="Finder_span">工作经验：</span><select name="exp">
+                <option value="">全部</option> 
+				{yun:}foreach from=$comdata.job_exp item=job_exp{/yun}
+				<option value="{yun:}$job_exp{/yun}" {yun:}if $parav.exp==$job_exp{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$comclass_name[$job_exp]{/yun}</option>
+				{yun:}/foreach{/yun}
+				</select></li>
+				<li><span class="Finder_span">薪资待遇：</span><select name="salary">
+                <option value="">全部</option> 
+				{yun:}foreach from=$comdata.job_salary item=job_salary{/yun}
+				<option value="{yun:}$job_salary{/yun}" {yun:}if $parav.salary==$job_salary{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$comclass_name[$job_salary]{/yun}</option>
+				{yun:}/foreach{/yun}
+				</select>
+				</li>
+				<li><span class="Finder_span">学历要求：</span><select name="edu">
+                <option value="">全部</option> 
+				{yun:}foreach from=$comdata.job_edu item=job_edu{/yun}
+				<option value="{yun:}$job_edu{/yun}" {yun:}if $parav.edu==$job_edu{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$comclass_name[$job_edu]{/yun}</option>
+				{yun:}/foreach{/yun}
+				</select></li>
+				<li><span class="Finder_span">发布日期：</span><select name="uptime"> 
+				<option value="">全部</option> 
+				{yun:}foreach from=$sdate item=slist key=key{/yun}
+				<option value="{yun:}$key{/yun}" {yun:}if $parav.sdate==$key{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$slist{/yun}</option> 
+				{yun:}/foreach{/yun} 
+				</select></li> 
+				<li><span class="Finder_span">性别要求：</span><select name="sex">
+                <option value="">全部</option> 
+				{yun:}foreach from=$comdata.job_sex item=v{/yun}
+				<option value="{yun:}$v{/yun}" {yun:}if $parav.sex==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+				{yun:}/foreach{/yun}
+				</select></li>
+				<li><span class="Finder_span">工作类型：</span><select name="type">
+                <option value="">全部</option> 
+				{yun:}foreach from=$comdata.job_type item=v{/yun}
+				<option value="{yun:}$v{/yun}" {yun:}if $parav.type==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+				{yun:}/foreach{/yun}
+				</select>
+				</li>
+				<li><span class="Finder_span"></span><input name="id" value="{yun:}$info.id{/yun}" type="hidden"/><input class="Verification_sc_bth2" type="submit" value="保存信息" name="submitBtn"></li>
+			</ul>
+		</form>
+	</div> 
+  </div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

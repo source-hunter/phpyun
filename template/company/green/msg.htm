@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}-Powered by PHPYun.</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$com_style{/yun}images/css.css" type="text/css">
+</head>
+<body>
+<div>
+  <div class="header">
+    <div class="w1000">
+      <div class="logo">{yun:}if $com.logo{/yun}<img src="{yun:}$com.logo{/yun}" width="185" height="75" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}',2);">{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}" width="185" height="75">{yun:}/if{/yun}</div>
+           <div class="header_rz">
+{yun:}if $usertype=='1'{/yun}
+    {yun:}if $show.id{/yun}
+        <a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" id='atn_{yun:}$com.uid{/yun}'>取消关注</a>
+    {yun:}else{/yun}
+        <a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" id='atn_{yun:}$com.uid{/yun}'>关注</a>
+    {yun:}/if{/yun}
+{yun:}/if{/yun}
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="nav_cur"><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#about">关于我们<i class="nav_cur_icon"></i></a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#job">招聘职位</a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#pl">评论留言</a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#show">公司环境</a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#news">公司新闻</a></li>
+          <li><a href="{yun:}$config.sy_weburl{/yun}">人才网首页</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="com_banner">
+    <div class="w1000"> <img src="{yun:}$banner.pic{/yun}" width="1000" height="300"> </div>
+  </div>
+</div>
+<div class="w1000">
+   <div class="about_us" id="pl"><img src="{yun:}$com_style{/yun}images/icon7.gif" title="评论留言"></div>
+  <div class="Comment_cont">
+    <div class="Job_comment">
+      <div class="Job_comment_left"> {yun:}if $msglist{/yun}
+        <div class="Job_comment_left_c"> {yun:}foreach item=v from=$msglist{/yun}
+          <div class="Comment_list" {yun:}if empty($msglist){/yun}style="display:none;"{yun:}/if{/yun}>
+            <div class="Comment_time">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</div>
+            <div class="Comment_dd"></div>
+            <div class="Comment_icon2"></div>
+            <div class="Comment_list_right">
+              <div class="Comment_w608"><span class="fl"> <a href="{yun:}url m=resume url=uid:`$v.uid`{/yun}">{yun:}$v.name{/yun}</a>：{yun:}$v.content{/yun}</span> </div>
+              {yun:}if $v.reply!=""{/yun}
+              <div class="Comment_w608">
+                <div class="tips_reply">企业回复：<span>{yun:}$v.reply{/yun}</span></div>
+              </div>
+              {yun:}/if{/yun} </div>
+          </div>
+          {yun:}/foreach{/yun} </div>
+        {yun:}if $msg_num{/yun}
+        <div style="float:right"> 该企业共有{yun:}$msg_num{/yun}条评论，<a href="{yun:}curl url=id:$id,c:msg{/yun}">点击查看全部>></a> </div>
+        {yun:}/if{/yun}
+        {yun:}else{/yun}
+        <div class="com_index_pl">还未有人评论过该企业，赶快来评论一下吧！！</div>
+        {yun:}/if{/yun} </div>
+      <div class="Job_comment_right"> {yun:}if $usertype!=1{/yun}
+        <div class="Job_user_no">
+          <div class="Job_ask_bg"></div>
+          <div class="Job_ask_bg_login">您还没有登录或者您不是个人用户，请 【<a href="{yun:}url m=login url=c:rest{/yun}">登陆</a>】</div>
+        </div>
+        {yun:}else{/yun}
+        <div class="Job_Company_h1 fl"><span>我要评论</span></div>
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form action="{yun:}curl url=id:`$com.uid`{/yun}" target="supportiframe" method="post" onSubmit="return check_pl();">
+          <input type="hidden" name="id" value="{yun:}$id{/yun}"/>
+          <div class="commpay_textarea">
+            <div class="Comment_list_top"></div>
+            <textarea  class="program_tooltip placeholder" id="content" name="content" data-rid="949"></textarea>
+          </div>
+          <div class="commpay_Comment_input">
+            <input class="program_reply_pl" type="submit" name="submit" value="提交评论">
+            <span>您对这个公司有什么看法？</span></div>
+        </form>
+        {yun:}/if{/yun}</div>
+    </div>
+    <div class="clear"></div>
+  </div>
+{yun:}include file="$defaultstyle/footer.htm"{/yun}

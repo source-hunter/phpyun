@@ -1,0 +1,21 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+
+<section class="wap_login"> 
+	<form action="" method="post" onsubmit="return mlogin();">
+		<input name="usertype" type="hidden" value="{yun:}$smarty.get.usertype{/yun}"/>
+		<input name="wxid" type="hidden" value="{yun:}$smarty.get.wxid{/yun}"/>
+		<p><input name="username" type="text" id="username" value="{yun:}$smarty.get.username{/yun}" class="input-common placeholder" placeholder="请输入您的用户名" /></p>
+		<p><input name="password" type="password" id="password" class="input-common placeholder" placeholder="请输入您的密码" /></p>
+		<input type="submit" name="submit" value="登 录"  class="btn-large" />
+	</form>
+ </section>
+<section class="wap_login_no">没有账号？ 
+{yun:}if $smarty.get.usertype==2{/yun}
+<a href="{yun:}wapurl m=register url=usertype:2{/yun}" class="wap_member_mrecord_list wap_member_mrecord_list_no" style="color:#f60">立即注册</a>
+{yun:}else{/yun}
+<a href="{yun:}wapurl m=register{/yun}" class="wap_member_mrecord_list wap_member_mrecord_list_no" style="color:#f60">立即注册</a>
+{yun:}/if{/yun}
+</div>
+</div>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

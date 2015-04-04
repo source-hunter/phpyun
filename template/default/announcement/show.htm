@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+<link href="{yun:}$style{/yun}/style/news.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<!--content  start-->
+<div class="yun_content">
+   <div class="current_Location icon"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > 系统公告 </div>
+  <div class="right_sidebar fl" style="background:#fff;width:702px; padding:10px;">
+ <div class="news_cont_h1">{yun:}$Info.title{/yun}</div>
+ <div class="news_cont_ms">{yun:}$Info.datetime|date_format:"%Y-%m-%d"{/yun} </div>
+  <div class="news_text">
+{yun:}$Info.content{/yun}
+<ul style="clear:both;">
+{yun:}if !empty($Info.last){/yun}
+<li>
+<span>上一篇：</span>
+<a href="{yun:}$Info.last.url{/yun}">{yun:}$Info.last.title|mb_substr:0:16:'gbk'{/yun}</a></li>
+{yun:}/if{/yun}
+
+{yun:}if !empty($Info.next){/yun}
+<br/>
+<li>
+<span>下一篇：</span>
+<a href="{yun:}$Info.next.url{/yun}">{yun:}$Info.next.title|mb_substr:0:16:'gbk'{/yun}</a>
+</li>
+{yun:}/if{/yun}
+</ul>
+
+<div class="clear"></div>
+</div>
+</div> 
+<div class="left_sidebar fr">
+
+    <div class="news_left fl ">
+    	<div class="news_h1"><span>推d荐文章</span> </div>
+    <div class="news_left_cont">
+            {yun:}article limit=6 type=tj pic=1 t_len=7 urlstatic=1  item=news_jian{/yun}
+            <dl>
+            <dt><a href="{yun:}$news_jian.url{/yun}"><img src="/{yun:}$news_jian.newsphoto{/yun}" alt="{yun:}$news_jian.title{/yun}" style="width:106px; height:69px;" /></a></dt>
+            <dd><strong><a href="{yun:}$news_jian.url{/yun}">{yun:}$news_jian.title{/yun}</a></strong>{yun:}$news_jian.description|mb_substr:0:22:'gbk'{/yun}<a href="{yun:}$news_jian.url{/yun}">[详情]</a></dd>
+            </dl>
+           {yun:}/article{/yun}  
+    </div>
+    </div>
+	
+    <div class="clear"></div>    
+  
+    <div class="news_left fl m5 ">
+       <div class="news_h1"><span>热点文章</span> </div>
+     <div class="news_left_cont">
+      <ul>
+        {yun:}article limit=6 order=hits t_len=17 urlstatic=1  item=news_hits{/yun}
+        <li><a href="{yun:}$news_hits.url{/yun}" class="icon2">{yun:}$news_hits.title{/yun}</a></li>
+        {yun:}/article{/yun}
+      </ul>
+    </div>
+    </div>    
+  </div>
+</div>
+<!--content  end--> 
+{yun:}include file="$tplstyle/footer.htm"{/yun}

@@ -1,0 +1,68 @@
+
+<div class="widemainbody">
+<div class="w920">
+<div class="w190 fl">
+  <div class="resumestatebox01" id="resumenume" style="">
+    <h2><span>简历完整度</span></h2>
+    {yun:}if $numresume>20{/yun}
+
+    {yun:}/if{/yun} 
+    <div class="resumestatebox02 mt8">
+      <div class="cont">
+        <div id="_ctl0_UserManage_LeftTree1_progressDiv" class="bar" style="width:100px">
+          <div class="play" style="width:{yun:}$numresume{/yun}px"></div>
+        </div>
+        <div class="value"><b id="numresume">{yun:}$numresume{/yun}%</b></div>
+        <div id="_ctl0_UserManage_LeftTree1_msnInfo" class="intro"> {yun:}if $numresume>60{/yun} 您的简历已符合要求！{yun:}/if{/yun}
+          {yun:}if  $numresume lt 55{/yun}  您现在的简历完整度太低，还不能够使用此简历应聘!{yun:}/if{/yun} </div>
+      </div>
+    </div>
+    
+    <ul>
+    <li style="border-top:none;">
+        <div class="tit"><a onclick="checkmore('info');" href="javascript:void(0);">基本信息</a></div>
+        <div class="resume_expect state {yun:}if $resume.name!=''{/yun} state_done{yun:}/if{/yun}">+20%</div>
+      </li>
+      <li style="border-top:none;">
+        <div class="tit"><a onclick="checkmore('expect');" href="javascript:void(0);">求职意向</a></div>
+        <div class="resume_expect state {yun:}if $resume_row.expect eq 1{/yun} state_done{yun:}/if{/yun}">+35%</div>
+      </li>
+   </ul>
+   <div class="clear"></div>
+   <div class="re_right_pd">
+   <div id="dom0_right" >
+	 <div id="m_right0" class="dom_m_right" >
+        <div class="tit dom_m_right_tit"><a onclick="checkmore('edu');" href="javascript:void(0);">教育经历</a></div>
+        <div class="m_right_edu dom_m_right_state resume_edu state {yun:}if $edu|@count >= 1{/yun} state_done{yun:}/if{/yun}">+7%</div>
+      </div>
+      <div id="m_right1" class="dom_m_right" >
+        <div class="tit dom_m_right_tit"><a onclick="checkmore('training');" href="javascript:void(0);">培训经历</a></div>
+        <div class="m_right_training dom_m_right_state resume_training state {yun:}if $training|@count >= 1{/yun} state_done{yun:}/if{/yun}">+7%</div>
+      </div>
+      <div id="m_right2" class="dom_m_right" >
+        <div class="tit dom_m_right_tit"><a onclick="checkmore('skill');" href="javascript:void(0);">专业技能</a></div>
+        <div class="m_right_skill dom_m_right_state resume_skill state {yun:}if $skill|@count >= 1{/yun} state_done{yun:}/if{/yun}">+10%</div>
+      </div>
+      <div id="m_right3" class="dom_m_right" >
+        <div class="tit dom_m_right_tit"><a onclick="checkmore('work');" href="javascript:void(0);">工作经历</a></div>
+        <div class="m_right_work dom_m_right_state resume_work state {yun:}if $work|@count >= 1{/yun} state_done{yun:}/if{/yun}">+7%</div>
+      </div>
+      <div id="m_right4" class="dom_m_right" >
+        <div class="tit dom_m_right_tit"><a onclick="checkmore('project');" href="javascript:void(0);">项目经验</a></div>
+        <div class="m_right_project dom_m_right_state resume_project state {yun:}if $project|@count >= 1{/yun} state_done{yun:}/if{/yun}">+7%</div>
+      </div>
+      <div id="m_right5" class="dom_m_right" >
+        <div class="tit dom_m_right_tit"><a onclick="checkmore('cert');" href="javascript:void(0);">证书</a></div>
+        <div class="m_right_cert dom_m_right_state resume_cert state {yun:}if $cert|@count >= 1{/yun} state_done{yun:}/if{/yun}">+7%</div>
+      </div>
+      <div id="m_right6" class="dom_m_right" >
+        <div class="tit dom_m_right_tit"><a onclick="checkmore('other');" href="javascript:void(0);">其他</a></div>
+        <div class="m_right_other dom_m_right_state resume_other state {yun:}if $other|@count >= 1{/yun} state_done{yun:}/if{/yun}">+0%</div>
+      </div>
+
+    </div>      <div class="clear"></div>
+      {yun:}if $smarty.get.e{/yun}<div><a target="_blank" href="{yun:}url m=resume url=id:`$smarty.get.e`{/yun}" class="resume_look_sub">预览简历</a></div>{yun:}/if{/yun}
+    
+   </div>
+  </div>
+</div>

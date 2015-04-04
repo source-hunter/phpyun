@@ -1,0 +1,198 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun} 
+
+<section class="wap_member">
+    <div class="wap_member_comp_h1" style="position:relative">
+        <span>会员充值</span>
+    </div>
+	<div class="wap_member_Receive" >
+    	<script>
+			var weburl='{yun:}$config_wapdomain{/yun}';
+			function CheckForm(){
+				return true;
+			}
+			function pay_form(){
+				return true;
+			}
+			function check_rating_coupon(id){
+				var value=$("#comvip option:selected").attr("price");
+				if(value!=""){
+					$("#com_vip_price").val(value);
+					$("#span_com_vip_price").html(value);
+				}else{
+					$("#com_vip_price").val('0');
+					$("#span_com_vip_price").html('0');
+				}
+				$.post(weburl+"/index.php?m=ajax&c=get_coupon",{id:id},function(data){
+					if(data){
+						var html='<th height="30">赠　　送:</th><td>'+data+'</td>';
+						$("#coupon").show();
+					}else{
+						var html='';
+						$("#coupon").hide();
+					}
+					$("#coupon").html(html);
+				})
+			}
+        </script>
+		{yun:}if $smarty.post.usertype==""{/yun}
+        <form name='alipayment' onSubmit="return CheckForm();" action="index.php?c=pay" method="post">
+            <div class="pay_choose"><span>选择购买类型</span></div>
+            <ul class="pay_choose_list">
+                <li> 
+                    <input type="radio" name="usertype" value="price" id="vip" checked="checked" class="pay_choose_list_c"/>
+                    <label for="vip" class="pay_choose_list_lable">购买会员</label>
+                </li>
+                <li> 
+                    <input type="radio" name="usertype" value="int" id="int" class="pay_choose_list_c"/>
+                    <label for="int" class="pay_choose_list_lable">购买{yun:}$config.integral_pricename{/yun}</label>
+                </li>
+                <li> 
+                    <input type="radio" name="usertype" value="msg" id="msg" class="pay_choose_list_c"/>
+                    <label for="msg" class="pay_choose_list_lable">购买短信</label>
+                </li>
+<!--                <li> 
+                    <input type="radio" name="usertype" value="change" id="change" class="pay_choose_list_c"/>
+                    <label for="change"class="pay_choose_list_lable">兑换{yun:}$config.integral_pricename{/yun}</label>
+                </li>-->
+            </ul>
+            <div class='admin_tit_right'>
+                <input type='submit' value='下一步' name='nextstep' class="pay_choose_btn_01" >
+            </div>
+        
+            <div class="com_wxt">
+                <div class="wxts">温馨提示：</div>
+              购买会员：请确保您已完全了解您将要购买的会员类型以及所对应的套餐价值！<br>
+购买积分：积分可用于职位推荐、置顶、设置自动刷新、购买企业模板、评论等增值功能<br>
+积分兑换：可直接用账户余额兑换您所需积分<br>
+购买短信：您是企业用户，由本站支付各项短信费用，暂无需购买<br>
+            </div>
+        </form>
+    	{yun:}/if{/yun}
+            {yun:}if $smarty.post.usertype=="price"{/yun}
+            <table width="100%" border="0" cellspacing="1" cellpadding="0" class="my_table_msg"> 
+                <form action="index.php?c=dingdan" method="post" onsubmit="return pay_form();">
+                    <tr>
+                        <th height="30">会员类型:</th>
+                        <td><input type="hidden" name="pay_type" value="{yun:}$smarty.post.usertype{/yun}"/>
+                        <select name="comvip" id="comvip" onchange="check_rating_coupon(this.value);">
+                            <option value="" price=""> 请选择会员类型 </option>
+                            {yun:}foreach  from=$rows item=pay{/yun}
+                            <option value="{yun:}$pay.id{/yun}" price="{yun:}$pay.service_price{/yun}"> {yun:}$pay.name{/yun} </option>
+                            {yun:}/foreach{/yun}
+                        </select>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <th height="30">充值金额:</th>
+                        <td><span id="span_com_vip_price">0</span>元<input type="hidden" name="price" size="10"  id="com_vip_price"></td>
+                    </tr>
+                    <tr id="coupon" style="display:none;"></tr>
+                    <tr>
+                        <th height="30">备　　注:</th>
+                        <td><textarea name="remark" id='remark'  wrap="physical" class="bank_textarea"></textarea><p style="line-height:23px;">(请备注你的姓名及其联系方式)</p></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td><p  class="bank_msg">请确认会员类型.</p></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td height="40"><input type='submit' value='确认订单' name='nextstep'class="pay_choose_btn_01" ></td>
+                    </tr>
+                </form>
+            </table>
+            {yun:}/if{/yun}
+            {yun:}if $smarty.post.usertype=="int"{/yun}
+            <form action="index.php?c=dingdan" method="post" onsubmit="return pay_form('请输入充值数量！');">
+                <table width="100%" border="0" cellspacing="1" cellpadding="0"  class="my_table_msg"> 
+                    <tr>
+                        <th height="30">{yun:}$config.integral_pricename{/yun}:</th>    
+                        <td>
+                        <input type="hidden" name="pay_type" value="{yun:}$smarty.post.usertype{/yun}"  onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+                        <input type="text" name="price_int" id="price_int" size="20" value="0" int="{yun:}$config.integral_proportion{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  style="border:1px solid #CCCCCC; line-height:22px; height:20px; padding:1px;">
+                        </td>
+                    </tr>
+                          <tr>
+                        <th height="30"></th>    
+                   <td> 当前比例：1元={yun:}$config.integral_proportion{/yun}{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th height="30">所需金额:</th>
+                        <td><span id="span_com_vip_price">0</span>元<input type="hidden" name="price" size="10"  id="com_vip_price"></td>
+                    </tr>
+                    <tr>
+                        <th height="30">备　　注:</th>
+                        <td><textarea name="remark" id='remark'  wrap="physical"  class="bank_textarea">{yun:}$remark{/yun}</textarea><p style="line-height:23px;">(请备注你的姓名及其联系方式)</p></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td><p class="bank_msg">请确认您要充值的{yun:}$config.integral_pricename{/yun}.</p></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td height="40"><input type="submit" value="确认订单" name=nextstep  class="pay_choose_btn_01"></td>
+                    </tr>
+                </table>
+            </form>
+            {yun:}/if{/yun}
+            {yun:}if $smarty.post.usertype=="msg"{/yun}
+            <form action="index.php?c=dingdan" method="post" onsubmit="return pay_form('请输入购买条数！');">
+                <table width="100%" border="0" cellspacing="1" cellpadding="0"  class="my_table_msg"> 
+                    <tr>
+                        <th height="30">短信:</th>    
+                        <td>
+                        <input type="hidden" name="pay_type" value="{yun:}$smarty.post.usertype{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+                        <input type="text" name="price_msg" id="price_int" size="20" value="0" int="{yun:}$config.integral_msg_proportion{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  style="border:1px solid #CCCCCC; line-height:22px; height:20px; padding:1px;">
+                        </td>
+                    </tr>
+                    <tr><th height="30"></th> <td>当前比例：1元={yun:}$config.integral_msg_proportion{/yun}条</td> </tr>
+                    <tr>
+                        <th height="30">充值金额:</th>
+                        <td><span id="span_com_vip_price">0</span>元<input type="hidden" name="price" size="10"  id="com_vip_price"></td>
+                    </tr>
+                    <tr>
+                        <th height="30">备　　注:</th>
+                        <td><textarea name="remark" id='remark'  wrap="physical" class="bank_textarea"></textarea><p style="line-height:23px;">(请备注你的姓名及其联系方式)</p></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td><p class="bank_msg">请确认您要充值的短信条数.</p></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td height="40"><input type='submit' value='确认订单' name='nextstep'  class="pay_choose_btn_01"></td>
+                    </tr>
+                </table>
+            </form>
+            {yun:}/if{/yun}
+            {yun:}if $smarty.post.usertype=="change"{/yun}
+            <form action="index.php?c=dingdan" method="post" onsubmit="return pay_form('请输入兑换数量');">
+                <table width="100%" border="0" cellspacing="1" cellpadding="0"  class="my_table_msg"> 
+                    <tr>
+                        <th height="30">兑换{yun:}$config.integral_pricename{/yun}:</th>    
+                        <td>            
+                        <input type="text" name="price_int" id="price_int" size="20" value="0" int="{yun:}$config.integral_proportion{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"  style="border:1px solid #CCCCCC; line-height:22px; height:20px; padding:1px;">
+                        </td>
+                    </tr>
+                      <tr>  <th height="30"></th><td>当前比例：1元={yun:}$config.integral_proportion{/yun}{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}</td>
+                    <tr>
+                        <th height="30">所需金额:</th>
+                        <td><span id="span_com_vip_price">0</span>元<input type="hidden" name="price" size="10"  id="com_vip_price"></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td><p class="bank_msg">请确认您要兑换的{yun:}$config.integral_pricename{/yun}，<br>当前金额为<font color="red">{yun:}$statis.pay{/yun}</font>元.</p></td>
+                    </tr>
+                    <tr>
+                        <th>&nbsp;</th>
+                        <td height="40"><input type="submit" name="nextstep" value="确认订单" class="pay_choose_btn_01"></td>
+                    </tr>
+                </table> 
+            </form>
+            {yun:}/if{/yun}
+		</div>
+    </div>
+</section>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

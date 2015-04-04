@@ -1,0 +1,82 @@
+{yun:}include file="$askstyle/header.htm"{/yun}
+<script charset="utf-8" src="{yun:}$config.sy_weburl{/yun}/data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="{yun:}$config.sy_weburl{/yun}/data/kindeditor/lang/zh_CN.js"></script> 
+<script language="javascript">
+KindEditor.ready(function(K) {
+	K.create('#content', {
+		themeType : 'default',
+		items : ['bold', 'italic', 'underline','removeformat',   'link'] 
+		//items : ['bold', 'italic', 'underline','removeformat',  'image', 'link'] 
+	});
+});  
+function get_s_class(){
+	var pid=$("#pid").val();
+	$.post("{yun:}$config.sy_weburl{/yun}/ask/index.php?c=q_class",{pid:pid},function(data){
+		$("#s_class").html(data); 
+	});
+}
+$(document).ready(function(){
+	//$('#myform').form('clear');
+	//clearForm();
+	$("#pid").change(function(){
+		var pid=$("#pid").val();
+		$.post("{yun:}$config.sy_weburl{/yun}/ask/index.php?c=q_class",{pid:pid},function(data){
+			$("#s_class").html(data); 
+		});
+	});
+	get_s_class();
+});
+</script>
+
+<style>
+
+* {
+    margin: 0 ;
+    padding: 0;
+}
+</style>
+<div class="answers_content">
+	<div class="answers_cont"> 
+		<div class="answers_left">
+			<div class="answers_news_title"><span>我要提问</span></div>
+			<div class="clear"></div>
+			<iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+			<form id='myform' name="myform" target="supportiframe" action="{yun:}aurl url=c:save{/yun}" method="post" encType="multipart/form-data"  onSubmit="return checkform('1');">
+				<ul class="add_question_text">
+					<li><span class="add_question_text_span">问答标题：</span>
+					<input class="question-text" type="text" name="title" id="title" size="70" value=""/></li> 
+					<li>
+						<span class="add_question_text_span">选择话题：</span>
+						<select name='pid' id='pid' class="select-province">
+							{yun:}foreach from=$class item=class_l{/yun}
+								<option value="{yun:}$class_l.id{/yun}">{yun:}$class_l.name{/yun}</option>
+							{yun:}/foreach{/yun}
+							</select>
+						<span id='s_class'></span>
+					</li> 
+					<li>
+						<span class="add_question_text_span">问答内容：</span>
+						<textarea  id="content" name="content" cols="100" rows="8" style="width:500px;height:150px;"> </textarea>
+					</li>
+					<li>
+						<span class="add_question_text_span">&nbsp;</span>
+						{yun:}if $uid{/yun}
+						<input class="add_question_submit" type="submit" name="add" value="&nbsp;添 加&nbsp;"  />
+						<input class="add_question_submit"  type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+						{yun:}else{/yun}
+						<a target="_blank" href="{yun:}$config.sy_weburl{/yun}/index.php?m=login&usertype=1"><input class="add_question_submit"  type="button" readonly="readonly" value="&nbsp;个人登录&nbsp;"/></a>
+						<a target="_blank"  href="{yun:}$config.sy_weburl{/yun}/index.php?m=login&usertype=2"><input class="add_question_submit"  type="button" readonly="readonly" value="&nbsp;公司登录&nbsp;" /></a>
+						{yun:}/if{/yun}
+						
+						
+					</li>
+				</ul>
+			</form>
+		</div>
+		<div class="answers_right">{yun:}include file="$askstyle/right.htm"{/yun}</div>
+	</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$askstyle/footer.htm"{/yun}
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<title>{yun:}$config.sy_webname{/yun} -  手机人才网</title>
+<meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
+<meta http-equiv="description" content="人才招聘网wap网站" />
+<meta content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+<meta name="MobileOptimized" content="240" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+<meta name="MobileOptimized" content="240" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<link rel="stylesheet" type="text/css" href="{yun:}$wap_style{/yun}/css/member_wap.css"/> 
+<link rel="stylesheet" type="text/css" href="{yun:}$wap_style{/yun}/css/common.css"/>
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$wap_style{/yun}/js/layer/layer.m.js" language="javascript"></script>
+<script src="{yun:}$wap_style{/yun}/js/public.js" language="javascript"></script> 
+</head>
+<body>
+<div class="main_body">
+<header class="header">
+<div class="header_cont">
+ <div class="left-box"> <a class="hd-lbtn" href="index.php"><span>&nbsp;</span></a></div>
+<div class="header_name">企业会员中心</div>
+<nav id="nav" class="header_cont_nav">
+<span onclick="showMoreNav();"> 
+<div id="homeAreaSel" class="area_select">
+<i></i>
+<i></i>
+<i></i>
+</div>
+</span>
+</nav>
+{yun:}if $smarty.get.point{/yun}
+<div class="msg-err" style="opacity: 1;-webkit-animation:shake 0.5s linear 0s;">{yun:}$smarty.get.point{/yun}</div>
+{yun:}/if{/yun}
+<div style="clear:both"></div>
+<div class="subnav" {yun:}if $smarty.get.m!='firm'&&$smarty.get.m!='tiny'&&$smarty.get.m!='once'{/yun}style="display:none"{yun:}/if{/yun}>
+<ul>
+<li><a href="{yun:}wapurl{/yun}" {yun:}if $smarty.get.m==''{/yun}class="current"{yun:}/if{/yun}>首页</a></li>
+<li><a {yun:}if $smarty.get.m=='com'{/yun}class="current"{yun:}/if{/yun} href="{yun:}wapurl url=m:com{/yun}"> 找工作 </a></li>
+<li><a {yun:}if $smarty.get.m=='user'{/yun}class="current"{yun:}/if{/yun} href="{yun:}wapurl url=m:user{/yun}"> 招人才 </a></li>
+<li><a {yun:}if $smarty.get.m=='firm'{/yun}class="current"{yun:}/if{/yun} href="{yun:}wapurl url=m:firm{/yun}">企业黄页 </a></li>
+<li><a {yun:}if $smarty.get.m=='tiny'{/yun}class="current"{yun:}/if{/yun} href="{yun:}wapurl url=m:tiny{/yun}"> 微简历 </a></li>
+<li><a {yun:}if $smarty.get.m=='once'{/yun}class="current"{yun:}/if{/yun} href="{yun:}wapurl url=m:once{/yun}">微招聘</a></li>
+<li><a {yun:}if $smarty.get.m=='news'{/yun}class="current"{yun:}/if{/yun} href="{yun:}wapurl url=m:news{/yun}"> 职场资讯 </a></li>
+<li><a  href="{yun:}$config_wapdomain{/yun}/member/">会员中心 </a></li>
+</ul>
+</div>
+</div>
+</header>
+<script language="javascript" type="text/javascript">
+var isLayerLoaded=false;
+</script>
+{yun:}if $smarty.get.point{/yun}
+<div class="msg-err" style="opacity: 1;-webkit-animation:shake 0.5s linear 0s;">{yun:}$smarty.get.point{/yun}</div>
+{yun:}/if{/yun}

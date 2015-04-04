@@ -1,0 +1,46 @@
+
+#isven_popup_window {
+    background: none repeat scroll 0 0 #fff;
+    border: 5px solid #8bc3f6;
+    display: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    vertical-align: top;
+    width: 400px;
+    z-index: 1000;
+}
+#isven_popup_window .titlebar {
+    background: none repeat scroll 0 0 #e4f0f8;
+    border: 1px solid #aed0ea;
+    color: #2a6ebb;
+    cursor: move;
+    height: 25px;
+    line-height: 25px;
+    text-indent: 0.5em;
+}
+#isven_popup_window .titlebar a {
+    color: #2779aa;
+    float: right;
+    font-weight: bold;
+    margin-top: 2px;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+#isven_popup_window .titlebar a img {
+    margin: 0 auto;
+}
+#isven_popup_window .titlebar a:hover {
+    color: #f00;
+}
+#isven_popup_window iframe {
+    margin: 0;
+    position: relative;
+}
+#isven_popup_window_drag_shade {
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+}

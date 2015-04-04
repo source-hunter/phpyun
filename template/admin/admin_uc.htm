@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" /> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+ <span class="admin_title_span">整合UC</span>
+<a href="index.php?m=admin_uc&c=pw" class="admin_infoboxp_tj">整合PHPWIND</a>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<div class="admin_table_border">
+<form method="post" action="index.php?m=admin_uc&c=save" name="myform" target="supportiframe">
+	<table width="100%" class="table_form">
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据库类型 UC_CONNECT：</th>
+            <td style=" background:#fff;"><input type="text" name="UC_CONNECT" class="input-text" value="{yun:}$ucinfo.UC_CONNECT{/yun}"> 如：mysql</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据库地址 UC_DBHOST：</th>
+            <td style=" background:#fff;"><input type="text" name="UC_DBHOST" class="input-text" value="{yun:}$ucinfo.UC_DBHOST{/yun}"> 如：localhost</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据库用户名 UC_DBUSER：</th>
+             <td style=" background:#fff;"><input type="text"  name="UC_DBUSER" class="input-text" value="{yun:}$ucinfo.UC_DBUSER{/yun}"> ucenter数据库用户名</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据库密码 UC_DBPW：</th>
+            <td style=" background:#fff;"><input type="text" name="UC_DBPW" class="input-text" value="{yun:}$ucinfo.UC_DBPW{/yun}"> ucenter数据库密码</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据库名称 UC_DBNAME：</th>
+             <td style=" background:#fff;"><input type="text" name="UC_DBNAME" class="input-text"  value="{yun:}$ucinfo.UC_DBNAME{/yun}"> 如：ucenter</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据库编码 UC_DBCHARSET：</th>
+             <td style=" background:#fff;"><input type="text" name="UC_DBCHARSET" class="input-text" value="{yun:}$ucinfo.UC_DBCHARSET{/yun}"> 如：gbk</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据表前缀 UC_DBTABLEPRE：</th>
+            <td style=" background:#fff;"><input type="text" name="UC_DBTABLEPRE" class="input-text" size="40" value="{yun:}$ucinfo.UC_DBTABLEPRE{/yun}"> 如：`ucenter`.uc_</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">数据库连接 UC_DBCONNECT：</th>
+            <td style=" background:#fff;"><input type="text" name="UC_DBCONNECT" class="input-text" value="{yun:}$ucinfo.UC_DBCONNECT{/yun}"> 如：0</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">通信密钥 UC_KEY：</th>
+             <td style=" background:#fff;"><input type="text" name="UC_KEY" class="input-text" size="40" value="{yun:}$ucinfo.UC_KEY{/yun}"> 如：phpyun123456</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">Ucenter地址 UC_API：</th>
+            <td style=" background:#fff;"><input type="text" name="UC_API" class="input-text" size="40" value="{yun:}$ucinfo.UC_API{/yun}"> 如：http://localhost/ucenter</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">Ucenter编码  UC_CHARSET：</th>
+             <td style=" background:#fff;"><input type="text" name="UC_CHARSET" class="input-text" value="{yun:}$ucinfo.UC_CHARSET{/yun}"> 如：gbk</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">UcenterIP UC_IP：</th>
+            <td style=" background:#fff;"><input type="text" name="UC_IP" class="input-text" value="{yun:}$ucinfo.UC_IP{/yun}"> 可不填写</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">应用ID UC_APPID：</th>
+             <td style=" background:#fff;"><input type="text" name="UC_APPID" class="input-text" value="{yun:}$ucinfo.UC_APPID{/yun}"> 如：7</td>
+            </tr>
+            <tr>
+            <th width="200"  style=" background:#EBF4FC">UC APP UC_APP：</th>
+             <td style=" background:#fff;"><input type="text" name="UC_APP" class="input-text" value="{yun:}$ucinfo.UC_APP{/yun}"> 如：20</td>
+            </tr>
+           <tr>                 
+                <td align="center" colspan="2" style=" background:#fff;"> 
+                {yun:}if $config.sy_uc_type=="uc_center"{/yun}
+                <font color="#FF0000">当前UC 已经开启</font>
+                {yun:}else{/yun}
+                 <font color="#FF0000">当前UC 处于关闭状态</font>
+                {yun:}/if{/yun}
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2" style=" background:#fff;">
+                <input class="admin_submit4" type="submit" name="submit" value="&nbsp;开启UC&nbsp;"  />    
+                <input type="button" class="admin_submit4"    value="关闭UC"  onclick="layer_del('', 'index.php?m=admin_uc&c=close');">
+                </td>
+            </tr>
+	</table> 
+	<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+<div class="subnav table_nav_bg" style="margin-bottom:10px; margin-top:10px;">
+    <div class="content-menu ib-a blue " style="padding:0">
+<b>提示：</b>如果整合失败导致后台无法进入或者出现前台用户混乱，请将根目录下/plus/config.php 打开找到 sy_uc_type  将ucenter置空,再登录后台关闭UC<br/>
+<b>教程：</b><b><a href='http://www.phpyun.com/bbs/thread-4209-1-1.html' target="_blank">点击查看</a></b>
+	</div>
+</div> </div> 
+</body>
+</html>

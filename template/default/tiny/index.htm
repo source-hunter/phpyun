@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<link href="{yun:}$style{/yun}/style/Micro_resume.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script>var integral_pricename='{yun:}$config.integral_pricename{/yun}';var weburl="{yun:}$config.sy_weburl{/yun}"; </script>
+<script src="{yun:}$style{/yun}/js/fast.js" language="javascript"></script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="micro_resume_bg">
+  <div class="micro_resume">
+    <div class="micro_resume_cont">
+      <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > 微简历</div>
+      <div class="tiny_banner_img"><img src="{yun:}$style{/yun}/images/yun_tiny.jpg" width="920" height="146"></div>
+      <div class="clear"></div>
+      <div class="micro_resume_list" style="min-height:400px;_height:400px;">
+        <form action="index.php"   method="get" onsubmit="return search_keyword(this);">
+          <div class="tiny_seach_left">
+            <div class="micro_resume_list_icon"></div>
+            <div class="micro_resume_text1">
+              <select name="add_time" id="add_time" class="micro_resume_select">
+                <option value="7">一周</option>
+                <option value="15">半个月</option>
+                <option value="30">一个月</option>
+                <option value="60">两个月</option>
+                <option value="180">半年</option>
+                <option value="365">一年</option>
+                <option value="0">不限</option>
+              </select>
+            </div>
+            <div class="tSch">
+              <input class="m_input" type="hidden" name="m" value="tiny">
+              <div class="micro_resume_text">
+                <input id="key_word" class="ac_input placeholder" type="text" value="请输入简历关键字，例如：会计" name="keyword" onclick="if(this.value=='请输入简历关键字，例如：会计'){this.value=''}" placeholder="请输入简历关键字，例如：会计" onblur="if(this.value==''){this.value='请输入简历关键字，例如：会计'}">
+              </div>
+              <input type="submit"  value="搜索" id="search_button" class="f_sub_input"/>
+            </div>
+          </div>
+        </form>
+        <ul class="micro_resume_list_ul">
+          {yun:}tiny add_time=auto.add_time item=wres ispage=1 limit=20 keyword=auto.keyword {/yun}
+          <li>
+            <div class="micro_resume_l_left">
+              <div>
+                <div class="micro_resume_l_left_t"></div>
+                <div class="micro_resume_l_left_b"></div>
+              </div>
+              <div class="micro_resume_l_bj">编辑</div>
+            </div>
+            <div class="micro_resume_l_right">
+              <div class="micro_resume_qz"><a href="{yun:}url m=tiny url=c:show,id:`$wres.id`{/yun}" target="_blank">{yun:}$wres.job|mb_substr:0:30:'gbk'{/yun}</a><i>{yun:}$wres.time{/yun}</i></div>
+              <div class="micro_resume_name"> <em>我叫{yun:}$wres.username{/yun}/ {yun:}$wres.sex_name{/yun}</em> <em style="width:120px;">工作经验：{yun:}$wres.exp_name{/yun}</em> {yun:}if $config.user_wjl_link=="1" && $cookie.uid<=0{/yun} <em style="width:200px;">登录后查看联系方式</em> {yun:}else{/yun} <em style="width:212px;">TEL:<span class="micro_blue">{yun:}$wres.mobile{/yun}{yun:}if $wres.qq{/yun}/QQ:{yun:}$wres.qq{/yun}{yun:}/if{/yun}</span></em> {yun:}/if{/yun} <a href="javascript:void(0);" onclick="showdd1('1','{yun:}$wres.id{/yun}')">刷新</a> | <a href="{yun:}url m=tiny url=c:show,id:`$wres.id`{/yun}" target="_blank">查看</a> | <a href="javascript:void(0);" onclick="showdd1('2','{yun:}$wres.id{/yun}')">修改</a> | <a href="javascript:void(0);" onclick="showdd1('3','{yun:}$wres.id{/yun}')">删除</a> </div>
+              <div class="micro_resume_p"> {yun:}$wres.production|mb_substr:0:100:gbk{/yun}</div>
+            </div>
+          </li>
+          {yun:}/tiny{/yun}
+        </ul>
+        <div class="clear"></div> 
+        {yun:}if $total!=0{/yun}
+        <div class="pages"> {yun:}$pagenav{/yun}</div>
+        {yun:}/if{/yun}
+        {yun:}if $total==0{/yun}
+        <div class="seachno" style="background:#FFF; width:525px;">
+          <div class="seachno_left"> <img src="{yun:}$style{/yun}/images/search-no.gif" width="144" height="102"></div>
+          <div class="listno-content" style="margin-left:30px;"> <strong>很抱歉，没有找到满足条件的简历</strong><br>
+            <span> 建议您：<br>
+            1、适当减少已选择的条件<br>
+            2、适当删减或更改搜索关键字<br>
+            </span> </div>
+        </div>
+        {yun:}/if{/yun} </div>
+      <div class="micro_right">
+        <div class="tiny_seach"><a href='javascript:void(0);' onclick="showfabu1()" title="发布微简历" class="micro_resume_fast" >发布微简历</a></div>
+        <p>在简短的字里介绍自己、展示自己，如此精炼的文字比正规的简历还要考究功力；微博发简历虽然便捷而且紧跟流行，但毕竟每条微信息量有限，因此求职者还是要对正式简历多加打磨，或做一个关于自己详细简历请注册 </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="" style="display:none;width:460px" id="fabufast1">
+  <div >
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form  method="post" action="{yun:}url m=tiny {/yun}" onSubmit="return check_resume_tiny()" target="supportiframe">
+      <ul class="micro_resume_release_list">
+        <li><span><font color="#FF3300">*</font> 姓名：</span>
+          <input  type="text" value="{yun:}$onshow.username{/yun}" name="username" id="username" class="micro_resume_release_text">
+          {yun:}foreach from=$userdata.user_sex key=j item=v{/yun}
+          <input type="radio" name="sex" id="sex{yun:}$v{/yun}" value="{yun:}$v{/yun}" checked="checked" class="micro_resume_release_radio" style="margin-left:5px;"/>
+          <em>{yun:}$userclass_name[$v]{/yun}{yun:}$onshow.sex{/yun}</em> {yun:}/foreach{/yun} </li>
+        <li><span><font color="#FF3300">*</font> 工作年限：</span>
+          <div class="micro_resume_text1" style="border:1px solid #ccc; padding:2px;">
+            <select id="exp" name="exp">
+              
+            {yun:}foreach from=$userdata.user_word key=j item=v{/yun}
+            
+              <option value='{yun:}$v{/yun}' {yun:}if $onshow.exp==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+              
+            {yun:}/foreach{/yun}
+            
+            </select>
+          </div>
+        </li>
+        <li><span><font color="#FF3300">*</font> 意向职位：</span>
+          <input type="text" id="job" name="job" value="{yun:}$onshow.job{/yun}" class="micro_resume_release_text"/>
+        </li>
+        <li><span><font color="#FF3300">*</font> 手机：</span>
+          <input type="text" name="mobile" id="mobile" value="{yun:}$onshow.mobile{/yun}" class="micro_resume_release_text" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+        </li>
+        <li><span><font color="#FF3300">*</font> 联系QQ：</span>
+          <input type="text" id="qq" name="qq" value="{yun:}$onshow.qq{/yun}" class="micro_resume_release_text" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+        </li>
+        <li><span><font color="#FF3300">*</font> 自我介绍：</span>
+          <textarea id="production" name="production" style="width:300px; height:70px;border:1px solid #ccc; font-size:12px;color:#666">{yun:}$onshow.production{/yun}</textarea>
+        </li>
+        <li class="add"><span><font color="#FF3300">*</font> 密码：</span>
+          <input type="password" name="password" id="password" value="" class="micro_resume_release_text" style='width:100px' onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
+          <em style="line-height:28px; display:inline-block; margin-left:5px;">密码修改信息时使用,<font color="#FF3300">请牢记！</font></em> </li>
+        <li class="add"><span><font color="#FF3300">*</font> 验证码：</span>
+          <input type="text" id="authcode" name="authcode" class="micro_resume_release_text micro_resume_release_text2" />
+          <a href="javascript:check_code();"><img id="vcode_img" src="include/authcode.inc.php"></a>
+          <!--a href="javascript:check_code();">换一张</a-->
+        </li>
+        <li><span>&nbsp; </span>
+          <input type="hidden" name="id" id="id" value="{yun:}$onshow.id{/yun}"/>
+          <input class="fast_submit" type="submit" value="发布" id="botton" name="submit" >
+        </li>
+        <li class="micro_resume_prompt">
+          <p>1.您当前的IP是：{yun:}$ip{/yun}，请不要发布虚假、违法信息！</br>
+            2.请妥善保存密码，密码可用于刷新/修改/删除信息！</p>
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
+<div style="display:none;" id="postpw">
+  <div>
+    <ul class="micro_resume_release_list">
+      <li><span><font color="#FF3300">*</font> 密码：</span>
+        <input id="pw" type="password" value="" class="micro_resume_release_text" style='width:100px'/>
+        <em style="line-height:28px; display:inline-block; margin-left:5px;">请输入添加时的密码。</em> </li>
+      <li><span><font color="#FF3300">*</font> 验证码：</span>
+        <input type="text" id="code" class="micro_resume_release_text micro_resume_release_text2" style='width:100px'/>
+        <a href="javascript:check_codes();"><img id="vcode_imgs" src="include/authcode.inc.php"></a>
+        <!--a href="javascript:check_codes();">换一张</a-->
+      </li>
+      <li><span>&nbsp; </span>
+        <input type="hidden" id="tid"/>
+        <input type="hidden" id="type"/>
+        <input class="fast_submit" type="button" value="提交" onclick="post_password();">
+      </li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">  
+$(document).ready(function(){  
+	$(window).scroll(function(){
+		var scroll_Top = $(window).scrollTop();
+		var width=document.body.clientWidth; 
+		if(scroll_Top>373){ 
+ 			if(window.XMLHttpRequest){
+				var top=0;
+				var right=(width-924)/2+"px";
+			}else{ 
+				var top=parseInt(scroll_Top)-(175);
+				var right=0; 
+			}
+			$(".micro_right").attr("style","position: fixed;top:"+top+"px;_position:absolute;right:"+right+";"); 
+		}else{
+			$(".micro_right").attr("style","");
+		} 
+	});
+});  
+</script>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

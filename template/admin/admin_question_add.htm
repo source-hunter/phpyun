@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script language="javascript"> 
+KindEditor.ready(function(K) {
+	K.create('#content', {
+		items : ['source',
+		'bold', 'italic', 'underline',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist','emoticons', 'image'],afterBlur:function(){this.sync();} 
+	});
+});
+function checkform(myform){
+	if (myform.title.value==""){ 
+		parent.layer.msg('请填写问答标题！', 2, 2);
+		myform.title.focus();
+		return (false);
+	}
+	if (myform.cid.value=="0"){ 
+		parent.layer.msg('请选择子类！', 2, 2);
+		myform.cid.focus();
+		return (false);
+	}
+}
+$(document).ready(function(){
+	$("#pid").change(function(){
+		var pid=$("#pid").val();
+		var pytoken=$("#pytoken").val();
+		$.post("index.php?m=admin_question&c=get_class",{pid:pid,pytoken:pytoken},function(data){
+			$("#s_class").html(data); 
+		}); 
+	}); 
+});
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>{yun:}if $question_show.id{/yun}修改问答{yun:}else{/yun}添加问答{yun:}/if{/yun}</h6>
+    <div class="infoboxp_right"> <a class="company_job_tj" href="index.php?m=admin_question" class="infoboxp_tj">问题列表</a></div>
+  </div>
+  <div class="admin_table_border">
+  <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+   <form name="myform" target="supportiframe" action="index.php?m=admin_question&c=save" method="post" encType="multipart/form-data"  onSubmit="return checkform(this);">
+      <table width="100%" class="table_form" style="background:#fff;">
+        <tr >
+          <th>问答标题：</th>
+          <td><input class="input-text" type="text" name="title" size="80" value="{yun:}$question_show.title{/yun}"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>问答类别：</th>
+          <td><select name='pid' id="pid">
+					{yun:}foreach item=v from=$class_list{/yun}
+              <option value="{yun:}$v.id{/yun}" {yun:}if $v.id==$pid{/yun}selected{yun:}/if{/yun}>{yun:}$v.space{/yun}{yun:}$v.name{/yun}</option>
+					{yun:}/foreach{/yun}
+            </select>
+            <select name="cid" id="s_class">
+					{yun:}foreach item=v from=$s_class{/yun}
+              <option value='{yun:}$v.id{/yun}' {yun:}if $v.id==$question_show.cid{/yun}selected{yun:}/if{/yun}>{yun:}$v.name{/yun}</option>
+					{yun:}/foreach{/yun}
+            </select></td>
+        </tr>
+        <tr >
+          <th>访问次数：</th>
+          <td><input class="input-text" type="text" name="visit"  value="{yun:}$question_show.visit{/yun}"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>是否推荐：</th>
+          <td><input  type="radio" name="is_recom" value="0" {yun:}if $question_show.is_recom=='0'{/yun}checked{yun:}/if{/yun}/>
+            不推荐
+            <input  type="radio" name="is_recom" value="1" {yun:}if $question_show.is_recom=='1'{/yun}checked{yun:}/if{/yun}/>
+            推荐</td>
+        </tr>
+        <tr >
+          <th>问答内容： </th>
+          <td><textarea  id="content" name="content" cols="100" rows="8" style="width:700px;height:300px;">{yun:}$question_show.content{/yun}</textarea></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <td align="center" colspan="2"> {yun:}if $question_show.id{/yun}
+            <input type="hidden" name="id" value="{yun:}$question_show.id{/yun}"/>
+            <input type="hidden" name="back_url"  value="{yun:}$back_url{/yun}"/>
+            <input class="admin_submit2" type="submit" name="update" value="&nbsp;更 新&nbsp;"  />
+            {yun:}else{/yun}
+            <input class="admin_submit2" type="submit" name="add" value="&nbsp;添 加&nbsp;"  />
+            {yun:}/if{/yun}
+            <input class="admin_submit2" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+        </tr>
+      </table>
+	  <input type="hidden" name="pytoken" id="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+  </div>
+</div>
+</body>
+</html>

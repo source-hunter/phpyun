@@ -1,0 +1,61 @@
+{yun:}include file="$askstyle/header.htm"{/yun}
+<div class="answers_content">
+<div class="answers_cont">
+
+
+<div class="answers_left">
+<div class="answers_news_title"><span>我的问题</span></div>
+<div class="topic_cont_top">
+<div class="topic_cont_top_r">
+<div class="topic_cont_top-nav">
+<ul class="topic_cont_top-nav-list">
+<li class="topic_cont_top-nav-list-item">
+<span>动态</span>
+</li>
+<li class="topic_cont_top-nav-list-item">
+<a class="topic_cont_top-nav-normal" href="{yun:}aurl url=c:getclass,id:`$cid`,recom:1{/yun}">精华</a>
+</li>
+<li class="topic_cont_top-nav-list-item">
+<a class="topic_cont_top-nav-normal" href="{yun:}aurl url=c:getclass,id:`$cid`{/yun}">全部问题</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+{yun:}foreach item=qlist_a  from=$dynamic{/yun}
+<div class="answers_left_list">
+	<div class="answers_left_list_left">
+		{yun:}if $qlist_a.pic{/yun}
+		<img src="{yun:}$qlist_a.pic{/yun}" width="55" height="55">
+		{yun:}else{/yun}
+		<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}" width="55" height="55">	
+		{yun:}/if{/yun}
+	</div>
+	<div class="answers_left_list_cont Dynamic_w">
+		<div class="answers_feed-meta"> 
+		{yun:}$qlist_a.nickname{/yun} <em style="float:right">{yun:}$qlist_a.ctime|date_format:"%Y-%m-%d %H:%M:%S"{/yun}</em>
+		</div>
+		<div class="no_meta_gz">{yun:}$qlist_a.content{/yun}</div>
+	</div>
+	<div class="answers_left_list_right" id='answer_{yun:}$qlist_a.id{/yun}' >
+		{yun:}if $qlist_a.is_atn=='1'{/yun} 
+			<a href="javascript:void(0)" style="float:right" onclick="attention_user('{yun:}$qlist_a.uid{/yun}')" class="zg-btn-unfollow"  name="atn_{yun:}$qlist_a.uid{/yun}">取消关注</a>
+		{yun:}else{/yun}
+			<a href="javascript:void(0)" style="float:right" onclick="attention_user('{yun:}$qlist_a.uid{/yun}')" class='zg-btn-green'  name="atn_{yun:}$qlist_a.uid{/yun}">关注</a>
+		{yun:}/if{/yun}
+	</div>
+</div>
+{yun:}/foreach{/yun}  
+<div class="clear"></div><div class="clear"></div>
+<div class="pages">{yun:}$pagenav{/yun}</div>
+</div>
+<div class="answers_right">
+ {yun:}include file="$askstyle/right.htm"{/yun} 
+</div>
+</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$askstyle/footer.htm"{/yun}
+</body>
+</html>

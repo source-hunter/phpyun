@@ -1,0 +1,109 @@
+@CHARSET "GBK";
+body{
+ margin: 0;
+ padding: 0;
+ font-size: 12px;
+background:#cce8f4 url(./admin_bg.png) repeat-x top ;width:100%;height:100%
+}.logoin_c{width:544px; margin:0 auto; }
+.logoin_cont{width:1000px; margin:0 auto}
+.admin_logo_bg{width:100%; min-width:1000px;background:url("./lo_bg.jpg") no-repeat top right;}
+.logoin_top{width:100%;height:158px;}
+.login_box{
+ width:1000px;
+ height:408px;
+ background: url("./logioin_bg2.png") no-repeat top;
+ margin:0 auto
+}
+.logoin_title{width:100%;height:57px; float:left; background:url(../images/logoin_line.png) no-repeat 70px bottom; text-align:center}
+.logoin_logo{width:100%;height:60px; text-align:center; margin-top:15px; float:left}
+.logoin_title_c{width:351px; margin:0 auto;}
+.logoin_title img{ display:block; margin:5px auto}
+
+.login_iptbox{
+
+ color:#000;
+ text-align: center;
+ margin-left:15px;
+ _margin-left:0px;
+
+
+}
+.logoin_list{width:100%; float:left; list-style:none; padding:0; margin:0}
+.logoin_list li{width:100%; float:left; margin-top:10px;}
+.logoin_list li span{width:120px;color:#65635f; font-size:14px; float:left; display:block; text-align:right; line-height:29px;}
+
+.login_iptbox .ipt{
+ width:242px;
+ height:29px;
+ display:block; float:left;
+ background:url(./lo_in.png) no-repeat;
+ border:none;
+ line-height:29px;
+ color:#666
+}
+.login_iptbox .ipt_code{
+ width:125px;
+height:29px;
+line-height:29px;
+color:#666;
+ display:block; float:left;
+  background:url(./lo_yz.png) no-repeat;
+ border:none;
+
+
+}
+.login_iptbox img{ float:left; margin-left:10px; margin-top:3px;}
+.login_iptbox .ipt_btn{
+
+ width:110px;
+ height:34px;
+ background: url("./lo_sub.png") no-repeat;
+ border: none;
+ display:block; float:left;
+ cursor:pointer
+}
+#code_img{
+ position:relative;
+ background:url(./login_ts140x89.gif) no-repeat;
+ width:140px;
+ height:89px;
+ left:430px;
+ top:-133px;
+ text-align:center;
+ display:none;
+ color:#000;
+ }
+ .admintop{
+  background-color: #3A6EA5;
+  height:81px;
+ }
+ .logodiv{
+  width:136px;
+  height:81px;
+  float: left;
+ }
+ .logo_a{
+  display:block;
+  width:136px;
+  height:81px;
+  background: url("./logo.gif");
+ }
+ .adminshell{
+  width:600px;
+  height:81px;
+  margin-left: 10px;
+  float:left;
+ }
+ .admininfo{
+  width:600px;
+  height:40px;
+  line-height:40px;
+ }
+ .adminmenu ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+ }
+ .adminmenu li{
+  float: left;
+ }

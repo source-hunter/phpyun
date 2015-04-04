@@ -1,0 +1,82 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">企业模板设置</span><i class="com_admin_ask"></i><span class=remind style="float:right"><a href="{yun:}curl url=id:`$smarty.cookies.uid`{/yun}" target="_blank">查看公司网站</a></span></div>
+        <div class=admin_textbox_02>
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form id="myform" name="form1" method="post" target="supportiframe" action="{yun:}$now_url{/yun}&act=settpl">
+          <input type="hidden" value="savetpl" name="savetpl" />
+          {yun:}foreach from=$list item=style{/yun}
+		   <input type="hidden" value="{yun:}$style.name{/yun}" name="tplname{yun:}$style.id{/yun}" /> 
+          <dl class="compl_list">
+            <dt> <img width="300" height="160" alt="{yun:}$style.name{/yun}" src="../{yun:}$style.pic{/yun}"> </dt>
+            <dd> 
+            模板名称：{yun:}$style.name{/yun} <a href="{yun:}curl url=id:`$smarty.cookies.uid`,style:`$style.url`{/yun}" target="_blank">[预览]</a>
+              <div class="compl_list_p" id="list_tpl_{yun:}$style.id{/yun}"> 模板价格：<b class="comtpl_b">
+			  {yun:}if $style.price!=0{/yun}
+				  {yun:}$style.price{/yun}
+				  {yun:}if $style.type==1{/yun}
+				  {yun:}$config.integral_pricename{/yun}
+				  {yun:}else{/yun}元
+				  {yun:}/if{/yun}			  
+			  {yun:}else{/yun}
+			      免费
+			  {yun:}/if{/yun}	
+			  
+
+			  
+			  
+			  </b>  </div>
+              <div>
+             {yun:}assign var="t" value=$style.url{/yun}
+              
+              {yun:}if $style.url=='default'{/yun}
+              {yun:}if $statis.comtpl=='0' || $statis.comtpl=='default'{/yun}
+                
+                  <div class="compl_list_ysy">使用中</div>
+
+                 {yun:}else{/yun}
+                 <a href="javascript:void(0);" onclick="return checktpl('{yun:}$style.id{/yun}');" class="comtpl_submit_sy">使用</a>
+                 {yun:}/if{/yun}
+              	<input type='hidden' id='buytpl_{yun:}$style.id{/yun}' value='1'>
+             {yun:}elseif in_array($t,$buytpl){/yun}
+
+			  <input type='hidden' id='buytpl_{yun:}$style.id{/yun}' value='1'>
+             {yun:}if $statis.comtpl==$style.url{/yun}
+               <div class="compl_list_ysy">使用中</div>
+             {yun:}else{/yun}
+             <a href="javascript:void(0);" onclick="return checktpl('{yun:}$style.id{/yun}');" class="comtpl_submit_sy">使用</a>
+             {yun:}/if{/yun}
+             
+            
+             {yun:}else{/yun}
+            <input type='hidden' id='buytpl_{yun:}$style.id{/yun}' value='0'>
+              <a href="javascript:void(0);" onclick="return checktpl('{yun:}$style.id{/yun}');" class="comtpl_submit_gm">购买</a>
+            {yun:}/if{/yun}
+              </div>
+            </dd>
+          </dl>
+
+          <div class="clear"></div>
+
+          {yun:}/foreach{/yun}
+          </div>
+          <input type="hidden" name="tpl" id="tplid" value="{yun:}$style.id{/yun}"/>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="javascript">
+  $(document).ready(function() {
+	$(".com_admin_ask").hover(function(){  
+		layer.tips("为自己的公司选择一个合适的展示风格！", this, {
+			guide: 1,
+			style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F']
+		});
+	},function(){layer.closeTips();});  
+}); 
+</script> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

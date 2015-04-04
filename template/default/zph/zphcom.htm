@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+  <div class="current_Location icon  png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}url m=zph{/yun}">招聘会</a> > 参会企业清单 </div>
+  <div class="yun_zph_content"> 
+    <div class="yun_zph_com_left fl">
+      <div class="yun_zph_com_h1"><span>参会企业名单</span></div>
+      <div class="job_fairs_com"> 
+	  {yun:}foreach item=zph from=$rows key=key{/yun}
+        <div class="yun_job_fairs_list">
+          <div class="yun_zph_com_l"> <a href="{yun:}curl url=id:`$zph.uid`,tp:post{/yun}" target="_blank" class="yun_zph_com_name">{yun:}$zph.comname{/yun}</a> <span>展位号：{yun:}if $zph.inadd{/yun}{yun:}$zph.inadd{/yun}{yun:}else{/yun}未知{yun:}/if{/yun}</span>
+            <div class="yun_zph_com_post"><span>招聘职位：</span>{yun:}if $zph.job{/yun}{yun:}foreach from=$zph.job item=jlist{/yun}{yun:}$jlist.name{/yun}&nbsp;&nbsp;{yun:}/foreach{/yun}{yun:}/if{/yun}</div>
+          </div>
+          <div class="yun_zph_com_r"><a href="{yun:}$zph.url{/yun}" class="job_fairs_sub2" target="_blank">提前投简历 </a></div>
+        </div>
+        {yun:}foreachelse{/yun}
+        <div class="job_fairs_no">暂无公司报名！</div>
+        {yun:}/foreach{/yun} 
+        <div class="clear"></div>
+        <div class="pages"> {yun:}$pagenav{/yun} </div>
+      
+      </div>
+    </div>
+     <div class="yun_zph_com_right fr">
+    <div class="yun_zph_name"><a href="index.php?m=zph&c=show&id={yun:}$row.id{/yun}">{yun:}$row.title{/yun}</a></div>
+    <div class="yun_zph_img"><a href="index.php?m=zph&c=show&id={yun:}$row.id{/yun}"><img width="265" height="190" src="{yun:}$config.sy_weburl{/yun}{yun:}$row.pic{/yun}"></a></div>
+    <div class="yun_zph_r_list">
+    <span>主办方：</span>
+    <p>{yun:}$row.organizers{/yun}</p>
+    </div>
+      <div class="yun_zph_r_list">
+    <span>时间安排：</span>
+        <p>开始时间：{yun:}$row.starttime{/yun}</p>
+         <p>结束时间：{yun:}$row.endtime{/yun}</p>
+    </div>
+         <div class="yun_zph_r_list">
+    <span>招聘会地点：</span>
+        <p>{yun:}$row.address{/yun}</p>
+    </div>
+             <div class="yun_zph_r_list">
+    <span>交通路线：</span>
+        <p>{yun:}$row.traffic{/yun}</p>
+    </div>
+             <div class="yun_zph_r_list">
+    <span>电话咨询：</span>
+        <p>咨询电话：{yun:}$row.phone{/yun}</p>
+    </div>
+    
+    
+    </div>
+    
+  </div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

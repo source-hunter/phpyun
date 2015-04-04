@@ -1,0 +1,45 @@
+{yun:}include file="$askstyle/header.htm"{/yun}
+<div class="answers_content">
+<div class="answers_cont">
+<div class="answers_left">
+<div class="answers_news_title"><span>热点话题</span></div>
+<div class="answers_tags answers_tags">
+<div class="tag-list "> 
+{yun:}foreach from=$class item=class_l{/yun}
+<a {yun:}if $pid==$class_l.id{/yun}class="tag-item  tag-active"{yun:}else{/yun}class="tag-item"{yun:}/if{/yun} href="{yun:}aurl url=c:topic,pid:`$class_l.id`{/yun}"><span></span><em>{yun:}$class_l.name{/yun}</em></a> 
+{yun:}/foreach{/yun} 
+</div>
+</div>
+
+<div class="clear"></div> 
+{yun:}foreach from=$q_class item=class_s{/yun}
+<dl class="topic_list">
+	<dt> 
+		<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$class_s.pic{/yun}" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);" width="50" height="50"> 
+	</dt>
+	<dd>
+		<div class="topic_list_top">
+			<a href="{yun:}aurl url=c:getclass,cid:`$class_s.id`{/yun}">{yun:}$class_s.name{/yun}</a>  
+			{yun:}if $class_s.is_atn=='1'{/yun}				
+				<a href="javascript:void(0)" onclick="attention('{yun:}$class_s.id{/yun}','2');" class="answer_ygz"  name="atn_{yun:}$class_s.id{/yun}" title="取消关注">取消关注</a>
+			{yun:}else{/yun} 
+				<a href="javascript:void(0)" class="answer_gz" onclick="attention('{yun:}$class_s.id{/yun}','2');" name="atn_{yun:}$class_s.id{/yun}" title="关注"> 关注</a>
+			{yun:}/if{/yun}  
+		</div>
+		<div class="topic_list_p">{yun:}$class_s.intro{/yun}</div>
+	</dd>
+</dl> 
+{yun:}/foreach{/yun}  
+<div class="clear"></div> 
+<div class="pages" >{yun:}$pagenav{/yun}</div> 
+</div>
+<div class="answers_right">
+{yun:}include file="$askstyle/right.htm"{/yun} 
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+ {yun:}include file="$askstyle/footer.htm"{/yun}
+</body>
+</html>

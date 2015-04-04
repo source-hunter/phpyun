@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" type="text/css" href="{yun:}$style{/yun}/style/css.css"> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$style{/yun}/js/subscribe.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js"></script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun} 
+<!--简历开始-->
+
+<div class="container">
+
+<div class="container_cont">
+    <div class="post_read_left container_cont_fr">
+      <h1 class="post_read_h1">订阅邮箱验证</h1>
+      <div class="post_read_p">验证邮箱，完成订阅</div>
+      <div class="post_read_body post_read_body_pp "> 接收邮箱
+        我们已将验证邮件发送至邮箱：{yun:}$email{/yun}</br>
+        点击邮件内的链接即可完成订阅，我们将定期发送最精准的信息至你的邮箱。 </div>
+      <div class="post_read_body_c">
+        <p>没有收到验证邮件，怎么办？</p>
+        <p>看看是否在邮箱的垃圾邮件、广告邮件目录里</p>
+        <p>稍等几分钟，若还未收到验证邮件， <a href="javascript:send_email();">重新发送验证邮件</a></p>
+      </div>
+    </div>
+</div>
+</div>
+<!--简历结束--> 
+{yun:}include file="$tplstyle/footer.htm"{/yun}

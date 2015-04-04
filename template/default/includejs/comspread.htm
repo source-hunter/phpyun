@@ -1,0 +1,14 @@
+<div class="brain_main fl">
+	<div class="brain_main_h fl">智能推广</div>
+	<div class="brain_main_con fl">
+		<div class="brain_main_con_size fl">
+		{yun:}foreach from=$company_job item=list{/yun}
+		<div class="brain_main_items fl">
+		<div class="brain_items_post brain_items_job fl"><a href="{yun:}$list.url{/yun}" target="_blank">{yun:}$list.name{/yun}</a></div>
+		<div class="brain_items_post fl">工作地区：{yun:}$list.cityname{/yun}</div>
+		<div class="brain_items_post fl">薪资：<span>{yun:}$list.salary{/yun}</span>/月</div>
+		</div>
+		{yun:}/foreach{/yun}  
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<div id="joblist" class="mask selecter hide " style="display:none;height:100%; width:auto;right: 0;top:0;">
+<div class="mask_wap_bg" style=" background-color: rgba(51, 51, 51, 0.8); height:100%;width:100%; position:fixed;left:0px;top:0px;bottom:0px;right:0px;"></div>
+<div class="f_body" style="float: right; background: none repeat scroll 0% 0% transparent; width: 280px;">
+<h2 style="transform: translate(0px, 0px); transition-duration: 0.4s; transition-timing-function: ease; transform-style: preserve-3d; backface-visibility: hidden;">职位类别<button class="ok selectorOk" onclick="realy();">确定</button>
+<button class="clear_sub selectorClear" onclick="Close('job');">关闭</button>
+<button class="clear_sub selectorClear" onclick="removes();">清除</button> 
+</h2>
+
+<div class="contentbody position" style="transform: translate(0px, 0px); transition-duration: 0.4s; transition-timing-function: ease; transform-style: preserve-3d; backface-visibility: hidden;">
+{yun:}foreach item=v from=$job_index{/yun}
+<dl class="lookshow onelist" id="job{yun:}$v{/yun}" style="position:relative">
+<dt class="current position" onclick="checkjob1('{yun:}$v{/yun}','job');">{yun:}$job_name[$v]{/yun}</dt>
+<dd id="joblist{yun:}$v{/yun}" class="lookhide" style="display: none;">
+    {yun:}foreach item=val from=$job_type[$v]{/yun}
+    <ul id="u2000" style="position:relative;" data-c="show">
+    <li onclick="checkjob2('{yun:}$val{/yun}','job');">{yun:}$job_name[$val]{/yun}</li>
+    <div class="post_show_three" id="jobpost{yun:}$val{/yun}" style="display: none;">
+        {yun:}foreach item=value from=$job_type[$val]{/yun}
+        <li>
+        <input id="r{yun:}$value{/yun}" data="{yun:}$job_name[$value]{/yun}" type="checkbox" value="{yun:}$value{/yun}" name="jobclass" onclick="checked_input('{yun:}$value{/yun}');">
+        <label for="r{yun:}$value{/yun}" style="margin-left:5px;">{yun:}$job_name[$value]{/yun}</label>
+        </li>
+        {yun:}/foreach{/yun}
+    </div>
+    </ul>
+    {yun:}/foreach{/yun}
+</dd>
+</dl>
+{yun:}/foreach{/yun}
+</div>
+</div>
+</div>
+
+
+<div id="citylist" class="mask selecter hide " style="display:none;  height:100%; width:auto;right: 0;top:0;">
+<div class="mask_wap_bg" style=" background-color: rgba(51, 51, 51, 0.8); height:100%;width:100%; position:fixed;left:0px;top:0px;bottom:0px;right:0px;"></div>
+<div class="f_body" style="float: right; background: none repeat scroll 0% 0% transparent; width: 280px;">
+<h2 style="transform: translate(0px, 0px); transition-duration: 0.4s; transition-timing-function: ease; transform-style: preserve-3d; backface-visibility: hidden;">城市类别
+<button class="clear_sub selectorClear" onclick="Close('city');">关闭</button>
+</h2>
+
+<div class="contentbody position" style="transform: translate(0px, 0px); transition-duration: 0.4s; transition-timing-function: ease; transform-style: preserve-3d; backface-visibility: hidden;">
+{yun:}foreach item=v from=$city_index{/yun}
+<dl class="lookshow onelist" id="city{yun:}$v{/yun}" style="position:relative">
+<dt class="current position" onclick="checkjob1('{yun:}$v{/yun}','city');">{yun:}$city_name[$v]{/yun}</dt>
+<dd id="citylist{yun:}$v{/yun}" class="lookhide" style="display: none;">
+    {yun:}foreach item=val from=$city_type[$v]{/yun}
+    <ul id="u2000" style="position:relative;" data-c="show">
+    <li onclick="checkjob2('{yun:}$val{/yun}','city');">{yun:}$city_name[$val]{/yun}</li>
+    <div class="post_show_three" id="citypost{yun:}$val{/yun}" style="display: none;">
+        {yun:}foreach item=value from=$city_type[$val]{/yun}
+        <li onclick="checkedcity('{yun:}$value{/yun}','{yun:}$city_name[$value]{/yun}');">{yun:}$city_name[$value]{/yun}</li>
+        {yun:}/foreach{/yun}
+    </div>
+    </ul>
+    {yun:}/foreach{/yun}
+</dd>
+</dl>
+{yun:}/foreach{/yun}
+</div>
+</div>
+</div>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Filter">
+	<span class="complay_top_span fl">网站地图</span> 
+		<form action="index.php" name="myform" method="get">
+		<input name="m" value="navmap" type="hidden"/>
+		<input class="admin_Filter_search"  type="text" name="keyword"  size="25" style="float:left"> 
+		<input  class="admin_Filter_bth" type="submit" name="news_search" value="检索"/>
+				<span class='admin_search_div'>
+        <div class="admin_adv_search">
+          <div class="admin_adv_search_bth">高级搜索</div>
+        </div> 
+        </span> 
+		<a href="index.php?m=navmap&c=add" class="admin_infoboxp_tj">添加网站地图</a>
+	</form> 
+</div>
+ {yun:}include file="admin/admin_search.htm"{/yun} 
+<div class="table-list">
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form action="index.php" name="myform" id='myform' method="get" target="supportiframe">
+<input name="m" value="navmap" type="hidden"/>
+<input name="c" value="del" type="hidden"/>
+<table width="100%">
+	<thead>
+		<tr class="admin_table_top">
+		    <th><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+			<th>编号</th>
+            <th>名称</th>
+			<th>类别</th>
+			<th>连接地址</th>
+            <th>类型</th>
+			<th>排序</th>
+            <th>弹出窗口</th>
+            <th>显示</th>
+			<th class="admin_table_th_bg">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    {yun:}foreach item=v key=key from=$nav{/yun}
+    <tr align="center"{yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun} id="list{yun:}$v.id{/yun}">
+	    <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+    	<td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+        <td class="od" align="left">{yun:}$v.name{/yun}</td>
+    	<td class="ud" align="left">{yun:}$v.typename{/yun}</td>
+		<td class="gd" align="left">{yun:}$v.url{/yun}</td>
+        <td class="td" align="left">{yun:}if $v.type=='1'{/yun}站内链接{yun:}else{/yun}原链接{yun:}/if{/yun}</td>
+		<td class="td">{yun:}$v.sort{/yun}</td>
+        <td class="td">{yun:}if $v.eject=='1'{/yun}新窗口{yun:}else{/yun}原窗口{yun:}/if{/yun}</td>
+    	<td class="td">{yun:}if $v.display=='1'{/yun}是{yun:}else{/yun}否{yun:}/if{/yun}</td>
+    	<td><a href="index.php?m=navmap&c=add&id={yun:}$v.id{/yun}" class="admin_cz_bj">修改</a> | <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=navmap&c=del&del={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</a></td>
+  </tr>
+  {yun:}/foreach{/yun}
+  <tr style="background:#f1f1f1;">
+    <td align="center"><label for="chkall2"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></label></td>
+    <td colspan="2" ><label for="chkAll2">全选</label>
+    <input class="admin_submit4"  type="button" name="delsub" value="删除所选"  onclick="return really('del[]')"/></td>
+    <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+  </tr>
+  </tbody>
+  </table>
+  <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

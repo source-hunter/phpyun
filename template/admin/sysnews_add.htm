@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script>
+$(document).ready(function(){
+	$("input[name=all]").click(function(){
+		if($(this).val()==5){
+			$("#user_email").show();
+		}else{
+			$("#user_email").hide();
+			$("input[name=userarr]").val('');	
+		}
+	})
+})
+
+function message_submit(){
+	var allaa=$("input[name=all]:checked").val();
+	if(!allaa){
+		parent.layer.msg('请选择发送信息的用户！', 2, 2);return false;
+	}
+	if(allaa=="5"){
+		if($("#userarr").val()==""){
+			parent.layer.msg('请输入用户名！', 2, 2);return false;
+		}
+	}
+	var content=$("#content").val();
+	if(content==''){parent.layer.msg('信息内容不能为空！', 2, 2);return false;}
+	loadlayer();
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top"><h6>发送系统信息</h6></div> 
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe"action="index.php?m=sysnews&c=add" method="post" onSubmit="return message_submit();">
+	<table width="100%" class="table_form table_form_bg">
+        <tr class="admin_table_trbg">
+            <th width="120">选择用户</th>
+            <td>
+              <input type="radio" name="all" value="1" id="CheckboxGroup1_1"><label for="CheckboxGroup1_1">个人用户</label>&nbsp;
+              <input type="radio" name="all" value="2" id="CheckboxGroup1_2"><label for="CheckboxGroup1_2">企业用户</label>&nbsp;
+              <input type="radio" name="all" value="4" id="CheckboxGroup1_4"><label for="CheckboxGroup1_4">培训用户</label>&nbsp;
+              <input type="radio" name="all" value="5" id="CheckboxGroup1_5"><label for="CheckboxGroup1_5">自定义用户</label>&nbsp;&nbsp;&nbsp;
+          </td>
+        </tr>
+        <tr id="user_email" style="display:none;">
+			<th>用户名：</th>
+			<td><input class="input-text" type="text" id="userarr" name="userarr" size="40" value=""/><font color="gray">多个用户请用,(半角)隔开</td>
+		</tr>
+        <tr>
+			<th width="120">信息内容</th>
+			<td>
+           <textarea  id="content" name="content" cols="100" rows="8" style="width:600px;height:100px;"></textarea>
+			</td>
+		</tr>
+		<tr class="admin_table_trbg">
+			<td align="center" colspan="2">
+            <input class="admin_submit4" type="submit" name="submit" value="&nbsp;发 送&nbsp;"  />
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+            </td>
+		</tr>
+	</table>
+	<input type="hidden" name="pytoken" id="pytoken" value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+
+</body>
+</html>

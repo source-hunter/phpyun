@@ -1,0 +1,96 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun} 
+<div class="post_content">
+<div class="post_title">
+<h3>{yun:}$job.name{/yun}</h3>
+<aside>发布日期：{yun:}$job.lastupdate|date_format:"%Y-%m-%d"{/yun}</aside>
+<i>点击：{yun:}$job.jobhits{/yun}次</i>
+</div>
+
+<div class="post_list">
+<div class="post_Company">
+<a href="{yun:}wapurl m=firm url=c:show,id:`$job.uid`{/yun}">{yun:}$company.name{/yun}</a>
+<i>》</i>
+</div>
+<aside class="post_list_span">
+<span>类型：{yun:}$comclass_name[$job.type]{/yun}</span>
+<span>待遇：{yun:}$comclass_name[$job.salary]{/yun}</span>
+<span>人数：{yun:}$comclass_name[$job.number]{/yun}</span>
+<span>性别：{yun:}$comclass_name[$job.sex]{/yun}</span>
+<span>学历：{yun:}$comclass_name[$job.edu]{/yun}</span>
+<span>地区：{yun:}$city_name[$job.provinceid]{/yun}/{yun:}$city_name[$job.cityid]{/yun}</span>
+<span>经验：{yun:}$comclass_name[$job.exp]{/yun}</span>
+<span>行业：{yun:}$industry_name[$job.hy]{/yun}</span>
+</aside>
+</div>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》职位描述</span></header>
+<div class="com_post_p">{yun:}$job.description{/yun}</div>
+<div class="com_post_Application">
+
+{yun:}if !$smarty.cookies.uid{/yun}
+  <a href='{yun:}wapurl m=login{/yun}'><font color=''>登录后申请职位</font></a>
+  {yun:}else{/yun}
+ <a href="javascript:jobapply('{yun:}$job.id{/yun}');" target="_self">申请职位</a> <a href="javascript:jobfav('{yun:}$job.id{/yun}');" class="com_post_sc">收藏职位</a>
+  
+  {yun:}/if{/yun}
+
+
+
+</div>
+<script>function jobapply(jobid){
+	$.get("index.php?m=com&c=view&type=sq&id={yun:}$job.id{/yun}",function(data){
+		var data=eval('('+data+')');
+		if(data.url){
+			if(data.url=='1'){url=location.href;}
+			layermsg(data.msg,2,function(){location.href = data.url;});	
+		}else{
+			//layermsg(msg,2,function(){location.href = url;});	
+			layermsg(data.msg,2);	
+		}
+	})};
+	function jobfav(jobid){
+	$.get("index.php?m=com&c=view&type=fav&id={yun:}$job.id{/yun}",function(data){
+		var data=eval('('+data+')');
+		if(data.url){
+			if(data.url=='1'){url=location.href;}
+			layermsg(data.msg,2,function(){location.href = data.url;});	
+		}else{
+			//layermsg(msg,2,function(){location.href = url;});	
+			layermsg(data.msg,2);	
+		}
+	})};
+</script>
+</section>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》联系方式</span></header>
+{yun:}if ($config.com_login_link==1 && $smarty.cookies.uid && $smarty.cookies.usertype==1) || $config.com_login_link==0{/yun}
+
+        <ul class="com_post_msg">
+         <li>[联系人]{yun:}$company.linkman{/yun}</li>
+       <li>[联系电话]{yun:}$company.linkphone{/yun}</li>
+         <li>[公司地址]{yun:}$company.address{/yun}</li>
+		</ul>
+        {yun:}else{/yun}
+		 <div class="com_post_login">
+            请 <a href="{yun:}wapurl m=login{/yun}">[登录]</a> 后查看联系方式
+            没有帐号？ <a href="{yun:}wapurl m=register{/yun}">[免费注册]</a>
+        </div>
+     
+        {yun:}/if{/yun}</section>
+  </section>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》企业信息</span></header>
+<ul class="com_post_msg">
+<li>[企业性质] {yun:}$comclass_name[$company.pr]{/yun}</li>
+<li>[所属行业] {yun:}$industry_name[$company.hy]{/yun}</li>
+<li>[注册资金] {yun:}$company.money{/yun}万元</li>
+<li>[公司规模] {yun:}$comclass_name[$company.mun]{/yun}</li>
+<li>[所在地区] {yun:}$city_name[$company.provinceid]{/yun}/{yun:}$city_name[$company.cityid]{/yun}</li>
+</ul>
+</section>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》公司简介</span></header>
+<div class="com_post_jj">{yun:}$company.content{/yun}</div>
+</section>
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

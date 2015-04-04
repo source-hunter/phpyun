@@ -1,0 +1,40 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="com_search_top">
+		<form action="index.php" method="get">
+			<input type="hidden" name="m" value="once" /> 
+			<input type="hidden"  value="once" name="m"/>
+			 <div class="com_post_left"><input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}" class="seach_post_text placeholder" placeholder="请输入关键字" />
+              <div class="com_post_right" >
+              <input type="button" value="我要发布" class="tiny_but" onclick="location.href='{yun:}wapurl m=once url=c:add{/yun}'" >
+              <span class="com_post_bth1_line"></span>
+			<input type="submit"  value="搜索"  class="com_post_bth1"/> 
+               </div>
+		</form>
+	 </div>
+</div>
+<section>
+  <div class="main"> {yun:}fast item=once ispage=1 limit=20 keyword=auto.keyword islt=4 {/yun} 
+  <a href="{yun:}wapurl url=m:once,c:show,id:`$once.id`{/yun}"  class="tiny_list">
+    <h3>{yun:}$once.title{/yun}</h3>
+    <i class="user_name_size2">{yun:}$once.ctime|date_format:"%Y-%m-%d"{/yun}</i> 
+    <aside> {yun:}$once.companyname{/yun}</aside>
+    
+      <aside>[招聘人数] {yun:}$once.mans{/yun}</aside>
+<!--  <aside>[联 系 人] {yun:}$once.linkman{/yun}</aside>
+  <aside>[联系电话] {yun:}$once.phone{/yun}</aside>
+  <aside>[联系地址] {yun:}$once.address{/yun}</aside>
+  <aside>[具体要求] {yun:}$once.require{/yun}</aside>-->
+    </a> 
+    {yun:}/fast{/yun} </div>
+</section>
+{yun:}if $total<=0{/yun}
+  {yun:}if $smarty.get.keyword!="" {/yun} 
+  <div class="wap_member_no">没有搜索到微招聘</div>
+  {yun:}else{/yun}
+  <div class="wap_member_no">暂无微招聘</div>
+  {yun:}/if{/yun}
+  {yun:}else{/yun}
+  <div class="pages"> {yun:}$pagenav{/yun}</div>
+  {yun:}/if{/yun}
+<div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

@@ -1,0 +1,35 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="com_search_top">
+  <form action="index.php" method="get">
+   <input type="hidden" name="m" value="com" />
+    <div class="com_post_left">
+    <input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}" class="seach_post_text placeholder"  placeholder="请输入关键字" /> <div class="com_post_right"><a href="{yun:}wapurl url=m:com,c:search{/yun}" class="seach_post_text_a">高级搜索</a><span class="com_post_bth1_line"></span><input type="submit" value="搜索"class="com_post_bth1" /></div>
+    </div>
+ </form>
+</div>
+<div class="main">
+<section> 
+  <div class="index_post_list"> 
+  {yun:}joblist namelen=8 comlen=8 ispage=1 hy=auto.hy job1=auto.job1 job1_son=auto.job1_son job_post=auto.job_post pr=auto.pr mun=auto.mun provinceid=auto.provinceid cityid=auto.cityid three_cityid=auto.three_cityid type=auto.type edu=auto.edu exp=auto.exp sex=auto.sex salary=auto.salary keyword=auto.keyword urgent=auto.urgent job=auto.job order=xuanshang limit=25 islt=4 item=job_list{/yun}
+  	<a href="{yun:}wapurl url=m:com,c:view,id:`$job_list.id`{/yun}" class="index_post_list_b index_post_list_b_com">
+    <h3>{yun:}$job_list.name_n{/yun}</h3>
+    <aside>{yun:}$job_list.com_name|mb_substr:0:12:'gbk'{/yun}</aside>
+    <i>{yun:}$job_list.job_city_one{/yun}-{yun:}$job_list.job_city_two{/yun}</i> <em>{yun:}$job_list.time{/yun}</em> </a> 
+    {yun:}/joblist{/yun}
+     </div>
+  <div>
+  {yun:}if $total<=0{/yun}
+  {yun:}if $smarty.get.keyword!="" {/yun} 
+  <div class="wap_member_no">没有搜索到职位</div>
+  {yun:}else{/yun}
+  <div class="wap_member_no">暂无职位</div>
+  {yun:}/if{/yun}
+  {yun:}else{/yun}
+  <div class="pages"> {yun:}$pagenav{/yun}</div>
+  {yun:}/if{/yun}
+  
+  </div>
+  </section>
+</div>  
+{yun:}include file="$wapstyle/public.htm"{/yun}
+{yun:}include file="$wapstyle/footer.htm"{/yun}

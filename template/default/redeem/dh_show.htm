@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun} 
+<div class="redeem">
+  <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}url m=redeem{/yun}">积分商城</a> > {yun:}$row.name{/yun}</div>
+  <div class="redeem_show_left fl">
+    <div class="redeem_show_ltop fl">
+      <div class="redeem_show_du_img fl"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$row.pic{/yun}" width="280" height="190"></div>
+      <ul class="redeem_show_texts fr">
+        <li class="redeem_show_h">{yun:}$row.name{/yun}</li>
+        <li>所需积分：{yun:}$row.integral{/yun}积分</li>
+        <li>剩余库存数量：{yun:}$row.stock{/yun}件（已兑换 <b>{yun:}$row.num{/yun}</b> 件）</li>
+        {yun:}if $row.stock!="0"{/yun}
+        <li>限购数量：{yun:}if $row.restriction=="0"{/yun}不限{yun:}else{/yun}{yun:}$row.restriction{/yun}件{yun:}/if{/yun}</li>
+        <li>兑换数量：{yun:}$smarty.get.num{/yun}件</li>
+        {yun:}else{/yun} <img src="{yun:}$style{/yun}/images/yun_ydw.png"> {yun:}/if{/yun}
+      </ul>
+      <div class="clear"></div>
+       <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form action="" target="supportiframe" method="post" onsubmit="return redeem_dh();">
+        <input name="num" value="{yun:}$smarty.get.num{/yun}" type="hidden">
+     <div class="redeem_show_img_text">
+     <div class="redeem_show_img_text_list"><span class="redeem_show_img_text_list_s">&nbsp;</span><span class="redeem_show_img_text_span">请填写联系方式；以便尽快将礼品送给您！</span></div>
+      <div class="redeem_show_img_text_list redeem_show_img_text_list_300">
+          <span class="redeem_show_img_text_list_s"><span style="color:red;">*</span> 联系人：</span>
+          <input type="text" value="" name="linkman" class="supportiframe_text_in">
+      </div>
+      <div class="redeem_show_img_text_list redeem_show_img_text_list_300">
+          <span class="redeem_show_img_text_list_s"><span style="color:red;">*</span> 联系电话：</span>
+          <input type="text" value="" name="linktel" onkeyup="this.value=this.value.replace(/[^0-9-]/g,'')" class="supportiframe_text_in">
+      </div>      
+      <div class="redeem_show_img_text_list">
+          <span class="redeem_show_img_text_list_s">备注：</span>
+          <textarea class="supportiframe_textarea" name="body"></textarea>
+      </div>
+     <div class="redeem_show_img_text_list redeem_show_img_text_list_300">
+     	<span class="redeem_show_img_text_list_s"><span style="color:red;">*</span> 帐号密码：</span>
+        <input type="password" name="password" value="" class="supportiframe_text_in">
+      </div>
+        <div class="redeem_show_img_text_list">
+        	<span class="redeem_show_img_text_list_s">&nbsp;</span>
+            <input type="submit" value="提交" name="submit" class="supportiframe_text_bth">
+         </div>
+      </div>
+      </form>
+    </div>
+  </div>
+<style>
+.redeem_show_texts li {
+    width: 100%;
+    float: left;
+    color: #666;
+    line-height: 34px;
+    font-size: 14px;
+}
+
+</style>
+  <div class="redeem_show_right fr">
+    <div class="redeem_hotgoods_h fl">兑换记录</div>
+          <div class="redeem_gift_detail fl" id="jl" style="width:220px;">
+        <ul class="redeem_record_title redeem_record_h fl">
+          <li class="redeem_record_name record_title" style="width:120px; margin-left:0px">会员</li>
+          <li class="redeem_record_product record_title" style="width:100px;">数量</li>
+        </ul>
+        <div class="redeem_record_list fl">
+          <ul class="redeem_record_title fl">
+            {yun:}foreach item=v from=$jilu{/yun}
+            <li class="redeem_record_name" style="width:120px;margin-left:0px">{yun:}$v.username{/yun}</li>
+            <li class="redeem_record_product" style="width:100px;">{yun:}$v.num{/yun}件</li>
+            {yun:}foreachelse{/yun}
+            暂无兑换记录
+            {yun:}/foreach{/yun}
+          </ul>
+           <div class="clear"></div>
+        </div>
+      </div>
+  </div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

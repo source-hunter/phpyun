@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position:absolute;"></div>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top"><h6>添加企业模板</h6>
+<div class="infoboxp_right"> 
+<a href="index.php?m=comtpl" class="infoboxp_tj">企业模板列表</a></div>
+</div>
+<div class="main_tag">
+<div class="tag_box">
+<div> 
+	<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+    <form action="index.php?m=comtpl&c=save" method="post" enctype="multipart/form-data" target="supportiframe">
+    <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    <table width="100%" class="table_form">
+    	<tr class="admin_table_trbg">
+            <th width="140">模板名称：</th>
+            <td><input class="input-text" type="text" name="name" id="sy_qqappid" value="{yun:}$row.name{/yun}" size="30" maxlength="255"/><font color="gray">如：经典红色</font></td>
+        </tr>
+        <tr>
+            <th width="140">状态：</th>
+            <td><input type="radio" name="status" value="1" id="sy_status_0" {yun:}if $row.status=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_status_0">开启使用</label>
+              <input type="radio" name="status" value="0" id="sy_status_1" {yun:}if $row.status!="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_status_1">关闭使用</label>
+              </td>
+        </tr>
+        <tr class="admin_table_trbg">
+            <th width="140">模板路径：</th>
+            <td><input class="input-text" type="text" name="url" id="sy_qqappid" value="{yun:}$row.url{/yun}" size="30" maxlength="255" {yun:}if $row.url{/yun}readonly{yun:}/if{/yun}/><font color="gray">如：default。注意：企业模板放在template/company下面，不存在系统将自动建立</font></td>
+        </tr>
+        <tr>
+            <th width="140">购买类型：</th>
+            <td>
+              <input type="radio" name="type" value="1" id="sy_type_0" {yun:}if $row.type=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_type_0">{yun:}$config.integral_pricename{/yun}</label>
+              <input type="radio" name="type" value="0" id="sy_type_1" {yun:}if $row.type!="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_type_1">余额</label>
+              </td>
+        </tr>
+        <tr class="admin_table_trbg">
+            <th width="140">金额或{yun:}$config.integral_pricename{/yun}：</th>
+            <td><input class="input-text" type="text" name="price" id="sy_qqappid" value="{yun:}$row.price{/yun}" size="30" maxlength="255"/><font color="gray">如：100，0或空为免费</font></td>
+        </tr>
+        <tr>
+            <th width="140">缩略图：</th>
+            <td><input class="input-text" type="file" name="pic" id="pic" value="" size="30" maxlength="255"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+            <input type="hidden" value="{yun:}$row.id{/yun}" name="id">
+            <input class="admin_submit4" id="qqconfig" type="submit" name="msgconfig" value="提交" />&nbsp;&nbsp;
+            <input class="admin_submit4" type="reset" value="重置" /></td>
+        </tr>
+
+    </table>
+    </form>
+</div>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

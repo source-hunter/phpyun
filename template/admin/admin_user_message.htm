@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script>
+$(document).ready(function(){
+	$("input[name=all]").click(function(){
+		if($(this).val()==3){
+			$("#user_email").show();
+		}else{
+			$("#user_email").hide();
+			$("input[name=userarr]").val('');	
+		}
+	})
+	$("input[name=email_send]").click(function(){
+		var email_title=$("input[name=email_title]").val();
+		if(email_title==""){parent.layer.msg('主题不能为空，请填写主题！', 2, 2);return false;}
+		var content=$("#content").val();
+		if(content==""){parent.layer.msg('内容不能为空，请填写内容！', 2, 2);return false;}
+	})
+})
+$(function() {
+	var timestamp=Math.round(new Date().getTime()/1000) ; 
+	$("#chainfo").click(function(){
+		var infokey=$("input[name=infokey]").val();
+		var pytoken=$("#pytoken").val();
+		if(infokey==''){parent.layer.msg('请填写企业关键字！', 2, 2);return;}
+		$.post("admin_youhui.php?type=chainfo&"+timestamp,{"str[]": [infokey],pytoken:pytoken}, function (data) {
+			$("select[name=infoid] option").remove();
+			$(data).appendTo("select[name=infoid]");
+		})
+	})
+})
+
+
+function message_submit(){
+	var title=$("input[name=title]").val();
+	if(title==''){parent.layer.msg('标题不能为空！', 2, 2);return false;}
+	var allaa=$("input[name=all]").val();
+	if(!allaa){
+		var infoid=$("select[name=infoid]").val();
+		if(infoid==''){parent.layer.msg('请选择企业！', 2, 2);return false;}
+	}
+	
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>站内信</h6>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=message&c=save" method="post" onSubmit="return message_submit();">
+	<table width="100%" class="table_form">
+        <tr>
+            <th width="120">选择用户</th>
+            <td>
+              <input type="radio" name="all" value="1" id="CheckboxGroup1_0"><label for="CheckboxGroup1_0">个人用户</label>&nbsp;
+              <input type="radio" name="all" value="2" id="CheckboxGroup1_1"><label for="CheckboxGroup1_1">企业用户</label>&nbsp;
+              <input type="radio" name="all" value="3" id="CheckboxGroup1_3"><label for="CheckboxGroup1_3">自定义用户</label>&nbsp;&nbsp;&nbsp;
+          </td>
+        </tr>
+        <tr id="user_email" style="display:none;">
+			<th>会员用户名：</th>
+			<td><input class="input-text" type="text" name="userarr" size="40" value=""/><font color="gray">多个用户请用,(半角)隔开</td>
+		</tr>
+		<tr>
+			<th width="120">信息标题</th>
+			<td><input class="input-text" type="text" name="message_title" size="40"/><font color="gray"></font>
+			</td>
+		</tr>
+        <tr>
+			<th width="120">信息内容</th>
+			<td>
+           <textarea  id="content" name="content" cols="100" rows="8" style="width:600px;height:200px;"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+            <input class="admin_submit4" type="submit" name="message_send" value="&nbsp;发 送&nbsp;"  />
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+            </td>
+		</tr>
+	</table>
+	<input type="hidden" name="pytoken"  id="pytoken" value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+<div class="infoboxp">
+<div class="infoboxp_top">
+<h6>注意事项</h6>
+</div>
+<ul><li style="height:25px; margin-top:5px;">注意：发送站内信时，请正确选择用户类型。</li></ul>
+</div>
+</body>
+</html>

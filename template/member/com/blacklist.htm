@@ -1,0 +1,62 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+<div class=right_box>
+  <div class=admincont_box>
+    <div class=admin_tit ><span class="admin_tit_bg">黑名单管理</span> 
+      <form action="index.php" method="get" />
+       <div class="news_search">
+          <input name="c" type="hidden" value="blacklist">
+         <input name="keyword" type="text"class="news_text" value="请输入简历关键字" onblur="if(this.value==''){this.value='请输入简历关键字'}" onclick="if(this.value=='请输入简历关键字'){this.value=''}">
+              <input name="" type="submit" class="news_bth" value=" ">
+           </div>
+          </form>
+          </div>
+         <div class="job_re_ts"> 已有 <span class="re_cor blod">{yun:}$total{/yun}</span>  份简历面试被贵公司屏蔽 </div>
+    <div class=admin_textbox_04>
+	<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="{yun:}$now_url{/yun}&act=del" target="supportiframe" method="post" id='myform'>
+        <div class=table>
+         <div id="job_checkbokid" >
+              <div class="job_news_list job_news_list_h1">
+                  <span class="job_news_list_span job_w30">&nbsp;</span>
+                  <span class="job_news_list_span job_w370" style="width:300px;">求职意向</span>
+                  <span class="job_news_list_span job_w90">姓名</span>
+                  <span class="job_news_list_span job_w50">性别</span>
+                  <span class="job_news_list_span job_w50">学历</span>
+                  <span class="job_news_list_span job_w100">屏蔽时间</span>
+                  <span class="job_news_list_span job_w100">操作</span>
+                 </div>
+           
+            {yun:}foreach item=v from=$rows{/yun}
+                    <div class="job_news_list">
+                  <span class="job_news_list_span job_w30"><input type=checkbox name="delid[]" value="{yun:}$v.id{/yun}"></span>
+                  <span class="job_news_list_span job_w370" style="width:300px;">{yun:}$v.jobname{/yun}</span>
+                  <span class="job_news_list_span job_w90">{yun:}$v.name{/yun}</span>
+                  <span class="job_news_list_span job_w50">{yun:}$v.sex{/yun}</span>
+                  <span class="job_news_list_span job_w50">{yun:}$v.edu{/yun}</span>
+                  <span class="job_news_list_span job_w100">{yun:}$v.inputtime|date_format:'%Y-%m-%d'{/yun}</span>
+                  <span class="job_news_list_span job_w100"><a href="javascript:void(0)" onclick="layer_del('确定将该用户移除黑名单？', '{yun:}$config[sy_weburl]{/yun}index.php?c=blacklist&act=del&id={yun:}$v.id{/yun}'); ">取消屏蔽</a></span>
+                 </div>
+           
+            {yun:}foreachelse{/yun}
+           <div class="msg_no">没有被您屏蔽记录。</div>
+            {yun:}/foreach{/yun}
+              </div>
+        </div>
+			{yun:}if $rows{/yun}
+			<div class="fltL">
+				<span class="fltL job_new_de"> <input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'>  全选</span>
+				<INPUT class="job_new_tj" type="button" name="subdel" value="批量删除" onclick="return really('delid[]');"> 
+			</div>
+			<div class="diggg fltR ">{yun:}$pagenav{/yun}</div>
+			{yun:}/if{/yun}
+		   </form>
+        </div>
+     
+    </div>
+  </div>
+</div>
+</div>  
+{yun:}include file="$comstyle/footer.htm"{/yun}

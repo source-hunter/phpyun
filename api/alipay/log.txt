@@ -1,0 +1,247 @@
+执行日期：20140717023542
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 02:35:43 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.247.10.1405564543853.9; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.247.10.1405564543853.9|1405566343; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=4B3A5D15EE450198E68415D1D6785994; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00X9rcK9PPLQlBFJbzMt1Z5s4UFYsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=rVtQI1zBepFMpFheQynZqRgN2fcxkA; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=3hKZJLwrqaR1LjfjizZbnoKzO0+tAAwH4EJoL7C0n0A=;path=/;secure;
+,
+,false
+ return_url_log:sign=fdbe5521554ebd3c73c77bf37c911be1&mysign=fdbe5521554ebd3c73c77bf37c911be1&body=asdasd&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKaZy1ulMT3PxPSVbJkAtNHEij8HsqQGGx3xYpO416s6%2BBK&notify_time=2014-07-17 10:34:06&notify_type=trade_status_sync&out_trade_no=140556176583913&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140556176583913&total_fee=0.01&trade_no=2014071757833607&trade_status=TRADE_SUCCESS
+执行日期：20140717023555
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 02:35:56 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.234.10.1405564556964.6; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.234.10.1405564556964.6|1405566356; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=10A2616E1D931A4797719D8E7BDDEEC0; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00JgUQ2Nx86wLqUHUlbzOFj3FCRvsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=KTuH2Yz5QZ$cJOBs+8ZvXtMb$Ca0TJ; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=hvlZK+9ADNb6M5xJg5L8cSPIxJkiw5RHXt2T4qEYgj0=;path=/;secure;
+,
+,false
+ return_url_log:sign=fdbe5521554ebd3c73c77bf37c911be1&mysign=fdbe5521554ebd3c73c77bf37c911be1&body=asdasd&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKaZy1ulMT3PxPSVbJkAtNHEij8HsqQGGx3xYpO416s6%2BBK&notify_time=2014-07-17 10:34:06&notify_type=trade_status_sync&out_trade_no=140556176583913&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140556176583913&total_fee=0.01&trade_no=2014071757833607&trade_status=TRADE_SUCCESS
+执行日期：20140717023556
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 02:35:57 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.236.10.1405564557903.4; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.236.10.1405564557903.4|1405566357; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=DA559158AFD723B0E78AACE804C4A64D; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00jPdpMTNhTPdsAnhSqeWiyD4GiEsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=h0$oWnfyLqMpWU+NOCVYxUeUQd5Zid; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=bgogdcThqgv6M5xJg5L8cU2diC8KuZmqXt2T4qEYgj0=;path=/;secure;
+,
+,false
+ return_url_log:sign=fdbe5521554ebd3c73c77bf37c911be1&mysign=fdbe5521554ebd3c73c77bf37c911be1&body=asdasd&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKaZy1ulMT3PxPSVbJkAtNHEij8HsqQGGx3xYpO416s6%2BBK&notify_time=2014-07-17 10:34:06&notify_type=trade_status_sync&out_trade_no=140556176583913&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140556176583913&total_fee=0.01&trade_no=2014071757833607&trade_status=TRADE_SUCCESS
+执行日期：20140717092114
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:21:09 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 4
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.247.10.1405588869965.9; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.247.10.1405588869965.9|1405590669; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=29C1D0A7B9C89C335A4FDCCDC02844BC; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00UK1yR9roXa2fo0aTBR5wQSGHapsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=AReG4fbhc6NIAMnFSv8q9V8lQBX3Tc; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=6IqRcna3tOP6M5xJg5L8cdy9vo2fs0S4;path=/;secure;
+,
+,true
+ return_url_log:sign=96de961a310e40c08be014be102f7721&mysign=96de961a310e40c08be014be102f7721&body=777&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdELjAjSA9qU99TMuDp4V0eo8lAvEehU5XxeBOWAqZLPy&notify_time=2014-07-17 17:21:09&notify_type=trade_status_sync&out_trade_no=140558022993009&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558022993009&total_fee=0.01&trade_no=2014071764815707&trade_status=TRADE_SUCCESS
+执行日期：20140717092500
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:24:56 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 4
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.237.10.140558909637.2; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.237.10.140558909637.2|1405590896; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=8C0118CE2EF58772A572E779C7964F71; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00qJZGlYiI3bQphbnHlFf4dvX2lTsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=MwHktD6kw3Fre9v53dois7JN78S44b; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=JeANpa/hxgx1LjfjizZbniqSQpgM5byKXt2T4qEYgj0=;path=/;secure;
+,
+,true
+ return_url_log:sign=c57de5f9b496182b1e565092e5571b17&mysign=c57de5f9b496182b1e565092e5571b17&body=777&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdUdNOkZuKBQoDen051Ftm7D394VhYNMPw7tL%2BpHTf%2Fzr&notify_time=2014-07-17 17:24:55&notify_type=trade_status_sync&out_trade_no=140558022993009&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558022993009&total_fee=0.01&trade_no=2014071764815707&trade_status=TRADE_SUCCESS
+执行日期：20140717092906
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:29:02 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.236.10.1405589342403.4; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.236.10.1405589342404.4|1405591142; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=F5F5AD269F76CBF6746C8F1804822E0B; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00JHYWICrKw3a62uwVp5oMGm3NxysuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=q1fBKGlSEWLvuTeXSuTBOeQSU5+kSI; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=bgogdcThqgv6M5xJg5L8cU2diC8KuZmqXt2T4qEYgj0=;path=/;secure;
+,
+,false
+ return_url_log:sign=c57de5f9b496182b1e565092e5571b17&mysign=c57de5f9b496182b1e565092e5571b17&body=777&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdUdNOkZuKBQoDen051Ftm7D394VhYNMPw7tL%2BpHTf%2Fzr&notify_time=2014-07-17 17:24:55&notify_type=trade_status_sync&out_trade_no=140558022993009&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558022993009&total_fee=0.01&trade_no=2014071764815707&trade_status=TRADE_SUCCESS
+执行日期：20140717092914
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:29:10 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.246.10.1405589350457.8; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.246.10.1405589350457.8|1405591150; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=E6A524C0424E35FCD4A9936B6254CF99; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00mp0v684iDIa6COSr7tGHxtdkQ7superapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=J3GoFJ$lakT+4Ua8W6XaH9Awxv+i$D; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=3hKZJLwrqaR1LjfjizZbnoKzO0+tAAwH4EJoL7C0n0A=;path=/;secure;
+,
+,false
+ return_url_log:sign=c57de5f9b496182b1e565092e5571b17&mysign=c57de5f9b496182b1e565092e5571b17&body=777&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdUdNOkZuKBQoDen051Ftm7D394VhYNMPw7tL%2BpHTf%2Fzr&notify_time=2014-07-17 17:24:55&notify_type=trade_status_sync&out_trade_no=140558022993009&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558022993009&total_fee=0.01&trade_no=2014071764815707&trade_status=TRADE_SUCCESS
+执行日期：20140717092935
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:29:30 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.226.10.1405589370884.4; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.226.10.1405589370884.4|1405591170; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=A41DC3EEA282F05FD97E3E4395CD6334; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00iH8Kl0TJyxqz5ZYHklh5JP6d6RsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=EFAWCxgTd5q8Bt4IBLwQe6tN23UVvP; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=MrRFGhmTztJ1LjfjizZbnrEyT9zudFOdXt2T4qEYgj0=;path=/;secure;
+,
+,false
+ return_url_log:sign=c57de5f9b496182b1e565092e5571b17&mysign=c57de5f9b496182b1e565092e5571b17&body=777&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdUdNOkZuKBQoDen051Ftm7D394VhYNMPw7tL%2BpHTf%2Fzr&notify_time=2014-07-17 17:24:55&notify_type=trade_status_sync&out_trade_no=140558022993009&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558022993009&total_fee=0.01&trade_no=2014071764815707&trade_status=TRADE_SUCCESS
+执行日期：20140717092941
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:29:37 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.237.10.1405589377424.9; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.237.10.1405589377424.9|1405591177; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=9BCE57D3B7A29101E3ED29616DDB3C82; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00CuwLqNg010BihK0CwXak17dWeYsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=x+c$Mt0KRTn5u7Mq6Kc0RBgSR2Ivh6; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=ZpHQ72JYVXF1LjfjizZbnvFqbzoTrMAA4EJoL7C0n0A=;path=/;secure;
+,
+,false
+ return_url_log:sign=c57de5f9b496182b1e565092e5571b17&mysign=c57de5f9b496182b1e565092e5571b17&body=777&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdUdNOkZuKBQoDen051Ftm7D394VhYNMPw7tL%2BpHTf%2Fzr&notify_time=2014-07-17 17:24:55&notify_type=trade_status_sync&out_trade_no=140558022993009&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558022993009&total_fee=0.01&trade_no=2014071764815707&trade_status=TRADE_SUCCESS
+执行日期：20140717093046
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:30:42 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.227.10.1405589442407.2; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.227.10.1405589442407.2|1405591242; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=7A046271BFA064C00EAB6672B2E56760; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00M9vJ2pE3OiOcmtTyq4d3H9jnhFsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=GXZVANH4O8gRAbAFHtwoDcOdABsQTt; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=3hKZJLwrqaR1LjfjizZbnoKzO0+tAAwH4EJoL7C0n0A=;path=/;secure;
+,
+,false
+ return_url_log:sign=c57de5f9b496182b1e565092e5571b17&mysign=c57de5f9b496182b1e565092e5571b17&body=777&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdUdNOkZuKBQoDen051Ftm7D394VhYNMPw7tL%2BpHTf%2Fzr&notify_time=2014-07-17 17:24:55&notify_type=trade_status_sync&out_trade_no=140558022993009&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558022993009&total_fee=0.01&trade_no=2014071764815707&trade_status=TRADE_SUCCESS
+执行日期：20140717093851
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:38:47 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 5
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.225.10.140558992743.0; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.225.10.140558992743.0|1405591727; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=81355DBEEC8CBA9EFC4260C5D8E606E0; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00RaJ1BUMgoF5a2clkNVxa8f0AJCsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=$Q$Yzs4gyYIuwSujvzuUnwU2g02hFh; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=JeANpa/hxgx1LjfjizZbniqSQpgM5byKXt2T4qEYgj0=;path=/;secure;
+,
+,false
+ return_url_log:sign=01a2ae015d8768115533a1c02a12e425&mysign=01a2ae015d8768115533a1c02a12e425&body=88&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKUdU%2BGxfYw%2FOrpclTa36H30tGdYZVF7YgyPQg7dEyzgdal&notify_time=2014-07-17 17:37:20&notify_type=trade_status_sync&out_trade_no=140558977056068&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558977056068&total_fee=0.01&trade_no=2014071765117107&trade_status=TRADE_SUCCESS
+执行日期：20140717094015
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:40:10 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 4
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.225.10.1405590010905.3; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.225.10.1405590010905.3|1405591810; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=25275FBCAF580813AC03D0031C9FE9EA; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00GataKUFy7DpUS1jCyHITQmRMRdsuperapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=zoKYWrTifQbXYXaQ80fv2gtO2NNRdD; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=sifWrskNYWV1LjfjizZbnm11ikGkmswbXt2T4qEYgj0=;path=/;secure;
+,
+,true
+ return_url_log:sign=8d43be64dd569749fef81c71cc6cbb6d&mysign=8d43be64dd569749fef81c71cc6cbb6d&body=88&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKVRgkVVYP%2F%2BcZ7qgSmHVrqoY1WtFG9IcUq1xQvFDd5AoYY&notify_time=2014-07-17 17:40:10&notify_type=trade_status_sync&out_trade_no=140558996735875&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558996735875&total_fee=0.01&trade_no=2014071765168107&trade_status=TRADE_SUCCESS
+执行日期：20140717094043
+veryfy_result=HTTP/1.1 200 OK
+,Server: spanner/1.0.6
+,Date: Thu, 17 Jul 2014 09:40:39 GMT
+,Content-Type: text/html;charset=GBK
+,Content-Length: 4
+,Connection: close
+,Set-Cookie: ali_apache_id=10.228.226.10.1405590039434.2; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=10.228.226.10.1405590039434.2|1405591839; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=6297451A47C1D79AF9F79B5FABB9EE7A; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=GZ00dj2KUHHIdzOaBBrgAmtV7Gknj5superapiGZ00; Domain=.alipay.com; Path=/
+,Set-Cookie: ctoken=9ssHDusBzjFWnpOh9NOdZzEwJML6RA; Domain=.alipay.com; Path=/
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Set-Cookie: spanner=73x2gEUpEar6M5xJg5L8cXSP52+zm6mzXt2T4qEYgj0=;path=/;secure;
+,
+,true
+ return_url_log:sign=8d43be64dd569749fef81c71cc6cbb6d&mysign=8d43be64dd569749fef81c71cc6cbb6d&body=88&buyer_email=w900125@sina.com&buyer_id=2088502932454075&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%2Fvwbh3InR9PKVRgkVVYP%2F%2BcZ7qgSmHVrqoY1WtFG9IcUq1xQvFDd5AoYY&notify_time=2014-07-17 17:40:10&notify_type=trade_status_sync&out_trade_no=140558996735875&payment_type=1&seller_email=shyfl@vip.qq.com&seller_id=2088901688943190&subject=140558996735875&total_fee=0.01&trade_no=2014071765168107&trade_status=TRADE_SUCCESS

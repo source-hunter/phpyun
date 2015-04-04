@@ -1,0 +1,106 @@
+ol {list-style: none;margin: 0px;padding: 0px;}
+ul {list-style: none;margin: 0px;padding: 0px;}
+li {list-style: none;margin: 0px;padding: 0px;}
+form {margin: 0px;padding: 0px;}
+img {border: 0px currentColor;}
+input[disabled] {border: 1px solid rgb(204, 204, 204);}
+a {color: rgb(56, 94, 162);text-decoration: none;}
+a:hover {text-decoration: underline;}
+#header {margin: 5px auto 0px;width: 950px;height: 110px;overflow: hidden;}
+#content {margin: 5px auto 0px;width: 100%;height: 480px;overflow: hidden;}
+#content #cleft {width: 160px;height: 480px;float: left;}
+#content #cmain {width: 630px;height: 460px;float: left;}
+#content #cright {width: 160px;height: 600px;float: left;}
+#content #cmain #uploadform {margin: 0px 46px;width: 522px;overflow: hidden;clear: both;}
+#content #cmain #cmainbottom {margin: 0px 23px;width: 540px;height: 126px;}
+#imglist {width: 520px;height: 90px;border:1px solid #6CF;overflow-y:scroll;margin:0px 20px;}
+div.button {line-height: 25px;margin-top: 5px;}
+span.status {line-height: 25px;margin-left: 15px;}
+div.textads {margin-top: 8px;background-color: rgb(204, 204, 204);}
+div.flash {
+	border-color: rgb(217, 228, 255);
+	margin: 0px;
+	width: 500px;
+	height: 380px;
+	overflow: auto;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+div.fieldset {margin: 10px 0px;padding: 10px;border: 1px solid #ADACCE;}
+div.fieldset span.legend {font: 700 14px/normal Arial, Helvetica, sans-serif;
+	padding: 3px;
+	top: 0px;
+	color: rgb(115, 179, 4);
+	position: relative;
+	font-size-adjust: none;
+	font-stretch: normal;
+	background-color: rgb(255, 255, 255);
+}
+.progressWrapper {
+	width: 480px;
+	overflow: hidden;
+}
+.progressContainer {
+	margin: 5px;
+	padding: 4px;
+	border: 1px solid rgb(232, 232, 232);
+	overflow: hidden;
+	background-color: rgb(247, 247, 247);
+}
+.message {
+	margin: 1em 0px;
+	padding: 10px 20px;
+	border: 1px solid rgb(255, 221, 153);
+	overflow: hidden;
+	background-color: rgb(255, 255, 204);
+}
+.red {
+	border: 1px solid rgb(181, 0, 0);
+	background-color: rgb(255, 235, 235);
+}
+.green {
+	border: 1px solid rgb(221, 240, 221);
+	background-color: rgb(235, 255, 235);
+}
+.blue {
+	border: 1px solid rgb(206, 226, 242);
+	background-color: rgb(240, 245, 255);
+}
+.progressName {
+	width: 323px;
+	height: 18px;
+	text-align: left;
+	color: rgb(85, 85, 85);
+	overflow: hidden;
+	font-size: 9pt;
+	font-weight: 700;
+	white-space: nowrap;
+}
+.progressBarInProgress {
+	width: 0%;
+	height: 2px;
+	font-size: 0px;
+	margin-top: 2px;
+	background-color: blue;
+}
+.progressBarComplete {
+	width: 0%;
+	height: 2px;
+	font-size: 0px;
+	margin-top: 2px;
+	background-color: blue;
+}
+.progressBarError {width: 0%;height: 2px;font-size: 0px;margin-top: 2px;background-color: blue;}
+.progressBarComplete {width: 100%;visibility: hidden;background-color: green;}
+.progressBarError {width: 100%;visibility: hidden;background-color: red;}
+.progressBarStatus {width: 337px;text-align: left;font-family: Arial;font-size: 9pt;margin-top: 2px;white-space: nowrap;}
+a.progressCancel {background-position: -14px 0px;width: 14px;height: 14px;font-size: 0px;float: right;display: block;background-image: url("../images/cancelbutton.gif");background-repeat: no-repeat;}
+.swfupload {vertical-align: top;}
+#msgtip{position:absolute;border:1px solid #333;background:#f7f5d1;padding:1px;color:#333;z-index:10000;display:none;}
+#ig{width:500px;height:500px;}

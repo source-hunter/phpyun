@@ -1,0 +1,75 @@
+<link rel="stylesheet" type="text/css" href="../../js/isven_window/css.css" />
+<script type="text/javascript" src="../../js/isven_window/isven_window.js"></script>
+<script language="javascript" type="text/javascript">
+	function unsl(){$("#bodyly").hide();$("#SearchDiv").hide();} 
+	function jumpsl(){
+		$("#bodyly").show();
+		$("#bodyly").width($(window).width());
+		$("#bodyly").height($(document).height());  
+		$("#SearchDiv").show();
+		$("#SearchDiv").offset({ top: $(document).scrollTop()+40, left: $(window).width()/2-200 });
+		document.getElementById("SearchDiv").style.top=document.documentElement.scrollTop+40;   
+		document.getElementById("SearchDiv").style.left=document.body.clientWidth/2-200;
+	}
+	var mmm='';
+	document.onmouseup=MUp;
+	document.onmousemove=MMove;
+
+	function MDown(Object){
+		mmm=Object.id;
+		document.all(mmm).setCapture();
+		pX=event.x-document.all(mmm).style.pixelLeft;
+		pY=event.y-document.all(mmm).style.pixelTop;
+	}
+
+	function MMove(){
+		if(mmm!=''){
+			document.all(mmm).style.left=event.x-pX;
+			document.all(mmm).style.top=event.y-pY;
+		}
+	}
+
+	function MUp(){
+		if(mmm!=''){
+			document.all(mmm).releaseCapture();
+			mmm='';
+		}
+	}
+	(function(){
+		var setRemoveCallback = function() {
+		__flash__removeCallback = function(instance, name) {
+		if (instance) {
+			instance[name] = null;
+		}
+	};
+		window.setTimeout(setRemoveCallback, 10);
+	};
+		setRemoveCallback();
+	})();
+
+</script>
+<div id="bodyly" style="position:absolute;top:0px;FILTER: alpha(opacity=80);background-color:#333; z-index:10000000;left:0px;display:none;"></div>
+<div id="SearchDiv" style="position:absolute;background-color:#fff; z-index:100000009999;display:none; width:400px;">
+<div onmousedown=MDown(SearchDiv) title="可以随意拖动" style="cursor:move;text-align:center;" class="memmenul">
+	<div class="memrighttit"><span><a style="cursor:pointer; color:#666666; float:right; margin-right:10px;" onclick="unsl();">关 闭</a></span>在线拍照V1.0</div>
+	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="386" height="296">
+      	<param name="movie" value="../../js/isven_window/photo.swf?surl=../../member/index.php?c=camphoto" />
+      	<param name="quality" value="high" />
+      	<embed src="../../js/isven_window/photo.swf?surl=../../member/index.php?c=camphoto" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="386" height="296"></embed>
+    </object>
+</div>
+</div>
+<div class="memrightl" style="height:80px; line-height:40px; margin-left:10px; margin-right:10px;">
+    <div class="memrightbox">
+    <div class="memts">
+        <li><font color="#FF0000"><b>温馨提示：</b></font>所传照片一律为JPG、JPEG、BMP、PNG或GIF格式。如果您没有扫描仪，可以将照片邮寄给我们，我们免费为您服务。</li>
+    </div>
+          <table width="100%" style="border:#D3EEFC 1px solid" align="center" cellpadding="4" cellspacing="0" class="mtable">
+              <tr>
+                <td bgcolor="#EEF8FF" align="left" class="tdcolor" style="padding-left:10px;">摄像头在线拍摄照片： <input name="b122" type="button" class="inputs" value="打开拍摄窗口" style="CURSOR: hand" onclick="jumpsl();" /> <input name="b122" type="button" class="inputs" value="刷新页面" style="CURSOR: hand" onclick="javascript:location.reload();" /></td>
+              </tr>
+          </table></td>
+        </tr>
+      </table>
+    </div>
+</div>

@@ -1,0 +1,1099 @@
+.mainbody {
+	CLEAR: both;
+	MARGIN: 0px auto;
+	OVERFLOW: hidden;
+	WIDTH: 760px;
+	HEIGHT: auto
+}
+.register_box {
+	PADDING-RIGHT: 10px;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto
+}
+.register_box .tit {
+	MARGIN-TOP: 10px;
+	BACKGROUND: url(../images/member_login_tit_bg.gif) no-repeat right 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	BORDER-BOTTOM: #f3f3f3 1px solid;
+	HEIGHT: 30px
+}
+.register_box .tit SPAN {
+	PADDING-LEFT: 22px;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 16px;
+	BACKGROUND: url(../images/member_login_tit_ico.gif) no-repeat left 8px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	COLOR: #000000;
+	LINE-HEIGHT: 35px;
+	HEIGHT: 30px;
+	TEXT-ALIGN: left
+}
+.register_box .explain {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: 25px
+}
+.register_box .explain SPAN {
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	COLOR: #ff0000;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.register_box .reg_info {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto
+}
+.register_box .reg_info UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto
+}
+.register_box .reg_info UL LI {
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #f3f3f3 1px solid;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px
+}
+.register_box .reg_info UL LI .tit {
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FONT-SIZE: 14px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 140px;
+	COLOR: #004499;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: right
+}
+.register_box .reg_info UL LI .textbox {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 240px;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .reg_info UL LI .textbox INPUT {
+	MARGIN-TOP: 14px;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	COLOR: #000000;
+	HEIGHT: 16px
+}
+.register_box .reg_info UL LI .textbox INPUT.user {
+	WIDTH: 150px
+}
+.register_box .reg_info UL LI .textbox INPUT.pw {
+	WIDTH: 200px
+}
+.register_box .reg_info UL LI .textbox INPUT.mail {
+	WIDTH: 150px
+}
+.register_box .reg_info UL LI .explain {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: right;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 270px;
+	COLOR: #ee0000;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .reg_info UL LI.sub_btn {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto;
+	TEXT-ALIGN: center
+}
+.register_box .reg_info UL LI.sub_btn .sub_btn {
+	MARGIN-TOP: 5px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto;
+	TEXT-ALIGN: center
+}
+.register_box .reg_info UL LI.sub_btn .sub_btn SPAN {
+	CLEAR: none;
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FONT-SIZE: 14px;
+	PADDING-BOTTOM: 0px;
+	COLOR: #000000;
+	PADDING-TOP: 0px;
+	HEIGHT: 35px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}
+.register_box .reg_info UL LI.sub_btn .sub_btn SPAN INPUT.btn {
+	PADDING-RIGHT: 5px;
+	PADDING-LEFT: 5px;
+	FONT-SIZE: 14px;
+	PADDING-BOTTOM: 0px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	PADDING-TOP: 0px;
+	HEIGHT: 30px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}
+.register_box .reg_info UL LI.sub_btn .remind {
+	BORDER-RIGHT: #d3d3d3 1px solid;
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #d3d3d3 1px solid;
+	MARGIN-TOP: 5px;
+	PADDING-LEFT: 0px;
+	FONT-SIZE: 12px;
+	BACKGROUND: #ffffff;
+	FLOAT: left;
+	PADDING-BOTTOM: 10px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #d3d3d3 1px solid;
+	WIDTH: 738px;
+	COLOR: #ee0000;
+	PADDING-TOP: 10px;
+	BORDER-BOTTOM: #d3d3d3 1px solid;
+	HEIGHT: auto;
+	TEXT-ALIGN: center
+}
+.register_box .condition {
+	PADDING-RIGHT: 0px;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto
+}
+.register_box .condition H2 {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	BORDER-BOTTOM: #f3f3f3 1px solid;
+	HEIGHT: 25px
+}
+.register_box .condition H2 SPAN {
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	COLOR: #004499;
+	LINE-HEIGHT: 26px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.register_box .condition .cont {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto
+}
+.register_box .condition .cont TEXTAREA {
+	PADDING-RIGHT: 5px;
+	PADDING-LEFT: 5px;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	WIDTH: 720px;
+	COLOR: #666666;
+	LINE-HEIGHT: 22px;
+	PADDING-TOP: 5px;
+	HEIGHT: 280px
+}
+.register_box .company_info {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto
+}
+.register_box .company_info UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	BORDER-BOTTOM: #f3f3f3 1px solid;
+	HEIGHT: auto
+}
+.register_box .company_info UL LI {
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #f3f3f3 1px solid;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px
+}
+.register_box .company_info UL LI .tit {
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FONT-SIZE: 12px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 100px;
+	COLOR: #004499;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: right
+}
+.register_box .company_info UL LI .textbox {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 320px;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .company_info UL LI .textbox INPUT {
+	MARGIN-TOP: 14px;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	COLOR: #000000;
+	HEIGHT: 16px
+}
+.register_box .company_info UL LI .textbox SELECT {
+	MARGIN-TOP: 14px;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	WIDTH: auto;
+	COLOR: #000000;
+	MARGIN-RIGHT: 10px;
+	HEIGHT: 20px
+}
+.register_box .company_info UL LI .textbox INPUT.name {
+	WIDTH: 200px
+}
+.register_box .company_info UL LI .textbox INPUT.address {
+	WIDTH: 300px
+}
+.register_box .company_info UL LI .textbox INPUT.communicate {
+	WIDTH: 300px
+}
+.register_box .company_info UL LI .textbox INPUT.postalcode {
+	WIDTH: 100px
+}
+.register_box .company_info UL LI .textbox INPUT.website_url {
+	WIDTH: 150px
+}
+.register_box .company_info UL LI .textbox INPUT.com_logo {
+	WIDTH: 150px
+}
+.register_box .company_info UL LI.com_logo {
+	HEIGHT: 100px
+}
+.register_box .company_info UL LI.com_logo .tit {
+	HEIGHT: 100px
+}
+.register_box .company_info UL LI.com_logo .textbox {
+	HEIGHT: 100px
+}
+.register_box .company_info UL LI.com_logo .textbox IMG {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	BORDER-TOP: #f3f3f3 1px solid;
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	BORDER-BOTTOM: #f3f3f3 1px solid
+}
+.register_box .company_info UL LI.com_logo .textbox SPAN {
+	MARGIN-TOP: 20px;
+	FLOAT: right;
+	OVERFLOW: hidden;
+	WIDTH: 150px;
+	LINE-HEIGHT: 20px;
+	HEIGHT: auto
+}
+.register_box .company_info UL LI.com_logo .textbox INPUT.btn {
+	MARGIN-TOP: 5px;
+	FLOAT: right;
+	WIDTH: 150px;
+	HEIGHT: auto
+}
+.register_box .company_info UL LI.com_logo .explain {
+	HEIGHT: 100px
+}
+.register_box .company_info UL LI.com_intro {
+	HEIGHT: 120px
+}
+.register_box .company_info UL LI.com_intro .tit {
+	HEIGHT: 120px
+}
+.register_box .company_info UL LI.com_intro .textbox {
+	HEIGHT: 120px
+}
+.register_box .company_info UL LI.com_intro .textbox TEXTAREA.intro {
+	PADDING-RIGHT: 5px;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 5px;
+	FONT-SIZE: 12px;
+	PADDING-BOTTOM: 5px;
+	WIDTH: 280px;
+	COLOR: #000000;
+	PADDING-TOP: 5px;
+	HEIGHT: 90px
+}
+.register_box .company_info UL LI.com_intro .explain {
+	HEIGHT: 120px
+}
+.register_box .company_info UL LI .explain {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: right;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 230px;
+	COLOR: #999999;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .company_info UL LI.sub_btn {
+	FLOAT: left;
+	WIDTH: 738px;
+	HEIGHT: 50px;
+	TEXT-ALIGN: center
+}
+.register_box .company_info UL LI .sub_btn INPUT.btn {
+	MARGIN-TOP: 10px;
+	WIDTH: 256px;
+	COLOR: #000000;
+	HEIGHT: 30px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}
+.register_box .explain2 {
+	MARGIN-TOP: 10px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: center
+}
+.register_box .explain2 SPAN {
+	PADDING-RIGHT: 10px;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	MARGIN: 0px auto;
+	OVERFLOW: hidden;
+	COLOR: #ff0000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: center
+}
+.register_box .more_info {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto
+}
+.register_box .more_info UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	BORDER-BOTTOM: #f3f3f3 1px solid;
+	HEIGHT: auto
+}
+.register_box .more_info UL LI {
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #f3f3f3 1px solid;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px
+}
+.register_box .more_info UL LI .tit {
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FONT-SIZE: 12px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 100px;
+	COLOR: #004499;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: right
+}
+.register_box .more_info UL LI .textbox {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 320px;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .more_info UL LI .textbox INPUT {
+	MARGIN-TOP: 14px;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	COLOR: #000000;
+	HEIGHT: 16px
+}
+.register_box .more_info UL LI .textbox INPUT.reg_place {
+	WIDTH: 200px
+}
+.register_box .more_info UL LI .textbox INPUT.lic_num {
+	WIDTH: 150px
+}
+.register_box .more_info UL LI .textbox INPUT.com_age {
+	WIDTH: 150px
+}
+.register_box .more_info UL LI .textbox INPUT.ceo {
+	WIDTH: 100px
+}
+.register_box .more_info UL LI .explain {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: right;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 230px;
+	COLOR: #999999;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .more_info UL LI.sub_btn {
+	FLOAT: left;
+	WIDTH: 738px;
+	HEIGHT: 50px;
+	TEXT-ALIGN: center
+}
+.register_box .more_info UL LI .sub_btn INPUT.btn {
+	MARGIN-TOP: 10px;
+	WIDTH: 256px;
+	COLOR: #000000;
+	HEIGHT: 30px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}
+.register_box .tit2 {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: 30px
+}
+.register_box .tit2 SPAN {
+	PADDING-LEFT: 22px;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 16px;
+	BACKGROUND: url(../images/member_login_tit_ico.gif) no-repeat left 8px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	COLOR: #000000;
+	LINE-HEIGHT: 35px;
+	HEIGHT: 30px;
+	TEXT-ALIGN: left
+}
+.register_box .contact_info {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto
+}
+.register_box .contact_info UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto
+}
+.register_box .contact_info UL LI {
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #f3f3f3 1px solid;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px
+}
+.register_box .contact_info UL LI .tit {
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FONT-SIZE: 12px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 100px;
+	COLOR: #004499;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: right
+}
+.register_box .contact_info UL LI .textbox {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 15px;
+	PADDING-LEFT: 15px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 320px;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .contact_info UL LI .textbox INPUT {
+	MARGIN-TOP: 14px;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	COLOR: #000000;
+	HEIGHT: 16px
+}
+.register_box .contact_info UL LI .textbox INPUT.name {
+	WIDTH: 100px
+}
+.register_box .contact_info UL LI .textbox INPUT.phone {
+	WIDTH: 150px
+}
+.register_box .contact_info UL LI .textbox INPUT.fax {
+	WIDTH: 150px
+}
+.register_box .contact_info UL LI .textbox INPUT.mail {
+	WIDTH: 150px
+}
+.register_box .contact_info UL LI .textbox INPUT.posi {
+	WIDTH: 150px
+}
+.register_box .contact_info UL LI .textbox INPUT.depart {
+	WIDTH: 150px
+}
+.register_box .contact_info UL LI .explain {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: right;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 230px;
+	COLOR: #999999;
+	LINE-HEIGHT: 45px;
+	PADDING-TOP: 0px;
+	HEIGHT: 45px;
+	TEXT-ALIGN: left
+}
+.register_box .contact_info UL LI.sub_btn {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 738px;
+	HEIGHT: auto;
+	TEXT-ALIGN: center
+}
+.register_box .contact_info UL LI.sub_btn .hunter_sel {
+	CLEAR: both;
+	MARGIN-TOP: 5px;
+	FLOAT: left;
+	WIDTH: 740px;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: center
+}
+.register_box .contact_info UL LI.sub_btn .hunter_sel A {
+	PADDING-RIGHT: 10px;
+	PADDING-LEFT: 10px;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px;
+	TEXT-DECORATION: underline
+}
+.register_box .contact_info UL LI.sub_btn .sub_btn {
+	PADDING-RIGHT: 250px;
+	MARGIN-TOP: 5px;
+	PADDING-LEFT: 250px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 240px;
+	PADDING-TOP: 0px;
+	HEIGHT: 40px;
+	TEXT-ALIGN: center
+}
+.register_box .contact_info UL LI.sub_btn .sub_btn SPAN {
+	CLEAR: none;
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FONT-SIZE: 14px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px 5px;
+	WIDTH: 100px;
+	COLOR: #000000;
+	PADDING-TOP: 0px;
+	HEIGHT: 35px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}
+.register_box .contact_info UL LI.sub_btn .sub_btn SPAN INPUT.btn {
+	MARGIN-TOP: 5px;
+	FONT-SIZE: 14px;
+	WIDTH: 100px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}
+.register_box .contact_info UL LI.sub_btn .remind {
+	BORDER-RIGHT: #d3d3d3 1px solid;
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #d3d3d3 1px solid;
+	MARGIN-TOP: 5px;
+	PADDING-LEFT: 0px;
+	FONT-SIZE: 12px;
+	BACKGROUND: #ffffff;
+	FLOAT: left;
+	PADDING-BOTTOM: 10px;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #d3d3d3 1px solid;
+	WIDTH: 736px;
+	COLOR: #ee0000;
+	PADDING-TOP: 10px;
+	BORDER-BOTTOM: #d3d3d3 1px solid;
+	HEIGHT: auto;
+	TEXT-ALIGN: center
+}
+.suc_info {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto
+}
+.suc_info DL {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: auto
+}
+.suc_info DL DT {
+	FONT-SIZE: 14px;
+	FLOAT: left;
+	WIDTH: 740px;
+	COLOR: #000;
+	LINE-HEIGHT: 30px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.suc_info DL DD {
+	MARGIN-TOP: 5px;
+	PADDING-LEFT: 40px;
+	FONT-SIZE: 14px;
+	FLOAT: left;
+	WIDTH: 700px;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.suc_info DL DD.no3 {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 10px;
+	BACKGROUND: url(../images/li_ico_01.gif) no-repeat left 50%;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+}
+.suc_info DL DD.no4 {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 10px;
+	BACKGROUND: url(../images/li_ico_01.gif) no-repeat left 50%;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+}
+.suc_info DL DD.no5 {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 10px;
+	BACKGROUND: url(../images/li_ico_01.gif) no-repeat left 50%;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+}
+.contact_us {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	BORDER-TOP: #f3f3f3 1px solid;
+	MARGIN-TOP: 10px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	WIDTH: 740px;
+	BORDER-BOTTOM: #f3f3f3 1px solid;
+	HEIGHT: auto
+}
+.contact_us DL {
+	PADDING-RIGHT: 20px;
+	PADDING-LEFT: 20px;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	PADDING-TOP: 5px;
+	HEIGHT: auto
+}
+.contact_us DL DT {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	WIDTH: 700px;
+	COLOR: #004499;
+	LINE-HEIGHT: 20px;
+	HEIGHT: 20px;
+	TEXT-ALIGN: left
+}
+.contact_us DL DD {
+	MARGIN-TOP: 5px;
+	PADDING-LEFT: 40px;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	WIDTH: 700px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	HEIGHT: 20px;
+	TEXT-ALIGN: left
+}
+.reg_end_btn {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 740px;
+	HEIGHT: 50px;
+	TEXT-ALIGN: left
+}
+.reg_end_btn INPUT {
+	MARGIN-TOP: 10px;
+	FONT-SIZE: 14px;
+	WIDTH: 150px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}
+.login_box {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 760px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto
+}
+.login_box .left_box {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 350px;
+	HEIGHT: auto
+}
+.login_tit {
+	MARGIN-TOP: 30px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	HEIGHT: 30px;
+	TEXT-ALIGN: left
+}
+.login_cont {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	HEIGHT: auto
+}
+.login_cont .top {
+	DISPLAY: inline;
+	BACKGROUND: url(../images/login_box_top_bg.gif) no-repeat;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	HEIGHT: 10px
+}
+.login_cont .bot {
+	BACKGROUND: url(../images/login_box_bot_bg.gif) no-repeat;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	HEIGHT: 12px
+}
+.login_cont UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	BACKGROUND: url(../images/login_box_ul_bg.gif) repeat-y;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	PADDING-TOP: 5px;
+	HEIGHT: auto
+}
+.login_cont UL LI {
+	MARGIN-TOP: 8px;
+	DISPLAY: inline;
+	FLOAT: left;
+	MARGIN-LEFT: 20px;
+	OVERFLOW: hidden;
+	WIDTH: 258px;
+	HEIGHT: 25px
+}
+.login_cont UL LI .tit {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 48px;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.login_cont UL LI .textbox {
+	FLOAT: right;
+	OVERFLOW: hidden;
+	WIDTH: 210px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	TEXT-ALIGN: left
+}
+.login_cont UL LI .textbox_02 {
+	DISPLAY: inline;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 90px;
+	MARGIN-RIGHT: 5px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.login_cont UL LI.remind {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 258px;
+	HEIGHT: auto
+}
+.login_cont UL LI.remind SPAN {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 258px;
+	COLOR: #ee0000;
+	HEIGHT: auto
+}
+.login_cont UL LI .textbox INPUT.login_btn {
+	FONT-WEIGHT: bold;
+	BACKGROUND: url(../images/login_btn_bg.gif);
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 128px;
+	COLOR: #ffffff;
+	BORDER-TOP-STYLE: none;
+	LINE-HEIGHT: 25px;
+	BORDER-RIGHT-STYLE: none;
+	BORDER-LEFT-STYLE: none;
+	HEIGHT: 25px;
+	TEXT-ALIGN: center;
+	BORDER-BOTTOM-STYLE: none
+}
+.login_cont UL LI .textbox A {
+	COLOR: #000000
+}
+.login_cont UL LI .textbox SPAN {
+	FLOAT: left;
+	MARGIN-LEFT: 10px;
+	TEXT-ALIGN: left
+}
+.login_cont UL LI .textbox SPAN A {
+	COLOR: #004499
+}
+.login_cont UL LI.login_btn {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 260px;
+	HEIGHT: 25px
+}
+.login_box .right_box {
+	FLOAT: right;
+	OVERFLOW: hidden;
+	WIDTH: 410px;
+	HEIGHT: auto
+}
+.reg_tit {
+	MARGIN-TOP: 30px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 410px;
+	HEIGHT: 30px;
+	TEXT-ALIGN: left
+}
+.reg_cont {
+	PADDING-RIGHT: 10px;
+	BORDER-TOP: #adacce 1px solid;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	PADDING-BOTTOM: 10px;
+	OVERFLOW: hidden;
+	WIDTH: 390px;
+	PADDING-TOP: 10px;
+	HEIGHT: auto
+}
+.reg_cont UL {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 390px;
+	HEIGHT: auto
+}
+.reg_cont UL LI {
+	MARGIN-TOP: 5px;
+	FLOAT: left;
+	WIDTH: 170px;
+	COLOR: #000000;
+	LINE-HEIGHT: 32px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.reg_cont UL LI.fr {
+	FLOAT: right
+}
+.reg_cont UL LI .subtit {
+	PADDING-LEFT: 10px;
+	BACKGROUND: #f3f3f3;
+	FLOAT: left;
+	WIDTH: 160px;
+	COLOR: #000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.reg_cont UL LI .subcont {
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	WIDTH: 160px;
+	LINE-HEIGHT: 25px;
+	FONT-FAMILY: "ËÎÌו", Arial;
+	TEXT-ALIGN: left
+}
+.reg_cont UL LI.reg_btn {
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #eee 1px solid;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	WIDTH: 350px;
+	PADDING-TOP: 0px
+}
+.reg_cont UL LI.reg_btn .reg_btn A {
+	MARGIN-TOP: 10px;
+	DISPLAY: block;
+	FONT-WEIGHT: bold;
+	BACKGROUND: url(../images/reg_btn_bg.gif) no-repeat;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 128px;
+	COLOR: #ffffff;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: center;
+	TEXT-DECORATION: none
+}

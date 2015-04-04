@@ -1,0 +1,80 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> 
+  {yun:}include file="$comstyle/left.htm"{/yun} 
+    <script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script> 
+    <script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script> 
+    <script language="javascript">
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('textarea[name="body"]', {
+resizeType : 1,
+allowPreviewEmoticons : false,
+allowImageUpload : false,
+items : [
+'bold', 'italic', 'underline',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist']
+});
+});
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">添加产品</span></div>
+        <div class=admin_textbox_02>
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form name="MyForm" method="post"target="supportiframe" action="index.php?c=product&act=save" onsubmit="return CheckPost();" enctype="multipart/form-data">
+          <ul>
+            <li>
+              <div class=tit><font color="#FF0000">*</font> 产品标题：</div>
+              <div class=textbox>
+                <INPUT type="text" size="45" name="title" value="{yun:}$editrow.title{/yun}"class="com_info_text"  >
+                <span id="by_name"  class="errordisplay">不能为空</span></div>
+            </li>
+            <li>
+              <div class=tit><font color="#FF0000">*</font> 产品图片：</div>
+              <div class=textbox>
+                <INPUT type="file" size="15" name="pic" value="" class="com_info_text">
+                <em style="float:left; margin-left:10px;">最佳尺寸：宽/高=270像素/180像素</em>
+                <span id="by_name"  class="errordisplay">不能为空</span></div>
+            </li>
+            {yun:}if $editrow.pic!=""{/yun}
+            <li>
+              <div class=tit>图片展示：</div>
+              <div class=textbox><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$editrow.pic{/yun}"  width="100" height="60"/></div>
+            </li>
+            {yun:}/if{/yun}
+            <li>
+              <div class=tit><font color="#FF0000">*</font>产品描述：</div>
+              <div class=textbox>
+                <textarea name="body" id="description" style="height:200px; width:450px;" >{yun:}$editrow.body{/yun}</textarea>
+                <span id="by_description" class="errordisplay">不能为空</span></div>
+            </li>
+          </ul>
+          </div>
+          <div class=admin_submit>
+          <div class=condition>&nbsp;</div>
+          <div class=sub_btn><span>
+            <input name="id" value="{yun:}$smarty.get.id{/yun}" type="hidden"/>
+            <input class="btn_01" name="submit" type="submit" name="submitBtn" value=" 提 交 操 作 ">
+            </span></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script language="javascript">
+function CheckPost(){ 
+	if($.trim($("input[name='title']").val())==''){
+		layer.msg('产品标题不能为空！', 2, 8);return false;
+	}
+	if($.trim($("input[name='pic']").val())=='' && $.trim($("input[name='id']").val())==''){
+		layer.msg('产品图片不能为空！', 2, 8);return false;
+	}
+	if(editor.text()==''){
+		layer.msg('产品描述不能为空！', 2, 8);return false;
+	}  
+}
+</script> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

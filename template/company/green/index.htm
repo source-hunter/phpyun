@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}-Powered by PHPYun.</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$com_style{/yun}images/css.css" type="text/css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script> var weburl = "{yun:}$config.sy_weburl{/yun}"</script>
+</head>
+<body>
+<div>
+  <div class="header">
+    <div class="w1000">
+      <div class="logo">{yun:}if $com.logo{/yun}<img src="{yun:}$com.logo{/yun}" width="185" height="75" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}',2);">{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}" width="185" height="75">{yun:}/if{/yun}</div>
+           <div class="header_rz">
+{yun:}if $usertype=='1'{/yun}
+    {yun:}if $show.id{/yun}
+        <a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" id='atn_{yun:}$com.uid{/yun}'>取消关注</a>
+    {yun:}else{/yun}
+        <a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" id='atn_{yun:}$com.uid{/yun}'>关注</a>
+    {yun:}/if{/yun}
+{yun:}/if{/yun}
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="nav_cur"><a href="#about">关于我们<i class="nav_cur_icon"></i></a></li>
+          <li><a href="#job">招聘职位</a></li>
+          <li><a href="#pl">评论留言</a></li>
+          <li><a href="#show">公司环境</a></li>
+          <li><a href="#news">公司新闻</a></li>
+          <li><a href="{yun:}$config.sy_weburl{/yun}">人才网首页</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="com_banner">
+    <div class="w1000"> <img src="{yun:}$banner.pic{/yun}" width="1000" height="300"> </div>
+  </div>
+</div>
+<div class="w1000">
+  <div class="about_us" id="about"><img src="{yun:}$com_style{/yun}images/icon1.gif" title="关于我们"></div>
+  <div class="about_p">{yun:}$com.content{/yun}</div>
+
+  {yun:}if $look_msg!=""{/yun}
+  <div class="look_touch">
+    <div class="look_touch_login"> 
+       {yun:}$look_msg{/yun}
+        {yun:}if $looktype=="1"{/yun}
+        <a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=expect&add={yun:}$uid{/yun}" class="yun_bth_icon">创建简历</a>
+        {yun:}elseif $looktype=="2"{/yun}
+        <a  style="cursor:pointer" onclick="showcomlogin();"  class="about_touch_log">立即登陆</a>
+        <a href="{yun:}url m=register url=usertype:1{/yun}" class="about_touch_reg">立即注册</a>
+        {yun:}/if{/yun}
+    </div>
+  </div>
+  {yun:}else{/yun}
+  <div class="look_touch">
+    <ul class="about_touch">
+      <li><span class="about_touch_span">固定电话</span>{yun:}image uid=$com.uid action=linkphone{/yun}</li>
+      <li><span class="about_touch_span">联系电话</span>{yun:}image uid=$com.uid action=linktel{/yun}</li>
+      <li><span class="about_touch_span">联系邮件</span>{yun:}$com.linkmail{/yun}</li>
+      <li><span class="about_touch_span">联 系 QQ</span>{yun:}$com.linkqq{/yun}</li>
+      <li><span class="about_touch_span">邮政编码</span>{yun:}$com.zip{/yun}</li>
+      <li><span class="about_touch_span">企业网址</span>{yun:}$com.website{/yun}</li>
+      <li style="width:100%"><span class="about_touch_span">企业地址</span>{yun:}$com.address{/yun}
+      {yun:}if $com.y!='' && $com.x!=''{/yun}
+      <a href="javascript:showmap('map_show');" class="about_touch_map">查看地图</a>
+      {yun:}/if{/yun}</li>
+    </ul>
+  </div>
+  {yun:}/if{/yun}
+  <div class="about_us" id="job"><img src="{yun:}$com_style{/yun}images/icon4.gif" title="招聘职位"></div>
+  {yun:}joblist item=joblist uid=auto.id{/yun}
+  <div class="post_list">
+    <div class="post_list_t"><a href="{yun:}$joblist.job_url{/yun}">{yun:}$joblist.name{/yun}</a> <em>{yun:}$joblist.lastupdate|date_format:"%Y-%m-%d"{/yun}</em></div>
+    <div class="post_list_b"><b>{yun:}$joblist.job_salary{/yun}</b> /{yun:}$joblist.job_edu{/yun}/{yun:}$joblist.job_exp{/yun}/{yun:}$joblist.job_city_two{/yun}</div>
+  </div>
+  {yun:}/joblist{/yun}
+  <div class="about_us" id="pl"><img src="{yun:}$com_style{/yun}images/icon7.gif" title="评论留言"></div>
+  <div class="Comment_cont">
+    <div class="Job_comment">
+      <div class="Job_comment_left"> {yun:}if $msglist{/yun}
+        <div class="Job_comment_left_c"> {yun:}foreach item=v from=$msglist{/yun}
+          <div class="Comment_list" {yun:}if empty($msglist){/yun}style="display:none;"{yun:}/if{/yun}>
+            <div class="Comment_time">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</div>
+            <div class="Comment_dd"></div>
+            <div class="Comment_icon2"></div>
+            <div class="Comment_list_right">
+              <div class="Comment_w608"><span class="fl"> <a href="{yun:}url m=resume url=uid:`$v.uid`{/yun}">{yun:}$v.name{/yun}</a>：{yun:}$v.content{/yun}</span> </div>
+              {yun:}if $v.reply!=""{/yun}
+              <div class="Comment_w608">
+                <div class="tips_reply">企业回复：<span>{yun:}$v.reply{/yun}</span></div>
+              </div>
+              {yun:}/if{/yun} </div>
+          </div>
+          {yun:}/foreach{/yun} </div>
+        {yun:}if $msg_num{/yun}
+        <div style="float:right"> 该企业共有{yun:}$msg_num{/yun}条评论，<a href="{yun:}curl url=id:$id,c:msg{/yun}">点击查看全部>></a> </div>
+        {yun:}/if{/yun}
+        {yun:}else{/yun}
+        <div class="com_index_pl">还未有人评论过该企业，赶快来评论一下吧！！</div>
+        {yun:}/if{/yun} </div>
+      <div class="Job_comment_right"> {yun:}if $usertype!=1{/yun}
+        <div class="Job_user_no">
+          <div class="Job_ask_bg"></div>
+          <div class="Job_ask_bg_login">您还没有登录或者您不是个人用户，请 【<a href="{yun:}url m=login url=c:rest{/yun}">登陆</a>】</div>
+        </div>
+        {yun:}else{/yun}
+        <div class="Job_Company_h1 fl"><span>我要评论</span></div>
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form action="{yun:}curl url=id:`$com.uid`{/yun}" target="supportiframe" method="post" onSubmit="return check_pl();">
+          <input type="hidden" name="id" value="{yun:}$id{/yun}"/>
+          <div class="commpay_textarea">
+            <div class="Comment_list_top"></div>
+            <textarea  class="program_tooltip placeholder" id="content" name="content" data-rid="949"></textarea>
+          </div>
+          <div class="commpay_Comment_input">
+            <input class="program_reply_pl" type="submit" name="submit" value="提交评论">
+            <span>您对这个公司有什么看法？</span></div>
+        </form>
+        {yun:}/if{/yun}</div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="about_us" id="product"><img src="{yun:}$com_style{/yun}images/icon2.gif" title="产品介绍"></div>
+  <div class="Product_cont">
+  {yun:}product{/yun}
+  {yun:}if !empty($product){/yun}
+    <div class="Product_cont_1200"> 
+      {yun:}foreach from=$product item=productlist{/yun}
+      <div class="Product_list"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$productlist.pic{/yun}" width="270" height="180">
+        <div class="Product_bg"></div>
+        <a href="{yun:}curl url=id:$id,tp:productshow,pid:`$productlist.id`{/yun}"><div class="Product_list_p">{yun:}$productlist.title{/yun}</div></a>
+      </div>
+      {yun:}/foreach{/yun} </div>
+    {yun:}else{/yun}
+    <div class="comapply_no_msg">
+      <div class="comapply_no_msg_cont"><span></span><em>该公司还没有发布产品信息!</em></div>
+    </div>
+    {yun:}/if{/yun} </div>
+  <div class="about_us" id="show"><img src="{yun:}$com_style{/yun}images/icon3.gif" title="公司环境"></div>
+  {yun:}show{/yun}
+  {yun:}if !empty($show){/yun}
+  <div class="company_hj"> {yun:}foreach from=$show item=show{/yun}
+    <div class="company_hj_list"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$show.picurl{/yun}" width="235" height="145"></div>
+    {yun:}/foreach{/yun} </div>
+  {yun:}else{/yun}
+  <div class="comapply_no_msg">
+    <div class="comapply_no_msg_cont"><span></span><em>该公司还没有上传企业环境!</em></div>
+  </div>
+  {yun:}/if{/yun}
+  <div class="about_us" id="news"><img src="{yun:}$com_style{/yun}images/icon5.gif" title="公司新闻"></div>
+  {yun:}news{/yun}
+  {yun:}if !empty($news){/yun}
+  <div class="news_list_cont"> {yun:}foreach from=$news item=news{/yun}
+    <div class="news_list"><a href="{yun:}curl url=id:$id,tp:newsshow,nid:`$news.id`{/yun}">{yun:}$news.title{/yun} </a></div>
+    {yun:}/foreach{/yun} </div>
+  {yun:}else{/yun}
+  <div class="comapply_no_msg">
+    <div class="comapply_no_msg_cont"><span></span><em>该公司还没有发布新闻!</em></div>
+  </div>
+  {yun:}/if{/yun} </div>
+</div>
+<div class="clear"></div>
+<!--地图-->
+<div id="map_show" style=" display:none;">
+<script src="http://api.map.baidu.com/api?v=1.4"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/map.js" language="javascript"></script>
+<div id="map_container" style="width:580px;height:350px;"></div>
+<script>
+getmapshowcont('map_container',"{yun:}$com.x{/yun}","{yun:}$com.y{/yun}","{yun:}$com.name{/yun}","{yun:}$com.address{/yun}");
+</script>
+</div>
+<!--登陆框------------------------------------------------------------------------------------------------------------------------------->
+<div style="display:none" id="touch_lo" >
+  <div class="Pop-up_logoin" style="background:none">
+    <div class="Pop-up_logoin_list"> <span>用户名：</span>
+      <input type="text" id="username" value="" tabindex="1" name="username" class="ajax_login_input">
+    </div>
+    <div class="Pop-up_logoin_list"> <span>密　码：</span>
+      <input type="password" id="password" tabindex="2" name="password" value=""class="ajax_login_input">
+    </div>
+    <div class="Pop-up_logoin_list"> <span>验证码：</span>
+      <input id="authcode" type="text" tabindex="3" style="width:60px;" maxlength="4" name="authcode" class="ajax_login_input w60">
+      <img id="vcode_img" src="{yun:}$config.sy_weburl{/yun}/include/authcode.inc.php"  style="margin-right:5px; margin-left:5px;">&nbsp;<a href="javascript:check_code();">看不清?</a> </div>
+    <div class="Pop-up_logoin_list">
+      <div id="msg"></div>
+    </div>
+    <div class="Pop-up_logoin_list"> <span>&nbsp;</span>
+      <input id="loginsubmit" class="login_button" type="button" name="loginsubmit" onclick="checkcomlogin()">
+      <a href="{yun:}url m=forgetpw url=usertype:1{/yun}"  class="Orange">忘记密码？</a> </div>
+    <div class="Pop-up_logoin_bot"> <span>&nbsp;</span> 还没有账号？<a href="{yun:}url m=register url=usertype:1{/yun}" class="Orange">免费注册</a> </div>
+  </div>
+</div>
+<script>
+function showmap(id){
+	$.layer({
+		type : 1,
+		title :'地图展示',
+		offset: [($(window).height() - 380)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['580px','auto'],
+		page : {dom :"#"+id}
+	});
+}
+</script>
+{yun:}include file="$defaultstyle/footer.htm"{/yun}

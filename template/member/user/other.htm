@@ -1,0 +1,51 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/userleft.htm"{/yun}
+<div class="w740 fr">
+<div class="attentionbox01 mt8">*号项为必填项</div>
+<div class="resumelistbox01 mt8">
+  <table width="740" border="0" cellspacing="1" cellpadding="0" class="resume">
+    <tr>
+      <th nowrap>标 题</th>
+      <th nowrap width="100">操作</th>
+    </tr>
+    {yun:}foreach from=$rows item=other{/yun}
+    <tr>
+      <td nowrap>{yun:}$other.title{/yun}</td>
+      <td nowrap><a title="修改" href="{yun:}$now_url{/yun}&edit={yun:}$other.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/editico.gif" alt="修改"  align="absmiddle"/></a> <a href="{yun:}$now_url{/yun}&del={yun:}$other.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/deleteico.gif"  alt="删除" align="absmiddle"/></a> </td>
+    </tr>
+    {yun:}/foreach{/yun}
+  </table>
+</div>
+<div class="formbox02 mt10">
+<FORM name="MyForm" action='{yun:}$now_url{/yun}' method="POST" onsubmit="return CheckPost();">
+<ul>
+  <li>
+    <div class="name"> 其他标题</div>
+    <div class="text">
+      <input type="text" name="title" size="20" value="{yun:}$row.title{/yun}" />
+      <span id="by_title"  class="errordisplay">不能为空</span> </div>
+  </li>
+  <li>
+    <div class="name"> 其他描述</div>
+    <div class="text">
+      <textarea name="content" cols="80" rows="5">{yun:}$row.content{/yun}</textarea>
+      <span id="by_content"  class="errordisplay">不能为空</span> </div>
+  </li>
+</ul>
+</div>
+<div class="operatebox03 mt10">
+  <input name="eid" type="hidden" value="{yun:}$smarty.get.e{/yun}"/>
+  <input name="id" type="hidden" value="{yun:}$smarty.get.edit{/yun}"/>
+  <input type="submit" name="submit" value=" 提 交" class="btn01" />
+</div>
+</div>
+</div> 
+<SCRIPT language=javascript>
+	function CheckPost()
+	{
+	  var ifcheck=check_form(document.MyForm.title.value=="",'by_title')&check_form(document.MyForm.content.value=="",'by_content');
+		if(ifcheck==0) return false;
+	}
+  </SCRIPT>
+{yun:}include file="$userstyle/footer.htm"{/yun}

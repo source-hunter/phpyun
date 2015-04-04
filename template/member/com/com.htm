@@ -1,0 +1,74 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <DIV class=right_box>
+      <DIV class=admincont_box>
+        <div class=admin_tit><SPAN class="admin_tit_bg">账户中心</span></div>
+        <div class="clear"></div>
+        <div class="Available_Balance">
+        <div class="Available_h1">可用余额</div>
+        <div class="Available_bal"><span class="Available_blod">{yun:}$statis.pay{/yun}</span> 元 
+        <a  class="Available_bth"  href="index.php?c=pay" title="账户充值">充值</a>  
+        <a href="index.php?c=right" title="查看特权"  class="Available_bth Available_bth_c"> 查看特权</a> </div>
+        <div class="Available_Balance_bot">
+        总计充值总额：<span class="Available_je">{yun:}$statis.all_pay{/yun}</span> 元  |   
+        消费金额：<span class="Available_je">{yun:}if $price>0{/yun}{yun:}$price{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span> 元   |        {yun:}$config.integral_pricename{/yun}：<span class="Available_je">{yun:}if $statis.integral{/yun}{yun:}$statis.integral{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span> {yun:}$config.integral_priceunit{/yun}
+         | 
+         消费{yun:}$config.integral_pricename{/yun}：<span class="Available_je">{yun:}if $integral>0{/yun}{yun:}$integral{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span> {yun:}$config.integral_priceunit{/yun} 　　  </div>  
+        </div>
+        <div class="clear"></div>
+        <div class="com_job_box">
+        <div class="index_Management_box_h1"><span class="index_Management_box_h1_span"><caption> 最新订单记录 </caption></span></div>
+      <div class="com_job_box_p">
+       <div class="job_news_list job_news_list_h1">
+                <span class="job_news_list_span job_w160">充值单号</span>
+                 <span class="job_news_list_span job_w120">充值时间</span>
+                  <span class="job_news_list_span job_w100">充值金额</span>
+                  <span class="job_news_list_span job_w120">支付类型</span>
+                  <span class="job_news_list_span job_w100">状态</span>
+                  <span class="job_news_list_span job_w100">操作</span>
+              </div>
+        
+            {yun:}if !empty($rows){/yun}
+          {yun:}foreach item=log from=$rows{/yun}
+          
+          
+          <div class="job_news_list">
+            <span class="job_news_list_span job_w160">{yun:}$log.order_id{/yun}</font></span>
+            <span class="job_news_list_span job_w120">{yun:}$log.order_time|date_format:'%Y-%m-%d %H:%M:%S'{/yun}</span>
+            <span class="job_news_list_span job_w100">{yun:}$log.order_price{/yun}</span>
+            <span class="job_news_list_span job_w120">{yun:}if $type{/yun}{yun:}$arr_data.pay.$type{/yun}{yun:}else{/yun}手动{yun:}/if{/yun}</span>
+            <span class="job_news_list_span job_w100">{yun:}if $log.order_state=="1"{/yun}
+            <span class="wate_verify">等待付款</span>{yun:}else{/yun}
+            <span class="y_verify">支付成功</span>{yun:}/if{/yun}</span>
+            <span class="job_news_list_span job_w120">{yun:}if $log.order_type=='bank'&&$log.order_state!='2'{/yun} 
+            <a href="javascript:;" id="{yun:}$log.id{/yun}" class="status" remark="{yun:}$log.order_remark{/yun}">备注修改</a>| 
+            {yun:}/if{/yun} 
+              {yun:}if $log.order_state=='1' && $log.order_type!='bank'{/yun} <a href="index.php?c=payment&id={yun:}$log.id{/yun}" >去付款</a> |
+              <a href="javascript:void(0)" onclick="del_pay({yun:}$log.id{/yun})">取消充值</a> {yun:}else{/yun}
+              {yun:}$arr_data.paystate.$state{/yun}
+              {yun:}/if{/yun}
+              
+				{yun:}if $log.invoice=='1'&&$log.order_state=='2'{/yun}<br/><a href="javascript:;" id="{yun:}$log.order_id{/yun}" class="invoice">{yun:}if $log.is_invoice=='1'{/yun}修改发票{yun:}else{/yun}申请发票{yun:}/if{/yun}</a>{yun:}/if{/yun}
+			  </td></span>
+            <div class="job_news_list_bot">备注：{yun:}$log.order_remark{/yun}</div>
+          </div>
+          {yun:}/foreach{/yun}
+          {yun:}else{/yun}
+          <div class="msg_no">
+          您还没有订单记录。
+          </div>
+          {yun:}/if{/yun}
+        
+        </div>
+        </div>
+        
+       
+      </DIV>
+     
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+      
+    </DIV>
+  </DIV> 
+</DIV>
+{yun:}include file="$comstyle/footer.htm"{/yun}

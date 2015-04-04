@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="js/check_public.js"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>公司搜索</h6>
+</div>
+  <div class="admin_table_border">
+   <form action="index.php" method="get">
+    <table width="100%" class="table_form" style="background:#fff;">
+
+        <input name="m" value="admin_company" type="hidden">
+        <input name="advanced" value="advanced" type="hidden">
+        <tr>
+          <th>公司关键词：</th>
+          <td><input type="text" name="keywords" size="30" value="" class="company_job_text"></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>从事行业：</th>
+          <td><select name="hy">
+              <option value="">--请选择--</option>
+                {yun:}foreach from=$industry_index key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $show.hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select></td>
+        </tr>
+        <tr >
+          <th>工作地点：</th>
+          <td><div class=textbox>
+              <select name="provinceid" id="provinceid" class="province" lid="cityid">
+                <option value="">请选择省份</option>
+                    {yun:}foreach from=$city_index key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $show.provinceid==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                    {yun:}/foreach{/yun}
+              </select>
+              <select name="cityid" size="1" id="cityid" class="province">
+                <option value="">请选择城市</option>
+                    {yun:}if $show.provinceid{/yun}
+                    {yun:}foreach from=$city_type[$show.provinceid] key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $show.cityid==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                    {yun:}/foreach{/yun}
+                    {yun:}/if{/yun}
+              </select>
+            </div></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th width="120">企业性质：</th>
+          <td><select name="pr" id="pr">
+              <option value='' selected>--请选择--</option>
+                    {yun:}foreach from=$comdata.job_pr key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $row.pr==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                    {yun:}/foreach{/yun}
+            </select></td>
+        </tr>
+        <tr>
+          <th width="120">企业规模：</th>
+          <td><select name="mun">
+              <option value='' selected>--请选择--</option>
+                {yun:}foreach from=$comdata.job_mun key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $row.mun==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th width="120"></th>
+          <td><input class="admin_submit4" type="submit" name="update" value="查询" /></td>
+        </tr>
+        <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+
+    </table>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun} 
+<div class="com_search_top">
+<form action="index.php" method="get">
+<input type="hidden" name="m" value="user" />
+  <div class="com_post_left">
+<input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}"  class="seach_post_text placeholder"   placeholder="请输入关键字"  />
+<div class="com_post_right">
+  <a href="{yun:}wapurl url=m:user,c:search{/yun}" class="seach_post_text_a">高级搜索</a><span class="com_post_bth1_line"></span> <input type="submit" value="搜索"class="com_post_bth1" />
+</div>
+</div>
+</form>
+</div> 
+<div class="main">
+{yun:}userlist limit=20 edu=auto.edu exp=auto.exp sex=auto.sex uptime=auto.uptime keyword=auto.keyword hy=auto.hy provinceid=auto.provinceid report=auto.report cityid=auto.cityid three_cityid=auto.three_cityid jobids=auto.jobids job_classid=auto.job_classid post_len=14 ispage=1 islt=4 item=user{/yun}  
+    <a href="{yun:}wapurl url=m:user,c:show,id:`$user.id`{/yun}" class="index_post_list_b index_post_list_b_com">
+<h3>{yun:}$user.username_n{/yun} <span class="user_name_size">/ 男 / {yun:}if $user.age==0{/yun}保密{yun:}else{/yun}{yun:}$user.age{/yun}岁{yun:}/if{/yun}</span></h3>
+<aside class="uesr_qz_size">{yun:}$user.job_post_n{/yun} </aside>
+<i >{yun:}$user.lastupdate|date_format:"%Y-%m-%d"{/yun}</i>
+</a>
+{yun:}/userlist{/yun} 
+</div>
+{yun:}if $total<=0{/yun}
+  {yun:}if $smarty.get.keyword!="" {/yun} 
+  <div class="wap_member_no">没有搜索到人才</div>
+  {yun:}else{/yun}
+  <div class="wap_member_no">暂无人才</div>
+  {yun:}/if{/yun}
+  {yun:}else{/yun}
+  <div class="pages"> {yun:}$pagenav{/yun}</div>
+  {yun:}/if{/yun}
+<div>
+{yun:}include file="$wapstyle/public.htm"{/yun}
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

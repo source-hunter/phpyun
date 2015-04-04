@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />  
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script>
+function checkform(){
+	if($("#ad_name").val()==""){ 
+		parent.layer.msg('广告名称不能为空！', 2,2);
+		return false;
+	}
+	if($("#ad_start").val()==""){ 
+		parent.layer.msg('请填写开始时间！', 2,2);
+		return false;
+	}
+	if($("#ad_end").val()==""){ 
+		parent.layer.msg('请填写结束时间！', 2,2);
+		return false;
+	}
+	if($("#ad_start").val()!="" && $("#ad_end").val()!="" ){
+		 var time1 = $("#ad_start").val() ;
+		 var time2 = $("#ad_end").val();
+		 time1arr = time1.split("-");
+		 time2arr = time2.split("-");
+		 date1 = new Date(time1arr[0],time1arr[1],time1arr[2]);
+		 date2 = new Date(time2arr[0],time2arr[1],time2arr[2]);
+		 if(date1>date2){ 
+			 parent.layer.msg('结束时间不得低于开始时间，请重新设定！', 2,2);
+			 return false;
+		}
+	} 
+	var item = $('input[name="ad_type"]:checked').val;
+	if(!item){
+		 parent.layer.msg('请选择一种广告模式！', 2,2); return false;
+	}else if(item=="word"&&$("input[name=word_info]").val()==""){ 
+		parent.layer.msg('请填写文字信息！', 2,2); return false;
+	}
+}
+function replace_type(type){
+	if(type=="word"){
+		$("#word").attr("style","display:");
+		$("#pic").attr("style","display:none");
+		$("#flash").attr("style","display:none");
+	}else if(type=="pic"){
+		$("#word").attr("style","display:none");
+		$("#pic").attr("style","display:");
+		$("#flash").attr("style","display:none");
+	}else if(type=="flash"){
+		$("#word").attr("style","display:none");
+		$("#pic").attr("style","display:none");
+		$("#flash").attr("style","display:");
+	}
+}
+function adpic_url(){
+	$("#typeid").html("<input  type='file' id='pic_url' name='ad_url' value='' class=\"input-text\"><input id='upload'  type='radio' name='upload'  onclick='adpic_src();' >远程地址<input id='upload_pic' type='radio' checked name='upload' onclick='adpic_url();'>本地上传");
+}
+function adpic_src(){
+	$("#typeid").html("<input class='input-text'  type='text' id='pic_url' name='ad_url' value='{yun:}$ad_info.pic_url{/yun}'  ><input id='upload' checked type='radio' name='upload'>远程地址<input id='upload_pic' type='radio' name='upload' onclick='adpic_url();'>本地上传");
+} 
+function adflash_url(){
+	$("#flashid").html("<input  type='file'  name='ad_url' value='' class=\"input-text\"><input id='flash'  type='radio' name='flash'  onclick='adflash_src();' >远程地址<input id='upload_flash' type='radio' checked name='upload_flash' onclick='adflash_url();'>本地上传");
+}
+function adflash_src(){
+	$("#flashid").html("<input class='input-text'  type='text'  name='ad_url' value='{yun:}$ad_info.flash_url{/yun}'  ><input id='upload' checked type='radio' name='upload' >远程地址<input id='upload_pic' type='radio' name='upload' onclick='adflash_url();'>本地上传");
+}
+</script>
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+</style>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Prompt">
+<div class="admin_Prompt_span">
+    注意事项：添加广告时，请正确选择分类和类型。
+</div><div class="admin_Prompt_close"></div></div>
+  <div class="infoboxp_top">
+      <span class="admin_title_span">{yun:}if is_array($ad_info){/yun}更新广告{yun:}else{/yun}添加广告{yun:}/if{/yun}</span>
+      </div>
+   <div class="clear"></div>
+  <div class="admin_table_border">
+  <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+  <form name="myform" target="supportiframe" action="{yun:}if is_array($ad_info){/yun}index.php?m=advertise&c=modify_save{yun:}else{/yun}index.php?m=advertise&c=ad_saveadd{yun:}/if{/yun}" method="post" encType="multipart/form-data">
+    <table width="100%" class="table_form" style="background:#fff">
+      <tr >
+        <th width="200">广告名称：</th>
+        <td><input class="input-text" id="ad_name" value="{yun:}$ad_info.ad_name{/yun}" name="ad_name"></td>
+      </tr>
+    	<tr  class="admin_table_trbg">
+        <th width="200">打开窗口：</th>
+        <td>
+        <input class="" id="target" name="target" type="radio" value="2" {yun:}if $ad_info.target!=1{/yun}checked{yun:}/if{/yun}>原窗口
+        <input class="" id="target" name="target" type="radio" value="1" {yun:}if $ad_info.target==1{/yun}checked{yun:}/if{/yun}>新窗口
+        </td>
+      </tr>
+	  <tr>
+        <th width="200">使用范围：</th>
+          <td>
+      <div class="all_Domain_name">
+     <input type="button" value="{yun:}if $ad_info.domain_name==""{/yun}全站{yun:}else{/yun}{yun:}$ad_info.domain_name{/yun}{yun:}/if{/yun}" class="all_Domain_button" id="domain_name">
+     <input type="hidden" id="domainid" value="{yun:}$ad_info.did{/yun}" name="did">
+     <div class="all_Domain_name_box" id="domain_list" style="display:none;">
+<span class="all_Domain_name_box_list"><input type="checkbox" class="domain" id="did" value="0+0" {yun:}if stripos($ad_info.did,'0')!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> 全站</span> 
+          {yun:}foreach from=$domain item=v{/yun}
+          <span class="all_Domain_name_box_list"><input type="checkbox" class="domain" class="did" value="{yun:}$v.id{/yun}+{yun:}$v.title{/yun}" {yun:}if stripos($ad_info.did,$v.id)!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> {yun:}$v.title{/yun}</span> 
+          {yun:}/foreach{/yun}
+          <div class="all_Domain_name_sub"><input type="button" value="确定" class="all_Domain_name_submit1" onClick="check_domain()">
+          <input type="button" value="取消" class="all_Domain_name_submit2" onClick="Close('domain_list')"></div>
+     </div>
+      </div>
+      </td>
+        </tr>
+        <tr>
+            <th width="200">站点下使用范围：</th>
+            <td>
+                <select name="tem_type">
+                    <option value='1' {yun:}if $linkrow.tem_type==1{/yun}selected{yun:}/if{/yun}>全站使用</option>
+                    <option value="2" {yun:}if $linkrow.tem_type==2{/yun}selected{yun:}/if{/yun} >仅在首页使用</option> 
+                </select>
+            </td>
+        </tr>
+      </tr>
+
+     	<tr  class="admin_table_trbg">
+        <th width="200">广告所属分类：</th>
+        <td><select name="class_id">
+        	{yun:}foreach from=$class item=list{/yun}
+        	<option value="{yun:}$list.id{/yun}" {yun:}if $list.id==$ad_info.class_id{/yun}selected{yun:}/if{/yun} >{yun:}$list.class_name{/yun}</option>
+            {yun:}/foreach{/yun}
+        </select></td>
+      </tr> 
+	  <tr >
+        <th width="200">是否启用：</th>
+        <td>
+		<input name='is_open' value='1' type='radio' checked>启用
+		<input name='is_open' value='0' {yun:}if '0'==$ad_info.is_open{/yun}checked{yun:}/if{/yun} type='radio'>关闭
+		</td>
+      </tr>
+	  <tr class="admin_table_trbg">
+        <th width="200">排序：</th>
+        <td><input id="sort" class="input-text" value="{yun:}$ad_info.sort{/yun}" name="sort" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">越大越在前</td>
+      </tr>
+      <tr>
+        <th width="200">开始时间：</th>
+        <td>
+        <link href="{yun:}$config.sy_weburl{/yun}/js/time/jscal2.css" type="text/css" rel="stylesheet">
+		<script src="{yun:}$config.sy_weburl{/yun}/js/time/calendar.js" type="text/javascript"></script>
+        <script src="{yun:}$config.sy_weburl{/yun}/js/time/en.js" type="text/javascript"></script>
+        <input id="ad_start" class="input-text" type="text" readonly size="20" value="{yun:}$ad_info.time_start{/yun}" name="time_start">
+        <script type="text/javascript">
+        Calendar.setup({
+        weekNumbers: true,
+        inputField : "ad_start",
+        trigger : "ad_start",
+        dateFormat: "%Y-%m-%d",
+        showTime: false,
+        onSelect : function() {this.hide();}
+        });
+        </script></td>
+      </tr>
+       <tr class="admin_table_trbg">
+        <th width="200">结束时间：</th>
+        <td>
+        <input id="ad_end" class="input-text" type="text" readonly size="20" value="{yun:}$ad_info.time_end{/yun}" name="time_end">
+        <script type="text/javascript">
+        Calendar.setup({
+        weekNumbers: true,
+        inputField : "ad_end",
+        trigger : "ad_end",
+        dateFormat: "%Y-%m-%d",
+        showTime: false,
+        onSelect : function() {this.hide();}
+        });
+        </script>
+          </td>
+      </tr>
+		<tr>
+			<th width="200">备注：</th>
+			<td><textarea class="text" cols="50" rows="3" name="remark"></textarea></td>
+		</tr>
+     	<tr class="admin_table_trbg">
+        <th width="200">广告类型：</th>
+        <td colspan="2"><input type="radio" id="word_ad" name="ad_type" value="word" onClick="replace_type('word');" {yun:}if $ad_info.ad_type=="word"{/yun}checked{yun:}/if{/yun}>
+          文字广告
+          <input  value="pic" type="radio" id="pic_ad" name="ad_type" onClick="replace_type('pic');" {yun:}if $ad_info.ad_type=="pic"{/yun}checked{yun:}/if{/yun}>
+          图片广告
+          <input type="radio" value="flash" id="flash_ad" name="ad_type" onClick="replace_type('flash');"{yun:}if $ad_info.ad_type=="flash"{/yun}checked{yun:}/if{/yun}>
+          FLASH广告 </td>
+      </tr>
+      <tr> 
+      <td  colspan="2" style="padding:0; background:none">
+      <table width="100%" id="word" style="display:none">
+    	<tr>
+           <th width="200" >文字信息：</th>
+        <td ><input class='input-text' id="word_info"    name='word_info' value='{yun:}$ad_info.word_info{/yun}'></td>
+      </tr>
+      <tr class="admin_table_trbg">
+        <th>文字链接：</th>
+        <td><input class='input-text' id="word_url"    name='word_url' value='{yun:}$ad_info.word_url{/yun}'>外部链接请加上“http://”</td>
+      </tr>
+      </table>
+	   </td>
+      </tr>
+	  <tr><td colspan="2">
+      <table id="pic" style="display:none"width="100%">
+      <tr >
+        <th width="200" >图片地址：</th>
+        <td  id='typeid'><input class='input-text' type='text' id='pic_url' name='pic_url' value='{yun:}$ad_info.pic_url{/yun}'  >
+          <input id='upload' checked type='radio' name='upload'>
+          远程地址
+          <input id='upload_pic' type='radio' name='upload' onclick='adpic_url();'>
+          本地上传</td>
+      </tr>
+      <tr class="admin_table_trbg">
+        <th>图片链接：</th>
+        <td><input class='input-text' id="pic_src" name='pic_src' value='{yun:}$ad_info.pic_src{/yun}'  >外部链接请加上“http://”</td>
+      </tr>
+      <tr>
+        <th>图片宽度：</th>
+        <td><input class='input-text' id="pic_width" size='5'onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" name='pic_width' value='{yun:}$ad_info.pic_width{/yun}'>px</td>
+      </tr>
+      <tr class="admin_table_trbg">
+        <th>图片高度：</th>
+        <td><input class='input-text' id="pic_height" size='5'onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" name='pic_height' value='{yun:}$ad_info.pic_height{/yun}'>px</td>
+      </tr>
+       </table>
+	   <table id="flash" style="display:none" width="100%">
+		   <tr>
+			<th width="200">FLASH地址：</th>
+			<td id='flashid'><input class='input-text' id="flash_url"  name='flash_url' value='{yun:}$ad_info.flash_url{/yun}'   >
+			  <input type='radio' id='flash' checked name='flash'>
+			  远程地址
+			  <input type='radio' id='upload_flash' name='upload_flash'  onclick='adflash_url();'>
+			  本地上传</td>
+		  </tr>
+		  <tr class="admin_table_trbg">
+			  <th >FLASH宽度：</th>
+			<td><input class='input-text' id="flash_width" name='flash_width' value='{yun:}$ad_info.flash_width{/yun}'></td>
+		  </tr>
+      <tr>
+        <th>FLASH高度：</th>
+        <td><input class='input-text' id="flash_height" name='flash_height' value='{yun:}$ad_info.flash_height{/yun}'></td>
+      </tr>
+      </table>
+      </td>
+      </tr>
+      {yun:}if is_array($ad_info){/yun}
+      <input type="hidden" name="id" value="{yun:}$ad_info.id{/yun}">
+      <input type="hidden" name="lasturl" value="{yun:}$lasturl{/yun}">
+      {yun:}/if{/yun}
+      <tr>
+        <td align="center" colspan="2">
+        <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+        <input class="admin_submit4" type="submit" name="submit" value="&nbsp;提  交&nbsp;"  onClick="return checkform();"/>
+        <input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+      </tr>
+    </table>
+  </form>
+</div></div>
+</div>
+<script>
+replace_type("{yun:}$ad_info.ad_type{/yun}");
+</script>
+</body>
+</html>

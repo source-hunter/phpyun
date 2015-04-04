@@ -1,0 +1,83 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div id="grow_freedom" class="grow_mod_wrap my_freedom" style="padding:0px;border:none;">
+        <div class=admincont_box style="padding:0px;">
+          <div class=admin_tit><span class="admin_tit_bg">会员特权</span><span class="remind" style="float:right"><font color="#FF6600">*</font> 橙色为当前会员模式</span></div>
+        </div>
+        <div class="clear"></div>
+        <div class="my_pay_table">
+          <table id="vip_funtion" class="my_table" align="center" cellpadding="1" cellspacing="1">
+            <thead>
+              <tr id="m1">
+                <th class="my_table_th_bg">功能名称</th>
+                {yun:}foreach from=$rows item=v{/yun}
+                <th {yun:}if $statis.rating==$v.id{/yun}class="com_current_rating_top"{yun:}else{/yun} class="self my_table_th_bg "{yun:}/if{/yun} ><span>{yun:}$v.name{/yun}</span></th>
+                {yun:}/foreach{/yun} </tr>
+            </thead>
+            <tbody>
+            
+            {yun:}foreach from=$member item=member{/yun}
+            <tr id="m2">
+              <th style="text-align:left;"> {yun:}$member.0{/yun} </th>
+              {yun:}assign var="comname" value=$member.1{/yun}
+              {yun:}foreach from=$rows item=v{/yun}
+                  {yun:}if $v.$comname=='0'{/yun}
+                  <td {yun:}if $statis.rating==$v.id{/yun}class="com_current_rating"{yun:}/if{/yun}>{yun:}$member.3{/yun}</td>
+                  {yun:}else{/yun}
+                  <td {yun:}if $statis.rating==$v.id{/yun}class="com_current_rating"{yun:}/if{/yun}>{yun:}if $v.$comname!=""{/yun}{yun:}$v.$comname{/yun}{yun:}$member.2{/yun}{yun:}else{/yun}{yun:}$member.3{/yun}{yun:}/if{/yun}</td>
+                  {yun:}/if{/yun}
+              {yun:}/foreach{/yun} </tr>
+            {yun:}/foreach{/yun}
+            <tr id="m2">
+              <th style="text-align:center; color:red;"> </th>
+              {yun:}foreach from=$rows item=v{/yun}
+              <td {yun:}if $statis.rating==$v.id{/yun}class="com_current_rating"{yun:}/if{/yun}><a href="index.php?c=right&act=buyvip&vipid={yun:}$v.id{/yun}"><img src="{yun:}$comstyle{/yun}/images/gif-0104.gif"></a></td>
+              {yun:}/foreach{/yun} </tr>
+              </tbody>
+            
+          </table>
+          {yun:}if !empty($rows2){/yun}
+          <table id="vip_funtion" class="my_table" align="center">
+            <thead>
+              <tr id="m1">
+                <th>功能名称</th>
+                {yun:}foreach from=$rows2 item=v2{/yun}
+                <th class="self">{yun:}$v2.name{/yun}</th>
+                {yun:}/foreach{/yun} </tr>
+            </thead>
+            <tbody>
+            
+            {yun:}foreach from=$member item=val{/yun}
+            <tr id="m2">
+              <th style="text-align:left;"> {yun:}$val.0{/yun} </th>
+              {yun:}assign var="comname" value=$val.1{/yun}
+              {yun:}foreach from=$rows2 item=v2{/yun}
+
+                  {yun:}if $v2.$comname=='0'{/yun}
+                  <td {yun:}if $statis.rating==$v2.id{/yun}class="com_current_rating"{yun:}/if{/yun}>{yun:}$val.3{/yun}</td>
+                  {yun:}else{/yun}
+                  <td {yun:}if $statis.rating==$v2.id{/yun}class="com_current_rating"{yun:}/if{/yun}>{yun:}if $v2.$comname!=""{/yun}{yun:}$v2.$comname{/yun}{yun:}$val.2{/yun}{yun:}else{/yun}{yun:}$val.3{/yun}{yun:}/if{/yun}</td>
+                  {yun:}/if{/yun}
+              {yun:}/foreach{/yun}
+			 </tr>
+            {yun:}/foreach{/yun}
+            <tr id="m2">
+              <th style="text-align:center; color:red;">  </th>
+              {yun:}foreach from=$rows2 item=v2{/yun}
+              <td {yun:}if $statis.rating==$v2.id{/yun}class="com_current_rating"{yun:}/if{/yun}><a href="index.php?c=right&act=buyvip&vipid={yun:}$v2.id{/yun}"><img src="{yun:}$comstyle{/yun}/images/gif-0104.gif"></a></td>
+              {yun:}/foreach{/yun} </tr>
+              </tbody> 
+          </table>
+          {yun:}/if{/yun}
+          <div class="clear"></div>
+          <div class="my_pay_table_l_bg"></div>
+          <div class="my_pay_table_r_bg"></div>
+          <div class="my_pay_hot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

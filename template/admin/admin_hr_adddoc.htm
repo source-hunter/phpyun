@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="js/check_public.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="../data/kindeditor/themes/default/default.css" />
+<title>后台管理</title>
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+</style>
+<script>
+KindEditor.ready(function(K) {
+	var uploadbutton = K.uploadbutton({
+		button : K('#insertfile')[0],
+		fieldName : 'imgFile',
+		url : '../data/kindeditor/php/upload_json.php?dir=file&char=gbk',
+		afterUpload : function(data) {
+			if (data.error === 0) {
+				K('#url').val(data.url);
+				K('#span_url').html(data.url);
+			} else {
+				parent.layer.msg(data.message);
+			}
+		},
+		afterError : function(str) {
+			parent.layer.msg(str,2,8);
+		}
+	});
+	uploadbutton.fileBox.change(function(e) {
+		uploadbutton.submit();
+	});
+});
+function cksubmit(){
+	var name=$.trim($("#name").val());
+	var url=$.trim($("#url").val());
+	if(name==''){parent.layer.msg("文档名称不能为空！",2,8);return false;}
+	if(url==''){parent.layer.msg("请上传文档！",2,8);return false;}
+	
+	
+}
+</script>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>详细信息</h6>
+       <div class="infoboxp_right">
+       <a href="index.php?m=hr" class="infoboxp_tj">文档列表</a>
+	   <a href="index.php?m=hr&c=addclass" class="infoboxp_send">添加类别</a>
+	   </div>
+</div>
+<div class="main_tag" >
+<div class="tag_box"> 
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=hr&c=save" method="post" encType="multipart/form-data" onSubmit="return cksubmit()">
+<table width="100%" class="table_form" style="background:#fff;">
+	<input class="input-text" name="yurl" type="hidden" value="{yun:}$row.url{/yun}"/> 
+	<input class="input-text" name="url" type="hidden" value="{yun:}$row.url{/yun}" id='url'/> 
+	<tr>
+	<th>文档名称：</th>
+		<td><input type="text" id="name" value="{yun:}$row.name{/yun}" name="name" class="input-text"></td>
+	</tr>
+	<tr>
+	<th>文档类别：</th>
+		<td><select name="cid" id="cid">
+			{yun:}foreach from=$t_class item=glist{/yun} 
+			<option value='{yun:}$glist.id{/yun}' {yun:}if $row.cid==$glist.id{/yun}selected{yun:}/if{/yun}>{yun:}$glist.name{/yun}</option>
+			{yun:}/foreach{/yun}  
+		</select></td>
+	</tr>
+	<tr>
+	<th>是否显示：</th>
+		<td><select name="is_show"><option value='1' {yun:}if $row.is_show=='1'{/yun}selected{yun:}/if{/yun}>显示</option><option value='0' {yun:}if $row.is_show=='0'{/yun}selected{yun:}/if{/yun}>不显示</option></select></td>
+	</tr>
+	<tr>
+		<th>上传文档：</th>
+		<td><span id="span_url" style="color:#444">{yun:}$row.url{/yun}</span><input type="button" id="insertfile" value="选择文档" /></td>
+	</tr>
+	<tr>
+    
+		<td align="center" colspan="4">
+        {yun:}if is_array($row){/yun} 
+		<input type="hidden" name="id" value="{yun:}$row.id{/yun}">	
+        <input class="admin_submit4" type="submit" name="submit" value="&nbsp;修 改&nbsp;" />
+        {yun:}else{/yun}
+        <input class="admin_submit4" type="submit" name="submit" value="&nbsp;添 加&nbsp;" />
+        {yun:}/if{/yun}
+		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+	</tr>
+</table>
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+</form>
+</div></div></div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!--城市搜索-->
+
+<div class="city_box" id="city_box_head" style="display:none;">
+  <iframe style="position:absolute;width:100%;height:100%;_height:560px;_filter:alpha(opacity=0.1);opacity=0.5;border-style:none;top:0px;left:0px;_left:-190px;z-index:-1; "></iframe>
+  <div class="p_title">
+    <div class="p_t_center">请选择工作城市</div>
+    <div class="p_t_right"></div>
+  </div>
+  <div class="city_1">
+    <dl class="city_3">
+      <dt>省，直辖市</dt>
+      {yun:}section name=city loop=$city_area{/yun}
+      <dd onclick="showdetails({yun:}$city_area[city].id{/yun},'city_head','ajax','showcity','city2_head','1');"><a href="javascript:void(0);" class="p_city_selected" >{yun:}$city_area[city].name{/yun}</a></dd>
+      {yun:}/section{/yun}
+    </dl>
+    <dl class="city_3" id="city_head" style="display:none;" >
+    </dl>
+    <dl class="city_3" id="city2_head" style="display:none;">
+    </dl>
+  </div>
+  <div>
+    <input class="click" id="click_head" type="button" value="确  定">
+  </div>
+  <div class="clear"></div>
+</div>
+<!--城市搜索--> 
+<!--城市搜索-->
+<div class="city_box" id="city_box" style="display:none;">
+  <iframe style="position:absolute;width:100%;height:100%;_height:560px;_filter:alpha(opacity=0.1);opacity=0.5;border-style:none;top:0px;left:0px;_left:-190px;z-index:-1; "></iframe>
+  <div class="p_title">
+    <div class="p_t_center">请选择工作城市</div>
+    <div class="p_t_right"></div>
+  </div>
+  <div class="city_1">
+    <dl class="city_3">
+      <dt>省，直辖市</dt>
+      {yun:}section name=city loop=$city_area{/yun}
+      <dd onclick="showdetails({yun:}$city_area[city].id{/yun},'city','ajax','showcity','city2');"><a href="javascript:void(0);" class="p_city_selected" >{yun:}$city_area[city].name{/yun}</a></dd>
+      {yun:}/section{/yun}
+    </dl>
+    <dl class="city_3" id="city" style="display:none;" >
+    </dl>
+    <dl class="city_3" id="city2" style="display:none;">
+    </dl>
+  </div>
+  <div>
+    <input class="click" id="click" type="button" value="确  定">
+  </div>
+  <div class="clear"></div>
+</div>
+<!--城市搜索--> 
+<!--职业搜索-->
+<div class="pannel_box" id="pannel_job" style="display:none;">
+  <div>
+    <iframe style="position:absolute;width:100%;height:100%;_height:560px;_filter:alpha(opacity=0.1);opacity=0.5;border-style:none;top:0px;left:0px;_left:-190px;z-index:-1; ">ftddfg</iframe>
+  </div>
+
+  <div class="p_title">
+    <div class="p_t_center">请选择职业   (最多5项)</div>
+    <div style="float:right; margin-top:5px; margin-right:10px;" id="close_job">确认</div>
+  </div>
+  <table width="100%">
+    <tr id="check_job"></tr>
+  </table>
+  <ul class="pannel_box_1">
+    {yun:}foreach item=job from=$job_area{/yun}
+    <li class="top_2"><a href="javascript:void(0);" onclick="showdetails({yun:}$job.id{/yun},'job2','ajax','showjob','job3');">{yun:}$job.name{/yun}</a></li>
+    {yun:}/foreach{/yun}
+  </ul>
+  <ul class="pannel_box_2" id="job2" style="display:none">
+  </ul>
+  <ul class="pannel_box_3" id="job3" style="display:none">
+  </ul>
+</div>
+<!--职业搜索--> 
+
+<!--职能-->
+
+<div class="popupfuntype" id="skill_box" style="display:none; z-index:1005; margin-top:50px;">
+ <div>
+    <iframe style="position:absolute;width:100%;height:100%;_height:560px;_filter:alpha(opacity=0.1);opacity=0.5;border-style:none;top:0px;left:0px;z-index:-1; ">ftddfg</iframe>
+  </div>
+  <div class="pop-title"><span>请选择职能类别 ( 您最多能选择5项 )</span><a id="close_skill" style="cursor:pointer;">[确认]</a></div>
+  <div class="pop-con">
+    <dl class="pop-con-dl">
+      <dt>已选职能：</dt>
+      <dd>
+        <ul class="pop-ul" id="check_skill">
+          {yun:}foreach from=$job_classid key=j item=v{/yun}
+          {yun:}if $v!=""{/yun}
+          <li id="td_{yun:}$v{/yun}" class="{yun:}$v{/yun}">
+            <input id="chk_{yun:}$v{/yun}" type="checkbox" name="job_classid" value="{yun:}$v{/yun}+{yun:}$job_name[$v]{/yun}" checked="" onclick="box_delete({yun:}$v{/yun});">
+            {yun:}$job_name[$v]{/yun}</li>
+          {yun:}/if{/yun}
+          {yun:}/foreach{/yun}
+        </ul>
+      </dd>
+    </dl>
+    <script>
+	function hideMsgBox2(theEvent,id,skid){ 
+		
+ 　       if (theEvent){
+   　           var browser=navigator.userAgent;   //取得浏览器属性
+   　           if (browser.indexOf("Firefox")>0){  //如果是Firefox
+    　　             if (document.getElementById(id).contains(theEvent.relatedTarget)) {  //如果是子元素
+     　　                  return;   //结束函式
+                        } 
+                  } 
+                  if (browser.indexOf("MSIE")>0){  //如果是IE
+                         if (document.getElementById(id).contains(event.toElement)) {  //如果是子元素
+                                return;  //结束函式
+                          }
+                   }else{
+						  if (document.getElementById(id).contains(theEvent.relatedTarget)) {  //如果是子元素
+     　　                  return;   //结束函式
+                        } 
+					}
+             }
+            /*要执行的操作*/
+			$("#"+id).hide();
+			$("#showskill"+skid).removeClass("tanchu");
+			$(".showtype"+skid).attr("style","background:;");
+ }
+</script>  
+    {yun:}foreach from=$job_index key=j item=v{/yun}
+    <dl class="pop-con-dl {yun:}if $j%2=='0'{/yun}dl-h{yun:}/if{/yun}">
+      <dt>{yun:}$job_name[$v]{/yun}</dt>
+      <dd> 
+            <div class="pop-ul">        <div class="clear"> </div>
+              {yun:}assign var='len' value=$job_type[$v]|@count{/yun}
+              {yun:}foreach from=$job_type[$v] key=jj item=vv{/yun}
+       
+                  <div id="showskill{yun:}$vv{/yun}" class="user_tck_box1 showtype{yun:}$vv{/yun}" > 
+                    <span style="cursor:pointer;" onclick="check_skill('{yun:}$vv{/yun}');">{yun:}$job_name[$vv]{/yun}</span>
+                  </div>
+               
+                  {yun:}if ($jj+1)%3==0 || (($jj+1)==$len){/yun}  <div class="clear"> </div>
+                      {yun:}foreach from=$job_type[$v] key=jjson item=vvson{/yun}
+                           {yun:}if (($jj+1)==$len && $jjson>($jj-($jj%3)-1)) || (($jj+1)!=$len && $jjson>($jj-3) && $jjson<($jj+1)){/yun}
+                               <div class="pop-ul-ul" style="display:none;" id="skill{yun:}$vvson{/yun}">
+                                  {yun:}foreach from=$job_type[$vvson] key=jjj item=vvv{/yun}
+                                  <div class="user_tck_box2 showtype{yun:}$vvv{/yun}" >
+                                    <input type="checkbox" id="zn{yun:}$vvv{/yun}" value="{yun:}$vvv{/yun}+{yun:}$job_name[$vvv]{/yun}" onclick="checked_input2('{yun:}$vvv{/yun}','job_classid','check_skill','{yun:}$vvson{/yun}');">
+                                    <span>{yun:}$job_name[$vvv]{/yun}</span> 
+                                    </div>
+                                  {yun:}/foreach{/yun}
+                              </div>
+                          {yun:}/if{/yun}
+                      {yun:}/foreach{/yun}
+                  {yun:}/if{/yun}
+              {yun:}/foreach{/yun}
+            </div>
+      </dd>
+    </dl>
+    {yun:}/foreach{/yun} 
+    </div>
+ </div>
+
+
+<!--职能-->
+
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+	$("#layout_inner dd").hover(function(){},function(){
+		$(this).fadeOut("slow");
+		$(this).parent("dl").find("dt").removeClass("cur"); 
+	});
+});
+</script>
+<!--选择职位-->
+<div id="layout_job" class="layout" style="display: none;">
+	<div class="tit">
+		<div class="OK_Cancel">
+			<a class="ok" href="javascript:void(0);" onclick="select_prop('job_class','workadds_job','layout_job')"><img src="{yun:}$userstyle{/yun}/images/hire_search_OKbg.gif"></a>
+			<a class="cancel" href="javascript:void(0);" onclick="close_prop('layout_job','workadds_job')"><img src="{yun:}$userstyle{/yun}/images/hire_search_Canbg.gif"></a>
+            
+		</div> 
+        
+		<span class='span'>您已选择：</span>
+		<span id="job_choosed">
+		{yun:}if is_array($job_classid){/yun}{yun:}foreach from=$job_classid item=j_list{/yun}
+		<span id="span_job_{yun:}$j_list{/yun}">
+		<input id="ck_job_{yun:}$j_list{/yun}" type="checkbox" target="{yun:}$job_name[$j_list]{/yun}" checked="checked" name="job_class" onclick="del_ck('job_{yun:}$j_list{/yun}')" value="{yun:}$j_list{/yun}">{yun:}$job_name[$j_list]{/yun}</span>
+		{yun:}/foreach{/yun}{yun:}/if{/yun}</span>
+        
+        
+</div>
+	</div>
+	<div id="layout_inner" class="con clearfix">
+	{yun:}foreach from=$job_index item=j_index{/yun} 
+	<dl>
+		<dt id='dt_job_{yun:}$j_index{/yun}' class="dt_job_1"onclick="job_class('{yun:}$j_index{/yun}','f','1')">{yun:}$job_name[$j_index]{/yun}</dt>
+		<dd style="top: 77px; display:none;" class="dd_job_1"  id='dd_job_{yun:}$j_index{/yun}'>
+			<ul class="clearfix">
+			{yun:}foreach from=$job_type[$j_index] item=j_type{/yun}
+			{yun:}if is_array($job_type[$j_type]){/yun}
+			<dl>
+				<dt  id='dt_job_{yun:}$j_type{/yun}' class="dt_job_2" onclick="job_class('{yun:}$j_type{/yun}','f','2')">{yun:}$job_name[$j_type]{/yun}</dt>
+				<dd style="top: 77px; display:none;width:570px" class="dd_job dd_job_2" id='dd_job_{yun:}$j_type{/yun}'>
+					<ul class="clearfix">
+					<li><input id="job_{yun:}$j_type{/yun}" type="checkbox" {yun:}if in_array($j_type,$job_classid){/yun}checked='checked'{yun:}/if{/yun} value="{yun:}$job_name[$j_type]{/yun}" name="layoutcheck" onclick="job_class('{yun:}$j_type{/yun}','s','3')"><label title="{yun:}$job_name[$j_type]{/yun}" for="job_{yun:}$j_type{/yun}">{yun:}$job_name[$j_type]{/yun}</label></li>
+					{yun:}foreach from=$job_type[$j_type] item=cc_type{/yun} 
+					<li><input id="job_{yun:}$cc_type{/yun}" type="checkbox" value="{yun:}$job_name[$cc_type]{/yun}" name="layoutcheck" onclick="job_class('{yun:}$cc_type{/yun}','s','3')" {yun:}if in_array($cc_type,$job_classid){/yun}checked='checked'{yun:}/if{/yun}><label title="{yun:}$job_name[$cc_type]{/yun}" for="job_{yun:}$cc_type{/yun}">{yun:}$job_name[$cc_type]{/yun}</label></li>
+					{yun:}/foreach{/yun}
+					</ul>
+				</dd> 
+			</dl>
+			{yun:}else{/yun}
+			<li><input id="{yun:}$j_type{/yun}" type="checkbox" value="{yun:}$job_name[$j_type]{/yun}" name="layoutcheck" onclick="job_city('{yun:}$j_type{/yun}','city','3')" {yun:}if in_array($j_type,$job_classid){/yun}checked='checked'{yun:}/if{/yun}><label title="{yun:}$job_name[$j_type]{/yun}" for="{yun:}$j_type{/yun}">{yun:}$job_name[$j_type]{/yun}</label></li>
+			{yun:}/if{/yun} 
+			{yun:}/foreach{/yun}
+			</ul>
+		</dd>
+	</dl>
+	{yun:}/foreach{/yun} 
+	</div>
+</div>
+<!--选择职位end--> 

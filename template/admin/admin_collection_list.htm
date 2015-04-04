@@ -1,0 +1,685 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/member_public.js"></SCRIPT>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+</style>
+</head>
+<script>var weburl="{yun:}$config.sy_weburl{/yun}"; </script>
+<body class="body_ifm">
+<div class="infoboxp" style="position:relative;">
+
+<div class="admin_Prompt" style="margin-top:5px;">
+<div class="admin_Prompt_span">
+        <b>提示：</b>采集前务必设置自己的接口密码，以免被其他人利用。<br>
+          <b>注意：</b>这里所设置的参数，只作为没有值的情况下使用，若采集软件有值传输，会优先使用传输值。
+</div><div class="admin_Prompt_close" style="top:18px; right:18px;"></div></div>
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position:absolute; z-index:10000"></div>
+<div class="main_tag" >
+<div class="admin_h1_bg"> 
+<span class="infoboxp_top_span infoboxp_top_wz">采集设置</span>
+<ul>
+	<li class="on">采集设置</li>
+    <li>新闻设置</li>
+    <li>职位设置</li>
+    <li>公司设置</li>
+    <li>个人设置</li>
+    <li>简历设置</li>
+    <li>帐号设置</li>
+</ul>
+</div>
+<div class="clear"></div>
+<div class="tag_box">
+<div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<form action="index.php?m=collection&c=save" method="post" enctype= "multipart/form-data" target="supportiframe">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+<table width="99%" class="table_form">
+<tr class="admin_table_trbg">
+    <th width="160">参数说明：</th>
+    <td >参数值</td>
+    <td width="160">变量</td>
+</tr>
+<tr>
+		<th width="160">采集状态：</th>
+		<td>
+            <input type="radio" name="locoy_online" value="1" id="online_1" {yun:}if $locoyinfo.locoy_online=="1"{/yun}checked{yun:}/if{/yun}>
+            <label for="online_1">开启</label>&nbsp;
+            <input type="radio" name="locoy_online" value="2" id="online_2" {yun:}if $locoyinfo.locoy_online=="2"{/yun}checked{yun:}/if{/yun}>
+            <label for="online_2">关闭</label>
+        </td>
+        <td width="160">locoy_online</td>
+	</tr>
+    <tr class="admin_table_trbg">
+    	<th width="160">接口密码：</th>
+		<td>
+          <input type="text" class="input-text" name="locoy_key" id='locoy_key' value="{yun:}$locoyinfo.locoy_key{/yun}"> <font color="gray" style="display:none">如：123qwe123</font>
+        </td>
+        <td width="160">locoy_key</td>
+    </tr>
+     <tr>
+    	<th width="160">匹配精准度：</th>
+		<td>
+          <input type="text" class="input-text" name="locoy_rate" id='locoy_rate' value="{yun:}$locoyinfo.locoy_rate{/yun}"> <font color="gray" style="display:none">如：60</font>
+        </td>
+        <td width="160">locoy_rate</td>
+    </tr>
+	<tr class="admin_table_trbg">
+		<td colspan="3" align="center">
+        <input class="admin_submit4" id="config" type="submit" name="config" value="提交">&nbsp;&nbsp;
+        <input class="admin_submit4" type="reset" value="重置"/></td>
+	</tr>
+</table>
+</form>
+</div>
+<div class="hiddendiv">
+    <form action="index.php?m=collection&c=save" method="post" target="supportiframe">
+    <table width="100%" class="table_form">
+      <tr class="admin_table_trbg">
+          <th width="160">参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+	<tr>
+		<th width="160">自动提动关键字：</th>
+		<td>
+        	<input type="radio" name="locoy_keyword" value="1" id="key_1" {yun:}if $locoyinfo.locoy_keyword=="1"{/yun}checked{yun:}/if{/yun}>
+            <label for="key_1">是</label>&nbsp;
+            <input type="radio" name="locoy_keyword" value="2" id="key_2" {yun:}if $locoyinfo.locoy_keyword=="2"{/yun}checked{yun:}/if{/yun}>
+            <label for="key_2">否</label> <font color="gray"  style="display:">注：只有在没有参数传输的才起作用</font>
+        </td>
+        <td width="160">locoy_keyword</td>
+	</tr>
+    <tr class="admin_table_trbg">
+		<th width="160">浏览数随机范围：</th>
+		<td>
+        <input type="text" class="input-text tips_class" id='locoy_rand' name="locoy_rand"  value="{yun:}$locoyinfo.locoy_rand{/yun}">
+        <font color="gray"  style="display:">如：0-100，默认为0</font></td>
+        <td width="160">locoy_rand</td>
+	</tr>
+    <tr>
+		<th width="160">排序随机范围：</th>
+		<td>
+        <input type="text" class="input-text tips_class" name="locoy_sort" id='locoy_sort' value="{yun:}$locoyinfo.locoy_sort{/yun}">
+        <font color="gray"  style="display:">如：0-100，默认为0</font></td>
+        <td width="160">locoy_sort</td>
+	</tr>
+    <tr class="admin_table_trbg">
+        <td colspan="3" align="center">
+		<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+        <input class="admin_submit4" id="otherconfig" type="submit" name="otherconfig" value="提交" />&nbsp;&nbsp;
+        <input class="admin_submit4" type="reset" value="重置" /></td>
+    </tr>
+    </table>
+    </form>
+</div>
+<div class="hiddendiv">
+    <form action="index.php?m=collection&c=save" method="post" target="supportiframe">
+    <table width="100%" class="table_form">
+     <tr class="admin_table_trbg">
+          <th width="160">参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+    <tr>
+		<th width="160">职位状态：</th>
+		<td>
+        	<input type="radio" name="locoy_job_status" value="1" id="key_1" {yun:}if $locoyinfo.locoy_job_status=="1"{/yun}checked{yun:}/if{/yun}>
+            <label for="key_1">已通过</label>&nbsp;
+            <input type="radio" name="locoy_job_status" value="2" id="key_2" {yun:}if $locoyinfo.locoy_job_status=="2"{/yun}checked{yun:}/if{/yun}>
+            <label for="key_2">未审核</label>
+        </td>
+        <td width="160">locoy_job_status</td>
+	</tr>
+        <tr class="admin_table_trbg">
+		<th width="160">职位有效期：</th>
+		<td>开始：
+          <link href="{yun:}$config.sy_weburl{/yun}/js/time/jscal2.css" type="text/css" rel="stylesheet">
+		<script src="{yun:}$config.sy_weburl{/yun}/js/time/calendar.js" type="text/javascript"></script>
+        <script src="{yun:}$config.sy_weburl{/yun}/js/time/en.js" type="text/javascript"></script>
+        <input id="ad_start" class="input-text" type="text" readonly size="20" value="{yun:}$locoyinfo.locoy_job_sdate{/yun}" name="locoy_job_sdate">
+        <script type="text/javascript">
+        Calendar.setup({
+        weekNumbers: true,
+        inputField : "ad_start",
+        trigger : "ad_start",
+        dateFormat: "%Y-%m-%d",
+        showTime: false,
+        onSelect : function() {this.hide();}
+        });
+        </script>
+          结束：
+        <input id="ad_end" class="input-text" type="text" readonly size="20" value="{yun:}$locoyinfo.locoy_job_edate{/yun}" name="locoy_job_edate">
+        <script type="text/javascript">
+        Calendar.setup({
+        weekNumbers: true,
+        inputField : "ad_end",
+        trigger : "ad_end",
+        dateFormat: "%Y-%m-%d",
+        showTime: false,
+        onSelect : function() {this.hide();}
+        });
+        </script>
+            </td>
+             <td width="200">locoy_job_sdate/locoy_job_edate</td>
+		</tr>
+		<tr>
+		<th width="160">从事行业无法匹配为：</th>
+		<td><select name="locoy_job_hy" id="hy">
+                 <option value='0' selected>--请选择--</option>
+                {yun:}foreach from=$industry_index key=j item=v{/yun}
+                     <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select>
+            </td>
+             <td width="160">locoy_job_hy</td>
+		</tr>
+        <tr class="admin_table_trbg">
+		<th width="160">职位类别无法匹配为：</th>
+		<td><select name="locoy_job_job1" id="job1" class="job1" lid="job1_son">
+                  <option value="">--请选择--</option>
+                 {yun:}foreach from=$job_index key=j item=v{/yun}
+                 <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_job1==$v{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$v]{/yun}</option>
+                  {yun:}/foreach{/yun}
+                </select>
+                <select name="locoy_job1_son" id="job1_son" class="job1" lid="job1_son1">
+                  <option value="">--请选择--</option>
+                  {yun:}foreach from=$job_type[$locoyinfo.locoy_job_job1] key=j item=va{/yun}
+               <option value='{yun:}$va{/yun}' {yun:}if $locoyinfo.locoy_job1_son==$va{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$va]{/yun}</option>
+              {yun:}/foreach{/yun}
+               </select>
+                <select name="locoy_job_post" id="job1_son1">
+                  <option value="">--请选择--</option>
+                  {yun:}foreach from=$job_type[$locoyinfo.locoy_job1_son] key=j item=val{/yun}
+                   <option value='{yun:}$val{/yun}' {yun:}if $locoyinfo.locoy_job_post==$val{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$val]{/yun}</option>
+                {yun:}/foreach{/yun}
+               </select>
+            </td>
+             <td width="280">locoy_job_job1/locoy_job1_son/locoy_job_post</td>
+		</tr>
+        <tr>
+		<th width="160">地区无法匹配为：</th>
+		<td>
+            <select name="locoy_job_province" id="provinceid" class="province" lid="cityid">
+              <option value="">请选择省份</option>
+              {yun:}foreach from=$city_index key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_province==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+             {yun:}/foreach{/yun}
+            </select>
+            <select name="locoy_job_city" size="1" id="cityid" class="province" lid="three_cityid">
+              <option value="">请选择城市</option>
+               {yun:}if $locoyinfo.locoy_job_province{/yun}
+                {yun:}foreach from=$city_type[$locoyinfo.locoy_job_province] key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_city==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                  {yun:}/foreach{/yun}
+               {yun:}/if{/yun}
+            </select>
+            <select name="locoy_job_three" size="1" id="three_cityid" {yun:}if !$locoyinfo.locoy_job_three{/yun} style="display:none;"{yun:}/if{/yun}>
+                <option value="">请选择城市</option>
+                {yun:}if $locoyinfo.locoy_job_province{/yun}
+                {yun:}foreach from=$city_type[$locoyinfo.locoy_job_city] key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_three==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                {yun:}/if{/yun}
+            </select>
+            </td>
+             <td width="300">locoy_job_province/locoy_job_city/locoy_job_three</td>
+		</tr>
+        <tr class="admin_table_trbg">
+		<th width="160">招聘人数无法匹配为：</th>
+		<td><select name="locoy_com_number">
+                {yun:}foreach from=$comdata.job_number key=j item=v{/yun}
+                 <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_number==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                 </select>
+            </td>
+             <td width="160">locoy_job_number</td>
+		</tr>
+        <tr>
+		<th width="160">薪水待遇无法匹配为：</th>
+		<td><select name="locoy_com_salary">
+				{yun:}foreach from=$comdata.job_salary key=j item=v{/yun}
+                  <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_salary==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+              	{yun:}/foreach{/yun}
+                </select>
+            </td>
+             <td width="160">locoy_job_salary</td>
+		</tr>
+         <tr class="admin_table_trbg">
+		<th width="160">工作经验无法匹配为：</th>
+		<td> <select name="locoy_job_exp">
+                {yun:}foreach from=$comdata.job_exp key=j item=v{/yun}
+                 <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_exp==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                </select>
+            </td>
+             <td width="160">locoy_job_exp</td>
+		</tr>
+         <tr>
+		<th width="160">到岗时间无法匹配为：</th>
+		<td><select name="locoy_job_report">
+                {yun:}foreach from=$comdata.job_report key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_report==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                </select>
+            </td>
+             <td width="160">locoy_job_report</td>
+		</tr>
+        <tr class="admin_table_trbg">
+		<th width="160">年龄要求无法匹配为：</th>
+		<td> <select name="locoy_job_age">
+                {yun:}foreach from=$comdata.job_age key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_age==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                </select>
+            </td>
+             <td width="160">locoy_job_age</td>
+		</tr>
+         <tr>
+		<th width="160">工作性质无法匹配为：</th>
+		<td><select name="locoy_job_type">
+                {yun:}foreach from=$comdata.job_type key=j item=v{/yun}
+                     <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_type==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                </select>
+            </td>
+             <td width="160">locoy_job_type</td>
+		</tr>
+         <tr class="admin_table_trbg">
+		<th width="160">性别无法匹配为：</th>
+		<td><select name="locoy_job_sex" id="sexbyid">
+                {yun:}foreach from=$comdata.job_sex key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_sex==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+				</select>
+            </td>
+             <td width="160">locoy_job_sex</td>
+		</tr>
+         <tr>
+		<th width="160">教育程度无法匹配为：</th>
+		<td><select name="locoy_job_edu">
+                {yun:}foreach from=$comdata.job_edu key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_edu==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                </select>
+            </td>
+             <td width="160">locoy_job_edu</td>
+		</tr>
+         <tr class="admin_table_trbg">
+		<th width="160">婚姻状况无法匹配为：</th>
+		<td><select name="locoy_job_marriage">
+                    {yun:}foreach from=$comdata.job_marriage key=j item=v{/yun}
+                    <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_job_marriage==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+                    {yun:}/foreach{/yun}
+                </select>
+            </td>
+             <td width="160">locoy_job_marriage</td>
+		</tr>
+        <tr>
+            <td colspan="3" align="center">
+			<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+            <input class="admin_submit4" id="codeconfig" type="submit" name="codeconfig" value="提交" />&nbsp;&nbsp;
+            <input class="admin_submit4" type="reset" value="重置" /></td>
+        </tr>
+    </table>
+    </form>
+</div>
+<div class="hiddendiv">
+    <form action="index.php?m=collection&c=save" method="post" enctype= "multipart/form-data" target="supportiframe">
+    <table width="100%" class="table_form">
+     <tr class="admin_table_trbg">
+          <th width="160">参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+
+        <tr>
+		<th width="160">从事行业无法匹配为：</th>
+		<td><select name="locoy_com_hy" id="hy">
+                 <option value='0' selected>--请选择--</option>
+                {yun:}foreach from=$industry_index key=j item=v{/yun}
+                     <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_com_hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select>
+            </td>
+             <td width="160">locoy_com_hy</td>
+		</tr>
+        <tr class="admin_table_trbg">
+		<th width="160">企业性质无法匹配为：</th>
+		<td><select name="locoy_com_pr" id="pr">
+            <option value='0' selected>--请选择--</option>
+			{yun:}foreach from=$comdata.job_pr key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_com_pr==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+            </td>
+             <td width="160">locoy_com_pr</td>
+		</tr>
+         <tr>
+		<th width="160">企业地址无法匹配为：</th>
+		<td><select name="locoy_com_province" id="provinceid" class="province" lid="city1id">
+            <option value="">请选择省份</option>
+            {yun:}foreach from=$city_index key=j item=v{/yun}
+                 <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_com_province==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+          <select name="locoy_com_city" size="1" id="city1id" class="province" lid="three_cityid">
+            <option value="">请选择城市</option>
+            {yun:}if $locoyinfo.locoy_com_province{/yun}
+			{yun:}foreach from=$city_type[$locoyinfo.locoy_com_province] key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_com_city==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+			{yun:}/if{/yun}
+          </select>
+            </td>
+             <td width="250">locoy_com_province/locoy_com_city</td>
+		</tr>
+         <tr class="admin_table_trbg">
+		<th width="160">企业规模无法匹配为：</th>
+		<td> <select name="locoy_com_mun">
+			{yun:}foreach from=$comdata.job_mun key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $row.mun==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+            </td>
+             <td width="160">locoy_com_mun</td>
+		</tr>
+		<tr>
+		<th width="160">注册资金无值为：</th>
+		<td>
+        <input type="text" class="input-text" name="locoy_com_money"  value="{yun:}$locoyinfo.locoy_com_money{/yun}">
+        <font color="gray">万元 如：0-10000，默认为0</font></td>
+        <td width="160">locoy_com_money</td>
+		</tr>
+        <tr class="admin_table_trbg">
+            <td colspan="3" align="center">
+			<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+            <input class="admin_submit4"  type="submit" name="waterconfig" value="提交" />&nbsp;&nbsp;
+            <input class="admin_submit4" type="reset" value="重置" /></td>
+        </tr>
+    </table>
+    </form>
+</div>
+
+<div class="hiddendiv">
+    <form action="index.php?m=collection&c=save" method="post" target="supportiframe">
+    <table width="100%" class="table_form">
+     <tr class="admin_table_trbg">
+          <th>参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+    <tr>
+		<th width="160">性别无法匹配为：</th>
+		<td>
+        <select name="locoy_user_sex" id="pr">
+            <option value='0' selected>--请选择--</option>
+			{yun:}foreach from=$userdata.user_sex key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_user_sex==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+        </td>
+        <td width="160">locoy_user_sex</td>
+	</tr>
+    <tr class="admin_table_trbg">
+		<th width="160">婚姻无法匹配为：</th>
+		<td>
+        <select name="locoy_user_marriage" id="pr">
+            <option value='0' selected>--请选择--</option>
+			{yun:}foreach from=$userdata.user_marriage key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_user_marriage==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+        </td>
+        <td width="160">locoy_user_marriage</td>
+	</tr>
+    <tr>
+		<th width="160">教育程度无法匹配为：</th>
+		<td>
+        <select name="locoy_user_edu" id="pr">
+            <option value='0' selected>--请选择--</option>
+			{yun:}foreach from=$userdata.user_edu key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_user_edu==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+        </td>
+        <td width="160">locoy_user_edu</td>
+	</tr>
+    <tr class="admin_table_trbg">
+		<th width="160">工作经验无法匹配为：</th>
+		<td>
+        	<select name="locoy_user_exp" id="pr">
+            <option value='0' selected>--请选择--</option>
+			{yun:}foreach from=$userdata.user_word key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_user_exp==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+        </td>
+        <td width="160">locoy_user_exp</td>
+	</tr>
+    <tr>
+		<th width="160">民族无法匹配为：</th>
+		<td>
+        	<input type="text" class="input-text" name="locoy_user_nationality" id='locoy_user_nationality' value="{yun:}$locoyinfo.locoy_user_nationality{/yun}">
+        <font color="gray"  style="display:none">如：汉族</font>
+        </td>
+        <td width="160">locoy_user_nationality</td>
+	</tr>
+    <tr class="admin_table_trbg">
+        <td colspan="3" align="center">
+		<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+        <input class="admin_submit4" id="mapconfig" type="submit" name="userconfig" value="提交" />&nbsp;&nbsp;
+        <input class="admin_submit4" type="reset" value="重置" /></td>
+    </tr>
+    </table>
+    </form>
+</div>
+<div class="hiddendiv">
+    <form action="index.php?m=collection&c=save" method="post" target="supportiframe">
+    <table width="100%" class="table_form">
+     <tr class="admin_table_trbg">
+          <th>参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+		<tr>
+		<th>期望从事行业无法匹配为：</th>
+		<td><select name="locoy_resume_hy" id="hy">
+                 <option value='0' selected>--请选择--</option>
+                {yun:}foreach from=$industry_index key=j item=v{/yun}
+                     <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_resume_hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select>
+            </td>
+             <td width="160">locoy_resume_hy</td>
+		</tr>
+
+
+
+       <tr class="admin_table_trbg">
+		<th width="180">期望从事职位无法匹配为：</th>
+		<td><select name="locoy_resume_job1" id="job1" class="job1" lid="resume_job1_son">
+                  <option value="">--请选择--</option>
+                 {yun:}foreach from=$job_index key=j item=v{/yun}
+                 <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_resume_job1==$v{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$v]{/yun}</option>
+                  {yun:}/foreach{/yun}
+                </select>
+                <select name="locoy_resume_son" id="resume_job1_son" class="job1" lid="resume_job1_son1">
+                  <option value="">--请选择--</option>
+                  {yun:}foreach from=$job_type[$locoyinfo.locoy_job_job1] key=j item=va{/yun}
+               <option value='{yun:}$va{/yun}' {yun:}if $locoyinfo.locoy_resume_son==$va{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$va]{/yun}</option>
+              {yun:}/foreach{/yun}
+               </select>
+                <select name="locoy_resume_post" id="resume_job1_son1">
+                  <option value="">--请选择--</option>
+                  {yun:}foreach from=$job_type[$locoyinfo.locoy_job1_son] key=j item=val{/yun}
+                   <option value='{yun:}$val{/yun}' {yun:}if $locoyinfo.locoy_resume_post==$val{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$val]{/yun}</option>
+                {yun:}/foreach{/yun}
+               </select>
+            </td>
+             <td width="280">locoy_resume_job1/locoy_resume_son/locoy_resume_post</td>
+		</tr>
+        <tr>
+		<th width="180">期望工作地点无法匹配为：</th>
+		<td>
+            <select name="locoy_resume_province" id="provinceid" class="province" lid="resume_cityid">
+              <option value="">请选择省份</option>
+              {yun:}foreach from=$city_index key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_resume_province==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+             {yun:}/foreach{/yun}
+            </select>
+            <select name="locoy_resume_city" size="1" id="resume_cityid" class="province" lid="resume_three_cityid">
+              <option value="">请选择城市</option>
+               {yun:}if $locoyinfo.locoy_job_province{/yun}
+                {yun:}foreach from=$city_type[$locoyinfo.locoy_resume_province] key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_resume_city==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                  {yun:}/foreach{/yun}
+               {yun:}/if{/yun}
+            </select>
+            <select name="locoy_resume_three" size="1" id="resume_three_cityid" {yun:}if !$locoyinfo.locoy_job_three{/yun} style="display:none;"{yun:}/if{/yun}>
+                <option value="">请选择城市</option>
+                {yun:}if $locoyinfo.locoy_job_province{/yun}
+                {yun:}foreach from=$city_type[$locoyinfo.locoy_resume_city] key=j item=v{/yun}
+                <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_resume_three==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+                {yun:}/if{/yun}
+            </select>
+            </td>
+             <td width="300">locoy_resume_province/locoy_resume_city/locoy_resume_three</td>
+		</tr>
+
+
+    <tr class="admin_table_trbg">
+		<th>期望月薪水无法匹配为：</th>
+		<td>
+        <select name="locoy_user_salary" id="pr">
+            <option value='0' selected>--请选择--</option>
+			{yun:}foreach from=$userdata.user_salary key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_user_salary==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+        </td>
+        <td width="160">locoy_user_salary</td>
+	</tr>
+    <tr>
+		<th>到岗时间无法匹配为：</th>
+		<td>
+        <select name="locoy_user_report" id="pr">
+            <option value='0' selected>--请选择--</option>
+			{yun:}foreach from=$userdata.user_report key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $locoyinfo.locoy_user_report==$v{/yun}selected{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select>
+        </td>
+        <td width="160">locoy_user_report</td>
+	</tr>
+	 <tr class="admin_table_trbg">
+		<th width="160">浏览数随机范围：</th>
+		<td>
+        <input type="text" class="input-text tips_class" id='locoy_resume_rand' name="locoy_resume_rand"  value="{yun:}$locoyinfo.locoy_resume_rand{/yun}">
+        <font color="gray"  style="display:">如：0-100，默认为0</font></td>
+        <td width="160">locoy_resume_rand</td>
+	</tr>
+    <tr>
+        <td colspan="3" align="center">
+		<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+        <input class="admin_submit4" id="mapconfig" type="submit" name="resumeconfig" value="提交" />&nbsp;&nbsp;
+        <input class="admin_submit4" type="reset" value="重置" /></td>
+    </tr>
+    </table>
+    </form>
+</div>
+
+
+<div class="hiddendiv">
+    <form action="index.php?m=collection&c=save" method="post" target="supportiframe">
+    <table width="100%" class="table_form">
+     <tr class="admin_table_trbg">
+          <th>参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+    <tr>
+		<th>生成用户名长度：</th>
+		<td>
+        <input type="text" class="input-text" name="locoy_length" id='locoy_length' value="{yun:}$locoyinfo.locoy_length{/yun}">
+        <font color="gray"  style="display:none">如：8</font>
+        </td>
+        <td width="160">locoy_length</td>
+	</tr>
+    <tr class="admin_table_trbg">
+		<th>生成用户名前缀：</th>
+		<td>
+        <input type="text" class="input-text" name="locoy_name" id='locoy_name' value="{yun:}$locoyinfo.locoy_name{/yun}">
+        <font color="gray"  style="display:none">如：user  加随机字符</font>
+        </td>
+        <td width="160">locoy_name</td>
+	</tr>
+    <tr>
+		<th>生成指定密码：</th>
+		<td>
+        <input type="text" class="input-text"  name="locoy_pwd" id='locoy_pwd' value="{yun:}$locoyinfo.locoy_pwd{/yun}">
+        <font color="gray"  style="display:none">如：123456</font>
+        </td>
+        <td width="160">locoy_pwd</td>
+	</tr>
+    <tr class="admin_table_trbg">
+		<th>用户状态：</th>
+		<td>
+        	<input type="radio" name="locoy_user_status" value="1" id="user_1" {yun:}if $locoyinfo.locoy_user_status=="1"{/yun}checked{yun:}/if{/yun}>
+            <label for="user_1">已审核</label>&nbsp;
+            <input type="radio" name="locoy_user_status" value="2" id="user_2" {yun:}if $locoyinfo.locoy_user_status=="2"{/yun}checked{yun:}/if{/yun}>
+            <label for="user_2">未审核</label>
+        </td>
+        <td width="160">locoy_user_status</td>
+	</tr>
+    <tr>
+		<th>企业会员等级：</th>
+         {yun:}if is_array($qy_rows){/yun}
+		<td>
+        	{yun:}foreach item=row from=$qy_rows{/yun}
+		    <input type="radio" name="locoy_rating" value="{yun:}$row.id{/yun}" id="rating_{yun:}$row.id{/yun}" {yun:}if $locoyinfo.locoy_rating==$row.id{/yun}checked{yun:}/if{/yun}>
+		    <label for="rating_{yun:}$row.id{/yun}">{yun:}$row.name{/yun}</label>&nbsp;&nbsp;
+		    {yun:}/foreach{/yun}
+        </td>
+        {yun:}else{/yun}
+          <td>
+        	暂无等级，<a href="index.php?m=userconfig&c=comclass" style="color:red;">添加会员等级</a>
+            <input type="hidden" name="locoy_rating" value="0">
+        	</td>
+        {yun:}/if{/yun}
+        <td width="160">locoy_rating</td>
+	</tr>
+    <tr class="admin_table_trbg">
+        <td colspan="3" align="center">
+		<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+        <input class="admin_submit4" id="mapconfig" type="submit" name="mapconfig" value="提交" />&nbsp;&nbsp;
+        <input class="admin_submit4" type="reset" value="重置" /></td>
+    </tr>
+    </table>
+    </form>
+</div>
+</div>
+</div>
+
+	<script>
+        var $switchtag = $("div.main_tag ul li");
+        $switchtag.click(function(){
+            $(this).addClass("on").siblings().removeClass("on");
+            var index = $switchtag.index(this);
+            $("div.tag_box > div").eq(index).show().siblings().hide();
+        });
+    </script>
+</div>
+</body>
+</html>

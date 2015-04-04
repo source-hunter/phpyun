@@ -1,0 +1,26 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12 re"> 
+  {yun:}include file="$userstyle/ul_nav.htm"{/yun}
+      <div class="resume_box_list">
+       <div class="List_Ope List_Title ">
+       <span class="List_Title_span List_Title_w500">公司名称</span>		
+       <span class="List_Title_span List_Title_w120">关注时间</span>	 	
+       <span class="List_Title_span List_Title_w80">操作</span>	
+      </div>
+          {yun:}foreach item=log from=$rows{/yun}
+           <div class="List_Ope List_Ope_bor">
+               <span class="List_Title_span List_Title_w500"><a href="{yun:}curl url=id:`$log.sc_uid`{/yun}" target="_blank" class="List_Title_span_com">{yun:}$log.com_name{/yun}</A></span>		
+			   <span class="List_Title_span List_Title_w120">{yun:}$log.time|date_format:'%Y-%m-%d'{/yun}</span>	 	
+			   <span class="List_Title_span List_Title_w80"><a href="javascript:void(0)"  onclick="layer_del('您确定要取消关注？', '{yun:}$config.sy_weburl{/yun}/member/index.php?c=atn&act=del&id={yun:}$log.id{/yun}&uid={yun:}$log.sc_uid{/yun}');">取消关注</a></span>	
+			  </div> 
+            {yun:}foreachelse{/yun} 
+          <div class="msg_no">暂未关注任何企业</div>
+          {yun:}/foreach{/yun}  
+         <div class="clear"></div>
+         <div class="diggg">{yun:}$pagenav{/yun}</div>  
+       </div>
+      </div> 
+</div> 
+{yun:}include file="$userstyle/footer.htm"{/yun} 

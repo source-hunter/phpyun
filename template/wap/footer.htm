@@ -1,0 +1,64 @@
+<nav class="footer_nav">
+<a href="javascript:window.scrollTo(0,0);">TOP</a>
+<a href="./">首页</a> 
+&nbsp;-
+{yun:}if !$cookie.uid{/yun}
+&nbsp;<a href="{yun:}wapurl m=login{/yun}">个人登录</a>
+&nbsp;&nbsp;-
+<a href="{yun:}wapurl m=login url=usertype:2{/yun}">企业登录</a>
+&nbsp;&nbsp;<br/>
+{yun:}else{/yun}
+欢迎,<a href="member/">{yun:}$cookie.username{/yun}</a><strong></strong> <a href="{yun:}wapurl url=c:loginout{/yun}">退出</a>
+{yun:}/if{/yun}
+</nav>
+<footer class="footer">
+
+<!--<a href="index.php?action=about">关于网站</a>
+--->
+<a href="{yun:}$config.sy_weburl{/yun}">电脑版</a>
+-
+<a href="javascript:window.location.reload();">刷新</a>
+-
+<a href="{yun:}$config.sy_weburl{/yun}/wap">返回</a>
+<br>
+<a href="http://www.phpyun.com/" ><small>Powered by PHPYUN</small></a>
+</footer>
+<div id="oncelist" class="mask selecter hide " style="display:none;">
+    <div class="f_body">
+    <div style="transform: translate(0px, 0px); transition-duration: 0.4s; transition-timing-function: ease; transform-style: preserve-3d; backface-visibility: hidden;" class="once_h1_box">
+    <div class="once_h1_box_h1">请输入密码</div>
+    
+    <input type="password" name="password" id="once_password" value="" class="once_h1_box_ps" />
+     <input id="onceid" value="" type="hidden">
+     <br />
+     <div class="once_h1_box_bot">
+     <button class="once_h1_bth1 ok selectorOk" onclick="checkOncePassword($('#onceid').val());">确定</button>
+    <button class="once_h1_bth1 once_h1_bth2  clear_sub selectorClear" onclick="layer.closeAll();">关闭</button>
+    <button class="once_h1_bth1 once_h1_bth3 clear_sub selectorClear" onclick="$('input[name=password]').val('');">清除</button> 
+   </div>
+    </div>
+    </div>
+</div>
+<div id="tinylist" class="mask selecter hide " style="display:none;">
+    <div class="f_body">
+    <div style="transform: translate(0px, 0px); transition-duration: 0.4s; transition-timing-function: ease; transform-style: preserve-3d; backface-visibility: hidden;"class="once_h1_box">
+     <div class="once_h1_box_h1">请输入密码</div>
+     <input type="password" name="password" id="tiny_password" value="" class="once_h1_box_ps" />
+    <input id="tinyid" value="" type="hidden">
+     <div class="once_h1_box_bot">
+    <button class="once_h1_bth1  ok selectorOk" onclick="checkTinyPassword($('#tinyid').val());">确定</button>
+    <button class="once_h1_bth1 once_h1_bth2 clear_sub selectorClear" onclick="layer.closeAll();">关闭</button>
+    <button class="once_h1_bth1  once_h1_bth3 clear_sub selectorClear" onclick="$('input[name=password]').val('');">清除</button> 
+     </div>
+   
+    </div>
+    </div>
+</div>
+{yun:}if $layer{/yun}
+<input id="layermsg" value="{yun:}$layer.msg{/yun}" type="hidden">
+<input id="layerurl" value="{yun:}$layer.url{/yun}" type="hidden">
+<script>window.onload=islayer(); </script>
+{yun:}/if{/yun}  
+<script>var weburl='{yun:}$config_wapdomain{/yun}';</script>
+</body>
+</html>

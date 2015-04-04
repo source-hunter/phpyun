@@ -1,0 +1,3 @@
+<?php 
+
+$ucinfo=array(); 

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun} 
+<div class="redeem">
+  <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}url m=redeem{/yun}">积分商城</a> > {yun:}$row.name{/yun}</div>
+  <div class="redeem_show_left fl">
+    <div class="redeem_show_ltop fl">
+      <div class="redeem_show_single fl"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$row.pic{/yun}" width="278" height="278"></div>
+      <ul class="redeem_show_texts fr">
+        <li class="redeem_show_h">{yun:}$row.name{/yun}</li>
+        <li>所需积分：{yun:}$row.integral{/yun}积分</li>
+        <li>剩余库存数量：{yun:}$row.stock{/yun}件（已兑换 <b>{yun:}$row.num{/yun}</b> 件）</li>
+        {yun:}if $row.stock!="0"{/yun}
+        <li>限购数量：{yun:}if $row.restriction=="0"{/yun}不限{yun:}else{/yun}{yun:}$row.restriction{/yun}件{yun:}/if{/yun}</li>
+        <form action="index.php" method="get" onsubmit="return checkform_redeem_show();">
+        	<input type="hidden" name="m" value="redeem"/>
+        	<input type="hidden" name="c" value="dh"/>
+            <input type="hidden" name="id" value="{yun:}$row.id{/yun}"/>
+            <input type="hidden" id="uid" value="{yun:}$uid{/yun}"/>
+            <input type="hidden" id="stock" value="{yun:}$row.stock{/yun}"/>
+            <input type="hidden" id="restriction" value="{yun:}$row.restriction{/yun}"/>
+          	<li>兑换数量：<input name="num" id="num" value="1" type="text" class="redeem_show_input" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">件</li>
+          <li><input class="redeem_show_bth fl" type="submit" value=""></li>
+        </form>
+        {yun:}else{/yun} <img src="{yun:}$style{/yun}/images/yun_ydw.png"> {yun:}/if{/yun}
+      </ul>
+    </div>
+    <div class="redeem_detail fl">
+      <ul class="redeem_detail_h fl">
+        <li tab_name="xq" class="redeem_detail_content">礼品详情</li>
+        <li tab_name="jl">兑换记录</li>
+      </ul>
+      <div class="redeem_gift_detail fl" id="xq" style="display:block;"> {yun:}$row.content{/yun} </div>
+      <div class="redeem_gift_detail fl" id="jl" style="display:none;">
+        <ul class="redeem_record_title redeem_record_h fl">
+          <li class="redeem_record_name record_title" style="width:200px;">会员名称</li>
+          <li class="redeem_record_product record_title" style="width:180px;">商品数量（件）</li>
+          <li class="redeem_record_time record_title" style="width:130px;">兑换时间</li>
+          <li class="redeem_record_time record_title" style="width:130px;">兑换状态</li>
+        </ul>
+        <div class="redeem_record_list fl">
+          <ul class="redeem_record_title fl">
+            {yun:}foreach item=v from=$jilu{/yun}
+            <li class="redeem_record_name" style="width:200px;">{yun:}$v.username{/yun}</li>
+            <li class="redeem_record_product" style="width:180px; font-size:20px;">{yun:}$v.num{/yun}件</li>
+            <li class="redeem_record_time" style="width:130px;">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M:%S"{/yun}</li>
+            <li class="redeem_record_time" style="width:130px;">{yun:}if $v.status=="1"{/yun}已兑换{yun:}else{/yun}未审核{yun:}/if{/yun}</li>
+            {yun:}foreachelse{/yun}
+            暂无兑换记录
+            {yun:}/foreach{/yun}
+          </ul>
+           <div class="clear"></div>
+        <div class="pages"> {yun:}$pagenav{/yun}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+$(document).ready(function(){
+	$(".redeem_detail_h").find("li").bind("click",function(){var id=$(this).attr("tab_name");$(".redeem_gift_detail").hide();$(".redeem_detail_content").removeClass("redeem_detail_content");$(this).addClass("redeem_detail_content");$("#"+id).show();});	
+	});
+</script>
+  <div class="redeem_show_right fr">
+    <div class="redeem_hotgoods_h fl">热门兑换</div>
+    <div class="redeem_hotgoods_lists fl"> {yun:}foreach item=v from=$remen{/yun}
+      <dl>
+        <dt><a href="{yun:}url m=redeem url=c:show,id:`$v.id`{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$v.pic{/yun}"></a></dt>
+        <dd><a href="{yun:}url m=redeem url=c:show,id:`$v.id`{/yun}">{yun:}$v.name{/yun} </a><em><b>{yun:}$v.integral{/yun}</b> 积分</em></dd>
+      </dl>
+      {yun:}/foreach{/yun} </div>
+  </div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

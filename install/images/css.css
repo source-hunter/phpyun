@@ -1,0 +1,206 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0 auto;padding:0;}
+
+ul{ list-style:none;}
+body{color:#66666;font-size:12px; background:url(../images/newbg.gif) repeat fixed 0 0 transparent;}
+.centent{width:720px;}
+.wrap{width:720px;border:1px solid black; float:left; margin-top:30px; background:#fff}
+.head{height:80px;width:720px;float:left; background:#3b5c72;
+}
+
+.logo_install{
+	background:url(../images/logo1.jpg) no-repeat left center ;
+    float: left;
+    height:60px;
+    text-indent: -2000em;
+    width: 280px;
+    margin-top:10px;
+	
+}
+.version {
+    color: #fff;
+    float: right;
+    font-family: Simsun;
+    margin: 45px 25px 0 0;
+}
+.main {
+  width:720px;
+  float:left
+    
+}
+
+.pact {
+   border: 1px solid #E5E9ED;
+    display: block;
+  height: 400px;
+   margin-left:25px;
+   margin-left:13px;
+  padding-left:10px;
+    width: 650px;
+	float:left;
+
+}
+.correct_span, .error_span {
+    background:url(../images/icon.png) no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 16px;
+    margin-right: 5px;
+    overflow: hidden;
+    text-indent: -2000em;
+    width: 20px;
+}
+.bottom{width:720px; height:25px; float:left; text-align: center;padding-top:5px;}
+.footer{width:720px; margin-top:5px; height:30px; background:#385c72; float:left;color:#fff; text-align:center; line-height:30px;}
+input, button, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+.step li em, .step li {
+    background:url(../images/step.png) repeat-x scroll 0 0 transparent;
+}
+.step ul {
+    
+	background-color: #FFFFFF;
+    border-bottom: 1px solid #DCE1E5;
+    height: 60px;
+	float:left;
+	width:720px;
+
+}
+.step li {
+    color: #666666;
+    float: left;
+    font-size: 14px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    width: 33%;
+}
+.step li em {
+    background:url(../images/z3.jpg);
+    color: #FFFFFF;
+    display: inline-block;
+    font-family: Microsoft Yahei;
+    font-size: 20px;
+	font-style:normal;
+    height: 32px;
+    line-height: 32px;
+    margin-right: 10px;
+    text-align: center;
+    width: 32px;
+	_margin-top:13px;
+}
+.step li.current {
+    background:url(../images/l12.jpg) no-repeat left bottom;
+ height:59px;
+    color: #333333;
+    font-weight: 700;
+
+}
+
+.step li.current em {
+    background:url(../images/z1.jpg) no-repeat;
+}
+.step .on { background:url(../images/li1.jpg) no-repeat left bottom;height:59px;}
+.step .on em {
+ background:url(../images/z2.jpg) no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.server {
+    padding: 20px 20px 10px 65px;
+	float:left;
+	
+}
+.server table {
+    margin-bottom: 20px;
+}
+.server td {
+    padding-top:5px;
+	width:230px;
+	
+}
+.server .td1 {
+    color: #417B9D;
+    font-weight: 700;
+
+}
+
+
+.server .gray {
+    color: #BBBBBB;
+}
+
+.tar{ text-align:right;width:100px;}
+.server .input {
+   
+    border-color: #ABADB3 #E3E9EF #E3E9EF #ABADB3;
+    border-style: solid;
+    border-width: 1px;
+    height:22px;
+    width: 200px;
+	
+}
+.server .input:hover, .server .input:focus {
+    border: 1px solid #0E85D5;
+}
+
+.server_1{width:500px;height:400px; border:1px solid #ccc; clear:both; overflow:hidden;}
+
+.server_1 dd{ margin-left:5px; line-height:20px;color:#666;}
+.server_2{width:500px;height:350px; clear:both; overflow:hidden;}
+.info .t {
+    color: #0F81B2;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+	margin-top:30px;
+}
+.info p {
+    line-height: 22px;
+}
+.applist {
+    height: 70px;
+    margin: 0 !important;
+    padding: 10px 0;
+}
+.applist li {
+    background: none repeat scroll 0 0 transparent;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 76px;
+}
+.applist li a {
+    color: #555555;
+    float: left;
+    width: 76px;
+}
+.applist li img {
+    display: block;
+    margin: 0 auto 6px;
+}
+.submit{border:none; background:url(an.jpg) no-repeat;width:95px;height:25px;color:#fff;font-weight:bold;}
+.submit_az{border:none; background:url(anq.jpg) no-repeat;width:165px;height:25px;color:#fff;font-weight:bold; margin-left:10px;}
+
+
+

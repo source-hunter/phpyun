@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script>
+function unselectall(){
+	if(document.getElementById('chkAll').checked){
+		document.getElementById('chkAll').checked = document.getElementById('chkAll').checked&0;
+	}
+}
+function CheckAll(form){
+	for (var i=0;i<form.elements.length;i++){
+		var e = form.elements[i];
+		if (e.Name != 'chkAll'&&e.disabled==false){
+			e.checked = form.chkAll.checked;
+		}
+	}
+}
+
+function really_del(){
+	if(confirm('确定删除吗？')){
+		$("#myform_rk").attr("action","index.php?m=collection&c=deldata");
+		return true;
+		}else{
+		return false;}
+	}
+function really_rk(){
+	if(confirm('确定加入到本站数据库吗？')){
+		$("#myform_rk").attr("action","index.php?m=collection&c=rk");
+		return true;
+		}else{
+		return false;}
+	}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>采集列表</h6>
+  </div>
+  <div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+      <form action="index.php" name="myform" method="get">
+     
+        <input name="m" value="admin_news" type="hidden"/>
+        <input class="input-text" type="text" name="s_news_id"  size="25"/>
+        <input class="admin_submit4" type="submit" name="news_search" value="检索"/>
+      </form>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <form action="index.php?m=collection&c=deldata" name="myform" method="post" id="myform_rk">
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th><label for="chkall">
+                <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+              <th>标题</th>
+              <th>链接</th>
+              <th width="10%" class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+          {yun:}foreach item=v from=$caijilist{/yun}
+          <tr align="center">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td class="od">{yun:}$v.title{/yun}</td>
+            <td class="gd"><a href="{yun:}$v.url{/yun}" target="_blank">查看</a></td>
+            <td><a href="index.php?m=collection&c=rk&cid={yun:}$v.cid{/yun}&id={yun:}$v.id{/yun}"class="admin_cz_bj">入库</a> | <a href="javascript:void(0)" onclick="layer_del('确定要删除？', 'index.php?m=collection&c=deldata&id={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</a></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="2"><input class="admin_submit4"  type="submit" name="delsub" value="删除所选" onClick="return really_del()" />
+              <input class="admin_submit4" type="submit" name="rk" value="入库"  onclick="return really_rk()" />
+            </td>
+            <td colspan="3" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+          </tbody>
+           <input type="hidden" name="pytoken" id="pytoken" value="{yun:}$pytoken{/yun}">
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

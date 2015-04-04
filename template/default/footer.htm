@@ -1,0 +1,53 @@
+<!--foot  start-->
+
+{yun:}desc assign_name=desc{/yun}
+<div class="clear"></div>
+<div class="footer">
+  <div class="foot">
+    <div class="foot_conent">
+      <div class="footer_left"> {yun:}foreach item=desclist from=$desc{/yun}
+        <dl class="footer_list">
+          <dt>{yun:}$desclist.name{/yun}</dt>
+          <dd>
+            <ul>
+              {yun:}foreach item=lit from=$desclist.list{/yun}
+              <li><a 
+              {yun:}if $lit.is_type==1{/yun}
+              href="{yun:}$config.sy_weburl{/yun}/{yun:}$lit.url{/yun}"
+               {yun:}else{/yun}
+              href="{yun:}$lit.url{/yun}"
+               {yun:}/if{/yun}
+               title="{yun:}$lit.name{/yun}">{yun:}$lit.name{/yun}</a></li>
+              {yun:}/foreach{/yun}
+            </ul>
+          <dd>
+        </dl>
+        {yun:}/foreach{/yun} </div>
+      <div class="footer_right" style="text-align:left">
+        <div class="footer_touch">服务热线</div>
+        <div class="footer_tel">{yun:}$config.sy_freewebtel{/yun}</div>
+        <ul class="footer_last">
+        {yun:}nav item=navlist_app hovclass=nav_list_hover nid=12{/yun}          
+          <li style="width:70px; float:left; margin-top:5px; text-align:left"> <a class="move_0{yun:}$navlist_app.sort{/yun}" style="color: #ff0000" {yun:}if $navlist_app.eject{/yun} target="_blank"{yun:}/if{/yun} href="{yun:}$config.sy_weburl{/yun}/{yun:}$navlist_app.url{/yun}" target="_blank">{yun:}$navlist_app.name{/yun}</a> </li>
+          {yun:}/nav{/yun}
+        </ul>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="footer_bot">
+      <div class="footer_bot_p">{yun:}$config.sy_webcopyright{/yun}{yun:}$config.sy_webrecord{/yun} </div>
+      <div class="footer_bot_p">	地址:{yun:}$config.sy_webadd{/yun}  电话(Tel):{yun:}$config.sy_webtel{/yun}  EMAIL:{yun:}$config.sy_webemail{/yun}</div>
+      <div class="footer_img"> 
+      <a href="/"><img alt="" src="{yun:}$style{/yun}/images/ftImg01.png" width="120" height="52"> </a> 
+      <a href="/"><img alt="" src="{yun:}$style{/yun}/images/ftImg02.png" width="120" height="52"> </a> 
+      <a href="/"><img alt="" src="{yun:}$style{/yun}/images/ftImg03.png" width="120" height="52"> </a> 
+      </div>
+    </div>
+  </div>
+</div>
+<!--foot  end--> 
+{yun:}include file="$imtplstyle/index.htm"{/yun}
+<div id="bg" style=""></div>
+<div id="uclogin" style="display:none"></div>
+<script>var integral_pricename='{yun:}$config.integral_pricename{/yun}';var weburl="{yun:}$config.sy_weburl{/yun}"; </script>
+</body></html>

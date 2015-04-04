@@ -1,0 +1,51 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt12">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"><a href="javascript:void(0);">相似职位</a></li>
+    </ul>
+  </div>
+  <div class="remindbox01 mt10">
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div id="" class="resume_box_list">
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <table border="0" cellspacing="1" cellpadding="0" class="resume" style="width:690px;">
+          <tr>
+            <th>职位名称</th>
+            <th>学历</th>
+            <th>性别</th>
+            
+            <th>到岗时间</th>
+            <th>工作经验</th>
+            <th>月薪</th>
+            <th>匹配度</th>
+          </tr>
+          {yun:}foreach item=v from=$job{/yun}
+          <tr>
+            <td style="width:180px;"><a href="{yun:}url m=com url=c:comapply,id:`$v.id`{/yun}" target="_blank">{yun:}$v.name{/yun}</a></td>
+            <td>{yun:}$comclass_name[$v.edu]{/yun}</td>
+            <td>{yun:}$comclass_name[$v.sex]{/yun}</td>
+            
+            <td>{yun:}$comclass_name[$v.report]{/yun}</td>
+            <td>{yun:}$comclass_name[$v.exp]{/yun}</td>
+            <td>{yun:}$comclass_name[$v.salary]{/yun}</td>
+            <td>{yun:}$v.pre{/yun}%</td>
+	
+			
+          </tr>
+          {yun:}foreachelse{/yun}
+          <tr style="height:30px">
+            <td colspan="7">没有相似职位。</td>
+          </tr>
+          {yun:}/foreach{/yun}
+        </table>
+      </div>
+    </div>
+    <div class="diggg">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

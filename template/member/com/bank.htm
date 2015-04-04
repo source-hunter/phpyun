@@ -1,0 +1,107 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun} 
+<script>
+function CheckForm(){
+	if($.trim($("#bank_user").val())==""){
+		layer.msg('请填入收款人！', 2, 2); 
+		$("#bank_user").focus();
+		return false;
+	}
+	if($.trim($("#bank_odd").val())==""){
+		layer.msg('请填入银行回单！', 2, 2); 
+		$("#bank_odd").focus();
+		return false;
+	}
+	if($.trim($("#bank_price").val())==""||$.trim($("#bank_price").val())<=0){
+		layer.msg('请填入您的金额！', 2, 2); 
+		$("#bank_price").focus();
+		return false;
+	} 
+	if($.trim($("#bank_remark").val())==""){
+		layer.msg('请输入备注信息！', 2, 2); 
+		$("#bank_remark").focus();
+		return false;
+	}
+}
+</script>
+<div class=right_box>
+<div class=admincont_box>
+<div class=admin_tit><span class="admin_tit_bg">银行转帐</span><span class=remind>以下 <font color="#FF0000">*</font> 为必填项</span></div>
+<div class=admin_note_pay2>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="pay_table">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+
+<form name="alipayment" target="supportiframe" onSubmit="return CheckForm();" action="index.php?c=bank" method=post>
+<tr>
+<th height="30">选择银行:</th>
+<td><select name="bankname">
+	{yun:}foreach item=bank from=$rows{/yun}
+		<option>{yun:}$bank.bank_name{/yun}</option> 
+	{yun:}/foreach{/yun} 
+              </select></td>
+          </tr>
+          <tr>
+            <th height="30"> <font color="#FF0000">*</font> 收款人:</th>
+            <td><input type="text" name="bank_user" size="20" id='bank_user' class="com_info_text">
+              (例如：开户人)</td>
+          </tr>
+          <tr>
+            <th height="30"> <font color="#FF0000">*</font> 银行回单:</th>
+            <td><input type="text" name="bank_odd" size="25" id='bank_odd' onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  class="com_info_text">
+              (例如：21888888888)</td>
+          </tr>
+          <tr>
+            <th height="30"> <font color="#FF0000">*</font> 充值金额:</th>
+            <td><input type="text" name="bank_price" id='bank_price' size="20" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  class="com_info_text">
+              (例如：100.21)</td>
+          </tr>
+          <tr>
+            <th height="30"> <font color="#FF0000">*</font> 备　注:</th>
+            <td><textarea name="bank_remark" id='bank_remark' rows=5 cols=40 wrap="physical" class="bank_textarea"></textarea>
+              (请备注你的姓名及其联系方式)</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><p class="bank_msg">请提交之前认真核对所填写信息.</p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td height="40"><input type="hidden" name="banksub" value="提交"/>
+              <input type="submit" value=确认订单 class="btn_01"></td>
+          </tr>
+        </form>
+      </table>
+    </div>
+  </div>
+  <div class=admincont_box>
+    <div class=admin_tit><span>已添加银行</span><span class=remind>请仔细核对银行帐号</span></div>
+    <div class=admin_note2>
+      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="my_table_msg">
+        <tr>
+          <th width="8%"  height="26" align="center" bgcolor="#F7FAFF">银行名称</th>
+          <th width="5%"  height="26" align="center" bgcolor="#F7FAFF">开户人</th>
+          <th width="12%" align="center" bgcolor="#F7FAFF">银行帐户</th>
+          <th width="14%" align="center" bgcolor="#F7FAFF">开户行</th>
+        </tr>
+        {yun:}if is_array($rows){/yun}
+        {yun:}foreach item=blist from=$rows{/yun}
+        <tr>
+          <td  height="26" align="center" bgcolor="#FFFFFF">{yun:}$blist.bank_name{/yun}</td>
+          <td  height="26" align="center" bgcolor="#FFFFFF">{yun:}$blist.name{/yun}</td>
+          <td align="center" bgcolor="#FFFFFF">{yun:}$blist.bank_number{/yun}</td>
+          <td align="center" bgcolor="#FFFFFF">{yun:}$blist.bank_address{/yun}</td>
+        </tr>
+        {yun:}/foreach{/yun}
+        {yun:}else{/yun}
+        <tr>
+          <td colspan="4"  height="26" align="center" bgcolor="#FFFFFF">暂未添加银行</td>
+        </tr>
+        {yun:}/if{/yun}
+      </table>
+    </div> </div>
+</div> 
+</div> 
+</div> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

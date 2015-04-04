@@ -1,0 +1,47 @@
+{yun:}include file="$wapstyle/header.htm"{/yun}
+
+
+<section class="index_post_hot">
+<header  class="index_post_hot_h1"><a href="javascript:;">热门搜索</a></header>
+<table class="ht">
+<tbody>
+<tr>
+{yun:}key key=keys limit=10 recom=1 item=keylist iswap=1{/yun}
+<td><a href="{yun:}$keylist.url{/yun}" title='{yun:}$keylist.key_name{/yun}'>{yun:}$keylist.key_name{/yun}</a></td>
+{yun:}if ($keys+1)%4==0{/yun}
+</tr>
+<tr>
+{yun:}/if{/yun}
+{yun:}/key{/yun} 
+</tbody>
+</table>
+</section>
+<section class="index_post_hot">
+<header  class="index_post_hot_h1"><a href="?m=com">最新职位</a></header>
+<div class="index_post_list">
+{yun:}joblist limit=10 orderby='lastupdate desc' item=job{/yun}
+<a href="{yun:}wapurl m=com url=c:view,id:`$job.id`{/yun}" class="index_post_list_b">
+<h3>{yun:}$job.name|mb_substr:0:12:'gbk'{/yun}</h3>
+<aside>{yun:}$job.com_name|mb_substr:0:12:'gbk'{/yun}</aside>
+<i>{yun:}$job.job_city_one{/yun}-{yun:}$job.job_city_two{/yun}</i>
+<em>{yun:}$job.lastupdate{/yun}</em>
+</a>
+
+
+{yun:}/joblist{/yun}
+
+</div>
+</section>
+<section class="index_post_hot">
+<header  class="index_post_hot_h1"><a href="{yun:}wapurl url=m:news{/yun}">最新资讯</a></header>
+<div class="index_post_list">
+ {yun:}article limit=8 t_len=17 item=news{/yun}
+<a href="{yun:}wapurl url=m:news,c:show,id:`$news.id`{/yun}"  class="index_post_list_b">
+<div class="news_list">{yun:}$news.title{/yun}</div>
+</a>
+{yun:}/article{/yun}
+
+</div>
+</section>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

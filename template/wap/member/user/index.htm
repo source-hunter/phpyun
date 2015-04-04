@@ -1,0 +1,17 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun} 
+<div class="wap_member_Searcher">
+<a href="index.php?c=sq" class="wap_member_Searcher_sq wap_member_Searcher_sq_line"><span>职位申请记录<i>{yun:}$statis.sq_jobnum{/yun}</i></span></a>
+<a href="index.php?c=collect"class="wap_member_Searcher_sq"><span>职位收藏夹<i class="wap_member_Searcher_sc">{yun:}$statis.fav_jobnum{/yun}</i></span></a>
+</div>
+<div class="wap_member_mrecord">
+<a href="index.php?c=addresume" class="wap_member_mrecord_list">创建简历</a>
+<a href="index.php?c=resume" class="wap_member_mrecord_list">简历管理（<em>{yun:}$resume_num{/yun}</em>份）</a>
+<a href="index.php?c=invite" class="wap_member_mrecord_list">面试邀请（<em>{yun:}$yqnum{/yun}</em>条）</a>
+<a href="index.php?c=look" class="wap_member_mrecord_list">谁看过我的简历（<em>{yun:}$looknum{/yun}</em>条）</a>
+<a href="index.php?c=look_job" class="wap_member_mrecord_list">我看过谁（<em>{yun:}$look_jobnum{/yun}</em>条）</a>
+<a href="index.php?c=password" class="wap_member_mrecord_list wap_member_mrecord_list_no">更改密码</a>
+</div>
+
+</section>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

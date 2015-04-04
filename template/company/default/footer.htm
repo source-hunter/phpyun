@@ -1,0 +1,22 @@
+</div>
+</div>
+  <div class="clear"></div>
+  <div class=" footer">
+    <ul>
+        {yun:}section name=footer loop=$menu_name[3]{/yun}
+    <li><a href="{yun:}$menu_name[3][footer].url{/yun}" {yun:}if $menu_name[3][footer].eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$menu_name[3][footer].name{/yun}</a> |</li>
+    {yun:}/section{/yun}
+    </ul>
+    {yun:}$config.sy_webcopyright{/yun}{yun:}$config.sy_webrecord{/yun}
+    <br>
+    µÿ÷∑:{yun:}$config.sy_webadd{/yun} µÁª∞(Tel):{yun:}$config.sy_webtel{/yun} EMAIL:{yun:}$config.sy_webemail{/yun}
+    <br>
+    Powered by
+    <a target="_blank" href="http://www.phpyun.com">PHPYun.</a>
+    v2.5 Business Edition. Certificate Code 2009-2013
+    <a target="_blank" href="http://www.hr135.com">HR135</a>
+    Corporation
+</div>
+
+</body>
+</html>

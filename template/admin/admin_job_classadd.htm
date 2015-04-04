@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script language="javascript">
+KindEditor.ready(function(K) {
+	K.create('#intro', {
+		items : ['source',
+		'bold', 'italic', 'underline',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist','emoticons', 'image'],afterBlur:function(){this.sync();}
+	});
+});
+$(document).ready(function(){
+	var id="{yun:}$smarty.get.id{/yun}";
+	if(id==""){
+		$("#content").hide();
+	}
+	$("#nid").change(function(){
+		var val=$(this).val();
+		$("#content").hide();
+		$("#keyid").html("<option value=''>--请选择--</option>");
+		if(val>0){
+			$.get("index.php?m=admin_job&c=sclass&pid="+val,function(msg){
+				$("#keyid").html(msg);return false;
+			});
+		}
+	});
+	$("#keyid").change(function(){
+		var val=$(this).val();
+		if(val>0){
+			$("#content").show();
+		}else{
+			$("#content").hide();
+		}
+	});
+})
+
+
+function save(){
+	var position=$("#position").val();
+	if($.trim(position)==''){
+		parent.layer.msg('类别名称不能为空！', 2, 8);return false;
+	}
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>添加类别</h6>
+	  <div class="infoboxp_right">
+	<a href=" javascript:history.back(-1);" class="infoboxp_tj">类别列表</a>
+	</div>
+  </div>
+  <div class="admin_table_border">
+    <iframe id="supportiframe"  name="supportiframe"  onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form name="myform" action="index.php?m=admin_job&c=save" method="post"  onSubmit="return save();" target="supportiframe">
+      <table width="100%" class="table_form" style="background:#fff;">
+        <tr >
+          <th width="120">类别名称：</th>
+          <td><input class="input-text" type="text" id="position" name="position" size="40" value="{yun:}$info.name{/yun}"/></td>
+        </tr>
+
+        <tr class="admin_table_trbg" >
+          <th>一级分类：</th>
+          <td>
+			<select name="nid" id='nid'>
+            	<option value="">--请选择--</option>
+				{yun:}foreach item=one from=$position{/yun}
+				<option value="{yun:}$one.id{/yun}" {yun:}if $one.id==$job.keyid{/yun}selected{yun:}/if{/yun}>{yun:}$one.name{/yun}</option>
+				{yun:}/foreach{/yun}
+			</select>
+          </td>
+        </tr>
+        <tr >
+          <th>二级分类：</th>
+          <td>
+			<select name="keyid" id='keyid'>
+            <option value="">--请选择--</option>
+				{yun:}foreach item=v from=$class2{/yun}
+				<option value="{yun:}$v.id{/yun}" {yun:}if $v.id==$info.keyid{/yun}selected{yun:}/if{/yun}>{yun:}$v.name{/yun}</option>
+				{yun:}/foreach{/yun}
+            </select>
+          </td>
+        </tr>
+        <tr class="admin_table_trbg" id="content">
+          <th>自定义描述： </th>
+          <td><textarea  id="intro" name="content" style="width:500px; height:150px;">{yun:}$info.content{/yun}</textarea></td>
+        </tr>
+        <tr>
+          <th>排序：</th>
+          <td><input class="input-text" type="text" name="sort" value="{yun:}$info.sort{/yun}"/>
+            越小越在前</td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <td align="center" colspan="2"> {yun:}if $info.id{/yun}
+            <input type="hidden" name="id"  value="{yun:}$info.id{/yun}"/>
+            <input class="admin_submit2" type="submit" name="submit" value="&nbsp;更 新&nbsp;"  />
+            {yun:}else{/yun}
+            <input class="admin_submit2" type="submit" name="submit" value="&nbsp;添 加&nbsp;"  />
+            {yun:}/if{/yun}
+            <input class="admin_submit2" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+        </tr>
+      </table>
+	  <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+  </div>
+</div>
+</body>
+</html>

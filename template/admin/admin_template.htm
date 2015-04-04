@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<span class="admin_title_span">模板列表</span>
+  <a href="javascript:location.reload()" class="admin_infoboxp_tj">[刷新当前页]</a>
+
+</div>
+
+<div class="table-list">
+<div class="admin_table_border">  
+<table width="100%" style="background:#fff">
+	<thead>
+	<tr class="admin_table_top">
+			<th align="left">文件名</th>
+            <th align="left">文件路径</th>
+             <th align="left">文件大小</th>
+		
+			<th align="left">最后更新时间</th>
+			<th class="admin_table_th_bg">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    {yun:}foreach item=v key=key from=$floder{/yun}
+ 	
+    <tr align="left"{yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun}>
+    	<td align="left" class="td1"><span><a href="index.php?m=admin_template&dir={yun:}$v.url{/yun}"><img src="images/folder.gif">{yun:}$v.name{/yun}</a></span></td> 
+        <td  align="left" class="ud">{yun:}$v.url{/yun}</td>
+    	<td class="ud" align="left"></td>
+   	 	<td class="od" align="left"></td>
+    	<td> <a href="index.php?m=admin_template&dir={yun:}$v.url{/yun}"class="admin_cz_bj">查看目录</a></td>
+  </tr>
+ 
+  {yun:}/foreach{/yun}
+   {yun:}foreach item=v from=$file{/yun}
+ 	
+    <tr align="left">
+    	<td align="left" class="td1"><span><a href="index.php?m=admin_template&c=modify&path={yun:}$v.url{/yun}&name={yun:}$v.name{/yun}"><img src="images/file.gif">{yun:}$v.name{/yun}</a></span></td> 
+        <td  align="left" class="ud">{yun:}$v.url{/yun}</td>
+    	<td class="ud" align="left">{yun:}$v.size{/yun}</td>
+   	 	<td class="od" align="left">{yun:}$v.time{/yun}</td>
+    	<td> <a href="index.php?m=admin_template&c=modify&path={yun:}$v.url{/yun}&name={yun:}$v.name{/yun}"class="admin_cz_bj">修改文件</a></td>
+  </tr>
+ 
+  {yun:}/foreach{/yun}
+  </tbody>
+  </table> 
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="./images/reset.css" rel="stylesheet" type="text/css" />
+<link href="./images/system.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<link href="./images/table_form.css" rel="stylesheet" type="text/css" />
+<title></title>
+</head>
+<body class="body_ifm">
+    <div class="infoboxp">
+    <div class="infoboxp_top_bg"></div>
+    <div class="infoboxp_top">
+    <span class="infoboxp_top_span" style="float:left">我的帐户详情</span>
+    </div>
+<div class="common-form">
+<div class="admin_table_border">
+<table width="100%" class="table_form contentWrap" style="background:#fff;">
+    <tr>
+        <td style="width:150px; text-align:right">用户名：</td>
+        <td>{yun:}$adminuser[2]{/yun} 
+        <a href="javascript:void(0)" onclick="layer_logout('index.php?m=index&c=logout');" class="admin_logout">退出登录</a></td>
+    </tr>
+    <tr>
+        <td style="width:150px; text-align:right">真实姓名：</td>
+        <td>{yun:}$adminuser[4]{/yun}</td>
+    </tr>
+   	<tr class="admin_table_trbg" >
+        <td style="width:150px; text-align:right">权限：</td>
+        <td>
+            {yun:}foreach item=v from=$user_group{/yun}
+                {yun:}if $v.id eq $adminuser[1]{/yun}{yun:}$v.group_name{/yun}{yun:}/if{/yun}
+            {yun:}/foreach{/yun}
+        </td>
+    </tr>
+    <tr class="admin_table_trbg" >
+        <td style="width:150px; text-align:right">上一次登录时间：</td>
+        <td>{yun:}$adminuser[5]|date_format:'%Y-%m-%d %H:%M:%S'{/yun}</td>
+    </tr>
+ </table>
+</div>
+</div></div>
+</body>
+</html>

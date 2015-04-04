@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script language="javascript">
+<!--
+function checkform(myform){
+  if (myform.name.value=="") {
+		parent.layer.msg('请填写导航名称！', 2,2); 
+      myform.name.focus();
+      return (false);
+  }
+   if (myform.url.value=="") { 
+	  parent.layer.msg('请填写链接地址！', 2,2); 
+      myform.url.focus();
+      return (false);
+  }
+  if (myform.sort.value=="") { 
+	   parent.layer.msg('请填写导航排序！', 2,2); 
+      myform.sort.focus();
+      return (false);
+  }
+}
+//-->
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>添加网站地图</h6>
+	  <div class="infoboxp_right"> 
+	<a href=" javascript:history.back(-1);" class="infoboxp_tj">导航列表</a> 
+	</div>
+  </div>
+  <div class="admin_table_border">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form name="myform" target="supportiframe" action="index.php?m=navmap&c=save" method="post" onSubmit="return checkform(this);">
+      <table width="100%" class="table_form" style="background:#fff;">
+        <tr >
+          <th width="120">类别：</th>
+          <td><select name="nid">
+          	<option value="0">--请选择--</option>
+			{yun:}foreach item=v from=$type{/yun}
+           <option value="{yun:}$v.id{/yun}" {yun:}if $v.id==$types.nid{/yun} selected=selected{yun:}/if{/yun}>{yun:}$v.name{/yun}</option>
+			{yun:}/foreach{/yun}
+            </select>
+          </td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>名称：</th>
+          <td><input class="input-text" type="text" name="name" size="40" value="{yun:}$types.name{/yun}"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>链接地址：</th>
+          <td><input class="input-text" type="text" name="url" size="50" value="{yun:}$types.url{/yun}"/>
+            例：http://www.hr135.com/index.html </td>
+        </tr>
+        <tr >
+          <th>伪静态地址：</th>
+          <td><input class="input-text" type="text" name="furl" size="50" value="{yun:}$types.furl{/yun}"/>
+            例：http://www.hr135.com/m_com.html  </td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>链接类型：</th>
+          <td><select name="type">
+              <option value="1">站内链接</option>
+              <option value="2" {yun:}if $types.type=='2'{/yun}selected{yun:}/if{/yun}>原链接</option>
+            </select>
+            站内链接如：http://www.phpyun.com  原链接如：index.php?m=com </td>
+        </tr>
+        <tr >
+          <th>排　　序：</th>
+          <td><input class="input-text" type="text" name="sort" size="5" value="{yun:}$types.sort{/yun}"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>弹出窗口：</th>
+          <td><input type="radio" name="eject" value="1" {yun:}if $types.eject=='1'{/yun}checked=checked {yun:}/if{/yun}>
+            新窗口
+            <input type="radio" name="eject" value="0" {yun:}if $types.eject!='1'{/yun}checked=checked{yun:}/if{/yun}>
+            原窗口 </td>
+        </tr>
+        <tr >
+          <th>显　　示：</th>
+          <td><input type="radio" name="display" value="1" {yun:}if $types.display=='1'{/yun}checked=checked {yun:}/if{/yun}>
+            是
+            <input type="radio" name="display" value="0" {yun:}if $types.display!='1'{/yun}checked=checked{yun:}/if{/yun}>
+            否 </td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <td align="center" colspan="2"> {yun:}if $types.id{/yun}
+            <input type="hidden" name="id" size="40" value="{yun:}$types.id{/yun}"/>
+            <input class="admin_submit4" type="submit" name="submit" value="&nbsp;更 新&nbsp;"  />
+            {yun:}else{/yun}
+            <input class="admin_submit4" type="submit" name="submit" value="&nbsp;添 加&nbsp;"  />
+            {yun:}/if{/yun}
+            <input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+        </tr>
+      </table>
+	  <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+  </div>
+</div>
+</body>
+</html>

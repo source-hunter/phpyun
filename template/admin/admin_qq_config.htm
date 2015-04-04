@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Prompt">
+<div class="admin_Prompt_span">
+    温馨提示：
+    请先申请对应的接口再开启&nbsp;(<a href="http://open.qq.com" target="_blank">QQ开放平台</a> &nbsp;&nbsp; <a href="http://open.weibo.com" target="_blank">新浪开放平台</a> &nbsp;&nbsp; <a href="http://open.weixin.qq.com" target="_blank">微信开放平台</a>)
+</div><div class="admin_Prompt_close"></div></div>
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position:absolute;"></div>
+<div class="infoboxp_top"><h6>快捷登录设置</h6></div>
+<div class="clear"></div>
+<div class="main_tag">
+<div class="tag_box">
+    <div>
+        <table width="100%" class="table_form">
+            <tr>
+                <th width="140">QQ登录：</th>
+                <td>
+                  <input type="radio" name="sy_qqlogin" value="1" id="sy_qqlogin_0" {yun:}if $config.sy_qqlogin=="1"{/yun}checked{yun:}/if{/yun}>
+                  <label for="sy_qqlogin_0">开启</label>
+                  <input type="radio" name="sy_qqlogin" value="0" id="sy_qqlogin_1" {yun:}if $config.sy_qqlogin!="1"{/yun}checked{yun:}/if{/yun}>
+                  <label for="sy_qqlogin_1">关闭</label>
+                 </td>
+            </tr>
+            <tr  class="admin_table_trbg">
+                <th width="140">appid：</th>
+                <td><input class="input-text" type="text" name="sy_qqappid" id="sy_qqappid" value="{yun:}$config.sy_qqappid{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：1002478xx</font></td>
+            </tr>
+            <tr>
+                <th width="140">appkey：</th>
+                <td><input class="input-text" type="text" name="sy_qqappkey" id="sy_qqappkey" value="{yun:}$config.sy_qqappkey{/yun}" size="40" maxlength="255"/><font color="gray" style="display:none">如：4dd1c30d472676914f2fbfbnjt33</font></td>
+            </tr>
+            <tr class="admin_table_trbg">
+                <th width="140">新浪微博登录：</th>
+                <td>
+                  <input type="radio" name="sy_sinalogin" value="1" id="sy_sinalogin_0" {yun:}if $config.sy_sinalogin=="1"{/yun}checked{yun:}/if{/yun}>
+                  <label for="sy_sinalogin_0">开启</label>
+                  <input type="radio" name="sy_sinalogin" value="0" id="sy_sinalogin_1" {yun:}if $config.sy_sinalogin!="1"{/yun}checked{yun:}/if{/yun}>
+                  <label for="sy_sinalogin_1">关闭</label>
+                 </td>
+            </tr>
+            <tr >
+                <th width="140">App Key：</th>
+                <td><input class="input-text" type="text" name="sy_sinaappid" id="sy_sinaappid" value="{yun:}$config.sy_sinaappid{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：1002478xx</font></td>
+            </tr>
+            <tr class="admin_table_trbg">
+                <th width="140">App Secret：</th>
+                <td><input class="input-text" type="text" name="sy_sinaappkey" id="sy_sinaappkey" value="{yun:}$config.sy_sinaappkey{/yun}" size="40" maxlength="255"/><font color="gray" style="display:none">如：4dd1c30d472676914f2fbfbnjt33</font></td>
+            </tr>
+			<tr class="admin_table_trbg">
+                <th width="140">微信登录：</th>
+                <td>
+                  <input type="radio" name="sy_wxlogin" value="1" id="sy_wxlogin_0" {yun:}if $config.sy_wxlogin=="1"{/yun}checked{yun:}/if{/yun}>
+                  <label for="sy_wxlogin_0">开启</label>
+                  <input type="radio" name="sy_wxlogin" value="0" id="sy_wxlogin_1" {yun:}if $config.sy_wxlogin!="1"{/yun}checked{yun:}/if{/yun}>
+                  <label for="sy_wxlogin_1">关闭</label>
+                 </td>
+            </tr>
+            <tr >
+                <th width="140">App Key：</th>
+                <td><input class="input-text" type="text" name="sy_wxappid" id="sy_wxappid" value="{yun:}$config.sy_wxappid{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：1002478xx</font></td>
+            </tr>
+            <tr class="admin_table_trbg">
+                <th width="140">App Secret：</th>
+                <td><input class="input-text" type="text" name="sy_wxappkey" id="sy_wxappkey" value="{yun:}$config.sy_wxappkey{/yun}" size="40" maxlength="255"/><font color="gray" style="display:none">如：4dd1c30d472676914f2fbfbnjt33</font></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input class="admin_submit4" id="qqconfig" type="button" name="msgconfig" value="提交" />&nbsp;&nbsp;<input class="admin_submit4" type="reset" value="重置" /></td>
+            </tr>
+        </table>
+		<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+    </div>
+</div>
+</div>
+</div>
+
+<script>
+$(function(){
+
+	$("#qqconfig").click(function(){
+		$.post("index.php?m=qqconfig&c=save",{
+			config : $("#qqconfig").val(),
+			sy_qqlogin : $("input[name=sy_qqlogin]:checked").val(),
+			sy_qqappkey : $("#sy_qqappkey").val(),
+			sy_qqappid : $("#sy_qqappid").val(),
+			sy_sinalogin : $("input[name=sy_sinalogin]:checked").val(),
+			sy_sinaappkey : $("#sy_sinaappkey").val(),
+			sy_sinaappid : $("#sy_sinaappid").val(),
+			sy_wxlogin : $("input[name=sy_wxlogin]:checked").val(),
+			sy_wxappkey : $("#sy_wxappkey").val(),
+			sy_wxappid : $("#sy_wxappid").val(),
+			pytoken : $("#pytoken").val()
+		},function(data,textStatus){
+			config_msg(data);
+		});
+	});
+})
+</script>
+</body>
+</html>

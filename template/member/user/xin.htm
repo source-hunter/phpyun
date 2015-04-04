@@ -1,0 +1,58 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> {yun:}include file="$userstyle/left.htm"{/yun}
+  <div class="mian_right fltR mt12 " style=" position:relative">
+    <div class="tabmenubox01 mt9">
+      <ul>
+     	 <li><a href="index.php?c=sysnews">系统消息</a></li>
+        <li><a href="index.php?c=commsg">求职咨询</a> </li>
+        <li><a href="index.php?c=message">留言反馈</a></li>
+        <li><a href="index.php?c=seemessage">留言列表</a></li>
+        <li class="cur"><a href="index.php?c=xin">站内信</a> </li>
+      </ul>
+    </div> 
+    <div id="">
+      <div id="gms_showclew"></div>
+      <div class="resumelistbox01 mt10">
+        <div id=""class="resume_box_list">
+          <table width="690" border="0" cellspacing="1" cellpadding="0" class="resume">
+            <tr>
+              <th width="8%">发送人</th>
+              <th width="10%">收件人</th>
+              <th width="15%">内容</th>
+              <th width="10%">时间</th>
+              <th width="6%">状态</th>
+              <th width="6%">删除</th>
+            </tr>
+            {yun:}foreach  from=$rows item=v{/yun}
+            <tr>
+              <td width="8%">{yun:}$v.nickname{/yun}</td>
+              <td width="10%">{yun:}$v.name{/yun}</td>
+              <td width="15%">{yun:}$v.content{/yun}</td>
+              <td width="20%">{yun:}$v.ctime|date_format:'%Y-%m-%d %H:%M:%S'{/yun}</td>
+              <td width="6%"> {yun:}if $v.uid==$uid{/yun}--{yun:}else{/yun}<span onclick="reply_xin('{yun:}$v.uid{/yun}','{yun:}$v.nickname{/yun}','{yun:}$v.content{/yun}');"><img src="{yun:}$userstyle{/yun}/images/editico.gif" title="回复" alt="回复" style="cursor:pointer"></span>{yun:}/if{/yun} </td>
+              <td width="6%">{yun:}if $v.uid==$uid{/yun}<a href="javascript:void(0)" onclick="layer_del('确定要删除？', 'index.php?c=xin&act=del&id={yun:}$v.id{/yun}');"><img src="{yun:}$userstyle{/yun}/images/com_sc.jpg" alt="删除" title="删除" /></a>{yun:}else{/yun}<a href="javascript:void(0)" onclick="layer_del('确定要删除？','index.php?c=xin&act=del&did={yun:}$v.id{/yun}');"><img src="{yun:}$userstyle{/yun}/images/com_sc.jpg" alt="删除" title="删除" /></a>{yun:}/if{/yun}</td>
+            </tr>
+            {yun:}foreachelse{/yun}
+            <tr>
+              <td colspan="6">暂无站内信！</td>
+            </tr>
+            {yun:}/foreach{/yun}
+          </table>
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="reply" style=" display:none;" class="reply_hf_ly">
+  <div style="text-align:center"> 
+  <div class="Reply_cont_name" id="wnc"><font color="#0066FF">美丽的小菜</font> 给您留言：<div>dd</div></div>
+  <iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+  <form action="index.php?c=xin&act=reply" target="supportiframe" method="post" onsubmit="return check_xin();">
+	<input type="hidden" id="fid" name="fid" value="" />
+	<textarea cols="60" rows="5" name="content" id="content" class="textarea_Reply_cont"></textarea>
+	<div style="text-align:center"><input type="submit" name="submit" value="提交" class="Reply_cont_submit"/></div>
+  </form> 
+  </div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

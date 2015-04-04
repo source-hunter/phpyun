@@ -1,0 +1,291 @@
+@charset "gb2312";
+/* CSS Document */
+* {margin:0 auto;padding:0}
+a {text-decoration:none;color:#808080;outline:none;blr:expression(this.onFocus=this.blur());}
+a:hover {text-decoration:underline;color:#06F}
+ul {list-style:none;}
+img {border:none;vertical-align:middle;}
+em {font-style:normal}
+body {font-size:12px;background:url(../images/bg.png) no-repeat scroll center top #F8F8F8;color:#666;position:relative}
+.fl {float: left}
+.fr {float: right}
+.Orange {color: #FF8402}
+.clear {clear: both}
+.icon {background: url(../images/icon1.png) no-repeat}
+.ask_icon3 {background: url(../images/ask_icon3.png) no-repeat}
+.answers_top {width: 100%;height: 31px;line-height: 31px;background: url(../images/iconx.gif) repeat-x 0 0;color:#333;}
+.answers_top_cont {width: 960px; margin:0 auto}
+.answers_top_left {float: left}
+.answers_top_right {float: right;line-height: 29px;}
+.fastlogin span{ margin-left:10px;}
+.top_mune {background: url(../images/yun_icobg1.png) no-repeat -340px -73px;display: inline-block;width: 64px;}
+.top_cot {width: 980px;margin: 0 auto;line-height: 29px}
+.top_logoin {width: 60px;height: 22px;line-height:22px;text-align:center;background-position: -274px -3px;color: #fff;}
+.top_logoin:hover {color: #fff;}
+.top_logoin2 {width: 60px;height: 22px;line-height:22px;text-align:center;background-position: -340px -3px;color: #fff;}
+.top_logoin2:hover {color: #fff;}
+.answers_top_right {position: relative}
+.answers_top_right a {display:inline-block;}
+.top_mune {width: 64px;display: inline-block;background-position: -340px -73px;}
+.answers_header {width: 960px;margin:0 auto}
+.answers_logo {float: left;height: 60px;padding-top: 10px;;}
+.answers_touch {float:right;height:34px;margin-bottom:30px;line-height:20px;text-align:right;padding-left:50px;padding-top:10px;}
+.answers_touch strong {display: block;font-size: 24px;color: #ff7300;font-family: "微软雅黑";font-weight: normal}
+.answers_mune {float: left;width: 100%;background: url(../images/ask_nav.gif) repeat-x}
+.answers_mune ul {float: left;}
+.answers_mune ul li {float: left;text-align: center;}
+.answers_mune ul li a {color:#FFFFFF;display:inline-block;font-family:"微软雅黑";font-size:14px;height:30px;line-height:30px;width:73px;text-align:center;margin-left:10px;margin-top:5px;}
+.answers_mune ul .answers_current a, .answers_mune ul li a:hover {text-decoration:none;background:url(../images/ask_nav_a.gif) no-repeat;color:#fff;}
+.answers_mune_right {width: 537px;float: right;position: relative;height: 40px;}
+.answers_seach {width: 280px;height: 32px;background: url(../images/ask_seach.png) no-repeat;float: left;margin-top: 4px;}
+.answers_text {width:240px;float:left;margin-left:5px;margin-top:2px;height:29px;line-height:29px;font-size:14px;background:#E5F3FA;border:none;}
+.answers_submit {width: 30px;height: 29px;cursor: pointer;background: none;border: none;}
+.answers_mune_right_tw {position: absolute;right: 0px;bottom: 0px;}
+.answers_content {width: 960px;margin:0 auto}
+.answers_cont {width: 960px;float: left;background: #fff;margin-top: 10px;padding-bottom: 10px;}
+.answers_tags {width: 100%;float: left;padding-bottom: 10px;}
+.answers_tagsg .tag-list {width: 100%}
+.tag-item, .tag-item span {background: url(../images/tagbg.png) repeat scroll 0 0 transparent;}
+.tag-list .tag-item {background-position: right -49px;color: #225599;float: left;line-height: 24px;margin-left: 5px;margin-right: 5px;_margin-left: 5px;_margin-right: 7px;padding-right: 13px;height: 24px;margin-top: 10px;}
+.tag-item {white-space: nowrap;display: block;}
+.tag-item span {background-position: 0 -49px;cursor: pointer;float: left;height: 24px;width: 15px;}
+.tag-item em {float: left}
+.tag-list .tag-active {background-position: right -80px;color: #fff;}
+.tag-list .tag-active span {background-position: 0 -80px;}
+.tag-item:hover {background-position: right -80px;color: #fff;text-decoration: none}
+.tag-item:hover span {background-position: 0 -80px;}
+.answers_left {width:700px;float:left;margin-top:10px;}
+.answers_news_title {width: 100%;height: 45px;background: url(../images/ask_bt.png) no-repeat}
+.answers_news_title span {font-size: 18px;font-family: 微软雅黑;float:left;margin-left:20px;margin-top:5px;}
+.answers_news_title_r {float: right;margin-top: 8px;}
+.answers_news_title_r li{width:65px;height:35px;float:left;text-align:center;line-height:33px;font-family:微软雅黑;font-size:15px;margin-right:10px;}
+.answers_news_title_r .answers_news_title_atc {background: url(../images/ask_bt_span.png) no-repeat;color: #308EDB}
+.answers_left_list {width: 669px;float: left;border-bottom: 1px solid #f0eeea;margin-left: 10px;padding-top: 15px;padding-bottom: 15px;}
+.answers_left_list_left {float: left;width: 55px;line-height: 23px;font-family: 微软雅黑;font-size: 14px;padding-left: 5px;}
+.answers_left_list_left img {border: 1px solid #ddd;padding: 1px;}
+.answers_left_gz {position: absolute;right: 20px;top: 30px;}
+.answers_app {width: 50px;height: 23px;color: #fff;padding-left: 5px;color: #fff;background: #209ee7}
+.answers_app a {width: 50px;height: 23px;display: inline-block;color: #fff;background: #209ee7 url(../images/ask_pl.png) no-repeat 35px center;
+cursor: default}
+.answers_app a:hover {text-decoration: none;color: #fff;cursor: default}
+.answers_opp {width: 50px;height: 23px;background: #f5f3f0;padding-left: 5px;}
+.answers_opp .opp_icon {width: 12px;height: 11px;display: inline-block;background: url(../images/ask_z.png) no-repeat;cursor: pointer;float: right;margin-top: 5px;margin-right: 3px;}
+.answers_left_list_cont {width: 555px;float: left;line-height: 1.7}
+.answers_left_list_cont h2 {font-size: 14px;display: block;}
+.answers_left_list_cont h2 a {color: #308edb;display: inline-block}
+.answers_left_list_cont h2 span {display: inline-block;background: url(../images/ask_sj.png) no-repeat left;padding-left: 15px;margin-left: 10px;font-family: 微软雅黑;color: #999}
+.answers_feed-meta {width: 100%;margin-top: 5px;}
+.answers_feed-meta a {line-height: 23px;display: inline-block;color: #9a9691;padding-left: 15px;background: url(../images/ask_icon1.gif) no-repeat;margin-right: 10px;}
+.answers_feed-meta a:hover {color: #698ebf;cursor:pointer }
+.answers_feed-meta .answers_feed-meta_gz {background-position: 0 6px;}
+.answers_feed-meta .answers_feed-meta_pl {background-position: 0 -18px;padding-left: 15px;text-decoration: none;cursor:pointer }
+.answers_feed-meta .answers_feed-meta_fx {background-position: 0 7px;}
+.answers_feed-meta .answers_feed-meta_ll {background-position: 0 -93px;padding-left: 15px;text-decoration: none;cursor:default;}
+.answers_feed-meta .answers_feed-meta_xl {background-position: 1px -45px;padding-left: 20px;}
+.answers_feed-meta .answers_feed-meta_tx {background-position: 1px -70px;padding-left: 20px;}
+.answers_feed-meta .answers_feed-meta_zan {background-position: 1px -114px;padding-left: 15px;text-decoration: none;cursor:default;}
+.answers_feed-meta .answers_feed-meta_jb {background-position: 1px -143px;text-decoration: none;}
+.answers_feed-meta .answers_feed-meta_hd {background-position: 1px -173px;text-decoration: none;cursor:default;}
+.answers_right{width:228px;padding-left:20px;float:left;min-height:845px;_height:845px;background:url(../images/ask_r_bg.png) no-repeat left top;margin-top:10px;}
+.answers_left_list_right {float: right;width: 60px;}
+.answers_left_list_right img {border: 1px solid #ddd;padding: 1px;margin-bottom: 3px;}
+.answers_right_Status {width: 100%;margin-bottom: 20px;}
+.answers_right_h1 {width: 100%;height: 35px;border-bottom: 1px solid #4092ce;line-height: 35px;}
+.answers_right_h1 span {font-size: 18px;font-family: 微软雅黑;float: left;}
+.answers_right_h1 a {float: right}
+.answers_right_sidebar-nav {width: 100%;margin-top: 10px;}
+.answers_right_sidebar-nav li {margin-bottom: 3px;}
+.answers_right_sidebar-nav li a {display:block;height:28px;line-height:28px;padding-left:20px;background:url(../images/ask_icon2.gif) no-repeat;}
+.answers_right_sidebar-nav li .answers_right_a {background-position: 0px -189px}
+.answers_right_sidebar-nav li .answers_right_a:hover {background-position: 0px -220px}
+.answers_right_sidebar-nav li .answers_right_b {background-position: 0px -58px}
+.answers_right_sidebar-nav li .answers_right_b:hover {background-position: 0px -95px}
+.answers_right_sidebar-nav li .answers_right_c {background-position: 0px -125px}
+.answers_right_sidebar-nav li .answers_right_c:hover {background-position: 0px -158px}
+.answers_right_sidebar-nav li .answers_right_d {background-position: 0px 6px}
+.answers_right_sidebar-nav li .answers_right_d:hover {background-position: 0px -30px}
+.answers_right_like {width: 100%;}
+.answers_right_like_list {width: 100%;float: left;padding: 7px 0}
+.answers_right_like_list img {border: 1px solid #ddd;padding: 1px;}
+.answers_right_like_list dt {width: 25px;float: left;margin-top: 8px;}
+.answers_right_like_list dd {width: 190px;float: right;padding-left: 5px;}
+.answers_right_like_list dd li {width: 100%;height: 25px;line-height: 25px;overflow: hidden;}
+.answers_right_like_list dd li a {color: #06F;float: left}
+.answers_right_like_list dd li .answer_gz {display: block;float: right;height: 20px;background: url(../images/ask_icon.png) no-repeat 0 -97px;padding-left: 15px;color: #808080}
+.answers_right_like_list dd li .answer_gz:hover {background: url(../images/ask_icon.png) no-repeat 0 -120px;color: #698ebf}
+.pages {width: 100%;text-align: center;margin-top: 10px;font-size: 12px;line-height: 25px;}
+.pages a {display: inline-block;padding: 0px 10px 0px 10px;margin-left: 10px;color: #666;border-radius: 3px 3px 3px 3px;border: 1px solid #dedede;}
+.pages em {margin-left: 10px;}
+.pages .selected {font-weight: bold;color: #06F;background: url(../images/yun_page.png) repeat-x bottom}
+.answers_tags_bottom {padding-bottom: 20px;margin-bottom: 10px;border-bottom: 1px solid #EEEEEE}
+.topic_list {width: 318px;float: left;margin: 18px 15px 18px 10px;}
+.topic_list dt {width: 50px;float: left}
+.topic_list dt img {display: block;border-radius: 3px 3px 3px 3px;border: 1px solid #ddd;padding: 1px}
+.topic_list dd {width: 230px;padding-left: 10px;float: left}
+.topic_list_top {width: 100%;float: left}
+.topic_list_top a {float: left;color: #225599;font-size: 14px;font-weight: bold}
+.topic_list_top .answer_gz{background:none repeat scroll 0 0 #ADDA4D;border:1px solid #6D8F29;border-radius:3px 3px 3px 3px;box-shadow:0 1px 0 rgba(255,255,255,0.5) inset,0 1px 0 rgba(0,0,0,0.2);color:#3E5E00 !important;display:block;font-size:13px;height:20px;line-height:20px;min-width: 56px;padding:0;text-align:center;text-decoration:none !important;text-shadow:0 1px 0 rgba(255,255,255,0.3);width:60px;float:right;font-weight: normal}
+.topic_list_top .answer_ygz {font-size: 13px;float: right;background: none repeat scroll 0 0 #EEEEEE;border: 1px solid #DDDDDD;color: #888888;width: 60px;height: 20px;line-height: 20px;padding: 0;white-space: nowrap;border-radius: 3px 3px 3px 3px;display: block;min-width: 56px;text-align: center;text-align: center;text-decoration: none !important;}
+/*.topic_list_top  .answer_gz:hover{ background:url(../images/ask_icon.png) no-repeat 0 -123px; color:#698ebf}*/
+.topic_list_p {width: 100%;float: left;height: 42px;line-height: 22px;color: #222;overflow: hidden}
+.topic_cont_top {width: 669px;border-bottom: 1px solid #ccc;float: left;margin-left: 10px;_margin-left: 5px;margin-top: 10px;}
+.topic_cont_top_l {width: 50px;float: left;}
+.topic_cont_top_r {width: 600px;padding-left: 10px;float: left}
+.topic_cont_top_r strong {width: 100%;float: left;font-size: 18px;display: block;line-height: 28px;color: #222222;font-family: 'Helvetica Neue', Helvetica, Arial, Sans-serif;margin-bottom: 10px;}
+.topic_cont_top-nav {width:390px;float:left;color:#555555;font-size:14px;font-weight:700;line-height: 24px;margin-bottom: 12px;overflow: hidden;}
+.topic_cont_top-nav li {float: left;border-right: 1px solid #EEEEEE;margin-right: 15px;padding-right: 15px;}
+.topic_cont_top-nav-normal {font-weight: normal;color: #698EBF}
+.topic_title {width: 100%;text-indent: 15px;margin-top: 10px;float: left}
+.answers_subject {border-bottom: 1px dotted #CCCCCC;float: left;margin-left: 10px;margin-top: 10px;width: 669px;font-size: 20px;font-weight: bold;line-height: 30px;padding-bottom: 10px;font-family: 微软雅黑;color: #17344A}
+.answers_subject_cont {margin-left: 10px;margin-top: 10px;width: 669px;line-height: 23px;float: left; }
+.w590 {width:590px;margin-top:0px;margin-left:0px;}
+.answers_subject_pp{width:590px; white-space:normal; overflow:hidden}
+.answers_subject_cont_cz {margin-left: 10px;width: 669px;float: left}
+.answers_subject_cont_question {margin-left: 10px;width: 669px;height: 35px;line-height: 35px;float: left;font-size: 18px;font-family: 微软雅黑;border-top: 1px solid #ccc;border-bottom: 1px solid #ccc;margin-top: 10px;}
+.answers_subject_cont_question strong {float: left}
+.answers_subject_cont_question a {float: right;color: #06F;font-size: 14px;text-decoration: underline}
+.answers_left_list_name {width: 100%;font-size: 14px;font-family: 微软雅黑}
+.answers_left_list_name b {font-weight:normal}
+.answers_left_list_name a {color: #2586CD}
+.answers_left_list_answer {width: 100%;line-height: 23px;}
+.answers_left_list_name span {display:inline-block;background:url(../images/ask_sj.png) no-repeat left;padding-left:15px;margin-left:10px;font-family:微软雅黑;color:#999;float:right;font-size:12px;font-family:宋体}
+.answers_discuss {width: 100%;}
+.answers_discuss_cont {width: 515px;padding-left: 8px;padding-right: 8px;border-radius: 5px 5px 5px 5px;float: left;padding-bottom: 20px;}
+.answers_discuss_cont dl {width: 100%;border-bottom: 1px solid #EEEEEE;margin-top: 10px;float: left}
+.answers_discuss_cont dl dt {width: 25px;float: left}
+.answers_discuss_cont dl dt img {border: 1px solid #DDDDDD;padding:1px;}
+.answers_discuss_cont dl dd {width: 460px;float: left;padding-left: 20px;line-height: 22px;}
+.answers_discuss_cont dl dd a {display: block}
+.answers_discuss_reply {width:100%;}
+.answers_discuss_reply a {float:left;display:line;margin-right:20px;color:#2586CD}
+.answers_discuss_reply span {background: url("../images/ask_sj.png") no-repeat scroll left center transparent;color: #999999;display: inline-block;float: right;font-family: 宋体;font-size: 12px;margin-left: 10px;padding-left: 15px;}
+.answers_discuss_reply_cont {width:100%;float:left;}
+.answers_discuss_reply .review_jb {color:red;text-decoration:underline}
+.my_discuss {width: 100%;float: left;margin-top: 10px;}
+.goog-textarea {width: 513px;background-color: #FFFFFF;border: 1px solid #DDDDDD;border-radius: 3px 3px 3px 3px;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) inset;cursor: text;font-size: 13px;line-height: 22px;}
+.my_discuss a {display: inline-block;float: right;margin-top: 10px;margin-right: 10px;line-height: 22px;}
+.my_discuss .my_discuss_aubmit {width: 81px;height: 32px;line-height: 32px;background: url(../images/ask_icon3.png) no-repeat -106px -45px;border: none;text-align: center;color: #fff;cursor: pointer;margin-top: 5px;}
+.top_right {position: relative;}
+.review_jb {background-position: 0 -45px;}
+.icon2 {background-image: url("../images/yun_icobg1.png");background-repeat: no-repeat;}
+.answers_left_list_cont_w {width: 585px;}
+.answers_left_list_title {width: 100%;float: left;position: relative}
+.answers_left_list_title a {float: left}
+.answers_left_list_title em {float: right}
+.yun_ask_tck {position: absolute;z-index: 999;}
+.yun_ask_box_top {width:274px;height:5px;background: url(../images/lietou_tck.png) no-repeat 0 0;float: left;overflow: hidden}
+.yun_ask_box_bot {width: 274px;height: 5px;background: url(../images/lietou_tck.png) no-repeat 0 -6px;float: left;overflow: hidden}
+.yun_ask_triangle {width: 14px;height: 8px;background: #000;position: absolute;left: 50px;top: -6px;background: url(../images/lietou_tck.png) no-repeat 0 -22px;}
+.yun_ask_box {width: 274px;float: left;position: relative}
+.yun_ask_box_cont {background: #fff;border: 1px solid #dedede;border-top: none;border-bottom: none;width: 252px;padding: 10px;float: left;}
+.yun_ask_box_img {width: 63px;float: left}
+.yun_ask_box_r {width: 160px;float: left;padding-left: 10px;font-size: 12px;font-family: 宋体;color: #666}
+.yun_ask_box_r_name{font-weight:bold;color:#308ddb;line-height:20px;background:url(../images/lietou_tck.png) no-repeat -96px -11px;padding-left:20px;}
+.yun_ask_box_bottom {width: 252px;line-height: 20px;padding-left: 10px;padding-right: 10px;background: #f7f7f7;border: 1px solid #dedede;border-bottom: none;float: left;float: left;font-size: 12px;font-family: 宋体;}
+/* -moz-linear-gradient(center top , #ADDA4D, #86B846) repeat-x scroll 0 0 #9DCC4A*/
+.zg-btn-green {color: #3E5E00 !important;min-width: 56px;text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);width: auto;width: 62px;height: 22px;line-height: 22px;padding: 0;font-size: 13px;text-align: center;text-decoration: none !important;border-radius: 3px 3px 3px 3px;display: block;background: url(../images/ask_gz.png) no-repeat 0 0}
+.zg-btn-unfollow {color:#888888;width:62px;height:22px;line-height:22px;padding:0;white-space:nowrap;display: block;min-width: 56px;text-align: center;text-decoration: none !important;background: url(../images/ask_gz.png) no-repeat 0 -23px;}
+.answers_cont_c {width: 480px;float: left}
+.add_question_text {width: 615px;margin: 0 auto}
+.add_question_text a:hover {text-decoration:none;}
+.add_question_text li .question-text {border: 1px solid #DCDCDC;float: left;height: 28px;line-height: 28px;margin-right: 10px;outline: medium none;padding-left: 5px;width: 400px;}
+.add_question_text li {width: 100%;float: left;margin-top: 15px;line-height: 30px;}
+.add_question_text_span {width: 100px;font-size: 14px;text-align: right;display: block;float: left}
+.add_question_submit {width: 81px;height: 32px;background: url(../images/ask_icon3.png) no-repeat -106px -45px;border: none;text-align: center;color: #fff;cursor: pointer}
+.answers_Comment {float: left;margin-left: 10px;_margin-legft: 5px;padding-bottom: 15px;width: 669px;}
+.ask_report {border-radius: 8px 8px 8px 8px;margin: auto;text-align: left;_position: absolute;width:350px;height:135px;float:left}
+.ask_report_h1 {height: 36px;width: 420px;position: relative;}
+.ask_report_h1_c {background: #0874c4 url(../images/ask_icon3.png) repeat-x 0 -79px;height: 36px;width: 410px;margin-left: 5px;}
+.ask_report_h1 .ask_report_h1_span {display: inline-block;width: 150px;height: 26px;background-position: 0 0;margin-left: 10px;margin-top: 5px;}
+.ask_report_h1 a {background-position:-160px -5px;cursor:pointer;height:30px;margin-top:-15px;position:absolute;right:3px;text-indent:-9999px;top: 25px;width:30px;}
+.ask_report_h1_l {width: 5px;height: 36px;background: url(../images/ask_icon3.png) no-repeat 0 -42px;position: absolute;left: 0px;top: 0px;}
+.ask_report_h1_r {width: 5px;height: 36px;background: url(../images/ask_icon3.png) no-repeat -5px -42px;position: absolute;right: 0px;top: 0px;}
+.ask_report_top {width: 100%;padding-top: 30px;float:left}
+.ask_report_top span {display: inline-block;font-size: 14px;margin-left: 10px;float:left}
+.ask_report_top_sub {padding-top: 20px;text-align: center}
+.ask_report_top_bth {width: 81px;height: 32px;background: url(../images/ask_icon3.png) no-repeat -106px -45px;border: none;text-align: center;color: #fff;cursor: pointer}
+.ask_report_cont {height: 135px;background: #fff;position: relative;text-align: center;}
+.Dynamic_w {width:500px;padding-left:20px;}
+.no_meta_gz {width:100%}
+.no_meta_gz a {color:#09F}
+.footer {clear: both;width: 100%;text-align:center}
+.foot{background:none repeat scroll 0 0 #FFFFFF;border-top:1px solid #E0E0E0;color:#816E74;line-height:25px;padding:30px 0;text-align:center;width:100%; margin-top:10px;}
+.foot a {color: #816E74;}
+/*
+	对联广告、底部悬浮广告css  
+	注：首页模块并未引用该css文件，要修改此处广告css，需修改两个css文件
+*/
+.duilian{top:200px;position:absolute; width:102px; overflow:hidden; display:none;height;120px}
+.duilian_left{ left:6px;}
+.duilian_right{right:6px;}
+.duilian_con{border:#CCC solid 1px; width:100px; height:300px; overflow:hidden;} 
+.close_container{-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none;-moz-border-top-colors: none;background: url("../images/footer_bg.png") repeat-x scroll 0 -50px transparent;border-color: #CCCCCC;border-image: none;border-right: 1px solid #CCCCCC;border-style: solid;border-width: 0 1px 1px;height: 25px;line-height: 25px;margin: 0;overflow: hidden;position: relative;width: 100px;}
+.close_container .btn_close {background: url("../images/footer_bg.png") no-repeat scroll 0 -85px transparent;cursor: pointer;display: inline;float: right;height: 19px;margin: 3px 5px 2px 0;overflow: hidden;width: 52px;} 
+.footer_ban{width:980px; margin:0 auto; }
+.baner_footer{width:980px;border:1px solid #ddd;}
+#footer_ad .footer_ban .baner_footer{TEXT-ALIGN:center;POSITION:fixed;LINE-HEIGHT:60px;BOTTOM:0px;z-index:999;FONT-SIZE:12px;CURSOR:pointer;   _position:absolute;_bottom:0px;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(0))));}
+.ban_close {background: url("../images/close.jpg") no-repeat scroll 0 0 transparent;height: 11px;position: absolute;right: 5px;text-indent: -99999px;top: 5px;width: 11px;}
+/*对联广告、底部悬浮广告css  结束*/
+.header_Remind{ display:inline;width:40px;height:29px;  position:relative; float:right; margin-right:3px;_margin-right:1px;}
+.header_Remind_list_a{width:108px;float:left; line-height:22px; padding-left:10px;}
+.header_Remind b{color:#F00}
+.header_Remind_list{width:115px;border:1px solid #ccc; background:#fff; position:absolute;left:0px;top:29px; padding-right:6px; padding-bottom:5px;; z-index:500; padding-top:5px;}
+.header_Remind_hover{ position:relative;  z-index:9999999;}
+.header_Remind_hover .header_Remind_list_a{ padding-left:10px; line-height:23px;color:#666}
+.header_Remind_em{ display:inline-block;background: url(../images/yun_t_menu1.png) no-repeat 33px 13px;display: block;float: left;height:30px;padding-left: 10px;position: relative;text-align: left;width: 40px;z-index:600;}
+.header_Remind_em_hover{width:38px;border-left:1px solid #ccc;border-right:1px solid #ccc;background:#fff url(../images/yun_t_menu2.png) no-repeat 33px 13px;}
+.header_Remind_msg{ display:inline-block;width:17px;height:13px; background:url(../images/xf.gif) no-repeat; margin-top:10px;}
+.header_Remind_em_hover .header_Remind_msg{ background:url(../images/xf_h.gif) no-repeat;}
+.header_Remind_list_r{color:#f60; font-size:14px;}
+
+
+.comapply_no_msg_cont { margin: 20px auto; width: 300px;}
+.comapply_no_msg_cont span {background: url(../images/yun_no.jpg) no-repeat; display: block; height: 85px;margin: 0 auto; width:82px;}
+.comapply_no_msg_cont em {display: block; font-size: 18px;line-height: 27px;margin-top: 15px;text-align: center;}
+.footer {width: 100%;clear: both}
+.foot {width: 100%;background:#f9f9f9;border-top: 1px solid #e0e0e0;line-height: 25px;color: #816e74; margin-top:10px;}
+.foot_conent {width: 980px;margin: 0 auto;position:relative;}
+.footer_left{width:800px; float:left; padding-top:20px; padding-bottom:20px;}
+.footer_list{width:160px; float:left}
+.footer_list dt{ font-size:14px; font-weight:bold;height:26px; line-height:26px; margin:0px 0px 10px}
+.footer_list dd{ line-height:22px;}
+.footer_right{width:180px; float:right;padding-top:20px;}
+.footer_touch{ font-size:14px; font-weight:bold;height:26px; line-height:26px;}
+.footer_tel{ color: #FF6600; font-family: Arial,Helvetica,sans-serif; font-size: 24px; padding-top:5px; padding-bottom:5px;}
+.footer_last a { background: url(../images/mobile_ico.gif) no-repeat ;display: block;padding-left: 22px;}
+.footer_last a.move_01 {background-position: 4px -130px;}
+.footer_last a.move_01:hover {background-position: 4px 5px;color: #FF6600 !important;}
+.footer_last a.move_02 {background-position: 2px -158px;}
+.footer_last a.move_02:hover {background-position: 2px -23px;}
+.footer_last a.move_03 {background-position: 0 -210px;}
+.footer_last a.move_03:hover {background-position: 0 -75px;}
+.footer_last a.move_05 {background-position: 2px -185px;}
+.footer_last a.move_05:hover {background-position: 2px -50px;}
+.footer_bot{width: 100%;background:#fff;border-top: 1px solid #e0e0e0;padding-top:20px;}
+.footer_bot_p{width:100%; text-align:center; line-height:25px;}
+.footer_img{width:100%; text-align:center}
+.top_right_re{position: relative;z-index:1000;}
+.top_right {width:600px; position:absolute;right:0px;top:0px;}
+.top_right a {display: inline-block;}
+.yun_topLogin { display: inline; float: left;height: 35px;line-height: 35px;position: relative;text-align: center;width: 80px;}
+.yun_topLogin a {color: #777777;}
+.yun_topLogin a:hover{ text-decoration:none}
+.yun_topLogin a.yun_More { background: url(../images/yun_t_menu1.png) no-repeat  63px 15px;display: block; float: left;  height: 35px; padding-left: 10px; position: relative; text-align: left; width: 70px;z-index: 13;}
+.yun_topLogin a.yun_Morecurrent { background: url(../images/yun_t_menu2.png) no-repeat  63px 15px #FFFFFF; border-left: 1px solid #CCCCCC;border-right: 1px solid #CCCCCC;padding-left: 9px; width: 69px;}
+.yun_Moredown {border:1px solid #ccc;border-top:none;left: 0; position: absolute;top: 35px;z-index: 12; background:#fff}
+.yun_top_nav_box{ width:200px;padding-left:10px; padding-right:10px; float:left; padding-top:5px;}
+.yun_top_nav_h1{width:100%;height:25px; line-height:25px; background:#f8f8f8; font-weight:bold; text-indent:5px; float:left}
+.yun_Moredown li {float: left;line-height: 28px; text-align: center;width: 78px;}
+.yun_Moredown li a {color: #666666;}
+.yun_Moredown li:hover {background-color: #F0F0F0;}
+.yun_topNav {display: inline;height: 31px; line-height: 31px;position: relative;text-align: center; width: 80px;}
+.yun_topNav a {color: #666666;}
+.yun_topNav a:hover{ text-decoration:none}
+.yun_topNav a.yun_navMore { background: url(../images/yun_t_menu1.png) no-repeat  63px 13px ;display: block; float: left; height: 31px;padding-left: 10px; position: relative;text-align: left;width: 70px;z-index: 203;}
+.yun_topNav a.yun_webMorecurrent {background: url(../images/yun_t_menu2.png) no-repeat  63px 13px #FFFFFF;border-left: 1px solid #CCCCCC; border-right: 1px solid #CCCCCC; padding-left: 9px;width: 69px;}
+.yun_webMoredown {background-color: #FFFFFF;border: 1px solid #CCCCCC; left: -137px; position: absolute;text-align: left; top: 30px; width: 215px; z-index: 202; overflow:hidden}
+.yun_webMoredown ul {float: left;height: auto;padding-bottom: 5px;padding-left: 10px; padding-top: 5px;width:195px;}
+.yun_webMoredown ul li { float: left;height: 25px;line-height: 25px;width:65px;}
+.yun_webMoredown ul li a {color: #666666;}
+.yun_webMoredown ul li a:hover {color: #0095EB;}
+.fr{ float:right}

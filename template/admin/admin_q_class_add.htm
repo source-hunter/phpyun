@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script language="javascript"> 
+KindEditor.ready(function(K) {
+	K.create('#intro', {
+		items : ['source',
+		'bold', 'italic', 'underline',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist','emoticons', 'image'],afterBlur:function(){this.sync();} 
+	});
+});
+function checkform(myform){
+	if (myform.name.value==""){
+		parent.layer.msg('请填写类别名称！', 2, 8);return (false);
+	} 
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>添加类别</h6>
+	  <div class="infoboxp_right"> 
+	<a href=" javascript:history.back(-1);" class="infoboxp_tj">类别列表</a> 
+	</div>
+  </div>
+  <div class="admin_table_border">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form name="myform" action="index.php?m=question_class&c=save&pid={yun:}$pid{/yun}" method="post" encType="multipart/form-data"  onSubmit="return checkform(this);" target="supportiframe">
+      <table width="100%" class="table_form" style="background:#fff;">
+        <tr >
+          <th>类别名称：</th>
+          <td><input class="input-text" type="text" name="name" size="40" value="{yun:}$q_class.name{/yun}"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>排序：</th>
+          <td><input class="input-text" type="text" name="sort" size="40" value="{yun:}$q_class.sort{/yun}"/>
+            越小越在前</td>
+        </tr>
+        <tr >
+          <th>父类别：</th>
+          <td><select name="pid">
+              <option value='0' >顶级分类</option>
+					{yun:}foreach item=v from=$class_list{/yun}
+              <option value="{yun:}$v.id{/yun}" {yun:}if $v.id==$pid{/yun} selected {yun:}/if{/yun}>{yun:}$v.space{/yun}{yun:}$v.name{/yun}</option>
+					{yun:}/foreach{/yun}
+            </select></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>简介内容： </th>
+          <td><textarea  id="intro" name="intro" cols="100" rows="8" style="width:700px;height:300px;">{yun:}$q_class.intro{/yun}</textarea></td>
+        </tr>
+        <tr >
+          <th>图片： </th>
+          <td><input class="input-text" type="file" name="pic" size="45">
+            {yun:}if $q_class.pic!=""{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$q_class.pic{/yun}">{yun:}/if{/yun}</td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <td align="center" colspan="2"> {yun:}if $q_class.id{/yun}
+            <input type="hidden" name="id" size="40" value="{yun:}$q_class.id{/yun}"/>
+            <input class="admin_submit2" type="submit" name="update" value="&nbsp;更 新&nbsp;"  />
+            {yun:}else{/yun}
+            <input class="admin_submit2" type="submit" name="add" value="&nbsp;添 加&nbsp;"  />
+            {yun:}/if{/yun}
+            <input class="admin_submit2" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+        </tr>
+      </table>
+	  <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+  </div>
+</div>
+</body>
+</html>

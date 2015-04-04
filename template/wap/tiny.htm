@@ -1,0 +1,34 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="com_search_top">
+		<form action="index.php" method="get">
+			<input type="hidden" name="m" value="tiny" />
+			<input type="hidden"  value="tiny" name="m"/>
+  <div class="com_post_left"><input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}" class="seach_post_text placeholder" placeholder="请输入关键字" />
+  <div class="com_post_right" >
+		 <input type="button" value="我要发布" class="tiny_but" onclick="location.href='{yun:}wapurl m=tiny url=c:add{/yun}'" >  <span class="com_post_bth1_line"></span>	<input type="submit" value="搜索" class="com_post_bth1"/></div> 
+		</form>
+  </div>		
+</div>
+<section>
+  <div class="main"> 
+  {yun:}tiny item=wres  islt=4 ispage=1 limit=20 keyword=auto.keyword {/yun} <a href="{yun:}wapurl url=m:tiny,c:show,id:`$wres.id`{/yun}" class="tiny_list">
+    <h3>{yun:}$wres.job{/yun}</h3>
+    <aside class="uesr_qz_size">{yun:}$wres.username{/yun} /{yun:}$wres.sex_name{/yun}</aside>
+    <i class="user_name_size2">{yun:}$wres.time|date_format:"%Y-%m-%d"{/yun}</i> 
+    <em>{yun:}$wres.exp_name{/yun}</em>
+    {yun:}/tiny{/yun} 
+    </a> 
+    </div>
+</section>
+
+{yun:}if $total<=0{/yun}
+  {yun:}if $smarty.get.keyword!="" {/yun} 
+  <div class="wap_member_no">没有搜索到微简历</div>
+  {yun:}else{/yun}
+  <div class="wap_member_no">暂无微简历</div>
+  {yun:}/if{/yun}
+  {yun:}else{/yun}
+<div class="pages" style="padding-bottom:10px;"> {yun:}$pagenav{/yun}</div>
+  {yun:}/if{/yun}
+<div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

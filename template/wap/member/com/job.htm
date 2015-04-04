@@ -1,0 +1,40 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun} 
+<section class="wap_member">
+<div class="wap_member_comp_h1" style="position:relative"><span>职位管理</span><em class="wap_member_comp_em" style="top:8px;"><a href="index.php?c=jobadd" style="width:80px;height:23px; line-height:23px; background:#F90;color:#fff; display:inline-block; text-align:center">发布职位</a></em></div>
+<div class="wap_member_Receive">
+{yun:}foreach item=v from=$rows{/yun}
+<div  class="wap_member_Receive_post">
+<a href="{yun:}wapurl m=com url=c:view&,id:`$v.id`{/yun}" class="wap_m_post_col">{yun:}$v.name{/yun}</a>
+<aside>
+{yun:}if $v.edate<time(){/yun}
+已过期
+{yun:}elseif $v.state==1{/yun}
+已审核
+{yun:}elseif $v.state==3{/yun}
+未通过
+{yun:}elseif $v.state==0{/yun}
+<em>未审核</em>
+{yun:}/if{/yun}
+ / 
+{yun:}if $v.status==2{/yun}
+<a href="index.php?c=job&status=1&id={yun:}$v.id{/yun}">暂停</a>
+{yun:}else{/yun}
+<a href="index.php?c=job&status=2&id={yun:}$v.id{/yun}">发布中</a>
+{yun:}/if{/yun}
+/
+<a href="index.php?c=jobadd&id={yun:}$v.id{/yun}">修改</a>
+/
+<a href="javascript:isdel('index.php?c=jobdel&id={yun:}$v.id{/yun}');">删除</a>
+</aside>
+<span>浏览量：{yun:}$v.jobhits{/yun} </span>
+<i>{yun:}$v.lastupdate|date_format:"%Y-%m-%d"{/yun}</i>
+</div>
+{yun:}foreachelse{/yun}
+<div class="wap_member_no">您暂时还没有职位</div>
+{yun:}/foreach{/yun}
+<div class="pages" style="margin-top:10px;"> {yun:}$pagenav{/yun}</div>
+</div>
+<!--没有职位提示-->
+</section>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

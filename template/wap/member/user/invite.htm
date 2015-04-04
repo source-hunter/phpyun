@@ -1,0 +1,26 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun} 
+<div class="wap_member_comp_h1 mt10"><span>面试邀请</span></div>
+<div class="wap_member_Receive">
+{yun:}foreach item=v from=$rows{/yun}
+<div class="wap_member_msg">
+<span><a href="{yun:}wapurl m=firm url=c:show,id:`$v.fid`{/yun}">{yun:}$v.fname{/yun}</a></span>
+<i>{yun:}$v.datetime|date_format:"%Y-%m-%d"{/yun}</i>
+<div class="wap_member_msg_p">{yun:}$v.content{/yun}</div>
+
+<div class="wap_member_msg_bot"> <a href="javascript:void(0)" onclick="isdel('index.php?c=invite&del={yun:}$v.id{/yun}')">删除</a>
+{yun:}if $v.is_browse==1{/yun}
+<em class="wap_member_ck wap_member_wck">未查看</em>
+{yun:}else{/yun}
+<em class="wap_member_ck ">已查看</em>
+{yun:}/if{/yun}
+</div>
+</div>
+{yun:}foreachelse{/yun}
+<div class="wap_member_no">您暂时还没有收到面试邀请</div>
+{yun:}/foreach{/yun}
+
+</div>
+<!--没有职位提示-->
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

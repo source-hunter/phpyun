@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/show_pub.js"></script>
+<script src="js/admin_public.js"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script> 
+function check_form(){
+	if($.trim($("#classname").val())==""){ 
+		parent.layer.msg("类别名称不能为空！",2,2);return false; 
+	}
+}	
+function checksort(id){
+	$("#sort"+id).hide();
+	$("#input"+id).show();
+	$("#input"+id).focus();
+}	
+function subsort(id){
+	var sort=$("#input"+id).val();
+	var pytoken=$("#pytoken").val(); 
+	$.post("index.php?m=admin_news&c=ajax",{id:id,sort:sort,pytoken:pytoken},function(data){
+		$("#sort"+id).html(sort);
+		$("#sort"+id).show();
+		$("#input"+id).hide();
+		if(data!=1){config_msg(data);}else{location.reload();}
+	})
+}
+function make_cache(){
+	$.get("index.php?m=admin_news&c=make_cache",function(msg){
+		if(msg==1){parent.layer.msg("更新成功！",2,9);}else{parent.layer.msg("更新失败！",2,8);}return false; 
+	});
+}
+function checkname(id){
+	$("#name"+id).hide();
+	$("#inputname"+id).show();
+	$("#inputname"+id).focus();
+}	
+function subname(id){
+	var name=$("#inputname"+id).val();
+	if($.trim(name)==""){
+		parent.layer.msg("类别名称不能为空！",2,8,function(){location.reload();});return false; 
+	}
+	var pytoken=$("#pytoken").val(); 
+	$.post("index.php?m=admin_news&c=ajax",{id:id,name:name,pytoken:pytoken},function(data){
+		$("#name"+id).html(name);
+		$("#name"+id).show();
+		$("#inputname"+id).hide();
+		if(data!=1){config_msg(data);}else{location.reload();}
+	})
+}
+function change_f(){
+	var f_id=$("#f_id").val();
+	if(f_id=='0'){
+		$("#is_rec").show();
+	}else{$("#is_rec").hide();} 
+}
+</script>
+<script>
+KindEditor.ready(function(K) {
+	K.create('#content', {
+		items : ['source',
+		'bold', 'italic', 'underline',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist','emoticons', 'image']
+	});
+	var colorpicker;
+	K('#colorpicker').bind('click', function(e) {
+		e.stopPropagation();
+		if (colorpicker) {
+			colorpicker.remove();
+			colorpicker = null;
+			return;
+		}
+		var colorpickerPos = K('#colorpicker').pos();
+		colorpicker = K.colorpicker({
+			x : colorpickerPos.x,
+			y : colorpickerPos.y + K('#colorpicker').height(),
+			z : 1981121422,
+			selectedColor : 'default',
+			noColor : '无颜色',
+			click : function(color) {
+				K('#color').val(color);
+				$('#color + font').css('color', color);
+				colorpicker.remove();
+				colorpicker = null;
+			}
+		});
+	});
+	K(document).click(function() {
+		if (colorpicker) {
+			colorpicker.remove();
+			colorpicker = null;
+		}
+	});
+});
+function set_menu(id){
+	var pytoken=$("#pytoken").val();
+	$.post("index.php?m=admin_news&c=ajax_menu",{id:id,pytoken:pytoken},function(data){
+		var data=eval('('+data+')');
+		$("input[name=name]").val(data.name);
+		$("input[name=url]").val(data.url);
+		$("input[name=furl]").val(data.furl);
+		$("input[name=did]").val(id);
+		if(data.id>0){
+			$("input[name=id]").val(data.id);
+			$("#nid"+data.nid).attr("selected","selected");
+			$("#type"+data.type).attr("selected","selected");
+			$("input[name=sort]").val(data.sort);
+			$("#eject"+data.eject).attr("checked","checked");
+			$("#model"+data.model).attr("checked","checked");
+			$("#bold"+data.bold).attr("checked","checked");
+			$("#display"+data.display).attr("checked","checked");
+			$("#color").val(data.color);
+			$("#colorid").attr("style","color:"+data.color);
+		}else{
+			$("input[name=id]").val('');
+			$("#type0").attr("selected","type");
+			$("input[name=sort]").val('');
+			$("#eject0").attr("checked","checked");
+			$("#model").attr("checked","checked");
+			$("#bold0").attr("checked","checked");
+			$("#display0").attr("checked","checked");
+			$("#color").val('');
+			$("#colorid").attr("style","");
+		}
+	})
+	$.layer({
+		type : 1,
+		title : '设置导航',
+		closeBtn : [0 , true], 
+		offset : ['5%' , '20%'],
+		border : [10 , 0.3 , '#000', true],
+		area : ['600px','auto'],
+		page : {dom : '#menu'}
+	});  
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<div id="menu" style="display:none;">
+    <form name="myform" target="supportiframe" action="index.php?m=admin_news&c=set_menu" method="post">
+      <table width="100%" class="table_form" style="background:#fff;">
+        <tr >
+          <th width="120">导航类别：</th>
+          <td><select name="nid" id="nid">
+			{yun:}foreach item=v from=$type{/yun}
+           <option value="{yun:}$v.id{/yun}" id="nid{yun:}$v.id{/yun}">{yun:}$v.typename{/yun}</option>
+			{yun:}/foreach{/yun}
+            </select>
+            </td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>导航名称：</th>
+          <td><input class="input-text" type="text" name="name" size="40"/>
+          <input type="hidden" name='color' id="color" value="" /><font id="colorid">字体颜色</font>
+          <input type="button" id="colorpicker" value="打开取色器" class="admin_submit6" style="background:#F60; margin-left:5px;"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>链接地址：</th>
+          <td><input class="input-text" type="text" name="url" size="50"/></td>
+        </tr>
+        <tr >
+          <th>伪静态地址：</th>
+          <td><input class="input-text" type="text" name="furl" size="50"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>导航类型：</th>
+          <td><select name="type">
+              <option value="1" id="type1">站内链接</option>
+              <option value="2" id="type2">原链接</option>
+            </select>
+            站内链接如：http://www.phpyun.com  原链接如：index.php?m=com </td>
+        </tr>
+        <tr >
+          <th>排　　序：</th>
+          <td><input class="input-text" type="text" name="sort" size="5"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>弹出窗口：</th>
+          <td><input type="radio" name="eject" value="1" id="eject1">
+            新窗口
+            <input type="radio" name="eject" value="0" id="eject0">
+            原窗口 </td>
+        </tr>
+        <tr >
+          <th>状　　态：</th>
+          <td><input type="radio" name="model" value="hot" id="modelhot"> 热
+            <input type="radio" name="model" value="new" id="modelnew"> 新
+            <input type="radio" name="model" value="" id="model" checked=checked> 无</td>
+        </tr>
+        <tr >
+          <th>加　　粗：</th>
+          <td><input type="radio" name="bold" value="1" id="bold1">
+            是
+            <input type="radio" name="bold" value="0" id="bold0">
+            否 </td>
+        </tr>
+        <tr >
+          <th>显　　示：</th>
+          <td><input type="radio" name="display" value="1" id="display1">
+            是
+            <input type="radio" name="display" value="0" id="display0">
+            否 </td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <td align="center" colspan="2">
+            <input type="hidden" name="id" size="40"/>
+            <input class="admin_submit4" type="submit" name="submit" value="&nbsp;保 存&nbsp;"  />
+            <input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+        </tr>
+      </table>
+      <input type="hidden" name="did">
+	  <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+</div>
+<div id="houtai_div" style=" width:298px; display:none;">
+	<form name="myform" target="supportiframe" action="index.php?m=admin_news&c=addgroup" method="post" onSubmit="return check_form();">
+		<table class="table_form "style="width:100%">
+			<tbody>
+
+				<tr class="ui_td_11">
+					<td style="text-align: right;" class="ui_content_wrap">类别名称：</td>
+					<td><input type="text" name="classname" value=""  class="input-text" id="classname"/></td>
+				</tr>
+				<tr class="ui_td_11" id='is_rec'>
+					<td style="text-align: right;" class="ui_content_wrap">首页推荐：</td>
+					<td><select name='rec'>
+						<option value='1'>推荐</option>
+						<option value='0'>不推荐</option>
+					</select></td>
+				</tr>
+				<tr class="ui_td_11">
+					<td  class="ui_content_wrap" colspan='2' style="border-bottom:none"><input class="admin_submit4" type="submit" name="sub" value=" 添加 "  /></td>
+				</tr> 
+			</tbody>
+		</table>
+		<input type="hidden" name="pytoken" id="pytoken" value="{yun:}$pytoken{/yun}">
+	</form>
+</div>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+ <div class="admin_Prompt">
+<div class="admin_Prompt_span">  注意：添加大类时，不用选择类别。　添加二级分类时，要选择类别。 </div>
+<div class="admin_Prompt_close"></div>
+</div>
+<div class="infoboxp_top">
+<span class="admin_title_span">新闻分类</span>
+     <a href="javascript:void(0)" onClick="make_cache()" class="admin_infoboxp_nav admin_infoboxp_gl">更新缓存</a>
+       <em class="admin-tit_line"></em>
+		<a href="javascript:void(0);" onClick="add_class('添加类别','300','170','#houtai_div','')" class="admin_infoboxp_nav admin_infoboxp_tj">添加类别</a>
+          <em class="admin-tit_line"></em>
+    	<a href="index.php?m=admin_news" class="admin_infoboxp_nav admin_infoboxp_gl">新闻列表</a>
+          <em class="admin-tit_line"></em>
+        <a href="index.php?m=admin_news&c=news" class="admin_infoboxp_nav admin_infoboxp_tj">添加新闻</a>
+
+</div>
+<div class="clear"></div>
+<div class="table-list" style="min-height:300px;">
+<div class="admin_table_border">
+
+<form action="index.php" name="myform" method="get" target="supportiframe" id='myform'>
+<input name="m" value="admin_news" type="hidden"/>
+<input name="c" value="delgroup" type="hidden"/>
+<table width="100%">
+<thead>
+	<tr class="admin_table_top">
+		<th>编号</th>
+		<th width="200">类别名称<span class="clickup">(点击修改)</span></th>
+		<th>记录数</th>
+        <th>排序</th>
+        <th>首页推荐</th>
+		<th>新闻首页</th>
+        <th>设为导航</th>
+		<th class="admin_table_th_bg">操作</th>
+	</tr>
+</thead>
+<tbody>
+	{yun:}foreach item=v key=key from=$news_group{/yun}
+    {yun:}if $v.keyid==0{/yun}
+	<tr align="center"{yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun}>
+		<td><span>{yun:}$v.id{/yun}</span></td>
+		<td class="ud"><span onClick="checkname('{yun:}$v.id{/yun}');" id="name{yun:}$v.id{/yun}" style="cursor:pointer;">{yun:}$v.name{/yun}</span>
+        <input class="input-text hidden" type="text" id="inputname{yun:}$v.id{/yun}" value="{yun:}$v.name{/yun}" onBlur="subname('{yun:}$v.id{/yun}');" ></td>
+		<td class="od">
+		 共有文章 <font color="#0033FF">{yun:}if $v.count!=0{/yun}{yun:}$v.count{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</font> 篇</td>
+        <td><span onClick="checksort('{yun:}$v.id{/yun}');" id="sort{yun:}$v.id{/yun}" style="cursor:pointer;">{yun:}$v.sort{/yun}</span>
+        <input class="input-text hidden" type="text" id="input{yun:}$v.id{/yun}" size="10" value="{yun:}$v.sort{/yun}" onBlur="subsort('{yun:}$v.id{/yun}');" ></td>
+		<td id="rec{yun:}$v.id{/yun}">{yun:}if $v.rec==0{/yun}<a onClick="rec_up('index.php?m=admin_news&c=recommend','{yun:}$v.id{/yun}','1','rec');" href="javascript:void(0);"><img src="../data/ajax_img/errorico.gif"></a>{yun:}else{/yun}<a onClick="rec_up('index.php?m=admin_news&c=recommend','{yun:}$v.id{/yun}','0','rec');" href="javascript:void(0);"><img src="../data/ajax_img/doneico.gif"></a>{yun:}/if{/yun}</td>
+		
+				<td id="rec_news{yun:}$v.id{/yun}">
+					{yun:}if $v.rec_news==0{/yun}
+					<a onClick="rec_news('index.php?m=admin_news&c=recnews','{yun:}$v.id{/yun}','1','rec_news');" href="javascript:void(0);"><img src="../data/ajax_img/errorico.gif"></a>
+					{yun:}else{/yun}
+					<a onClick="rec_news('index.php?m=admin_news&c=recnews','{yun:}$v.id{/yun}','0','rec_news');" href="javascript:void(0);"><img src="../data/ajax_img/doneico.gif"></a>
+					{yun:}/if{/yun}
+				</td>
+				
+        <td>{yun:}if $v.is_menu==0{/yun}<a href="javascript:set_menu('{yun:}$v.id{/yun}');">设为导航</a>{yun:}else{/yun}
+            <a href="javascript:set_menu('{yun:}$v.id{/yun}');">修改导航</a>
+            <a href="javascript:void(0)" onClick="layer_del('确定取消该导航？','index.php?m=admin_news&c=delmenu&id={yun:}$v.id{/yun}');">取消导航</a>{yun:}/if{/yun}</td>
+		<td>
+         <a href="javascript:void(0)" class="admin_cz_sc" onClick="layer_del('确定要删除？', 'index.php?m=admin_news&c=delgroup&id={yun:}$v.id{/yun}');">删除</a></td>
+	</tr>
+    {yun:}/if{/yun}
+	{yun:}/foreach{/yun}
+    <tr>
+    	<td colspan="8" class="digg">{yun:}$pagenav{/yun}</td>
+    </tr>
+</table> 
+</form>
+</div>
+
+</div> 
+
+</body>
+</html>

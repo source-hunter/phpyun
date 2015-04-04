@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+ 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"> 
+<div class="infoboxp_top_bg"></div>
+    <div class="admin_Filter"> 
+		<span class="complay_top_span fl">充值记录</span>
+            <form action="index.php" name="myform" method="get">
+            <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}"> 
+            <input name="m" value="company_order" type="hidden"/>   
+            <input name="typezf" value="{yun:}$smarty.get.typezf{/yun}" type="hidden"/>   
+            <input name="typedd" value="{yun:}$smarty.get.typedd{/yun}" type="hidden"/>   
+            <input name="order_state" value="{yun:}$smarty.get.order_state{/yun}" type="hidden"/>
+            <input name="fb" value="{yun:}$smarty.get.fb{/yun}" type="hidden"/>  
+			<div class="admin_Filter_text formselect"  did='dtypeca'>
+			  <input type="button" value="{yun:}if $smarty.get.typeca==''{/yun}充值单号{yun:}else{/yun}备注{yun:}/if{/yun}" class="admin_Filter_but"  id="btypeca">
+			  <input type="hidden" id='typeca' value="{yun:}if $smarty.get.typeca==''{/yun}1{yun:}else{/yun}{yun:}$smarty.get.typeca{/yun}{yun:}/if{/yun}" name='typeca'>
+			  <div class="admin_Filter_text_box" style="display:none" id='dtypeca'>
+				  <ul>
+				  <li><a href="javascript:void(0)" onClick="formselect('1','typeca','充值单号')">充值单号</a></li>
+				  <li><a href="javascript:void(0)" onClick="formselect('2','typeca','备注')">备注</a></li> 
+				  </ul>  
+			  </div>
+			</div>
+            <input class="company_job_text"  type="text" name="keyword"  size="25" style="float:left"> 
+            <input class="admin_Filter_bth"  type="submit" name="news_search" value="检索"/>
+			 <span class='admin_search_div'>
+			  <div class="admin_adv_search"><div class="admin_adv_search_bth">高级搜索</div></div>   
+		  	</span> 
+		</form> 
+    </div>
+{yun:}include file="admin/admin_search.htm"{/yun}
+<div class="table-list">
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form action="index.php" name="myform" id='myform' method="get" target="supportiframe">
+<input type="hidden" name="pytoken" id='pytoken'  value="{yun:}$pytoken{/yun}">
+<input name="m" value="company_order" type="hidden"/>
+<input name="c" value="del" type="hidden"/>
+<table width="100%">
+	<thead>
+		<tr class="admin_table_top">
+		   <th style="width:20px;"><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+            
+            <th>
+			{yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=id m=company_order untype=order,t{/yun}">编号<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=id m=company_order untype=order,t{/yun}">编号<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+			<th>公司名称</th>
+            <th>充值单号</th>
+			<th>支付类型</th>
+            <th>订单类型</th> 
+            <th>
+			{yun:}if $smarty.get.t=="order_price" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=order_price m=company_order untype=order,t{/yun}">订单金额<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=order_price m=company_order untype=order,t{/yun}">订单金额<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+            
+            <th>
+			{yun:}if $smarty.get.t=="order_time" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=order_time m=company_order untype=order,t{/yun}">时间<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=order_time m=company_order untype=order,t{/yun}">时间<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+			<th>状态</th>
+			<th class="admin_table_th_bg" width="100">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+   {yun:}foreach item=job key=key from=$rows{/yun}
+    <tr align="center"{yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun} id="list{yun:}$job.id{/yun}">
+	    <td><input type="checkbox" value="{yun:}$job.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+    	<td align="left" class="td1"><span>{yun:}$job.id{/yun}</span></td> 
+		<td align="left">{yun:}$job.comname{/yun}</td>
+   	 	<td align="left">{yun:}$job.order_id{/yun}</td>
+		<td align="left">{yun:}$job.order_type_n{/yun}</td>
+        <td align="left">{yun:}if $job.type==1{/yun}购买会员{yun:}elseif $job.type=='2'{/yun}{yun:}$config.integral_pricename{/yun}充值{yun:}elseif $job.type=='3'{/yun}银行转帐{yun:}elseif $job.type=='4'{/yun}金额充值{yun:}elseif $job.type=='5'{/yun}购买短信{yun:}/if{/yun}</td>
+    	<td align="left">{yun:}$job.order_price{/yun}</td>
+        <td>{yun:}$job.order_time|date_format:"%Y-%m-%d %H:%M"{/yun}</td>
+   	 	<td>{yun:}$job.order_state_n{/yun}</td>
+    	<td align="left" width="100">
+			<a href="index.php?m=company_order&c=edit&id={yun:}$job.id{/yun}"  class="admin_cz_sc">查看</a> | 
+        <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=company_order&c=del&id={yun:}$job.id{/yun}');"class="admin_cz_sc">删除</a>{yun:}if $job.order_state==1||$job.order_state==3{/yun}
+				<br /><a href="javascript:void(0)" onClick="layer_del('确认该订单将充值到用户帐户，是否确定？', 'index.php?m=company_order&c=setpay&id={yun:}$job.id{/yun}');" class="admin_cz_sc" style="color:red;">确认</a> | 
+				<a href="index.php?m=company_order&c=edit&id={yun:}$job.id{/yun}"  class="admin_cz_sc"style="color:red;">修改金额</a> 
+			{yun:}/if{/yun}
+        </td>
+  </tr>
+  {yun:}/foreach{/yun}
+  <tr style="background:#f1f1f1;">
+  <td align="center"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></td>
+  <td colspan="3" >
+  <label for="chkAll2">全选</label>&nbsp;
+    <input class="admin_submit4"  type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+    <td colspan="6" class="digg">{yun:}$pagenav{/yun}</td>
+  </tr>
+  </tbody>
+  </table>
+</form>
+</div></div>
+</div>
+</body>
+</html>

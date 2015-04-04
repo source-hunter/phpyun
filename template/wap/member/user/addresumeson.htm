@@ -1,0 +1,495 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun}
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$wap_style{/yun}/js/resume.js" language="javascript"></script>
+<script>var weburl='{yun:}$config_wapdomain{/yun}';</script>
+<div class="resume-cont">
+  <div class="resume-cont_zk">
+  {yun:}if $smarty.get.type=="skill"{/yun}
+    <div class="resume-cont_h2"><span>填写专业技能</span></div>
+    <div class="resume-cont_wate ">
+    <form id="skillInfo" method="post" action="index.php?c=addresume&eid={yun:}$smarty.get.eid{/yun}" onsubmit="return checkskill()">
+      <dl class="resume-cont_wate_list">
+        <dt>技能类别：</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select name="skill">
+				{yun:}foreach item=v from=$userdata.user_skill{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.skill==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>熟练程度：</dt>
+        <dd>
+          <div class="mLeft12 relative">
+            <div class="selectOption" style="width:100%">
+              <select name="ing">
+				{yun:}foreach item=v from=$userdata.user_ing{/yun}
+                <option value="{yun:}$v{/yun}" {yun:}if $row.ing==$v{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$userclass_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+              </select>
+            </div>
+          </div>
+        </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>技能名称：</dt>
+        <dd>
+          <input type="text" name="name" value="{yun:}$row.name{/yun}" class="reinputText" style="width:60%">
+          例：英语、C语言、速记</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>掌握时间：</dt>
+        <dd>
+          <input type="text" name="longtime" value="{yun:}$row.longtime{/yun}" class="reinputText" style="width:60%">
+          个月</dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="hidden" name="table" value="skill" />
+          <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}" />
+          <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+  {yun:}elseif $smarty.get.type=="work"{/yun}
+    <div class="resume-cont_h2"><span>填写工作经历</span></div>
+    <div class="resume-cont_wate ">
+    <form id="workInfo" method="post" action="index.php?c=addresume&eid={yun:}$smarty.get.eid{/yun}" onsubmit="return checkwork()">
+      <dl class="resume-cont_wate_list">
+        <dt>单位名称：</dt>
+        <dd>
+          <input type="text" name="name" value="{yun:}$row.name{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>工作时间：</dt>
+        <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.sdate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="syear" id='syear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="smouth" id='smouth' onchange="selectMonth('syear','smouth','sday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.sdate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="sday" id='sday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('syear','smouth','sday');setSelectDay('sday','{yun:}$row.sdate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.sdate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+                <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+          <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.edate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="eyear" id='eyear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="emouth" id='emouth' onchange="selectMonth('eyear','emouth','eday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.edate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="eday" id='eday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('eyear','emouth','eday');setSelectDay('eday','{yun:}$row.edate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.edate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>所在部门：</dt>
+        <dd>
+          <input type="text" name="department" value="{yun:}$row.department{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>担任职位：</dt>
+        <dd>
+          <input type="text" name="title" value="{yun:}$row.title{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>工作内容：</dt>
+        <dd>
+          <textarea name="content" class="textAreaMsg">{yun:}$row.content{/yun}</textarea></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="hidden" name="table" value="work" />
+          <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}" />
+          <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+  {yun:}elseif $smarty.get.type=="project"{/yun}
+    <div class="resume-cont_h2"><span>填写项目经历</span></div>
+    <div class="resume-cont_wate ">
+    <form id="projectInfo" method="post" action="index.php?c=addresume&eid={yun:}$smarty.get.eid{/yun}" onsubmit="return checkproject()">
+      <dl class="resume-cont_wate_list">
+        <dt>项目名称：</dt>
+        <dd>
+          <input type="text" name="name" value="{yun:}$row.name{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>项目时间：</dt>
+        <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.sdate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="syear" id='syear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="smouth" id='smouth' onchange="selectMonth('syear','smouth','sday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.sdate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="sday" id='sday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('syear','smouth','sday');setSelectDay('sday','{yun:}$row.sdate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.sdate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+                <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+          <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.edate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="eyear" id='eyear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="emouth" id='emouth' onchange="selectMonth('eyear','emouth','eday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.edate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="eday" id='eday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('eyear','emouth','eday');setSelectDay('eday','{yun:}$row.edate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.edate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>项目环境：</dt>
+        <dd>
+          <input type="text" name="sys" value="{yun:}$row.sys{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>担任职位：</dt>
+        <dd>
+          <input type="text" name="title" value="{yun:}$row.title{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>项目内容：</dt>
+        <dd>
+          <textarea name="content" class="textAreaMsg">{yun:}$row.content{/yun}</textarea></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="hidden" name="table" value="project" />
+          <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}" />
+          <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+  {yun:}elseif $smarty.get.type=="edu"{/yun}
+    <div class="resume-cont_h2"><span>填写教育经历</span></div>
+    <div class="resume-cont_wate ">
+    <form id="eduInfo" method="post" action="index.php?c=addresume&eid={yun:}$smarty.get.eid{/yun}" onsubmit="return checkedu()">
+      <dl class="resume-cont_wate_list">
+        <dt>学校名称：</dt>
+        <dd>
+          <input type="text" name="name" value="{yun:}$row.name{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>在校时间：</dt>
+        <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.sdate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="syear" id='syear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="smouth" id='smouth' onchange="selectMonth('syear','smouth','sday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.sdate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="sday" id='sday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('syear','smouth','sday');setSelectDay('sday','{yun:}$row.sdate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.sdate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+                <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+          <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.edate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="eyear" id='eyear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="emouth" id='emouth' onchange="selectMonth('eyear','emouth','eday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.edate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="eday" id='eday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('eyear','emouth','eday');setSelectDay('eday','{yun:}$row.edate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.edate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>所学专业：</dt>
+        <dd>
+          <input type="text" name="specialty" value="{yun:}$row.specialty{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>担任职位：</dt>
+        <dd>
+          <input type="text" name="title" value="{yun:}$row.title{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>专业描述：</dt>
+        <dd>
+          <textarea name="content" class="textAreaMsg">{yun:}$row.content{/yun}</textarea></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="hidden" name="table" value="edu" />
+          <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}" />
+          <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+  {yun:}elseif $smarty.get.type=="training"{/yun}
+    <div class="resume-cont_h2"><span>填写培训经历</span></div>
+    <div class="resume-cont_wate ">
+    <form id="trainingInfo" method="post" action="index.php?c=addresume&eid={yun:}$smarty.get.eid{/yun}" onsubmit="return checktraining()">
+      <dl class="resume-cont_wate_list">
+        <dt>培训中心：</dt>
+        <dd>
+          <input type="text" name="name" value="{yun:}$row.name{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>培训时间：</dt>
+        <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.sdate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="syear" id='syear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="smouth" id='smouth' onchange="selectMonth('syear','smouth','sday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.sdate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="sday" id='sday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('syear','smouth','sday');setSelectDay('sday','{yun:}$row.sdate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.sdate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+                <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+          <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.edate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="eyear" id='eyear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="emouth" id='emouth' onchange="selectMonth('eyear','emouth','eday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.edate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="eday" id='eday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('eyear','emouth','eday');setSelectDay('eday','{yun:}$row.edate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.edate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>培训方向：</dt>
+        <dd>
+          <input type="text" name="title" value="{yun:}$row.title{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>培训描述：</dt>
+        <dd>
+          <textarea name="content" class="textAreaMsg">{yun:}$row.content{/yun}</textarea></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="hidden" name="table" value="training" />
+          <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}" />
+          <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+  {yun:}elseif $smarty.get.type=="cert"{/yun}
+    <div class="resume-cont_h2"><span>填写证书</span></div>
+    <div class="resume-cont_wate ">
+    <form id="certInfo" method="post" action="index.php?c=addresume&eid={yun:}$smarty.get.eid{/yun}" onsubmit="return checkcert()">
+      <dl class="resume-cont_wate_list">
+        <dt>证书全称：</dt>
+        <dd>
+          <input type="text" name="name" value="{yun:}$row.name{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>有效时间：</dt>
+        <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.sdate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="syear" id='syear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="smouth" id='smouth' onchange="selectMonth('syear','smouth','sday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.sdate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.sdate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="sday" id='sday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('syear','smouth','sday');setSelectDay('sday','{yun:}$row.sdate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.sdate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+                <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+          <dd>
+          <!--<input type="text" name="syear" value="{yun:}$row.edate|date_format:"%Y"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->
+          <select name="eyear" id='eyear'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$year_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%Y"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select><em>年</em>
+            <select name="emouth" id='emouth' onchange="selectMonth('eyear','emouth','eday');">
+				<option value="">请选择</option>
+				{yun:}foreach from=$month_list item=one{/yun}
+				<option value="{yun:}$one{/yun}" {yun:}if $row.edate|date_format:"%m"==$one{/yun}selected="selected"{yun:}/if{/yun}>{yun:}$one{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+          <!--<input type="text" name="smouth" value="{yun:}$row.edate|date_format:"%m"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">--><em>月</em>
+          <select name="eday" id='eday' >
+				<option value="">请选择</option>
+		    </select>
+            <script language="javascript" type="text/javascript">$(document).ready(function(){selectMonth('eyear','emouth','eday');setSelectDay('eday','{yun:}$row.edate|date_format:"%d"{/yun}');});</script>
+          <!--<input type="text" name="sday" value="{yun:}$row.edate|date_format:"%d"{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" class="reinputText" style="width:10%">-->日  
+          </dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>颁发单位：</dt>
+        <dd>
+          <input type="text" name="title" value="{yun:}$row.title{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>证书描述：</dt>
+        <dd>
+          <textarea name="content" class="textAreaMsg">{yun:}$row.content{/yun}</textarea></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="hidden" name="table" value="cert" />
+          <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}" />
+          <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+  {yun:}elseif $smarty.get.type=="other"{/yun}
+    <div class="resume-cont_h2"><span>填写证书</span></div>
+    <div class="resume-cont_wate ">
+    <form id="otherInfo" method="post" action="index.php?c=addresume&eid={yun:}$smarty.get.eid{/yun}" onsubmit="return checkother()">
+      <dl class="resume-cont_wate_list">
+        <dt>其他标题：</dt>
+        <dd>
+          <input type="text" name="title" value="{yun:}$row.title{/yun}" class="reinputText" style="width:60%"></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>其他描述：</dt>
+        <dd>
+          <textarea name="content" class="textAreaMsg">{yun:}$row.content{/yun}</textarea></dd>
+      </dl>
+      <dl class="resume-cont_wate_list">
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type="hidden" name="table" value="other" />
+          <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}" />
+          <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+          <input type="submit" name="submit" value="保存" class="reinputText2">
+        </dd>
+      </dl>
+      </form>
+    </div>
+    {yun:}/if{/yun}
+  </div>
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

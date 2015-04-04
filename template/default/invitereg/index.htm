@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" type="text/css" href="{yun:}$style{/yun}/style/css.css">
+<link rel="stylesheet" type="text/css" href="{yun:}$style{/yun}/style/popup.css"/>
+<link rel="stylesheet" type="text/css" href="{yun:}$style{/yun}/style/external.min.css"/>
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$style{/yun}/js/subscribe.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js"></script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="invitereg_cont">
+  <div class="invitereg_cont_box">
+    <div class="invitereg_img"> <img src="{yun:}$style{/yun}/images/jobcp_banner.jpg"></div>
+    <div class="invitereg_cont_box_c">
+      <div class="invitereg_p1">方法一：这是您的专属链接,请通过QQ发送给好友：</div>
+      <div class="invitereg_p2">
+        <textarea class="invitereg_info">#推荐得积分，好礼尽情拿#只要成功推荐1位朋友注册，就可以兑换到礼品了！只要推荐积分够给力，更有新iPad、iPod、音响、耳机、背包、笔记本等数万件礼品可尽情兑换！给我点力吧！注册成功你也可以获得礼品兑换积分哦，赶快来参加吧！链接地址：{yun:}url m=register url=uid:`$uid`{/yun}</textarea>
+      </div>
+      <div class="invitereg_p2">
+        <input type="submit" value="复制链接" class="invitereg_bth" onclick="copyUrl();">
+      </div>
+      <div class="invitereg_p1">方法二：发送邮件给朋友</div>
+      <div class="invitereg_p2">邀请朋友加入，可以在下面输入朋友的邮箱地址和想说的话</div>
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+    <form name="myform" target="supportiframe" action="index.php?m=invitereg" method="post" onsubmit="return checkpost();">
+      <div class="invitereg_list"><span class="invitereg_list_span">邮箱地址：</span>
+        <input type="text" name="email" placeholder="这里输入邮箱" class="invitereg_text">
+      </div>
+      <div class="invitereg_list"><span class="invitereg_list_span">想说的话：</span>
+        <textarea class="invitereg_info_yx" name="content" id="content">我一直在用职我人才网找工作；真的很不错；忍不住的想推荐给你，快去注册吧！免费哦！链接地址：{yun:}url m=register url=uid:`$uid`{/yun}</textarea>
+      </div>
+      <div class="invitereg_list"><span class="invitereg_list_span">&nbsp;</span>
+        <input type="submit" name="submit" value="发送邮件" class="invitereg_bth">
+      </div>
+     </form>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="url" value="{yun:}url m=register url=uid:`$uid`{/yun}">
+<script language="javascript">
+function checkpost(){
+	var email=$("input[name=email]").val();
+    if(email==""){
+		layer.msg('邮箱不能为空！', 2, 8);return false;  
+	}
+    var myreg = /^([a-zA-Z0-9\-]+[_|\_|\.]?)*[a-zA-Z0-9\-]+@([a-zA-Z0-9\-]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    if(!myreg.test(email)){
+		layer.msg('邮箱格式不正确！', 2, 8);return false;  
+	}
+	var content=$("#content").val();
+    if(content==""){
+		layer.msg('内容不能为空！', 2, 8);return false;  
+	}
+}
+function copyUrl()
+{
+var txt=$("#url").val();
+     if(window.clipboardData){   
+            window.clipboardData.clearData();   
+            window.clipboardData.setData("Text", txt);   
+			alert("复制成功")   
+     }else if(navigator.userAgent.indexOf("Opera") != -1){   
+           window.location = txt;  
+		   alert("复制成功")    
+     }else if(window.netscape) {   
+        try{   
+            netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");   
+        } catch (e){ 
+            alert("被浏览器拒绝！\n请在浏览器地址栏输入'about:config'并回车\n然后将'signed.applets.codebase_principal_support'设置为'true'");        						        }   
+    var clip = Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard);   
+    if (!clip)return;   
+    var trans = Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable);   
+    if (!trans)return;   
+    trans.addDataFlavor('text/unicode');   
+    var str = new Object();   
+    var len = new Object();   
+    var str = Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);   
+    var copytext = txt;   
+    str.data = copytext;   
+    trans.setTransferData("text/unicode",str,copytext.length*2);   
+    var clipid = Components.interfaces.nsIClipboard;   
+    if (!clip)return false;   
+	clip.setData(trans,null,clipid.kGlobalClipboard);   
+	alert("复制成功")   
+    }   
+}
+</script>
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

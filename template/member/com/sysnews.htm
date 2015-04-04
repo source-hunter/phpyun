@@ -1,0 +1,63 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <script type="text/javascript" language="javascript">
+function unselectall(){
+	if(document.getElementById('chkAll').checked){
+		document.getElementById('chkAll').checked = document.getElementById('chkAll').checked&0;
+	}
+	}
+function CheckAll(form){
+	for (var i=0;i<form.elements.length;i++){
+	var e = form.elements[i];
+	if (e.Name != 'chkAll'&&e.disabled==false)
+	e.checked = form.chkAll.checked;
+	}
+	}
+</script>
+    <div class=right_box>
+      <div class=admincont_box >
+        <div class=admin_tit><span class="admin_tit_bg">系统消息</span></div>
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <form action="index.php?c=sysnews&act=del" name="myform" method="post" target="supportiframe" id='myform'>
+          <div class='admin_note2'>
+            <table width="100%" border="0" cellpadding="0" cellspacing="1" class="my_table_msg" >
+              <tr>
+                <th width="1%" align="center" bgcolor="#F7FAFF"><label for="chkall">
+                    <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                  </label></th>
+                <th width="4%"  height="30" align="center" bgcolor="#F7FAFF">编号</th>
+                <th width="12%" align="center" bgcolor="#F7FAFF">内容</th>
+                <th width="8%" align="center" bgcolor="#F7FAFF">时间</th>
+                <th width="3%" align="center" bgcolor="#F7FAFF">删除</th>
+              </tr>
+
+              {yun:}foreach from=$rows item=item{/yun}
+              <tr style="height:30px">
+                <td bgcolor="#FFFFFF" align="center"><input type="checkbox" value="{yun:}$item.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+                <td bgcolor="#FFFFFF" align="center">{yun:}$item.id{/yun}</td>
+                <td bgcolor="#FFFFFF" align="center">{yun:}$item.content{/yun}</td>
+                <td bgcolor="#FFFFFF" align="center">{yun:}$item.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</td>
+                <td bgcolor="#FFFFFF" align="center"><a href="javascript:void(0)" onclick="layer_del('确定要删除？', 'index.php?c=sysnews&act=del&id={yun:}$item.id{/yun}'); "> 删除</a></td>
+              </tr>
+              {yun:}foreachelse{/yun}
+              <tr>
+                <td height="26" align="center" colspan="6" style=" background:#fff;">暂无信息！</td>
+              </tr>
+               {yun:}/foreach{/yun}
+            </table>
+            <div class="clear"></div>
+			{yun:}if $rows{/yun}
+          	 <div class="job_d_cz fltL"> 
+            <input type="button" name="delsub" class='c_btn_02' value="删除所选" onclick="return really('del[]');"/>
+            </div>
+            <div class="clear"></div>
+            <div class="diggg">{yun:}$pagenav{/yun}</div>
+			{yun:}/if{/yun}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

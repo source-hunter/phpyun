@@ -1,0 +1,13 @@
+@charset "gb2312";
+.integral_banner{width:100%;height:410px; background:#63b889}
+.integral_banner_980{width:980px; margin:0 auto}
+.integral_list{width:320px;height:100px; float:left; padding-top:20px;padding-bottom:20px;border-bottom:1px solid #ccc; font-family:Î¢ÈíÑÅºÚ,ËÎÌå}
+.integral_list dt{width:60px; float:left; text-align:center}
+.integral_list dd{width:200px; float:left; padding-left:20px;color:#8c8c8c; font-size:14px;}
+.integral_h1{ font-size:16px; font-weight:bold;color:#676767; margin-top:5px; }
+.integral_span{ font-weight:bold;color:#F60; font-size:20px; margin-right:5px;}
+.integral_cy{ padding-top:10px; padding-bottom:20px;}
+.integral_list dd a{ color:#C00; text-decoration:underline;}
+.integral_banner_900{width:980px; margin:0 auto}
+.int_top_right a{ display:inline-block;color:#C00; font-weight:bold}
+.integral_list_end{border:none;}

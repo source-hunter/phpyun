@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script>
+function checkform()
+{
+	if($("#name").val()==""){
+		parent.layer.msg('请填写类别名称！', 2, 2); return false;
+	}
+	if($("#content").val()==""){
+		parent.layer.msg('请填写类别简介！', 2, 2); return false;
+	}
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>添加工具箱类别</h6>
+ <div class="infoboxp_right"> 
+    <a href="index.php?m=link" class="infoboxp_tj">友情链接列表</a>
+</div>
+</div>
+
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=hrclass&c=add" method="post"  encType="multipart/form-data"  onSubmit="return checkform();">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+<table width="100%" class="table_form" style="background:#fff;">
+
+	 <tr>
+		<th width="120">类别名称：</th>
+		<td><input class="input-text" type="text" id="name" name="name" size="40" value="{yun:}$row.name{/yun}" /></td>
+	</tr>
+	<tr class="admin_table_trbg">
+		<th width="120">类别简介：</th>
+		<td><textarea name="content" id="content" style="width:400px; height:120px;">{yun:}$row.content{/yun}</textarea></td>
+	</tr>
+	<tr>
+		<th width="120">缩 略 图：</th>
+		<td><input name="pic" id="pic" type="file" size="40"  class="input-text"/></td>
+	</tr>
+    {yun:}if $row.pic{/yun}
+    <tr>
+        <th width="120">图片预览：</th>
+        <td><img src="../{yun:}$row.pic{/yun}" width="150" height="80" /></td>
+    </tr>
+    {yun:}/if{/yun}
+	<tr class="admin_table_trbg">
+		<td align="center" colspan="2">
+        {yun:}if is_array($row){/yun}
+        <input type="hidden" name="id" value="{yun:}$row.id{/yun}" />
+        <input class="admin_submit4" type="submit" name="submit" value="&nbsp;修 改&nbsp;" />
+        {yun:}else{/yun}
+        <input class="admin_submit4" type="submit" name="submit" value="&nbsp;添 加&nbsp;" />
+        {yun:}/if{/yun}
+		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+	</tr>
+</table>
+</form>
+</div></div>
+</body>
+</html>

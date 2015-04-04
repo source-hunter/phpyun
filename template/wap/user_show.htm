@@ -1,0 +1,368 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun} 
+<div class="post_content">
+<div class="post_title">
+<h3>{yun:}$Info.username_n{/yun} / {yun:}$Info.user_sex{/yun}</h3>
+<aside>意向职位：{yun:}$Info.jobname{/yun}</aside>
+<i>{yun:}$Info.lastupdate{/yun}</i>
+</div>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》自我描述</span></header>
+  <ul class="com_post_msg">
+  <li>[简历名称] {yun:}$row.username{/yun}</li>
+  <li>[工作年限] {yun:}$Info.user_exp{/yun}</li>
+  <li>[意向行业] {yun:}$Info.hy{/yun}</li>
+  <li>[期望薪资] {yun:}$Info.salary{/yun}元</li>
+ 
+  <li>[自我介绍] {yun:}$Info.description{/yun}</li>
+  </ul>
+</section>
+
+{yun:}if $Info.user_work{/yun}
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》工作经历</span></header>
+<div class="user_jl_jy_list">
+  {yun:}foreach from=$Info.user_work item=worklist{/yun}
+  <div class="job_jl_list">
+      <div> 
+      {yun:}$worklist.sdate|date_format:"%Y-%m-%d"{/yun} 至 {yun:}if $worklist.edate{/yun}{yun:}$worklist.edate|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}至今{yun:}/if{/yun}</div>  
+      <div class="">
+      <em>在</em>{yun:}$worklist.name{/yun}&nbsp;&nbsp;
+      <em>担任</em>{yun:}$worklist.title{/yun} </div>
+      <em>主要工作</em>{yun:}$worklist.content{/yun}
+      </div>   
+          {yun:}/foreach{/yun}
+
+</div>
+</section>
+{yun:}/if{/yun}
+
+{yun:}if $Info.user_edu{/yun}
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》教育经历</span></header>
+<div class="user_jl_jy_list">
+  {yun:}foreach from=$Info.user_edu item=edulist{/yun}
+  <div class="job_jl_list">
+      <div> 
+      {yun:}$edulist.sdate|date_format:"%Y-%m-%d"{/yun} 至 {yun:}if $edulist.edate{/yun}{yun:}$edulist.edate|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}至今{yun:}/if{/yun}</div>  
+      <div class="">
+      <em>在</em>{yun:}$edulist.name{/yun}&nbsp;&nbsp;
+      <em>担任职位</em>{yun:}$edulist.title{/yun} </div>
+      <em>学习内容</em>{yun:}$edulist.content{/yun}
+      </div>   
+          {yun:}/foreach{/yun}
+
+</div>
+</section>
+{yun:}/if{/yun}
+
+{yun:}if $Info.user_training{/yun}
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》培训经历</span></header>
+<div class="user_jl_jy_list">
+  {yun:}foreach from=$Info.user_training item=traininglist{/yun}
+  <div class="job_jl_list">
+      <div> 
+      {yun:}$traininglist.sdate|date_format:"%Y-%m-%d"{/yun} 至 {yun:}if $traininglist.edate{/yun}{yun:}$traininglist.edate|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}至今{yun:}/if{/yun}</div>  
+      <div class="">
+      <em>在</em>{yun:}$traininglist.name{/yun}
+      <em>接受</em>{yun:}$traininglist.title{/yun} <em>方向的培训</em></div>
+      <em>培训内容</em>{yun:}$traininglist.content{/yun}
+      </div>   
+          {yun:}/foreach{/yun}
+
+</div>
+</section>
+{yun:}/if{/yun}
+
+{yun:}if $Info.user_project{/yun}
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》项目经历</span></header>
+<div class="user_jl_jy_list">
+  {yun:}foreach from=$Info.user_project item=projectlist{/yun}
+  <div class="job_jl_list">
+      <div> 
+      {yun:}$projectlist.sdate|date_format:"%Y-%m-%d"{/yun} 至 {yun:}if $projectlist.edate{/yun}{yun:}$projectlist.edate|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}至今{yun:}/if{/yun}</div>  
+      <div class="">
+      <em>项目环境</em>{yun:}$projectlist.sys{/yun}&nbsp;&nbsp;
+      <em>在</em>{yun:}$projectlist.name{/yun}
+      <em>担任</em>{yun:}$projectlist.title{/yun} </div>
+      <em>主要工作</em>{yun:}$projectlist.content{/yun}
+      </div>   
+          {yun:}/foreach{/yun}
+
+</div>
+</section>
+{yun:}/if{/yun}
+
+{yun:}if $Info.user_skill{/yun}
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》专业技能</span></header>
+<div class="user_jl_jy_list">
+      {yun:}foreach from=$Info.user_skill item=skilllist{/yun}
+      <div class="job_jl_list"> 
+      <div class="">
+      <em>掌握</em>{yun:}$skilllist.skill_n{/yun} <em>类技能</em>&nbsp;&nbsp;{yun:}$skilllist.name{/yun}
+      <em></em>{yun:}$skilllist.longtime{/yun}个月 </div>
+      <em>熟练程度</em>{yun:}$skilllist.ing_n{/yun}
+      </div>   
+      {yun:}/foreach{/yun}
+
+</div>
+</section>
+{yun:}/if{/yun}
+
+{yun:}if $Info.user_cert{/yun}
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》证书</span></header>
+<div class="user_jl_jy_list">
+  {yun:}foreach from=$Info.user_cert item=certlist{/yun}
+  <div class="job_jl_list">
+      <div> 
+      {yun:}$certlist.sdate|date_format:"%Y-%m-%d"{/yun} 至 {yun:}if $certlist.edate{/yun}{yun:}$certlist.edate|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}至今{yun:}/if{/yun}</div>  
+      <div class="">
+      <em>获得</em>{yun:}$certlist.title{/yun}&nbsp;&nbsp;
+      <em>颁发的</em>{yun:}$certlist.name{/yun} </div>
+      <em>证书描述</em>{yun:}$certlist.content{/yun}
+      </div>   
+          {yun:}/foreach{/yun}
+
+</div>
+</section>
+{yun:}/if{/yun}
+
+{yun:}if $Info.user_other{/yun}
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》其他信息</span></header>
+<div class="user_jl_jy_list">
+  {yun:}foreach from=$Info.user_other item=otherlist{/yun}
+  <div class="job_jl_list"> 
+      <div class="">
+      <em></em>{yun:}$otherlist.title{/yun}&nbsp;&nbsp;
+      <em></em>{yun:}$otherlist.content{/yun}
+      </div>  
+      </div> 
+          {yun:}/foreach{/yun}
+
+</div>
+</section>
+{yun:}/if{/yun}
+
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》联系方式</span></header>
+{yun:}if $Info.m_status=="1"{/yun}
+
+ <ul class="com_post_msg">
+	<li> [身份证] {yun:}image uid=$Info.uid action=idcard width=180{/yun}{yun:}if $Info.idcard_status==1{/yun}已认证{yun:}/if{/yun}</li>
+	<li> [手机] {yun:}image uid=$Info.uid action=telphone width=200{/yun}</li>
+    {yun:}if $Info.basic_info=='1'{/yun}
+    <li> [座机] {yun:}image uid=$Info.uid action=telhome width=200{/yun}</li>
+    {yun:}/if{/yun} 
+	<li> [联系邮箱]{yun:}$Info.email{/yun}</li>
+ </ul>
+ {yun:}else{/yun}
+  <ul class="com_post_msg">
+	<li> {yun:}$Info.link_msg{/yun}</li>
+ </ul>
+           {yun:}/if{/yun} 
+</section> 
+<section class="com_post_title user_post_Application">
+<input class="btn_1 user_post_talentadd" type="button" onClick="talent_pool('{yun:}$Info.uid{/yun}','{yun:}$Info.id{/yun}')" value="加入人才库">
+       <input class="btn_1 sq_resume user_post_invite" type="button"  uid="{yun:}$Info.uid{/yun}" eid="{yun:}$Info.id{/yun}" username="{yun:}$Info.name{/yun}" name="submit" value="邀请面试 ">
+       <input name="uid" value="{yun:}$cuid{/yun}" type="hidden"></section> 
+</div>
+       <div class="com_box_yq" id='job_box' style="display:none;float:left; z-index:100; position:absolute;top:10px;">
+        <dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">面试职位：</span>
+		  </dt>
+          <dd><select id='jobname'></select></dd>
+        </dl>
+		<dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">联系人：</span>
+             <dd> <input   id='linkman' value=''>
+</dd>
+        </dl>
+        <dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">联系电话：</span>
+              <dd>  <input id='linktel' value=''></dd>
+		  </dt>
+        </dl>
+		<dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">面试时间：</span>
+            <dd><input id='intertime' value=''></dd>
+		  </dt>
+        </dl>
+		<dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">面试地址：</span><dd><input id='address' value=''></dd>
+		  </dt>
+        </dl>
+		<dl class="com_box_yq_dl">
+			<dt><span class="city_01">面试备注：</span><dd><textarea id="content"  class="resyme_text"></textarea></dd>
+		</dl>
+      <dl class="com_box_yq_dl" id="resume_job" style="height:40px;">
+        <dt><span class="city_01">&nbsp;</span><input type="hidden" value="{yun:}$Info.id{/yun}" id="eid">
+		<input type="hidden" value="{yun:}$Info.uid{/yun}" id="uid">
+		<input type="hidden" id="username" value="{yun:}$Info.name{/yun}"> 
+		<input class="resume_sub_yq" id="click_invite" type="button" value="邀请面试"  >
+    </dl>
+  
+ </div>
+<script language="javascript" type="text/javascript">
+function for_link(eid){
+	$.post(weburl+"/index.php?m=ajax&c=for_link",{eid:eid},function(data){  
+		var data=eval('('+data+')');
+		var status=data.status;
+		if(status==1){
+			layermsg(data.msg);
+		}else if(status==2){
+				layer.open({
+					content:data.msg,
+					btn: ['确认', '取消'],
+					shadeClose: false,
+					yes: function(){
+						down_integral(eid,data.uid);
+					} 
+				});
+		}else if(status==3){
+			location.reload();
+		} 
+	});
+}
+function down_integral(eid,uid){
+	$.post(weburl+"/index.php?m=ajax&c=down_resume",{type:"integral",eid:eid,uid:uid},function(data){ 
+		var data=eval('('+data+')');
+		var status=data.status;
+		var integral=data.integral;
+		if(status==5){
+			layermsg('您还有'+integral+integral_pricename+'！不够下载简历!');
+		}else if(status==3){
+			location.reload();
+		}else{
+			layermsg(data.msg);return false;
+		}
+	})
+}
+function talent_pool(uid,eid)
+{
+	$.post(weburl+"/index.php?m=ajax&c=talent_pool",{eid:eid,uid:uid},function(data){
+		if(data=='0'){
+			layermsg('只有企业用户，才可以操作！');
+		}else if(data=='1'){
+			layermsg('加入成功！');
+		}else if(data=='2'){
+			layermsg('该简历已加入到人才库！');
+		}else{
+			layermsg('对不起，操作出错！');
+		}
+	});
+}
+$(document).ready(function(){
+	$(".sq_resume").click(function(){
+		if($(this).attr("uid")){$("#uid").val($(this).attr("uid"));}
+		if($(this).attr("username")){$("#username").val($(this).attr("username"));}
+		$.post(weburl+"/index.php?m=ajax&c=index_ajaxresume",{show_job:'1'},function(data){
+			var data=eval('('+data+')');
+			var status=data.status;
+			var integral=data.integral;
+			if(data.html){
+				$("#jobname").html(data.html);
+			}
+			if(data.linkman){
+				$("#linkman").val(data.linkman);
+			}
+			if(data.linktel){
+				$("#linktel").val(data.linktel);
+			}
+			if(data.address){
+				$("#address").val(data.address);
+			}
+			if(data.intertime){
+				$("#intertime").val(data.intertime);
+			}
+			if(data.content){
+				$("#content").text(data.content);
+				$("#update_yq").attr("checked",true);
+			}
+			if(status == 6){
+			    layermsg('请先登录！');return false;
+			}
+			if(!status || status == 0){
+				 layermsg('您不是企业用户，请先登录！');
+				/*layer.alert('您不是企业用户，请先登录！', 0, '提示',function(){
+					window.location.href =weburl+"/index.php?m=login&usertype=2&type=out"; window.event.returnValue = false;return false;
+				});*/
+
+			}else if(status==1){
+				layer.open({
+					content:"邀请面试将扣除"+integral+integral_pricename+"，是否继续？",
+					btn: ['确认', '取消'],
+					shadeClose: false,
+					yes: function(){
+						location.href=weburl+'/index.php?m=user&c=invite&jobname='+data.html+'&linkman='+data.linkman+'&linktel='+data.linktel+'&address='+data.address+'&intertime='+data.intertime+'&uid={yun:}$Info.uid{/yun}';
+				
+						//$("#job_box").show();
+					} 
+				});
+				/*layer.confirm("邀请面试将扣除"+integral+integral_pricename+"，是否继续？",function(){
+					layer.closeAll();
+					$.layer({
+						type : 1,
+						title :'邀请面试',
+						offset: [($(window).height() - 280)/2 + 'px', ''],
+						closeBtn : [0 , true],
+						border : [10 , 0.3 , '#000', true],
+						area : ['380px','auto'],
+						page : {dom :"#job_box"}
+					});
+				});*/
+			}else if(status==2){
+				layer.open({
+					content:"你的等级特权已经用完,将扣除"+integral+integral_pricename,
+					btn: ['确认', '取消'],
+					shadeClose: false,
+					yes: function(){
+						location.href=weburl+'/index.php?m=user&c=invite&jobname='+data.html+'&linkman='+data.linkman+'&linktel='+data.linktel+'&address='+data.address+'&intertime='+data.intertime+'&uid={yun:}$Info.uid{/yun}';
+				
+						//$("#job_box").show();
+					} 
+				});
+				/*layer.confirm("你的等级特权已经用完,将扣除"+integral+integral_pricename,function(){
+					layer.closeAll();
+					$.layer({
+						type : 1,
+						title :'邀请面试',
+						offset: [($(window).height() -380)/2 + 'px', ''],
+						closeBtn : [0 , true],
+						border : [10 , 0.3 , '#000', true],
+						area : ['380px','auto'],
+						page : {dom :"#job_box"}
+					});
+				});*/
+			}else if(status==3){ 
+				/*$.layer({
+					type : 1,
+					title :'邀请面试',
+					offset: [($(window).height() - 380)/2 + 'px', ''],
+					closeBtn : [0 , true],
+					border : [10 , 0.3 , '#000', true],
+					area : ['380px','auto'],
+					page : {dom :"#job_box"}
+				});*/
+						location.href=weburl+'/index.php?m=user&c=invite&jobname='+data.html+'&linkman='+data.linkman+'&linktel='+data.linktel+'&address='+data.address+'&intertime='+data.intertime+'&uid={yun:}$Info.uid{/yun}';
+				
+						//$("#job_box").show();
+			}else if(status==4){
+				layermsg('会员邀请简历已用完！');return false;
+			}else if(status==5){
+				layermsg('您暂无发布中的职位！');return false;
+			}
+		});
+	})
+});
+</script>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun}

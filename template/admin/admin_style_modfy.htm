@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>修改风格</h6>
+<div class="infoboxp_right"> 
+<a href="index.php?m=admin_style" class="infoboxp_tj">模板风格列表</a></div>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=admin_style&c=save" method="post" encType="multipart/form-data">
+	<table width="100%" class="table_form">
+      <tr >
+			
+			<td colspan="2"> <img width="225" height="136" border="1" style="border: #CCCCCC;" src="{yun:}$style_info.img{/yun}">
+            <input type="hidden" value="" name="img" >
+            </td>
+         </tr>
+          <tr >
+			<th width="80" align="left">更换预览图：</th>
+			<td><input  type="file" name="img2" value=""></td>
+         </tr>
+        <tr >
+			<th align="left">风格名称：</th>
+			<td><input name="name" class="input-text" value="{yun:}$style_info.name{/yun}"></td>
+         </tr>
+         <tr>
+			<th align="left">风格目录：</th>
+			<td><input readonly type="text" value="{yun:}$style_info.dir{/yun}" class="input-text" name="dir"></td>
+         </tr>
+    		<tr>
+			<th align="left">风格作者：</th>
+			<td>
+			 <input type="text" class="input-text" value="{yun:}$style_info.author{/yun}" name="author">
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+        	<input class="admin_submit4" type="submit" name="submit" value="&nbsp;提  交&nbsp;"/>
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+			</td>
+		</tr>
+	</table>
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">	
+</form>
+</div>
+</body>
+</html>

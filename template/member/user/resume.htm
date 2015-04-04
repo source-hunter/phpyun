@@ -1,0 +1,126 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<script type="text/javascript">  
+
+function gourl(){
+	layer.confirm('确定要创建新的简历吗？', function(){window.location.href='index.php?c=expect&add={yun:}$uid{/yun}';window.event.returnValue = false;return false;   });
+}  
+
+
+function setdef_resume(id){
+	$.post(weburl+"/index.php?m=ajax&c=default_resume",{eid:id},function(data){
+		if(data==0){
+			layer.alert('请先登录！', 0, '提示',function(){window.location.href ="index.php?m=login&usertype=1";window.event.returnValue = false;return false;});
+		}else if(data==1){ 
+			layer.msg('设置成功！', 2, 9,function(){ location.reload();});return false; 
+		}else{ 
+			layer.msg('系统出错，请稍后再试！', 2, 8,function(){ location.reload();});return false; 
+		}
+	}) 
+}
+function showmsg(msg){
+	$("#msgs").html(msg);
+	$.layer({
+		type : 1,
+		title :'查看原因',
+		offset: [($(window).height() - 300)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['400px','200px'],
+		page : {dom :"#showmsg"}
+	});
+} 
+</script>
+<div class="w950"> 
+	{yun:}include file="$userstyle/left.htm"{/yun}
+	<div class="mian_right fltR mt12 re">
+    <div class="tabmenubox01 mt9">
+      <ul>
+        <li class="cur"> <a href="index.php?c=resume">我的简历</a></li>
+        <li> <a href="index.php?c=look">简历被浏览</a></li>
+        <li> <a href="index.php?c=look_job">浏览的职位</a></li>
+        <li> <a href="index.php?c=privacy">隐私设置</a></li>
+      </ul>
+    </div>
+    
+
+    <div id="" class="resume_box_list">
+    <div class="resume_Prompt">提示：所有简历均可用于投递职位；当隐私设置为"公开"时，仅默认简历可以被企业搜索到 </div>
+    <div class="clear"></div>
+    {yun:}foreach item=resume from=$rows{/yun}
+    <div class="resume_list_mr {yun:}if $resume.id==$def_job{/yun}index_resume_box_Set{yun:}else{/yun}resume_list_bor{yun:}/if{/yun}">
+    {yun:}if $resume.id==$def_job{/yun}<div class="index_resume_Set">默认简历</div>{yun:}/if{/yun}
+    <div class="resume_list_mr_name">{yun:}$resume.name{/yun}</div>
+    <div class="resume_list_mr_wzd fltL">
+    <div class="resume_list_mr_wz_left">
+    <span class="resume_list_mr_wzdleft">完整度：</span><span class="shell fltL shell_mt">
+<i style="width:{yun:}$resume.integrity{/yun}%"></i>
+</span>
+<font class="red">{yun:}if $resume.integrity{/yun}{yun:}$resume.integrity{/yun}{yun:}else{/yun}0{yun:}/if{/yun}%</font>
+</div>
+<div class="resume_list_mr_cont">
+
+
+<a title="上传作品" href="index.php?c=show&eid={yun:}$resume.id{/yun}" class="resume_list_gj_r_zp png">上传作品案例</a>
+<div class="resume_list_gj_ln"><span class="resume_list_ln_cs">{yun:}$resume.hits{/yun}</span>被浏览</div>
+</div>
+<span class="resume_list_date fltR">更新时间：{yun:}$resume.lastupdate|date_format:'%Y-%m-%d'{/yun}</span>
+
+</div>
+
+    <div class="index_resume_Operating mt10 fltL ">
+		<span class="index_resume_Operating_l  fltL ">简历类型：{yun:}if $resume.doc=='1'{/yun}快速简历{yun:}else{/yun}标准简历{yun:}/if{/yun}
+		&nbsp; &nbsp; &nbsp; &nbsp;系统为您匹配相似职位：<a href="index.php?c=likejob&id={yun:}$resume.id{/yun}" class="index_resume_Operating_la">点击查看详情</a></span>
+		<span class="resume_Operating_r fltR">
+		 {yun:}if $resume.id!=$def_job{/yun}
+		<a href="javascript:setdef_resume('{yun:}$resume.id{/yun}');" class="resume_Operating_mr">设为默认</a>
+		|
+		{yun:}/if{/yun}
+		<a class="index_resume_Operating_a" title="置顶" href="javascript:void(0)" onclick="resumetop('{yun:}$resume.id{/yun}','{yun:}$resume.topdate{/yun}')">置顶</a>
+		|
+		<a class="index_resume_Operating_a" title="修改" href="index.php?c=expect{yun:}if $resume.doc{/yun}q{yun:}/if{/yun}&e={yun:}$resume.id{/yun}">修改</a>
+		|
+		<a class="index_resume_Operating_a"  title="预览" target="_blank" href="{yun:}url m=resume url=id:`$resume.id`,tmp:`$resume.tmpid`{/yun}">预览</a>
+		|
+		<a class="index_resume_Operating_a" href="javascript:void(0)" onclick="layer_del('确定要刷新？', '{yun:}$now_url{/yun}&act=refresh&id={yun:}$resume.id{/yun}');" title="刷新">刷新</a>
+		|
+		<a class="index_resume_Operating_a"  href="javascript:void(0)" onclick="layer_del('确定要删除？', '{yun:}$now_url{/yun}&act=del&id={yun:}$resume.id{/yun}');" >删除</a> 
+		</span>
+	</div>
+    </div>
+    
+    <div class="clear"></div>
+          {yun:}foreachelse{/yun}
+          <div class="msg_no">暂无简历！</div>
+          {yun:}/foreach{/yun}
+        
+        <div class="resume_cj">{yun:}if $confignum!=""{/yun}您还可以创建 <span class="resume_cj_sz">({yun:}$maxnum{/yun})</span> 份备用简历{yun:}/if{/yun}
+		{yun:}if $maxnum>1{/yun}
+		<a class="thickbox" title="创建新简历" href="javascript:void(0)" onclick="gourl();return false;">创建新简历</a> <a href="index.php?c=expectq&add={yun:}$uid{/yun}" title="直接粘贴已有的个人简历"class="thickbox2" >在线粘贴简历</a>
+		{yun:}else{/yun}
+		<a class="thickbox" title="创建新简历" href="javascript:void(0)" onclick="layer.msg('你的简历数已经达到系统设置的简历数了',2,8);return false;">创建新简历</a> <a href="javascript:void(0)" onclick="layer.msg('你的简历数已经达到系统设置的简历数了',2,8);return false;" title="直接粘贴已有的个人简历"class="thickbox2" >在线粘贴简历</a>
+		{yun:}/if{/yun}</div>
+           <div  class="clear"></div>
+    <div class="wxts_box wxts_box_mt30">
+<div class="wxts">温馨提示：</div>
+
+1、上传个人作品：上传个人作品让企业直观了解你的你能力
+<br>
+</div>
+  </div>
+
+
+      </div>
+    </div> 
+
+<div id="showmsg"  style="display:none; width: 400px;"> 
+    <div id="infobox">
+		 <div class="admin_Operating_sh" style="padding:10px; ">
+		<div class="admin_Operating_sh_h1" style="padding:5px;">审核说明：<div class="user_Audit_box" id="msgs"></div></div>
+
+		<div class="admin_Operating_sub" style="margin-top:10px;"> 
+          &nbsp;&nbsp;<input type="button" onClick="layer.closeAll();" class="com_pop_bth" value='确认'></div>
+		</div>
+    </div> 
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+{yun:}include file="$userstyle/footer.htm"{/yun}

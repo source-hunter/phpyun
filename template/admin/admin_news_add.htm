@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="../data/kindeditor/themes/default/default.css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+
+<script language="javascript">
+<!--
+KindEditor.ready(function(K) {
+	var editor = K.editor({
+		allowFileManager : true
+	});
+	K.create('#content', {
+		themeType : 'default'
+	});
+	var uploadbutton = K.uploadbutton({
+		button : K('#insertfile')[0],
+		fieldName : 'imgFile',
+		url : '../data/kindeditor/php/upload_json.php?dir=image',
+		afterUpload : function(data) {
+			if (data.error === 0) {
+				K('#pic_url').val(data.url);
+				K('#news_pic').html(data.url);
+			} else {
+				parent.layer.msg(data.message);
+			}
+		},
+		afterError : function(str) {
+			parent.layer.msg(str);
+		}
+	});
+	uploadbutton.fileBox.change(function(e) {
+		uploadbutton.submit();
+	});
+	var colorpicker;
+	K('#colorpicker').bind('click', function(e) {
+		e.stopPropagation();
+		if (colorpicker) {
+			colorpicker.remove();
+			colorpicker = null;
+			return;
+		}
+		var colorpickerPos = K('#colorpicker').pos();
+		colorpicker = K.colorpicker({
+			x : colorpickerPos.x,
+			y : colorpickerPos.y + K('#colorpicker').height(),
+			z : 19811214,
+			selectedColor : 'default',
+			noColor : '无颜色',
+			click : function(color) {
+				K('#color').val(color);
+				$('#color + font').css('color', color);
+				colorpicker.remove();
+				colorpicker = null;
+			}
+		});
+	});
+	K(document).click(function() {
+		if (colorpicker) {
+			colorpicker.remove();
+			colorpicker = null;
+		}
+	});
+});
+//-->
+function news_preview(url){
+	$(".job_box_div").html("<img src='"+url+"' style='max-width:500px' />");//
+ 	$.layer({
+		type : 1,
+		title : '查看图片',
+		closeBtn : [0 , true],
+		offset : ['20%' , '30%'],
+		border : [10 , 0.3 , '#000', true],
+		area : ['560px','auto'],
+		page : {dom : '#news_preview'}
+	}); 
+}
+function checkform(myform){
+  if (myform.title.value=="") {
+		parent.layer.msg('请填写新闻标题！', 2,2,function(){myform.title.focus();});return false;
+  }
+}
+$(document).ready(function(){
+	$("#did").click(function(){
+		var checked=$("#did").attr("checked");
+		if(checked=="checked"){
+			$(".did").attr("checked","checked");
+		}else{
+			$(".did").attr("checked",false);
+		}
+	})
+	$(".did").click(function(){
+		if(document.getElementById('did').checked){
+			document.getElementById('did').checked = document.getElementById('did').checked&0;
+		}
+	})
+})
+</script>
+
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+     <span class="admin_title_span">添加新闻</span>
+        <a href="index.php?m=admin_news" class="admin_infoboxp_nav admin_infoboxp_gl">新闻列表</a>
+          <em class="admin-tit_line"></em>
+        <a href="index.php?m=admin_news&c=group" class="admin_infoboxp_nav admin_infoboxp_lb">类别管理</a>
+  </div>
+  <div class="clear"></div>
+  <div class="admin_table_border">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form name="myform" target="supportiframe" action="index.php?m=admin_news&c=addnews" method="post" encType="multipart/form-data"  onSubmit="return checkform(this);">
+      <table width="100%" class="table_form"  style="background:#fff;">
+        <tr >
+          <th width="120">新闻类别：</th>
+          <td><select name="nid">
+	  {yun:}foreach item=v from=$one_class{/yun}
+      <option value="{yun:}$v.id{/yun}" {yun:}if $v.id eq $news.nid{/yun} selected='selected'{yun:}/if{/yun}>{yun:}$v.name{/yun}</option>
+      {yun:}/foreach{/yun}
+            </select>
+            &nbsp;&nbsp;<a href="index.php?m=admin_news&c=group" class="on" style=" text-decoration:none;"><font style="background:#498CD0; color:#FFF; padding:3px 10px 3px 10px;">添加分类</font></a></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>新闻标题：</th>
+          <td><input class="input-text" type="text" name="title" size="40" value="{yun:}$news.title{/yun}"/><input type="hidden" name='color' id="color" value="" /><font color="{yun:}$news.color{/yun}">字体颜色</font><input type="button" id="colorpicker" value="打开取色器" class="admin_submit6" style="background:#F60; margin-left:5px;"/></td>
+        </tr>
+        <tr >
+          <th>使用范围：</th>
+          <td>
+      <div class="all_Domain_name">
+     <input type="button" value="{yun:}if $news.domain_name==""{/yun}全站{yun:}else{/yun}{yun:}$news.domain_name{/yun}{yun:}/if{/yun}" class="all_Domain_button" id="domain_name">
+     <input type="hidden" id="domainid" value="{yun:}$news.did{/yun}" name="did">
+     <div class="all_Domain_name_box" id="domain_list" style="display:none;">
+<span class="all_Domain_name_box_list"><input type="checkbox" class="domain" id="did" value="0+0" {yun:}if stripos($news.did,'0')!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> 全站</span> 
+          {yun:}foreach from=$domain item=v{/yun}
+          <span class="all_Domain_name_box_list"><input type="checkbox" class="domain" class="did" value="{yun:}$v.id{/yun}+{yun:}$v.title{/yun}" {yun:}if stripos($news.did,$v.id)!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> {yun:}$v.title{/yun}</span> 
+          {yun:}/foreach{/yun}
+          <div class="all_Domain_name_sub"><input type="button" value="确定" class="all_Domain_name_submit1" onClick="check_domain()">
+          <input type="button" value="取消" class="all_Domain_name_submit2" onClick="Close('domain_list')"></div>
+     </div>
+      </div>
+          </td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>作　　者：</th>
+          <td><input class="input-text" type="text" name="author" size="20" value="{yun:}$news.author{/yun}"/></td>
+        </tr>
+        <tr >
+          <th>来　　源：</th>
+          <td><input class="input-text" type="text" name="source" size="50" value="{yun:}$news.source{/yun}"/></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>关 键 词：</th>
+          <td><input class="input-text" type="text" name="keyword" size="50" value="{yun:}$news.keyword{/yun}"/>
+            (多关键字，请用，隔开，为空则自动提取) </td>
+        </tr>
+        <tr >
+          <th>描　　述：</th>
+          <td><textarea name="description" cols="55" rows="3">{yun:}$news.description{/yun}</textarea></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>新闻内容： </th>
+          <td><textarea  id="content" name="content" cols="100" rows="8" style="width:800px;height:300px;">{yun:}$news.content{/yun}</textarea></td>
+        </tr>
+        <tr >
+          <th>缩 略 图：</th>
+          <td><span id='news_pic'>{yun:}$news.s_thumb{/yun}</span><input type="hidden"  class="input-text" name="uplocadpic"  value="{yun:}$news.s_thumb{/yun}"   id='pic_url' />{yun:}if $news.s_thumb{/yun}<a href="javascript:void(0)" onClick="news_preview('../{yun:}$news.newsphoto{/yun}')" style="margin:0px 10px">查看</a>{yun:}/if{/yun}<input   type="button" id="insertfile" value="重新选择" /></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <th>类　　型：</th>
+          <td> {yun:}foreach item=property from=$property{/yun}
+            <input type="checkbox" name="describe[]" value="{yun:}$property.value{/yun}" {yun:}if @in_array($property.value,$describe){/yun}checked="checked" {yun:}/if{/yun}/>
+            &nbsp;{yun:}$property.name{/yun}
+            {yun:}/foreach{/yun} </td>
+        </tr>
+        <tr >
+          <th>排　　序：</th>
+          <td><input name="sort" type="text"  size="5" class="input-text" value="{yun:}$news.sort{/yun}" /></td>
+        </tr>
+        <tr class="admin_table_trbg" >
+          <td align="center" colspan="2"> {yun:}if $news.id{/yun}
+            <input type="hidden" name="id" size="40" value="{yun:}$news.id{/yun}"/>
+            <input type="hidden" name="lasturl" value="{yun:}$lasturl{/yun}">
+            <input class="admin_submit4" type="submit" name="updatenews" value="&nbsp;更 新&nbsp;"  />
+            {yun:}else{/yun}
+            <input class="admin_submit4" type="submit" name="newsadd" value="&nbsp;添 加&nbsp;"  />
+            {yun:}/if{/yun}
+            <input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+        </tr>
+      </table>
+	  <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+  </div>
+</div>
+<div id="news_preview"  style="display:none;width:560px ">
+	<div style="height:300px; overflow:auto;width:560px;" >
+		<div class="job_box_div" style="text-align:center;margin-top:10px;"></div>
+	</div>
+</div>
+</body>
+</html>

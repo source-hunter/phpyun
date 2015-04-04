@@ -1,0 +1,188 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun} 
+    <script> 
+$(document).ready(function(){ 
+	$('.cancel_btn').click(function(){
+		layer.closeAll();
+	});
+	$(".status").click(function(){
+		$("#paylog_id").val($(this).attr("id"));
+		$("#alertcontent").val($(this).attr("remark"));
+		$.layer({
+			type : 1,
+			title :'备注',
+			offset: [($(window).height() - 200)/2 + 'px', ''],
+			closeBtn : [0 , true],
+			border : [10 , 0.3 , '#000', true],
+			area : ['320px','200px'],
+			page : {dom :"#infobox"}
+		});
+	});
+
+	$(".invoice").click(function(){
+		var order_id=$(this).attr("order_id");
+		var oid=$(this).attr("id");
+		if(order_id){
+			$("#order_id").val(order_id);
+			$("#oid").val(oid);
+			$.post("index.php?c=paylog&act=invoice",{order_id:order_id},function(data){
+				var data=eval('('+data+')'); 
+				$("#rid").val(data.id);
+				$("#title").val(data.title);
+				$("#link_man").val(data.link_man);
+				$("#link_moblie").val(data.link_moblie);
+				$("#address").val(data.address); 
+				$.layer({
+					type : 1,
+					title :'申请发票',
+					offset: [($(window).height() - 200)/2 + 'px', ''],
+					closeBtn : [0 , true],
+					border : [10 , 0.3 , '#000', true],
+					area : ['320px','200px'],
+					page : {dom :"#invoice_div"}
+				});	
+			});
+		} 
+	});
+});
+
+</script>
+    <div class=right_box>
+    <div class=admincont_box>
+    <div class=admin_tit><span class="admin_tit_bg">{yun:}if $ordertype{/yun}消费记录{yun:}else{/yun}充值记录{yun:}/if{/yun}</span>     <div class=admin_tit_right style="float:right">
+      <input class="job_new_tj" onclick="location.href='index.php?c=pay'" type=button value=现在充值 name=input  style="margin-right:10px;">
+    </div></div>
+
+    <div class=admin_textbox_04>
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form action="{yun:}$now_url{/yun}" target="supportiframe" method="post" id='myform'>
+      <div class=table> {yun:}if $ordertype{/yun}
+        <div id="job_checkbokid">
+        <div class="job_news_list job_news_list_h1">
+                <span class="job_news_list_span job_w160">消费单号</span>
+                 <span class="job_news_list_span job_w100">金额</span>
+                  <span class="job_news_list_span job_w100">{yun:}$config.integral_pricename{/yun}</span>
+                  <span class="job_news_list_span job_w100">状态</span>
+                     <span class="job_news_list_span job_w120"> 备注</span>
+                  <span class="job_news_list_span job_w120">时间</span>
+              </div>
+              
+                  {yun:}foreach from=$rows item=log{/yun}
+          {yun:}assign var="state" value=$log.pay_state{/yun}
+          <div class="job_news_list">
+           <span class="job_news_list_span job_w160">{yun:}$log.order_id{/yun}</span>
+            <span class="job_news_list_span job_w100">{yun:}if $log.type==2{/yun}{yun:}$log.order_price{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span>
+             <span class="job_news_list_span job_w100">{yun:}if $log.type!=2{/yun}{yun:}$log.order_price{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span>
+             <span class="job_news_list_span job_w100">{yun:}$arr_data.paystate.$state{/yun}</span>
+             <span class="job_news_list_span job_w120">{yun:}$log.pay_remark{/yun}&nbsp;</span>
+             <span class="job_news_list_span job_w155">{yun:}$log.pay_time{/yun}</span>
+           
+          </div>
+         
+          {yun:}foreachelse{/yun} 
+		   <div class="msg_no">您还没有充值记录。</div>
+          {yun:}/foreach{/yun} 
+          
+        </div>
+        {yun:}else{/yun}
+        
+        <div id="job_checkbokid">
+               <div class="job_news_list job_news_list_h1">
+                <span class="job_news_list_span job_w160">充值单号</span>
+                 <span class="job_news_list_span job_w100">支付类型</span>
+                  <span class="job_news_list_span job_w100">充值金额</span>
+                  <span class="job_news_list_span job_w100">支付状态</span>
+                     <span class="job_news_list_span job_w120"> 时间</span>
+                  <span class="job_news_list_span job_w120">操作</span>
+              </div>
+              {yun:}foreach from=$rows item=log{/yun}
+          {yun:}assign var="state" value=$log.order_state{/yun}
+          {yun:}assign var="type" value=$log.order_type{/yun}
+          <div class="job_news_list">
+            <span class="job_news_list_span job_w160">{yun:}$log.order_id{/yun}</span>
+            <span class="job_news_list_span job_w100">{yun:}if $type{/yun}{yun:}$arr_data.pay.$type{/yun}{yun:}else{/yun}手动{yun:}/if{/yun}</span>
+            <span class="job_news_list_span job_w100">{yun:}$log.order_price{/yun}</span>
+          <span class="job_news_list_span job_w100">{yun:}$arr_data.paystate.$state{/yun}</span>
+           <span class="job_news_list_span job_w120">{yun:}$log.order_time|date_format:'%Y-%m-%d %H:%M:%S'{/yun}</span>
+          <span class="job_news_list_span job_w155">
+			{yun:}if $log.order_type=='bank'&&$log.order_state!='2'{/yun} 
+            <a href="javascript:;" id="{yun:}$log.id{/yun}" class="status" remark="{yun:}$log.order_remark{/yun}">备注修改</a>| 
+            {yun:}/if{/yun} 
+              {yun:}if $log.order_state=='1' && $log.order_type!='bank'{/yun} <a href="index.php?c=payment&id={yun:}$log.id{/yun}" >去付款</a> |
+              <a href="javascript:void(0)" onclick="del_pay({yun:}$log.id{/yun})">取消充值</a> {yun:}else{/yun}
+              {yun:}$arr_data.paystate.$state{/yun}
+              {yun:}/if{/yun}
+              {yun:}if $log.invoice=='1'&&$log.order_state=='2'{/yun} | <a href="javascript:;" order_id="{yun:}$log.order_id{/yun}" id="{yun:}$log.id{/yun}" class="invoice">{yun:}if $log.is_invoice=='1'{/yun}修改发票{yun:}else{/yun}申请发票{yun:}/if{/yun}</a>{yun:}/if{/yun}
+			 </span>
+             <div class="job_news_list_bot">备注：{yun:}$log.order_remark{/yun}</div>
+          </div>
+          {yun:}foreachelse{/yun} 
+		  <div class="msg_no">您还没有充值记录。</div>
+          {yun:}/foreach{/yun}
+          
+        </div>
+        {yun:}/if{/yun} </div>
+
+      <div> </div>
+      <div>
+        <div style="clear:both"></div>
+        <div class="diggg">{yun:}$pagenav{/yun}</div>
+      </div>  
+    </form>
+    <div class="clear"></div>
+    <div class="infoboxp22" id="invoice_div" style="display:none; ">
+      <div>
+        <form action="index.php?c=paylog&act=saveinvoice" method="post"  target="supportiframe" onsubmit="return paylog_invoice();">
+          <div class="jb_infobox" style="width: 100%;"> 
+			<table class="pay_log_qx">
+				<tr>
+					<td align="right" style="width:80px;">发票抬头：</td>
+					<td><input name="title" id="title" type='text' class="pay_log_text"></td>
+				</tr>
+				<tr>
+					<td align="right">联系人：</td>
+					<td><input name="link_man" id="link_man" type='text'class="pay_log_text"></td>
+				</tr>
+				<tr>
+					<td align="right">联系电话：</td>
+					<td><input name="link_moblie" id="link_moblie" type='text'class="pay_log_text"></td>
+				</tr>
+				<tr>
+					<td align="right">邮寄地址：</td>
+					<td><input name="address" id="address" type='text'class="pay_log_text"></td>
+				</tr>
+			</table>
+          </div>
+          <div class="jb_infobox" style="width: 100%;">
+			<input name='rid' type='hidden' id='rid'/>
+			<input name='oid' type='hidden' id='oid'/>
+            <input name='order_id' type='hidden' id='order_id'/>
+            <button type="submit" name='submit' value='1' class="submit_btn" style="margin-left:80px;">确认</button>
+            &nbsp;&nbsp;
+            <button type="button" class="cancel_btn">取消</button>
+          </div>
+        </form>
+      </div>
+    </div>
+	<div class="infoboxp22" id="infobox" style="display:none; ">
+      <div>
+        <form action="index.php?c=paylog" method="post" id="formstatus" target="supportiframe" onsubmit="return paylog_remark();">
+          <div class="jb_infobox" style="width: 100%;">
+            <input name="id" id='paylog_id' type="hidden"> 
+			 <textarea id="alertcontent" style="width:310px;margin:5px;height:100px" name="order_remark" cols="30" rows="9" class="hr_textarea"></textarea>
+          </div>
+          <div class="jb_infobox" style="width: 100%;">
+            <button type="submit" name='submit' value='1' class="submit_btn" style="margin-left:80px;">确认</button>
+            &nbsp;&nbsp;
+            <button type="button"  id='zxxCancelBtn'  class="cancel_btn">取消</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>  
+{yun:}include file="$comstyle/footer.htm"{/yun} 

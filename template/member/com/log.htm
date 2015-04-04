@@ -1,0 +1,36 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box >
+        <div class=admin_tit><span class="admin_tit_bg">操作日志</span></div>
+        <div class=admin_note2>
+          <table width="100%" border="0" cellpadding="0" cellspacing="1" class="my_table_msg" >
+            <tr>
+              <th   height="30" align="center" bgcolor="#F7FAFF">编号</th>
+              <th align="center" bgcolor="#F7FAFF">内容</th>
+              <th align="center" bgcolor="#F7FAFF">IP</th>
+              <th align="center" bgcolor="#F7FAFF">时间</th>
+            </tr>
+                         
+            {yun:}foreach from=$rows item=item{/yun}
+            <tr style="height:30px">
+              <td bgcolor="#FFFFFF">{yun:}$item.id{/yun}</td>
+              <td bgcolor="#FFFFFF"><div style="width:240px;white-space: normal; word-break: break-all;">{yun:}$item.content{/yun}</div></td>
+              <td bgcolor="#FFFFFF">{yun:}$item.ip{/yun}</td>
+              <td bgcolor="#FFFFFF">{yun:}$item.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</td>
+            </tr>
+			{yun:}foreachelse{/yun} 
+			<tr style="height:30px">
+                <td colspan="4" align="center">您还没有操作记录。</td>
+              </tr>
+            {yun:}/foreach{/yun} 
+          </table>
+          <div class="clear"></div>
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

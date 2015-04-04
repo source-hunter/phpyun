@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$com_style{/yun}/images/comapply.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+  <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}url m=com{/yun}">职位列表</a> > 企业详情 </div>
+  {yun:}include file="$comstyle/job_nav.htm"{/yun}
+  <div class="Job_Introduction_cont">
+    <div class="Job_Brief">{yun:}$com.content{/yun}</div>
+    <div class="Job_Introduction_h1"><span>基本资料</span></div>
+    <div class="clear"></div>
+    <div class="JoB_material">
+      <ul>
+        <li><span class="JoB_material_left">公司性质</span> <em class="JoB_material_right">{yun:}$com.pr_info{/yun} &nbsp;</em> <span class="JoB_material_left"> 成立时间</span> <em class="JoB_material_right JoB_material_line">{yun:}$com.sdate{/yun} &nbsp;</em> </li>
+        <li><span class="JoB_material_left">公司行业</span> <em class="JoB_material_right">{yun:}$com.hy_info{/yun} &nbsp;</em> <span class="JoB_material_left"> 公司规模</span> <em class="JoB_material_right JoB_material_line">{yun:}$com.mun_info{/yun}&nbsp; </em> </li>
+        {yun:}if $look_msg==""{/yun}
+        <li>
+		<span class="JoB_material_left">联 系 人</span> 
+		{yun:}if $com.linkman{/yun}
+		<em class="JoB_material_right">{yun:}$com.linkman{/yun} &nbsp;</em>
+		{yun:}else{/yun}<em class="JoB_material_right">暂无 &nbsp;</em>{yun:}/if{/yun}
+		 <span class="JoB_material_left"> 联系电话</span> 
+		 {yun:}if $com.linktel{/yun}<em class="JoB_material_right JoB_material_line" style="height:34px;">{yun:}image uid=$com.uid number = $com.linktel action=linktel{/yun}</em>
+		 {yun:}else{/yun}<em class="JoB_material_right JoB_material_line">暂无</em>{yun:}/if{/yun}
+		</li>
+        <li><span class="JoB_material_left">联系邮箱</span> <em class="JoB_material_right">{yun:}$com.linkmail{/yun}&nbsp;</em>  <span class="JoB_material_left"> 固定电话</span> 
+		 {yun:}if $com.linkphone{/yun}<em class="JoB_material_right JoB_material_line" style="height:34px;">{yun:}image uid=$com.uid number = $com.linkphone action=linkphone{/yun}</em>
+		 {yun:}else{/yun}<em class="JoB_material_right JoB_material_line">暂无</em>{yun:}/if{/yun}</li>
+       
+       
+        <li class="JoB_material_left"><span class="JoB_material_left">公司地址</span> <em class="JoB_material_right  ">{yun:}$com.address{/yun} <a href="{yun:}curl url=id:$id,tp:position{/yun}">查看地图</a></em> 
+		 <span class="JoB_material_left"> 企业网址</span> 
+		<em class="JoB_material_right JoB_material_line" style="height:34px;">{yun:}$com.website{/yun}</em>
+		</li>
+        {yun:}/if{/yun}
+        
+        
+        
+        
+      </ul>    {yun:}if $looktype=="1" || $look_msg!=""{/yun}
+    <div class="about_touch_logoin" style="border:none; background:none;width:500px; margin:0 auto;">
+        <div class="about_touch_title">
+            <div class="about_touch_red">{yun:}$look_msg{/yun}</div>       
+
+            {yun:}if $looktype=="1"{/yun}
+            <a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=expect&add={yun:}$uid{/yun}" class="yun_bth_icon">创建简历</a>
+            {yun:}elseif $looktype=="2"{/yun}
+            <a class="yun_bth_icon" href="{yun:}url m=login url=usertype:1{/yun}">立即登陆</a> 
+            <a class="yun_bth_icon" href="{yun:}url m=register url=usertype:1{/yun}">立即注册</a>
+            {yun:}else{/yun}
+            <a class="yun_bth_icon" href="{yun:}url m=login url=c:rest{/yun}">立即登陆</a> 
+            {yun:}/if{/yun}
+        </div>
+  	</div>
+    {yun:}/if{/yun}
+    </div>
+
+    <div class="clear"></div>
+    <div class="Job_Introduction_h1"><span>公司评论</span></div>
+    <div class="Job_comment">
+      <div class="Job_comment_left"> 
+		{yun:}if $msglist{/yun}
+			<div class="Job_comment_left_c"> 
+			{yun:}foreach item=v from=$msglist{/yun}
+			  <div class="Comment_list" {yun:}if empty($msglist){/yun}style="display:none;"{yun:}/if{/yun}>
+				<div class="Comment_time">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</div>
+				<div class="Comment_dd"></div>
+				<div class="Comment_icon2"></div> 
+				<div class="Comment_list_right">
+				  <div class="Comment_w608"><span class="fl"> <a href="{yun:}url m=resume url=uid:`$v.uid`{/yun}">{yun:}$v.name{/yun}</a>：{yun:}$v.content{/yun}</span> </div>
+	 
+				  {yun:}if $v.reply!=""{/yun} 
+				  <div class="Comment_w608">
+					<div class="tips_reply">企业回复：<span>{yun:}$v.reply{/yun}</span></div>
+				  </div>
+				  {yun:}/if{/yun} </div>
+			  </div>  
+			  {yun:}/foreach{/yun}
+			  
+			</div> 
+			{yun:}if $msg_num{/yun}
+			  <div style="float:right">
+				该企业共有{yun:}$msg_num{/yun}条评论，<a href="{yun:}curl url=id:$id,c:msg{/yun}">点击查看全部>></a>
+			  </div>
+			  {yun:}/if{/yun}
+		{yun:}else{/yun}
+			<div class="com_index_pl">还未有人评论过该企业，赶快来评论一下吧！！</div>
+		{yun:}/if{/yun} 
+      </div>
+      <div class="Job_comment_right">
+      {yun:}if $usertype!=1{/yun}
+      <div class="Job_user_no">
+    <div class="Job_ask_bg"></div>
+     <div class="Job_ask_bg_login">您还没有登录或者您不是个人用户，请 【<a href="{yun:}url m=login url=c:rest{/yun}">登陆</a>】</div>
+     </div>
+       {yun:}else{/yun}
+        <div class="Job_Company_h1 fl"><span>我要评论</span></div>
+		<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+
+        <form action="{yun:}curl url=id:`$com.uid`{/yun}" target="supportiframe" method="post" onSubmit="return check_pl();">
+          <input type="hidden" name="id" value="{yun:}$id{/yun}"/>
+          <div class="commpay_textarea">
+            <div class="Comment_list_top"></div>
+            <textarea  class="program_tooltip placeholder" id="content" name="content" data-rid="949"></textarea>
+          </div>
+          <div class="commpay_Comment_input">
+            <input class="program_reply_pl" type="submit" name="submit" value="提交评论">
+            <span>您对这个公司有什么看法？</span></div>
+        </form>
+        {yun:}/if{/yun}</div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="commpay_Comment">
+<div id="huifu{yun:}$v.id{/yun}" style="display:none;">
+  <form action="index.php" method="post" onSubmit="return check_huifu('{yun:}$v.id{/yun}');">
+    <div class="Comment_w608">
+      <textarea class="Comment_textarea_hf" tip-text="说两句吧```" id="reply{yun:}$v.id{/yun}" name="content"></textarea>
+      <input type="hidden" name="id" value="{yun:}$v.id{/yun}" />
+    </div>
+    <div class="Comment_w608">
+      <input class="program_reply" type="submit" name="submit2" value="回复">
+    </div>
+  </form>
+</div>
+<div class="clear"></div>
+{yun:}include file="$defaultstyle/footer.htm"{/yun}

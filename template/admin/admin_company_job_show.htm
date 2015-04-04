@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="js/check_public.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<script language="javascript">
+
+KindEditor.ready(function(K){
+	editor = K.create('#content',{
+		resizeType : 1,
+		allowPreviewEmoticons : false,
+		allowImageUpload : false,
+		items : ['source',
+		'bold', 'italic', 'underline',
+		'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+		'insertunorderedlist','emoticons', 'image'],afterBlur:function(){this.sync();}
+
+	});
+});
+
+var weburl="{yun:}$config.sy_weburl{/yun}";
+
+</script>
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+</style>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+  <div class="infoboxp_top">
+    <h6>职位详情</h6>
+  </div>
+  <div class="admin_table_border">
+  <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form action="" target="supportiframe" method="post" onSubmit="return check_form_job()">
+  <table width="100%" class="table_form" style="background:#fff;">
+
+    <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+		{yun:}if $show.id{/yun}
+      <tr >
+        <th>招聘编号：</th>
+        <td>{yun:}$show.id{/yun}</td>
+      </tr>
+	  {yun:}/if{/yun}
+    <tr class="admin_table_trbg" >
+        <th>招聘名称：</th>
+        <td><input type="text" name="name" id="name" class="input-text" size="30" value="{yun:}$show.name{/yun}"></td>
+      </tr>
+
+      <tr >
+        <th>从事行业：</th>
+        <td><select name="hy">
+                {yun:}foreach from=$industry_index key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+  <tr class="admin_table_trbg" >
+        <th>职位类别：</th>
+        <td><div class=textbox>
+            <select name="job1" id="job1" class="job1" lid="job1_son">
+              <option value="">--请选择--</option>
+                {yun:}foreach from=$job_index key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $show.job1==$v{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select>
+            <select name="job1_son" id="job1_son" class="job1" lid="job1_son1">
+              <option value="">--请选择--</option>
+                {yun:}foreach from=$job_type[$show.job1] key=j item=va{/yun}
+              <option value='{yun:}$va{/yun}' {yun:}if $show.job1_son==$va{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$va]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select>
+            <select name="job_post" id="job1_son1">
+              <option value="">--请选择--</option>
+                {yun:}foreach from=$job_type[$show.job1_son] key=j item=val{/yun}
+              <option value='{yun:}$val{/yun}' {yun:}if $show.job_post==$val{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$val]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select></div></td>
+      </tr>
+      <tr >
+        <th>工作地点：</th>
+        <td><div class=textbox>
+            <select name="provinceid" id="provinceid" class="province" lid="cityid">
+              <option value="">请选择省份</option>
+                {yun:}foreach from=$city_index key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $show.provinceid==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                {yun:}/foreach{/yun}
+            </select>
+            <select name="cityid" size="1" id="cityid" class="province" lid="three_cityid">
+              <option value="">请选择城市</option>
+
+                {yun:}if $show.provinceid{/yun}
+                    {yun:}foreach from=$city_type[$show.provinceid] key=j item=v{/yun}
+              <option value='{yun:}$v{/yun}' {yun:}if $show.cityid==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+                    {yun:}/foreach{/yun}
+                {yun:}/if{/yun}
+            </select>
+            <select name="three_cityid" size="1" id="three_cityid" {yun:}if !$show.three_cityid{/yun} style="display:none;"{yun:}/if{/yun}>
+            <option value="">请选择城市</option>
+            {yun:}if $show.cityid{/yun}
+            {yun:}foreach from=$city_type[$show.cityid] key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.three_cityid==$v{/yun}selected{yun:}/if{/yun}>{yun:}$city_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+            {yun:}/if{/yun}
+            </select></div></td>
+      </tr>
+    <tr class="admin_table_trbg" >
+        <th width="120">薪水待遇：</th>
+        <td><select name="salary">
+            {yun:}foreach from=$comdata.job_salary key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.salary==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+      <tr >
+        <th width="120">工作性质：</th>
+        <td><select name="type">
+            {yun:}foreach from=$comdata.job_type key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.type==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+    <tr class="admin_table_trbg" >
+        <th width="120">招聘人数：</th>
+        <td><select name="number">
+            {yun:}foreach from=$comdata.job_number key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.number==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+      <tr >
+        <th width="120">工作经验：</th>
+        <td><select name="exp">
+        {yun:}foreach from=$comdata.job_exp key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.exp==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+		{yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+   <tr class="admin_table_trbg" >
+        <th width="120">到岗时间：</th>
+        <td><select name="report">
+        {yun:}foreach from=$comdata.job_report key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.report==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+		{yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+      <tr >
+        <th width="120">性　　别：</th>
+        <td><select name="sex">
+        {yun:}foreach from=$comdata.job_sex key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.sex==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+		{yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+	<tr class="admin_table_trbg" >
+        <th width="120">教育程度：</th>
+        <td><select name="edu">
+        {yun:}foreach from=$comdata.job_edu key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.edu==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+		{yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+      <tr >
+        <th width="120">婚姻状况：</th>
+        <td><select name="marriage">
+        {yun:}foreach from=$comdata.job_marriage key=j item=v{/yun}
+            <option value='{yun:}$v{/yun}' {yun:}if $show.marriage==$v{/yun}selected{yun:}/if{/yun}>{yun:}$comclass_name[$v]{/yun}</option>
+        {yun:}/foreach{/yun}
+          </select></td>
+      </tr>
+	 <tr class="admin_table_trbg" >
+        <th width="120">语言要求：</th>
+        <td>{yun:}foreach from=$comdata.job_lang key=j item=v{/yun}
+			<div class="job_add_y_list" style="margin-top:0px;">
+			  <input type="checkbox" style="margin-top:5px;" id="lang{yun:}$v{/yun}" value='{yun:}$v{/yun}' name="lang[]" {yun:}if $show.lang && in_array($v,$show.lang){/yun}checked{yun:}/if{/yun} class="job_add_check_box" />
+			  <label for="lang{yun:}$v{/yun}" >{yun:}$comclass_name[$v]{/yun}</label>
+			</div>
+			{yun:}/foreach{/yun}
+			</td>
+      </tr>
+      <tr >
+        <th width="120">福利待遇：</th>
+        <td>
+		 {yun:}foreach from=$comdata.job_welfare key=j item=v{/yun}
+		<div class="job_add_y_list" style="margin-top:0px; ">
+		  <input type="checkbox" style="margin-top:5px;" value='{yun:}$v{/yun}' id="welfare{yun:}$v{/yun}" name="welfare[]" {yun:}if $show.welfare && in_array($v,$show.welfare){/yun}checked{yun:}/if{/yun} class="job_add_check_box">
+		  <label for="welfare{yun:}$v{/yun}" >{yun:}$comclass_name[$v]{/yun}</label>
+		</div>
+		{yun:}/foreach{/yun}
+		</td>
+      </tr>
+  <tr class="admin_table_trbg" >
+        <th width="120">描述职位：</th>
+        <td><textarea  name="content" cols="70" rows="8" id="content">{yun:}$show.description{/yun}</textarea></td>
+       </tr>
+  <tr class="admin_table_trbg" >
+        <th width="120">结束日期：</th>
+        <td><link href="{yun:}$config.sy_weburl{/yun}/js/time/jscal2.css" type="text/css" rel="stylesheet">
+          <script src="{yun:}$config.sy_weburl{/yun}/js/time/calendar.js" type="text/javascript"></script>
+          <script src="{yun:}$config.sy_weburl{/yun}/js/time/en.js" type="text/javascript"></script>
+          <input id="edate" class="input-text" type="text" readonly size="15" value="{yun:}$show.edate|date_format:'%Y-%m-%d'{/yun}" name="edate">
+          <script type="text/javascript">
+        Calendar.setup({
+        weekNumbers: true,
+        inputField : "edate",
+        trigger : "edate",
+        dateFormat: "%Y-%m-%d",
+        showTime: false,
+        onSelect : function() {this.hide();}
+        });
+        </script></td>
+      </tr>
+     <tr>
+        <th width="120">浏览次数：</th>
+        <td><input type="text" class="input-text" name="jobhits" size="10" value="{yun:}$show.jobhits{/yun}"></td>
+      </tr>
+	  {yun:}if $show.id{/yun}
+      <tr class="admin_table_trbg" >
+        <th width="120">状　　态：</th>
+        <td>{yun:}if $show.edate<time(){/yun}<font color="orange">已过期</font>{yun:}elseif $show.state==1{/yun}<font color="blue">已审核</font>{yun:}elseif $show.state==3{/yun}<font color="red">未通过</font>{yun:}else{/yun}<font color="red">未审核</font>{yun:}/if{/yun}</td>
+      </tr>
+	  {yun:}/if{/yun}
+	<tr>
+        <th width="120"></th>
+        <td>
+			{yun:}if $show.id{/yun}
+			<input type="hidden" name="id" value="{yun:}$show.id{/yun}">
+          <input class="admin_submit4" type="submit" name="update" value="&nbsp;修 改&nbsp;" />
+		  {yun:}else{/yun} <input type="hidden" name="uid" value="{yun:}$uid{/yun}"><input class="admin_submit4" type="submit" name="update" value="&nbsp;保 存&nbsp;" />{yun:}/if{/yun}
+		  </td>
+      </tr>
+  </table>
+   </form>
+</div>
+</div>
+</body>
+</html>

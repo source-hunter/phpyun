@@ -1,0 +1,1125 @@
+﻿.admin_mainbody {
+	CLEAR: both;
+	MARGIN: 0px auto;
+	OVERFLOW: hidden;
+	WIDTH: 960px;
+	HEIGHT: auto;
+}
+.admin_mainbody .w900 {
+	CLEAR: both;
+	PADDING-RIGHT: 0px;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 0px;
+	BACKGROUND: url(../images/admin_subnav_bg.gif) repeat-y;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	WIDTH: 960px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto;
+}
+.admin_mainbody .left_box {
+	BORDER: 1px solid #DDDDDD;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 204px;
+	HEIGHT: auto;
+	background:#fff;
+	padding-bottom:20px;
+	border-bottom:none;
+}
+.sider-left-top {
+	padding-bottom:10px;
+	clear:both
+}
+.sider-left-top-logo {
+width:194px margin-top:5px;
+	margin-bottom:5px;
+}
+.sider-left-top-logo img {
+	display:block
+}
+.sider-left-top-name {
+	font-size:14px;
+	color:#018DC3;
+}
+.sider-left-top-list {
+	text-align:left;
+	text-indent:15px;
+	color:#999;
+	float:left;
+	margin-top:5px;
+}
+.subnav_box {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH:204px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto;
+}
+.subnav_box .subnav_box_tit_01 {
+	BACKGROUND:url(../images/left_hbg.png) repeat-x;
+	FLOAT: left;
+	WIDTH: 204px;
+	HEIGHT: 29px;
+	line-height:29px;
+	border-top:1px solid #e8e6e7;
+	border-bottom:1px solid #e8e6e7;
+	font-size:15px;
+}
+.subnav_box .subnav_box_tit_01 SPAN {
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	color:#323433;
+	LINE-HEIGHT: 29px;
+	HEIGHT:29px;
+	TEXT-ALIGN: left
+}
+.subnav_box .subnav_box_tit_02 {
+	BACKGROUND: url(../images/subnav_h2_bg.gif) no-repeat 50% bottom;
+	FLOAT: left;
+	WIDTH: 170px;
+	HEIGHT: 33px
+}
+.subnav_box .subnav_box_tit_02 SPAN {
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	COLOR: #004499;
+	LINE-HEIGHT: 35px;
+	HEIGHT: 33px;
+	TEXT-ALIGN: left
+}
+.subnav_box .subnav_box_tit_03 {
+	BACKGROUND: url(../images/subnav_h2_bg.gif) no-repeat 50% top;
+	FLOAT: left;
+	WIDTH: 170px;
+	HEIGHT: 32px
+}
+.subnav_box .subnav_box_tit_03 SPAN {
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	COLOR: #004499;
+	LINE-HEIGHT: 34px;
+	HEIGHT: 32px;
+	TEXT-ALIGN: left
+}
+.subnav_box UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	OVERFLOW: hidden;
+	WIDTH:204px;
+	PADDING-TOP: 5px;
+	HEIGHT: auto
+}
+.subnav_box UL LI {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 204px;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	font-size:12px;
+	border-bottom:1px dashed #F0F0F0
+}
+.subnav_box UL LI SPAN A {
+	DISPLAY: block;
+	PADDING-LEFT: 25px;
+	BACKGROUND: url(../images/subnav_li_ico_08.gif) no-repeat left 50%;
+	FLOAT: left;
+	MARGIN-LEFT: 10px;
+	OVERFLOW: hidden;
+	WIDTH: 132px;
+	LINE-HEIGHT:33px;
+	TEXT-ALIGN: left;
+	color:#323232;
+}
+.subnav_box UL LI.style00 SPAN A {
+	BACKGROUND: url(../images/notice_ico.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style01 {
+}
+.subnav_box UL LI.style01 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_01.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style02 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_02.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style03 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_03.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style04 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_04.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style05 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_05.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style06 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_06.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style07 {
+	BACKGROUND: url(../images/admin_subnav_li_border.gif) no-repeat 50% top
+}
+.subnav_box UL LI.style07 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_07.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style08 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_08.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style09 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_09.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style10 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_10.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style11 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_11.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style12 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_12.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style13 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_13.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style14 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_14.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style15 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_15.gif) no-repeat left 50%
+}
+.subnav_box UL LI.style16 SPAN A {
+	BACKGROUND: url(../images/subnav_li_ico_16.gif) no-repeat left 50%
+}
+.right-bg {
+	width:100%;
+	float:left;
+}
+.xinxi-title-bg {
+	width:100%;
+	float:left;
+	height:55px;
+	background:url(../images/rbgd.png) repeat-x left 3px;
+}
+.right-box-xbg {
+	width:100%;
+	float:left;
+	
+}
+.admin_mainbody .right_box {
+	FLOAT: right;
+	WIDTH: 745px;
+	HEIGHT: auto;
+	background:#fff;
+	border:1px solid #ddd;
+}
+.admincont_box {
+	FLOAT: right;
+	PADDING-BOTTOM: 10px;
+	WIDTH:745px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto;
+}
+.admincont_box .admin_tit {
+	float:left;
+	WIDTH:745px;
+	height:42px;
+	background:url(../images/com_h1.png) no-repeat;
+	position:relative
+}
+.admincont_box .admin_tit .admin_tit_right {
+	FLOAT: right;
+	POSITION: relative;
+	TOP: 5px
+}
+.admincont_box .admin_tit SPAN {
+	PADDING-LEFT: 10px;
+	FONT-SIZE: 16px;
+	FLOAT: left;
+	color:#333333;
+	LINE-HEIGHT: 35px;
+	HEIGHT: 35px;
+	TEXT-ALIGN: left;
+}
+.admincont_box .admin_tit .admin_tit_bg {
+	height:44px;
+	display:block;
+	background:url(../images/com_span.png) no-repeat top right;
+	position:absolute;
+	left:0px;
+	top:-4px;
+	font-family: "Microsoft Yahei", simsun, arial, sans-serif;
+	font-size:16px;
+	line-height:40px;
+	color:#0b5296;
+	padding-right:10px;
+}
+.admincont_box .admin_tit SPAN.remind {
+	PADDING-RIGHT: 10px;
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 12px;
+	FLOAT: right;
+	OVERFLOW: hidden;
+	COLOR: #ee0000;
+	HEIGHT: 35px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_note {
+	PADDING-RIGHT: 10px;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 10px;
+	BACKGROUND: #f2f9ff;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	WIDTH: 703px;
+	PADDING-TOP: 5px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left;
+	border: 1px solid #B9e6e5;
+	margin-left:10px;
+	_margin-left:5px;
+}
+.admincont_box .admin_note H2 {
+	FONT-WEIGHT: bold;
+	FLOAT: left;
+	WIDTH: 680px;
+	COLOR: #000000;
+	LINE-HEIGHT: 30px;
+	BORDER-BOTTOM:#B9e6e5 1px solid;
+	TEXT-ALIGN: left;
+	/*padding-top:5px;*/
+}
+.admincont_box .admin_note H2 .vs_text {
+	border:1px solid #7E9DB9
+}
+.admincont_box .admin_note UL {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 680px;
+	HEIGHT: auto;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.com_text_news {
+	width:300px;
+	height:25px;
+	line-height:25px;
+	border:1px solid #7E9DB9
+}
+.com_tj {
+	width:112px;
+	height:29px;
+	background:url(../images/com_tj.jpg) no-repeat;
+	text-align:center;
+	margin-left:10px;
+	text-indent:15px;
+	border:none
+}
+admincont_box .admin_note UL LI {
+	PADDING-LEFT: 15px;
+	BACKGROUND: url(../images/li_ico_01.gif) no-repeat 5px 50%;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 600px;
+	LINE-HEIGHT: 25px;
+}
+.admincont_box .admin_note UL LI A {
+	TEXT-DECORATION: underline
+}
+.admincont_box .admin_combox_01 {
+	PADDING-RIGHT: 10px;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 10px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	OVERFLOW: hidden;
+	WIDTH: 680px;
+	COLOR: #000000;
+	PADDING-TOP: 5px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_combox_02 {
+	PADDING-RIGHT: 10px;
+	MARGIN-TOP: 10px;
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	OVERFLOW: hidden;
+	WIDTH: 680px;
+	COLOR: #000000;
+	PADDING-TOP: 5px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_01 {
+	MARGIN-TOP: 15px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: 25px
+}
+.admincont_box .admin_textbox_01 .tit {
+	FLOAT: left;
+	WIDTH: 150px;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: right
+}
+.admincont_box .admin_textbox_01 .textbox {
+	FLOAT: right;
+	WIDTH: 540px;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_02 {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH:100%;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_02 H2 {
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: 25px
+}
+.admincont_box .admin_textbox_02 H2 SPAN {
+	PADDING-LEFT: 10px;
+	FONT-WEIGHT: bold;
+	FLOAT: left;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_02 H3 {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: 25px
+}
+.admincont_box .admin_textbox_02 H3 SPAN {
+	PADDING-LEFT: 10px;
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	COLOR: #999999;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_02 UL {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	width:100%;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_02 UL LI {
+	MARGIN-TOP: 5px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_02 UL LI .tit {
+	FLOAT: left;
+	WIDTH: 150px;
+	COLOR: #666;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: right;
+	font-size:12px
+}
+.admincont_box .admin_textbox_02 UL LI .textbox {
+	FLOAT: right;
+	WIDTH: 540px;
+	COLOR: #999999;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_02 UL LI.RadioGroup {
+	MARGIN-TOP: 5px;
+	PADDING-LEFT: 100px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 600px;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_02 UL LI.com_logo {
+	HEIGHT: 100px
+}
+.admincont_box .admin_textbox_02 UL LI.com_logo .tit {
+	HEIGHT: 100px
+}
+.admincont_box .admin_textbox_02 UL LI.com_logo .textbox {
+	FLOAT: left;
+	MARGIN-LEFT: 10px;
+	WIDTH: 350px;
+	HEIGHT: 100px
+}
+.admincont_box .admin_textbox_02 UL LI.com_logo .textbox IMG {
+	BORDER-RIGHT: #f3f3f3 1px solid;
+	BORDER-TOP: #f3f3f3 1px solid;
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	BORDER-LEFT: #f3f3f3 1px solid;
+	BORDER-BOTTOM: #f3f3f3 1px solid
+}
+.admincont_box .admin_textbox_02 UL LI.com_logo .textbox SPAN {
+	MARGIN-TOP: 20px;
+	FLOAT: right;
+	OVERFLOW: hidden;
+	WIDTH: 150px;
+	LINE-HEIGHT: 20px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_02 UL LI.com_logo .textbox INPUT.btn {
+	MARGIN-TOP: 5px;
+	FLOAT: right;
+	WIDTH: 150px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_02 UL LI.com_logo .explain {
+	HEIGHT: 100px
+}
+.admincont_box .admin_textbox_03 {
+	MARGIN-TOP: 20px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_03 H2 {
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: 25px
+}
+.admincont_box .admin_textbox_03 H2 SPAN {
+	PADDING-LEFT: 10px;
+	FONT-WEIGHT: bold;
+	FLOAT: left;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_03 UL {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_03 UL LI {
+	MARGIN-TOP: 5px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_03 UL LI .check_tit {
+	PADDING-LEFT: 20px;
+	FLOAT: left;
+	WIDTH: 450px;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_03 UL LI .demo {
+	FLOAT: left;
+	WIDTH: 100px;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_03 UL LI .btn {
+	FLOAT: right;
+	WIDTH: 100px;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_04 {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 730px;
+	HEIGHT: auto;
+	margin-left:10px;
+	_margin-left:5px;
+}
+.admincont_box .admin_textbox_04 H2 {
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: 25px
+}
+.admincont_box .admin_textbox_04 H2 SPAN {
+	PADDING-LEFT: 10px;
+	FONT-WEIGHT: bold;
+	FLOAT: left;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_04 H3 {
+	BACKGROUND: #ffffff;
+	FLOAT: left;
+	WIDTH: 700px;
+}
+.admincont_box .admin_textbox_04 H3 SPAN {
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 12px;
+	FLOAT: left;
+	COLOR: #999999;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_04 H3 SPAN.right {
+	PADDING-RIGHT: 10px;
+	FONT-WEIGHT: normal;
+	FONT-SIZE: 12px;
+	FLOAT: right;
+	LINE-HEIGHT: 25px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_04 .analysis {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_04 UL {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_04 UL LI {
+	MARGIN-TOP: 5px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 700px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_04 UL LI .tit {
+	FLOAT: left;
+	WIDTH: 120px;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: right
+}
+.admincont_box .admin_textbox_04 UL LI .total {
+	MARGIN-TOP: 9px;
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	MARGIN-LEFT: 10px;
+	OVERFLOW: hidden;
+	WIDTH: 500px;
+	HEIGHT: 8px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_04 UL LI .play {
+	BACKGROUND: #ff6600;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	HEIGHT: 8px;
+	TEXT-ALIGN: left
+}
+.admincont_box .admin_textbox_04 .table {
+	MARGIN-TOP: 10px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 730px;
+	HEIGHT: auto;
+}
+.admincont_box .admin_textbox_04 .table TABLE {
+	OVERFLOW: hidden;
+	WIDTH: 725px;
+	HEIGHT: auto;
+	font-size: 12px;
+}
+.admincont_box .admin_textbox_04 .table TABLE.short {
+	BACKGROUND: #cccccc;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	HEIGHT: auto
+}
+.admincont_box .admin_textbox_04 .table TABLE TH {
+	PADDING-RIGHT: 2px;
+	PADDING-LEFT: 2px;
+	BACKGROUND:url(../images/com_h1.jpg) repeat-x;
+	PADDING-BOTTOM: 0px;
+	LINE-HEIGHT: 20px;
+	PADDING-TOP: 0px;
+	TEXT-ALIGN: center;
+	font-size:12px;
+	color:#fff;
+	font-weight:normal
+}
+.admincont_box .admin_textbox_04 .table TABLE TD {
+	PADDING-RIGHT: 2px;
+	PADDING-LEFT: 2px;
+	FONT-WEIGHT: normal;
+	BACKGROUND: #f6f6f6;
+	PADDING-BOTTOM: 5px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	PADDING-TOP: 5px;
+	TEXT-ALIGN: center;
+	font-size:12px;
+	border-bottom:1px solid #A4A4A4;
+}
+}
+.admin_pages {
+	BORDER-TOP: #f3f3f3 1px solid;
+	MARGIN-TOP: 5px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 100%;
+	HEIGHT: auto
+}
+.admin_pages .fl {
+	PADDING-LEFT: 10px;
+	FLOAT: left;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	COLOR: #666666;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.admin_pages .fr {
+	PADDING-LEFT: 10px;
+	FLOAT: right;
+	MARGIN: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	COLOR: #666666;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: right
+}
+.admin_pages .fr INPUT.page_num {
+	WIDTH: 25px
+}
+.admincont_box .admin_submit {
+	BORDER-TOP: #adacce 1px solid;
+	MARGIN-TOP: 20px;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH:100%;
+	HEIGHT: auto;
+	TEXT-ALIGN: center
+}
+.admincont_box .admin_submit .condition {
+	MARGIN: 10px auto 0px;
+	OVERFLOW: hidden;
+	HEIGHT: auto
+}
+.admincont_box .admin_submit .sub_btn {
+	MARGIN: 10px auto;
+	HEIGHT: 30px
+}
+.pop_div_01 {
+	BORDER-RIGHT: #adacce 1px solid;
+	BORDER-TOP: #adacce 1px solid;
+	BACKGROUND: #ffffff;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #adacce 1px solid;
+	WIDTH: 300px;
+	BORDER-BOTTOM: #adacce 1px solid;
+	HEIGHT: auto
+}
+.pop_div_01 H2 {
+	BACKGROUND: #f7f7fd;
+	FLOAT: left;
+	OVERFLOW: hidden;
+	WIDTH: 300px;
+	BORDER-BOTTOM: #adacce 1px solid;
+	HEIGHT: 25px
+}
+.pop_div_01 H2 SPAN {
+	PADDING-LEFT: 5px;
+	FONT-WEIGHT: bold;
+	FLOAT: left;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	TEXT-ALIGN: left
+}
+.pop_div_01 H2 SPAN.right {
+	PADDING-RIGHT: 5px;
+	FONT-WEIGHT: normal;
+	FLOAT: right;
+	CURSOR: pointer;
+	TEXT-ALIGN: right
+}
+.pop_div_01 H2 SPAN.right A {
+	COLOR: #004499
+}
+.pop_div_01 .comcont {
+	PADDING-RIGHT: 5px;
+	PADDING-LEFT: 5px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	WIDTH: 290px;
+	LINE-HEIGHT: 25px;
+	PADDING-TOP: 0px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.pop_div_01 .comcont UL LI {
+	FLOAT: left;
+	WIDTH: 290px;
+	COLOR: #000000;
+	LINE-HEIGHT: 25px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.pop_div_01 .btn {
+	PADDING-RIGHT: 5px;
+	PADDING-LEFT: 5px;
+	FLOAT: left;
+	PADDING-BOTTOM: 5px;
+	WIDTH: 290px;
+	LINE-HEIGHT: 25px;
+	PADDING-TOP: 5px;
+	HEIGHT: auto;
+	TEXT-ALIGN: left
+}
+.pop_div_02 {
+	BORDER-RIGHT: #adacce 1px solid;
+	BORDER-TOP: #adacce 1px solid;
+	BACKGROUND: #ffffff;
+	OVERFLOW: hidden;
+	BORDER-LEFT: #adacce 1px solid;
+	WIDTH: 300px;
+	BORDER-BOTTOM: #adacce 1px solid;
+	HEIGHT: auto
+}
+.pop_div_02 UL {
+	FLOAT: left;
+	OVERFLOW: hidden;
+	HEIGHT: auto
+}
+.pop_div_02 UL LI {
+	PADDING-RIGHT: 5px;
+	PADDING-LEFT: 5px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 290px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	PADDING-TOP: 0px;
+	HEIGHT: 20px;
+	TEXT-ALIGN: left
+}
+pop_div_02 UL LI.right {
+	PADDING-RIGHT: 5px;
+	PADDING-LEFT: 5px;
+	FLOAT: left;
+	PADDING-BOTTOM: 0px;
+	OVERFLOW: hidden;
+	WIDTH: 290px;
+	COLOR: #000000;
+	LINE-HEIGHT: 20px;
+	PADDING-TOP: 0px;
+	HEIGHT: 20px;
+	TEXT-ALIGN: right
+}
+.pop_mainbox {
+	WIDTH:612px;
+	HEIGHT:412px;
+	background-color: #0078ff;
+	position:absolute;
+	TOP:50%;
+	LEFT:50%;
+	margin-top: -206px;
+	margin-left: -306px;
+}
+.pop_box {
+	WIDTH:598px;
+	HEIGHT:398px;
+	BORDER:1px solid #666;
+	background: #FFF;
+	text-align: left;
+	margin-top: 6px;
+	margin-left: 6px;
+}
+.pop_header {
+	WIDTH:588px;
+	HEIGHT:25px;
+	line-height: 25px;
+	text-align: right;
+	padding-right:10px;
+	background: url("./popboxtop.jpg") repeat-x;
+}
+.pop_header .pop_text {
+	WIDTH:450px;
+	height:25px;
+	line-height:25px;
+	text-align: left;
+	float: left;
+	padding-left:10px;
+}
+.pop_content {
+	WIDTH:578px;
+	HEIGHT:333px;
+	padding:10px;
+}
+.pop_content h2 {
+	color:#000;
+	font-weight: bold;
+}
+.pop_content font {
+	font-weight: bold;
+	font-size: 14px;
+}
+.pop_footer {
+	WIDTH:230px;
+	HEIGHT:20px;
+	margin:0 auto;
+	margin-top: 10px;
+}
+.pop_footer a, .pop_footer a:hover {
+	background: url("./pop_bt.png") no-repeat;
+	WIDTH:100px;
+	HEIGHT:20px;
+	display:inherit;
+	color:#fff;
+	text-decoration: none;
+	line-height: 20px;
+	text-align: center;
+	float: left;
+}
+.pop_footer .nonhref, .pop_footer .nonhref:visited, .pop_footer .nonhref:hover {
+	WIDTH:30px;
+	HEIGHT:30px;
+	background:none;
+	text-align: center;
+	color: #000;
+}
+.pop_footer .unaction, .pop_footer .unaction:visited, .pop_footer .unaction:hover {
+	background: url("./none.png") no-repeat;
+	WIDTH:100px;
+	HEIGHT:20px;
+	display:inherit;
+	color:#fff;
+	text-decoration: none;
+	line-height: 20px;
+	text-align: center;
+	float: left;
+}
+.qq_explain {
+	font-family: 微软雅黑, Tahome, 宋体;
+	font-size: 18px;
+}
+.explain {
+	font: 12px/2 Tahoma, Arial;
+	padding: 4px 22px 12px;
+	text-align: left;
+	float:left;
+	color:#000;
+	margin-top:20px;
+}
+.function_show {
+	width:683px;
+	height:293px;
+	background: url(../images/kuang.jpg) no-repeat;
+	float:left;
+	margin-top:20px;
+}
+.function_show img {
+	margin-left:20px;
+	margin-top:10px;
+}
+.function_show .btn_019 {
+	width:174px;
+	height:32px;
+	background:url(../images/antx.jpg) no-repeat;
+	border:none;
+	font-size:14px;
+	color:#fff;
+	text-align:center;
+	margin-left:20px;
+	margin-top:10px;
+}
+.function_show .btn_20 {
+	width:174px;
+	height:32px;
+	background:url(../images/anxl.jpg) no-repeat;
+	border:none;
+	font-size:14px;
+	color:#fff;
+	text-align:center;
+	margin-left:20px;
+	margin-top:10px;
+}
+.function_show_sina {
+	float:left;
+	width:669px;
+	height:313px;
+	background:url(../images/xlshow.jpg) no-repeat;
+	margin-top:10px;
+	padding-left:10px;
+}
+.function_show_sina img {
+	margin-top:20px;
+	display:block;
+	margin-bottom:10px;
+}
+.function_show_sina {
+}
+.admin_wb_buy {
+	width:660px;
+	height:216px;
+	float:left;
+	background:url(../images/dck.jpg) no-repeat;
+	padding:10px 10px 0px 10px;
+	margin-top:10px;
+}
+.admin_wb_buy H2 {
+	color: #000000;
+	float: left;
+	font-weight: bold;
+	line-height: 28px;
+	text-align: left;
+	width: 660px;
+}
+.admin_wb_buy1 {
+	width:660px;
+	height:216px;
+	float:left;
+	background:url(../images/dck.jpg) no-repeat;
+	padding:10px;
+	margin-top:10px;
+	margin-left:10px;
+}
+.admin_wb_buy1 H2 {
+	color: #000000;
+	float: left;
+	font-weight: bold;
+	line-height: 28px;
+	text-align: left;
+	width: 660px;
+}
+.popularize {
+	width:725px;
+	border:1px solid #e1e1e1;
+	margin-top:5px;
+	background:#fff;
+	margin-bottom:5px;
+	float:left;
+	margin-left:10px;
+	_margin-left:5px;
+}
+.popularize dl {
+	width:570px;
+	padding:5px;
+	float:left
+}
+.popularize dt {
+	width:255px;
+	float:left;
+}
+.popularize dd {
+	width:300px;
+	float:left;
+	text-align:left;
+	margin-left:10px;
+	_margin-left:5px;
+	color:#666666;
+	line-height:22px;
+}
+.popularize dd strong {
+	display:block;
+	font-size:16px;
+	color:#C30
+}
+.popularize dd span {
+	display:block;
+	font-size:13px;
+}
+.popularize ul {
+	float:right;
+	width:130px;
+	background:url(../images/sx.jpg) repeat-y left;
+	height:162px;
+	margin-top:10px;
+	padding-left:10px;
+}
+.popularize ul li a {
+	display:block;
+	width:120px;
+	height:31px;
+	text-align:center;
+	line-height:31px;
+	margin-top:13px;
+	color:#fff;
+	background:url(../images/com_tj_left.jpg) no-repeat;
+}
+.popularize ul li .an2 {
+	color:#fff;background:url(../images/com_tj_hover.png) no-repeat;
+}
+.popularize ul li a:hover {
+	color:#fff;background:url(../images/com_tj_hover.png) no-repeat;
+	text-decoration:none
+}
+.question dl {
+	border-bottom: 1px dashed #EBEBEB;
+	height: 45px;
+	margin: 0 8px 8px 8px;
+}
+.question dl dt {
+	height: 23px;
+	padding-left: 4px;
+}
+.question dl dt a {
+	float: left;
+}
+.question dl dt a:link{
+	color: #2D64B3;
+	text-decoration: none;
+}
+.question dl dt .time {
+	color: #999999;
+	float: right;
+	font-size: 12px;
+}
+.question dl dd {
+	color: #999999;
+	/*float: left;*/
+	font-size: 12px;
+	line-height: 20px;
+}
+.Com_table_list{ position:relative; cursor:pointer;}
+.Com_table_list_box{width:67px;border:1px solid #ccc; background:#fff; position:absolute;left:-1px;border-top:none; display:none;}
+.Com_table_list_box span{ display:block;height:23px; line-height:23px; cursor:pointer}
+.Com_table_list_box .Com_table_list_box_atc{ background:#09F;color:#fff;}

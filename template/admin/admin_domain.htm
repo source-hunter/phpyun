@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script> 
+function check_type(id,value){
+	if(value=="1"){
+		var val = "0";
+	}else{
+		var val="1";
+	}
+	$.post("index.php?m=advertise&c=ajax_check",{id:id,val:val,pytoken:$('#pytoken').val()},function(data){
+		html = "<a href=\"javascript:void(0);\" onClick=\"check_type("+id+","+val+");\" >"+data+"</a>";
+		$("#"+id).html(html);
+	});
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"><div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<span class="admin_title_span">分站管理</span>
+<a href="index.php?m=admin_domain&c=AddDomain" class="admin_infoboxp_tj">添加分站</a> </div>
+<div class="table-list">
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form action="index.php" target="supportiframe" name="myform" method="get" id='myform'>
+<input name="m" value="admin_domain" type="hidden"/>
+<input name="c" value="allDelDomain" type="hidden"/>
+<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+<table width="100%">
+	<thead>
+	<tr class="admin_table_top">
+         <th width="60" align="center"><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+       	 <th align="left" width="150">标题</th>
+			<th align="left" width="200">域名</th>
+             <th align="left">城市</th>
+             <th align="left" width="200">行业</th>
+              <th align="left">风格目录</th>
+              <th align="left" width="100">是否启用</th>
+			<th align="center" width="100" class="admin_table_th_bg" >操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    {yun:}foreach item=domain key=key from=$domain{/yun}
+    <tr align="left"{yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun}>
+        <td align="center"><input type="checkbox" value="{yun:}$domain.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+    	<td align="left" class="td1"><span>{yun:}$domain.title{/yun}</span></td> 
+        <td  align="left" class="ud">{yun:}$domain.domain{/yun}</td>
+        <td  align="left" class="ud">{yun:}if $domain.three_cityid{/yun}{yun:}$city_name[$domain.three_cityid]{/yun}{yun:}else{/yun}{yun:}$city_name[$domain.cityid]{/yun}{yun:}/if{/yun} </td>
+        <td  align="left" class="ud">{yun:}$industry_name[$domain.hy]{/yun} </td>
+         <td  align="left" class="ud">{yun:}$domain.style{/yun} </td>
+        <td class="ud" align="left">{yun:}if $domain.type=="1"{/yun}<img src="../data/ajax_img/doneico.gif">{yun:}else{/yun}<img src="../data/ajax_img/errorico.gif">{yun:}/if{/yun}</td>
+    	<td align="center">
+        <a href="index.php?m=admin_domain&c=Modify&siteid={yun:}$domain.id{/yun}"class="admin_cz_sc">修改</a> | 
+        <a href="javascript:void(0)" onclick="layer_del('确定要删除？','index.php?m=admin_domain&c=DelDomain&delid={yun:}$domain.id{/yun}');" class="admin_cz_sc">删除</a>
+        </td>
+  </tr>
+  {yun:}/foreach{/yun}
+  <tr>
+      <td align="left" colspan="3" style="padding-left:23px;">
+      <input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /><label for="chkAll2">全选</label>&nbsp;
+      <input class="admin_submit4"  type="button" name="delsub" value="删除所选" onClick="return really('del[]')" />
+      </td>
+  <td colspan="5" class="digg">{yun:}$pagenav{/yun}</td></tr>
+  </tbody>
+  </table>
+</form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+ <div class="Job_content">
+   <div class="Job_content_header">
+   <div class="Job_header_logo">{yun:}if $com.logo{/yun}<img src="{yun:}$com.logo{/yun}" width="185" height="75" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}',2);">{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}" width="185" height="75">{yun:}/if{/yun}</div>
+    <div class="Job_header_cont">
+    <div class="Job_header_name"><span>{yun:}$com.name|mb_substr:0:20:'gbk'{/yun}</span></div>
+    <div class="Job_header_list">
+    <p>
+    <span>公司性质：{yun:}$com.pr_info{/yun}</span>
+    <span>公司规模：{yun:}$com.mun_info{/yun}</span>
+    </p>
+    <p>
+    <span>所在地区：{yun:}$com.provinceid{/yun}</span>
+    <span>所属行业：{yun:}$com.hy_info{/yun}</span>
+    </p>
+
+    <div class="Job_guanzhu">
+        {yun:}if $usertype=='1'{/yun}
+			{yun:}if $show.id{/yun}
+				<a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" class="zg-btn-unfollow" id='atn_{yun:}$com.uid{/yun}'>取消关注</a>
+			{yun:}else{/yun}
+				<a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" class='zg-btn-green' id='atn_{yun:}$com.uid{/yun}'>关注</a>
+			{yun:}/if{/yun}
+		{yun:}/if{/yun}
+    已有<font id="antnum{yun:}$com.uid{/yun}">{yun:}$com.ant_num{/yun}</font>人关注
+    </div>
+    </div>
+    </div>
+    <div class="Job_header_right"> {yun:}if $com.yyzz_status=="0"{/yun}<img src="{yun:}$style{/yun}/images/unaudited.png"> {yun:}else{/yun} <img src="{yun:}$style{/yun}/images/approved.png"width="95"height="35" /> {yun:}/if{/yun}</div>
+   </div>
+   <div class="Job_Introduction">
+       <div class="Job_nav">
+        <ul>
+          <li><a href="{yun:}curl url=id:$id{/yun}" {yun:}if $smarty.get.tp==""&&$smarty.get.c==""{/yun}class="menus_a1"{yun:}/if{/yun}>公司简介</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:post{/yun}" {yun:}if $smarty.get.tp==post{/yun}class="menus_a1"{yun:}/if{/yun}>招聘职位</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:news{/yun}" {yun:}if $smarty.get.tp==news ||$smarty.get.tp==newsshow{/yun}class="menus_a1"{yun:}/if{/yun}>新闻中心</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:product{/yun}" {yun:}if $smarty.get.tp==product||$smarty.get.tp==productshow{/yun}class="menus_a1"{yun:}/if{/yun}>产品展示</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:show{/yun}" {yun:}if $smarty.get.tp==show{/yun}class="menus_a1"{yun:}/if{/yun}>环境展示</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:position{/yun}" {yun:}if $smarty.get.tp==position{/yun}class="menus_a1"{yun:}/if{/yun}>地理位置</a></li>
+          <li><a href="{yun:}curl url=id:$id,tp:connection{/yun}" {yun:}if $smarty.get.tp==connection{/yun}class="menus_a1"{yun:}/if{/yun}>联系我们</a></li>
+        </ul>
+      </div>

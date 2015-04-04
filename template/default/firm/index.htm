@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_seach.css" type="text/css">
+<link  href="{yun:}$style{/yun}/style/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]-->
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+
+<script> 
+$(document).ready(function(){
+	$(".firm_list").hover(function(){
+		var aid=$(this).attr("aid");
+		$("#com"+aid).show();	
+		$("#company"+aid).addClass('firm_list_cur');
+	},function(){
+		var aid=$(this).attr("aid");
+		$("#com"+aid).hide();
+		$("#company"+aid).removeClass('firm_list_cur');	
+	})   
+})
+</script>
+<!--content  start-->
+<div class="yun_content">
+  <div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <span>企业黄页</span> </div>
+  <div class="clear"></div>
+ {yun:}include file="$tplstyle/public_search/firm_search.htm"{/yun}
+<script src="{yun:}$config.sy_weburl{/yun}/js/search.js" type="text/javascript"></script>
+    <div class="firm_right">
+      <div class="firm_right_seach">
+        <div class="firm_seach_r">
+          <form method="get" name="myform" onsubmit="return search_keyword(this);" action="index.php">
+            <input type="hidden" name="m" value="firm">
+            <input class="tykeywords placeholder" id="ipt" type="text" value="{yun:}if $getinfo.keyword!=""{/yun}{yun:}$getinfo.keyword{/yun}{yun:}else{/yun}请输入关键字{yun:}/if{/yun}" name="keyword" onclick="if(this.value=='请输入关键字'){this.value=''}" onblur="if(this.value==''){this.value='请输入关键字'}" placeholder='请输入关键字'>
+            <input class="ty_button placeholder" type="button" id="city" placeholder='请选择城市' value="请选择城市" onclick="index_city();">
+            <input type="hidden" name="cityid" id="cityid" />
+            <input class="tysubmit" type="submit" value="搜索 ">
+          </form>
+        </div>
+         <div class="clear"></div>
+        {yun:}include file="$tplstyle/public_search/index_search.htm"{/yun}
+        <div class="firm_hot-tags"> 热门搜索：{yun:}key limit=12 type=4 recom=1 item=keylist{/yun} <a href="{yun:}$keylist.url{/yun}">{yun:}$keylist.key_name{/yun}</a> {yun:}/key{/yun} </div>
+      </div>
+      <div class="clear"></div>
+      <div class='firm_list_h1'>全部公司</div>
+      {yun:}comlist ispage=1 isjob=1 firm=1 isnews=1 isshow=1 hy=auto.hy pr=auto.pr mun=auto.mun provinceid=auto.provinceid cityid=auto.cityid three_cityid=auto.three_cityid keyword=auto.keyword order=rec limit=10 item=list{/yun}
+      <div class='firm_list ' id="company{yun:}$list.uid{/yun}" aid="{yun:}$list.uid{/yun}">
+        <div class='firm_list_logo'><a href='{yun:}$list.com_url{/yun}'><img src="{yun:}$list.logo{/yun}" width="158" height="65"alt="{yun:}$list.name{/yun}" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}',2);"/></a></div>
+        <div class='firm_post_cont'>
+          <div class="firm_qy_name"><a href='{yun:}$list.com_url{/yun}'>{yun:}$list.name|mb_substr:0:16:'gbk'{/yun}</a></div>
+          <div class="firm_qy_list"> <span >行业：{yun:}$list.job_hy|mb_substr:0:12:'gbk'{/yun}</span> <span >性质：{yun:}$list.job_pr{/yun}</span> <span>所在地区：{yun:}$list.job_city_one{/yun} {yun:}$list.job_city_two{/yun}</span> </div>
+          <div class="firm_qy_list"> <span >规模：<em>{yun:}$list.job_mun{/yun}</em></span><span >注册资金：<em>{yun:}$list.money{/yun}</em>万元</span> <span >添加时间：<em>{yun:}$list.lastupdate|date_format:'%Y-%m-%d'{/yun}</em></span></div>
+                    <div class="firm_qy_list" style="font-weight:bold"> <span >招聘职位数：<em>{yun:}$list.jobnum{/yun}</em></span> <span >公司资讯数：<em>{yun:}$list.newsnum{/yun}</em></span> <span >公司环境数：<em>{yun:}$list.shownum{/yun}</em></span></div>
+        </div>
+        <div class='firm_list_right'> <a href="javascript:void(0);" id="atn_{yun:}$list.uid{/yun}" onclick="atn('{yun:}$list.uid{/yun}');" class="crop-add-yb">{yun:}$list.atn{/yun}</a> <span><label><font id="antnum{yun:}$list.uid{/yun}">{yun:}$list.ant_num{/yun}</font>人关注 </label></span> </div>
+        {yun:}if $list.jobnum>0 || $list.shownum>0{/yun}
+        <div class="firm_list_cur_box" id="com{yun:}$list.uid{/yun}" style="display:none;">
+        <div class="firm_list_cur_cont">
+   
+      <div class="firm_list_cur_left">
+      <div class="firm_list_post"> 
+      <p class="firm_list_cur_p">招聘职位：</p>
+      {yun:}if $list.jobnum>0{/yun}
+      {yun:}foreach item=job from=$list.joblist{/yun}
+      <a href="{yun:}url m=com url=c:comapply,id:`$job.id`{/yun}">{yun:}$job.name{/yun}</a>
+      {yun:}/foreach{/yun}
+      {yun:}else{/yun}
+      <div class="firm_list_cur_right_l">暂无招聘职位</div>
+      {yun:}/if{/yun}
+      </div>
+      <div class="firm_list_cur_news">
+      <p class="firm_list_cur_p">公司资讯：</p>
+      {yun:}if $list.newsnum>0{/yun}
+      {yun:}foreach item=news from=$list.newslist{/yun}
+      <div class="firm_list_cur_news_list"><a href="{yun:}curl url=id:`$list.uid`,tp:newsshow,nid:`$news.id`{/yun}" title="{yun:}$news.title{/yun}">{yun:}$news.title{/yun}</a></div>
+      {yun:}/foreach{/yun}
+      {yun:}else{/yun}
+      <div class="firm_list_cur_right_l">暂无公司资讯</div>
+      {yun:}/if{/yun}
+      </div>
+      </div>
+      <div class="firm_list_cur_right">
+      <p class="firm_list_cur_p">公司环境：</p>
+      {yun:}if $list.shownum>0{/yun}
+      {yun:}foreach item=show from=$list.showlist{/yun}
+      <div class="firm_list_cur_right_l">
+      <div class="firm_list_cur_right_l_img"><img src="{yun:}$show.picurl{/yun}" width="60" height="60"></div>
+       </div>
+      {yun:}/foreach{/yun}
+      {yun:}else{/yun}
+      <div class="firm_list_cur_right_l">暂无公司环境</div>
+      {yun:}/if{/yun}
+      </div>
+        </div>  </div>
+        {yun:}/if{/yun}
+      </div>
+      {yun:}/comlist{/yun}
+      <div class="clear"></div>
+	  <div class="pages"> {yun:}$pagenav{/yun}</div>
+      {yun:}if $total==0{/yun}
+      <!-- 未搜索到-->
+      <div class="seachno" style="background:#FFF; width:588px; margin-top:15px;border:none;">
+        <div class="seachno_left"><img src="{yun:}$style{/yun}/images/search-no.gif"></div>
+        <div class="listno-content"> <strong>很抱歉，没有找到满足条件的企业</strong><br>
+          <span> 建议您：<br>
+          1、适当减少已选择的条件<br>
+          2、适当删减或更改搜索关键字<br>
+          </span> <span> 热门关键字：<br>
+          {yun:}key limit=6 recom=1 type=4 item=top_key{/yun} <a href="{yun:}$top_key.url{/yun}">{yun:}$top_key.key_name{/yun}</a> {yun:}/key{/yun} </span> </div>
+      </div>
+      {yun:}/if{/yun} </div>
+    <div class="clear"></div>
+  </div>
+   </div>
+  <div class="clear"></div>
+<!--content  end-->
+{yun:}include file="$tplstyle/footer.htm"{/yun}

@@ -1,0 +1,86 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun} 
+<section class="wap_member">
+<div class="wap_member_comp_h1"><span>已邀请面试的简历</span></div>
+<div class="wap_member_Receive">
+        <div class="pay_choose">  <span>您已邀请 {yun:}$total{/yun} 份简历面试 </span></div>
+<!--			<form id="myform" action="{yun:}$config_wapdomain{/yun}/member/index.php?c=invite_del" method="post">-->
+                {yun:}if !empty($rows){/yun}
+                {yun:}foreach from=$rows item=job{/yun}
+                <div class="wap_member_Receive_list">
+                {yun:}assign var="uid" value=$job.uid{/yun}
+                  <span class="job_news_list_span job_w30"><input type=checkbox name="delid[]" value="{yun:}$job.id{/yun}"></span>
+
+                  <span class="job_news_list_span job_w160">{yun:}$job.jobname{/yun}</span><br>
+                
+                  <span class="job_news_list_span job_w100"><a href="../index.php?m=user&c=show&uid={yun:}$uid{/yun}" target="_blank">查看简历</a> | </span>
+                  <span class="job_news_list_span job_w155"><a href="javascript:void(0)" onclick="isdel( '{yun:}$config_wapdomain{/yun}/member/index.php?c=invite_del&id={yun:}$job.id{/yun}')">删除</a></span>  <span class="job_news_list_span job_w100">{yun:}$job.datetime|date_format:'%Y-%m-%d'{/yun}</span>
+                 </div> 
+                {yun:}/foreach{/yun}       
+				<div class="wap_member_Receive_list"> 
+<!--				<div class="fltL">
+				  <span class="fltL job_new_de">  <input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'> 全选</span>
+					 <INPUT  class="job_new_tj" type="button" name="subdel" value="批量删除" onclick="return really('delid[]');">
+				 </div> -->
+				<div class="diggg">{yun:}$pagenav{/yun}</div>
+				</div>
+                {yun:}elseif $smarty.get.keyword!="" {/yun}
+                 <div class="msg_no">没有搜索邀请记录。</div>
+                {yun:}else{/yun}
+                 <div class="msg_no">您还没有邀请记录。</div>
+                {yun:}/if{/yun} 
+<!--          </form>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>
+</div>
+</section>
+
+                
+                <div class="clear"></div>
+          <div class="infoboxp22" id="remarkbox" style="display:none;float:left; z-index:100; position:absolute; background-color:#C30;">
+            <div>
+              <form action="index.php?c=talent_pool_remark" method="post">
+                <input name="id" value="0" type="hidden">
+                  <div class="jb_infobox" style="width: 100%;">
+                  <textarea id="remark"style="width:310px;margin:5px" name="remark" class="hr_textarea"></textarea></div>
+                <div class="jb_infobox" style="width: 100%;">
+                  <button type="submit" name='submit' value='1' class="submit_btn" style="margin-left:80px;">确认</button>
+                  &nbsp;&nbsp;
+                  <button type="button" id='zxxCancelBtn'  class="cancel_btn">取消</button>
+                </div>
+              </form>
+            </div>
+          </div>
+         
+<script> 
+function remark(id,remark){
+	$("input[name=id]").val(id);
+	$("#remarkbox").show();
+	$("#remark").val(remark);
+}
+$(document).ready(function(){ 
+	$('#zxxCancelBtn').click(function(){
+		$("#remarkbox").hide();
+	}); 
+}); 
+function talent_pool(uid,eid)
+{
+	$.post(weburl+"/index.php?m=ajax&c=talent_pool",{eid:eid,uid:uid},function(data){
+		if(data=='0'){
+			layermsg('只有企业用户，才可以操作！');
+		}else if(data=='1'){
+			layermsg('加入成功！');
+		}else if(data=='2'){
+			layermsg('该简历已加入到人才库！');
+		}else{
+			layermsg('对不起，操作出错！');
+		}
+	});
+}
+</script>
+         
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

@@ -1,0 +1,55 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> 
+  {yun:}include file="$comstyle/left.htm"{/yun}  
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">充值记录</span> </div>
+        <div class=admin_textbox_04>
+          <INPUT class=btn_02 onclick="location.href='index.php?c=pay'" type=button value=现在充值 name=input style="margin-right:10px;">
+          <div class=table>
+            <div>
+              <div>
+                <table id="job_checkbokid" cellSpacing=1 align=center border=0  class="my_table_msg">
+                  <tbody>
+                    <tr align=middle style="height:30px">
+                      <th scope=col style="width: 120px">充值单号</th>
+                      <th scope=col style="width:">支付类型</th>
+                      <th scope=col style="width:">金额</th>
+                      <th scope=col style="width: ">状态</th>
+                      <th scope=col style="width: ">备注</th>
+                      <th scope=col style="width: 120px">时间</th>
+                    </tr>
+                  {yun:}if !empty($rows){/yun}
+                  {yun:}foreach from=rows item=log{/yun}
+                  {yun:}assign var="state" value=$log.order_state{/yun}
+                  {yun:}assign var="type" value=$log.order_type{/yun}
+                  <tr style="height:30px">
+                    <td>{yun:}$log.order_id{/yun}</td>
+                    <td>{yun:}if $type{/yun}{yun:}$arr_data.pay.$type{/yun}{yun:}else{/yun}暂未选择{yun:}/if{/yun}</td>
+                    <td>{yun:}$log.order_price{/yun}</td>
+                    <td>{yun:}$arr_data.paystate.$state{/yun}</td>
+                    <td>{yun:}$log.order_remark{/yun}&nbsp;</td>
+                    <td>{yun:}$log.order_time|date_format:'%Y-%m-%d %H:%M:%S'{/yun}</td>
+                  </tr>
+                  {yun:}/foreach{/yun}
+                  {yun:}else{/yun}
+                  <tr style="height:30px">
+                    <td colspan="7" align="center">您还没有未付款记录。</td>
+                  </tr>
+                  {yun:}/if{/yun}
+                    </tbody>
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="diggg">{yun:}$pagenav{/yun}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

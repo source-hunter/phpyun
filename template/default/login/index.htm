@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/login.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.login_fast,.login_box_tit .login_cur');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script src="{yun:}$style{/yun}/js/reg_ajax.js" type="text/javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/slides.jquery.js" type="text/javascript"></script>
+
+</head>
+<body>  
+<div class="top">
+  <div class="top_cot">
+    <div class="top_cot_content">
+      <div class="top_left fl">
+        <div class="yun_welcome fl">欢迎来到{yun:}$config.sy_webname{/yun}！</div>
+        <span class="fl"><a href="{yun:}$config.sy_weburl{/yun}/wap" class="wap_icon">手机版</a> | <a href="{yun:}url m=subscribe{/yun}">订阅</a></span> </div>
+      <div class="top_right_re fr">
+        <div class="top_right">
+          <div class="yun_topNav fr"> <a class="yun_navMore" href="javascript:;">网站导航</a>
+            <div class="yun_webMoredown" style="display:none">
+              <div class="yun_top_nav_box"> {yun:}navmap key=key item=navmap{/yun}
+                <div class="yun_top_nav_h1"><a href="{yun:}$navmap.url{/yun}" {yun:}if $navmap.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$navmap.name{/yun}</a></div>
+                <ul>
+                  {yun:}foreach from=$navmap.list item=maplist{/yun}
+                  <li><a href="{yun:}$maplist.url{/yun}" {yun:}if $maplist.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$maplist.name{/yun}</a></li>
+                  {yun:}/foreach{/yun}
+                </ul>
+                {yun:}/navmap{/yun} </div>
+            </div>
+          </div>
+          <SCRIPT LANGUAGE='JavaScript' src='{yun:}$config.sy_weburl{/yun}/index.php?m=includejs&c=RedLoginHead'></SCRIPT>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="login_cont">
+<div class="login_w960">
+<div class="login_header ">
+  <div class="logo fl" style="position:relative"><a href="{yun:}$config.sy_weburl{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_logo{/yun}" class="png"></a><span class="logo_index png">回首页</span></div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="logoin_banner"> 
+	<div id="slides" class="s_lb">
+		 <div class="slides_container"> 
+		  {yun:}adlist classid=37 item=ad_37 key=key{/yun}
+            <div class="slide">{yun:}$ad_37.html{/yun}</div>
+            {yun:}/adlist{/yun} 
+		</div> 
+	</div>
+</div>
+<div class="logoin_cont_box">
+<div class="logoin_bg"></div>
+<div class="login_left ">
+  <div class="login_box_cont">
+      <div class="login_box_h1_d"  id='usertype1'>会员登录</div>
+     <div class="clear"></div>
+    <div class="lgoin_box_cot"  id='login_cur'>
+    <input type="hidden" id="usertype" name="usertype" value="{yun:}$usertype{/yun}" />
+    <div class="login_box_list logoin_re">
+      <input type="text" class="login_box_bth placeholder loginname" value="{yun:}if $loginname{/yun}{yun:}$loginname{/yun}{yun:}else{/yun}用户名{yun:}/if{/yun}" name="username" id="username">
+
+      <div class="logoin_msg" style="display:none" id="show_name">
+      <div class="logoin_msg_tx" >请填写用户名</div>
+      <div class="logoin_msg_icon"></div>
+      </div>
+
+    </div>
+    <div class="login_box_list logoin_re_m">
+      <input type="text" id="password2" class="login_box_bth placeholder loginname loginpwd" value="密码">
+	  <input type="password" id="password" name="password" class="login_box_bth placeholder loginname   loginpwd" value="" style="display:none;">
+      <div class="logoin_msg" style="display:none" id="show_pass">
+      <div class="logoin_msg_tx" >请填写密码</div>
+      <div class="logoin_msg_icon"></div>
+      </div>
+    </div>
+    {yun:}if strpos($config.code_web,"前台登陆")!==false{/yun}
+    <div class="clear"></div>
+    <div class="login_box_list logoin_re_m">
+    <input id="txt_CheckCode" type="text" class="login_box_bth_yz loginname  loginpyz" value="验证码" maxlength="4" name="authcode"  >
+    </div>
+    <div class="login_box_list_yzm"> <img id="vcode_imgs" src="include/authcode.inc.php" onclick="check_codes();"></div>
+    {yun:}/if{/yun}
+    <div class="clear"></div>
+    
+    <div class="login_box_cz"> <span class="login_box_cz_l">
+      <input type="checkbox" name="loginname" value="1" class="index_logoin_check">
+      <em class="fl">记住登录状态</em></span> <a href="{yun:}url m=forgetpw{/yun}">忘记密码？</a> </div>
+    <div class="clear"></div>
+    <div class="login_box_cz">
+      <input type="submit" value="登录" class="login_box_bth2" onclick="check_login();"> </div>
+       {yun:}if $config.sy_qqlogin==1 || $config.sy_sinalogin==1 || $config.sy_wxlogin==1{/yun}
+    <div class="login_other">
+      <div class="login_other_left">其他方式登录：</div>
+      <div class="login_qq">
+      {yun:}if $config.sy_qqlogin==1{/yun}
+      <a href="{yun:}url m=qqconnect url=c:qqlogin{/yun}"class="png">QQ登录</a>
+      {yun:}/if{/yun}
+      {yun:}if $config.sy_sinalogin==1{/yun}
+      <a href="{yun:}url m=sinaconnect {/yun}" class="log_sina png">新浪微博</a>
+      {yun:}/if{/yun}
+	   {yun:}if $config.sy_wxlogin==1{/yun}
+      <a href="{yun:}url m=wxconnect {/yun}" class="log_wx png">微信扫一扫</a>
+      {yun:}/if{/yun}
+	  </div>
+    </div>
+    {yun:}/if{/yun}
+  </div>
+ </div>
+</div>
+<dl class="login_list">
+<dt><img src="{yun:}$style{/yun}/images/log_img1.png" class="png"></dt>
+<dd>
+<div class="login_list_h1">强大的招聘平台</div>
+<div class="login_list_p">提供快捷、高效、可靠地网上招聘</div>
+</dd>
+</dl>
+<dl class="login_list">
+<dt><img src="{yun:}$style{/yun}/images/log_img2.png" class="png"></dt>
+<dd>
+<div class="login_list_h1">收获职业机会</div>
+<div class="login_list_p">好机会主动找上你，成就职业成功
+</div>
+</dd>
+</dl>
+<dl class="login_list">
+<dt><img src="{yun:}$style{/yun}/images/log_img3.png" class="png"></dt>
+<dd>
+<div class="login_list_h1">打造职业形象</div>
+<div class="login_list_p">创建职业档案，持续展示自己的优势
+</div>
+</dd>
+</dl>
+</div>
+</div>
+
+<script>
+
+$(document).ready(function(){
+	$("#slides").slides({
+		preload: true,
+		preloadImage: '{yun:}$style{/yun}/images/loading.gif',
+		play: 5000,
+		pause: 2500,
+		hoverPause: true
+	}); 
+	
+	$("#username").focus(function(){
+		var txAreaVal = $(this).val();
+		if( txAreaVal == this.defaultValue){$(this).val("");}
+	}).blur(function(){
+		var txAreaVal = $(this).val();
+		if( txAreaVal == this.defaultValue||$(this).val()==""){$(this).val(this.defaultValue);}
+	});
+	$("#txt_CheckCode").focus(function(){
+		var txAreaVal = $(this).val();
+		if( txAreaVal == this.defaultValue){$(this).val("");}
+	}).blur(function(){
+		var txAreaVal = $(this).val();
+		if( txAreaVal == this.defaultValue||$(this).val()==""){$(this).val(this.defaultValue);}
+	});
+	$("#password2").focus(function(){
+		$("#password").show();
+		$("#password").focus();
+		$("#password2").hide();
+	})
+	$("#password").blur(function(){
+		if($("#password").val()==""){
+			$("#password2").show();
+			$("#password").hide();
+		}
+	})
+});
+        
+</script>
+<style> 
+.icon2 {
+    background-image:none;
+    background-repeat: no-repeat;
+}
+.foot{ margin-top:0px;}
+#slides { 
+    height: 410px;
+    position: relative;
+}
+.slides_container { 
+    height: 410px;
+    overflow: hidden;
+    position: relative;
+} 
+.slides_container div.slide {
+    display: block;
+    height: 410px;
+}
+.slides_container img {
+    display: block;
+    height: 410px;
+}
+#slides .prev {
+    float: left;
+    margin-right: 5px;
+}
+#slides .next {
+    float: left;
+    margin-right: 5px;
+}
+.pagination {
+    bottom: 15px;
+    list-style: outside none none;
+    margin: 6px 0 0;
+    position: absolute;
+    left: 48%;
+    z-index: 9999;
+}
+.pagination li {
+    float: left;
+    margin: 0 1px;
+}
+.pagination li a {
+    background-image: url("{yun:}$style{/yun}/images/circle.png");
+    background-position: 0 0;
+    display: block;
+    float: left;
+    height: 0;
+    overflow: hidden;
+    padding-top: 13px;
+    width: 13px;
+}
+.pagination li.current a, .pagination li.current a:hover {
+    background-position: -16px 0;
+}
+.pagination li a:hover {
+    background-position: 0 0;
+}
+#slides a:link, #slides a:visited {
+    color: #333;
+}
+#slides a:hover, #slides a:active {
+    color: #9e2020;
+}
+.index_banner_cont {
+    width: 990px;
+} 
+</style>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

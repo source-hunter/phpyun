@@ -1,0 +1,78 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> 
+  {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box >
+        <div class=admin_tit><span class="admin_tit_bg">站内信列表</span></div>  
+		<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <div class=admin_note2>
+		<div class="clear"></div>  <div style="clear:both"></div>
+          <table width="710" border="0" cellpadding="0" cellspacing="1" class="my_table_msg" >
+            <tr>
+              <th width="5%"  height="26" align="center" bgcolor="#F7FAFF">发送人</th>
+              <th width="5%"  height="26" align="center" bgcolor="#F7FAFF">收件人</th>
+              <th width="12%" align="center" bgcolor="#F7FAFF">内容</th>
+              <th  width="8%" align="center" bgcolor="#F7FAFF">时间</th>
+              <th width="3%" align="center" bgcolor="#F7FAFF">状态</th>
+              <th width="3%" align="center" bgcolor="#F7FAFF">删除</th>
+            </tr>
+             <div style="clear:both"></div>
+            {yun:}foreach from=$rows item=all{/yun}
+            <tr>
+              <td  height="26"align="center" bgcolor="#FFFFFF">{yun:}$all.nickname{/yun}</td>
+              <td  height="26"align="center" bgcolor="#FFFFFF">{yun:}$all.name{/yun}</td>
+              <td  height="26"align="center" bgcolor="#FFFFFF" style="text-align:left; padding-left:3px;">{yun:}$all.content{/yun}</td>
+              <td  height="26"align="center" bgcolor="#FFFFFF">{yun:}$all.ctime|date_format:'%Y-%m-%d'{/yun}-{yun:}$all.ctime|date_format:'%H:%M'{/yun}  <div style="clear:both"></div></td>
+              <td align="center" bgcolor="#FFFFFF">{yun:}if $all.uid==$ownuid{/yun}--{yun:}else{/yun}<span onclick="reply_xin('{yun:}$all.uid{/yun}','{yun:}$all.nickname{/yun}','{yun:}$all.content{/yun}','{yun:}$all.id{/yun}');" style="cursor:pointer">回复</span>{yun:}/if{/yun}</td>
+              <td align="center" bgcolor="#FFFFFF">{yun:}if $all.uid==$ownuid{/yun}<a href="javascript:void(0)"  onclick="layer_del('您确定要删除？', 'index.php?c=xin&act=del&id={yun:}$all.id{/yun}'); ">删除</a>{yun:}else{/yun}<a href="javascript:void(0)" onclick="layer_del('您确定要删除？', 'index.php?c=xin&act=del&did={yun:}$all.id{/yun}'); ">删除</a>{yun:}/if{/yun}</td>
+            </tr>
+              <div style="clear:both"></div>
+            {yun:}foreachelse{/yun}
+            <tr>
+              <td height="26"align="center"colspan="6" style=" background:#fff;">暂无站内信！</td>
+            </tr>
+           {yun:}/foreach{/yun}
+          </table>  <div style="clear:both"></div>
+          <div class="diggg">{yun:}$pagenav{/yun}</div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="status_div"  style="display:none; width: 440px; ">  
+	<div id="infobox">   
+	  <form action="index.php?c=xin&act=save" target="supportiframe" method="post" id="formstatus" onsubmit="return check_xin();"> 
+		 <div class="admin_Operating_sh" style="padding:10px">
+		<div class="admin_Operating_sh_h1" style=" padding: 5px;">留言内容：<span></span></div>
+		<div class="admin_Operating_sh_sm">我的回复：</div>
+		<div><textarea id="content" name="content" class="admin_Operating_text"></textarea></div>
+		<div class="admin_Operating_sub" style="margin-top:10px;"> <input type="submit"  name='submit' value='确认' class="submit_btn">
+		  &nbsp;&nbsp;<input type="button" id="zxxCancelBtn" onClick="layer.closeAll();" class="cancel_btn" value='取消'></div>
+		</div>  
+		<input name="fid" value="0" id='fid' type="hidden"> 
+		<input name="pid" value="0" id='pid' type="hidden"> 
+	  </form>
+	</div> 
+</div> 
+<script>  
+function reply_xin(id,name,content,pid){  
+	$(".admin_Operating_sh_h1 span").html(content);
+	$("#fid").val(id);
+	//$("#pid").val(pid);
+	$.layer({
+		type : 1,
+		title :'咨询内容',
+		offset: [($(window).height() - 230)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['460px','230px'],
+		page : {dom :"#status_div"}
+	}); 
+	
+} 
+function check_xin(){
+	if($("#content").val()==""){layer.msg('回复内容不能为空！', 2, 2);return false; }	 
+}
+</script> 
+{yun:}include file="$comstyle/footer.htm"{/yun}  

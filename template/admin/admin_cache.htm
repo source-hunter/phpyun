@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+
+<script src="js/admin_public.js" language="javascript"></script>
+
+<title>后台管理</title>
+
+</head>
+
+<body class="body_ifm">
+
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Prompt">
+<div class="admin_Prompt_span">
+    注意事项：
+    生成请确保/plus,/cache目录有可写权限，否则无法生成。生成所有的类别，时间较长，建议分批更新
+</div>
+<div class="admin_Prompt_close"></div>
+</div>
+
+    <div class="infoboxp_top">
+
+        <h6>生成缓存</h6>
+
+    </div>
+
+<div class="main_tag" >
+
+<div class="tag_box">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+
+    <form action="index.php?m=cache&c=cache" target="supportiframe" method="post">
+
+<table width="100%" class="table_form">
+
+
+
+    <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+
+      <tr>
+
+    	<td class="ud" align="center" style="background-color: #ffffed;">
+
+            {yun:}foreach item=v key=k from=$type{/yun}
+
+                <input type="checkbox" class="checkbox" name="cache[]" value="{yun:}$k{/yun}" id="cache_{yun:}$k{/yun}">
+
+            	<label for="cache_{yun:}$k{/yun}">{yun:}$v{/yun}</label>&nbsp;&nbsp;
+
+            {yun:}/foreach{/yun}
+
+	   </td>
+
+      </tr>
+
+    <tr>
+
+    	<td class="ud" align="center">
+
+			<input class="admin_submit4" type="submit" name="madeall" value="更新"/>&nbsp;&nbsp;
+
+        </td>
+
+      </tr>
+
+
+
+  </table>
+ </form>
+  </div></div></div>
+  <div style="clear:both"></div>
+
+ 
+  <script>
+
+$(document).ready(function(){
+
+	$("input[name=madeall]").click(function(){
+
+		var codewebarr="";
+
+		$(".checkbox:checked").each(function(){
+
+			if(codewebarr==""){codewebarr=1;}else{codewebarr++;}
+
+		});
+
+		if(!codewebarr){
+
+			parent.layer.alert('至少选择一项', 8);
+
+			return false;
+
+		}
+
+	})
+
+})
+
+</script>
+
+</body>
+
+</html>

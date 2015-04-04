@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/news.css" type="text/css">
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+<div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > 职场资讯</div>
+<div class="news_Slideshow fl">
+	{yun:}article limit=4 type=t pic=1 urlstatic=1 key=key   t_len=20  item=news_flash {/yun} 
+	<input name="picurl" id="{yun:}$key+1{/yun}" type="hidden" value="{yun:}$news_flash.newsphoto{/yun}+{yun:}$news_flash.url{/yun}+{yun:}$news_flash.title{/yun}" />	 
+	{yun:}/article{/yun}
+	<script language='javascript'>
+		linkarr = new Array();
+		picarr = new Array();
+		textarr = new Array();
+		var swf_width=284;
+		var swf_height=210;
+		var files = "";
+		var links = "";
+		var texts = "";
+		var url;
+		$("input[name=picurl]").each(function(){ 
+			url = this.value.split("+"); 
+			textarr[this.id]  = url[2];
+			linkarr[this.id] = url[1];
+			picarr[this.id]  = url[0];
+			
+		});
+		for(i=1;i<picarr.length;i++){
+			if(files=="") files = picarr[i];
+			else files += "|"+picarr[i];
+		}
+		for(i=1;i<linkarr.length;i++){
+			if(links=="") links = escape(linkarr[i]);
+			else links += "|"+escape(linkarr[i]);
+		}
+		for(i=1;i<textarr.length;i++){
+			if(texts=="") texts = textarr[i];
+			else texts += "|"+textarr[i]; 
+		}
+		document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ swf_width +'" height="'+swf_height+'">');
+		document.write('<param name="movie" value="{yun:}if $config.sy_indexdomain==""{/yun}{yun:}$config.sy_weburl{/yun}{yun:}else{/yun}{yun:}$config.sy_indexdomain{/yun}{yun:}/if{/yun}/template/default/images/bcastr3.swf"><param name="quality" value="high">');
+		document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+		document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_config=0xffffff|2|0x8CA2AD|60|0xffffff|0xff9900|0x000033|2|3|1|_blank">');  
+		document.write('<embed src="{yun:}if $config.sy_indexdomain==""{/yun}{yun:}$config.sy_weburl{/yun}{yun:}else{/yun}{yun:}$config.sy_indexdomain{/yun}{yun:}/if{/yun}/template/default/images/bcastr3.swf" wmode="opaque" FlashVars="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'& menu="false" quality="high" width="'+ swf_width +'" height="'+ swf_height +'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />'); document.write('</object>'); 
+	</script> 
+</div>
+<div class="news_top_right fr">
+{yun:}article limit=1 type=t  urlstatic=1  print=1 t_len=20 d_len=60  item=news_tian {/yun}
+<dl>
+<dt><a href="{yun:}$news_tian.url{/yun}" title="{yun:}$news_tian.title{/yun}" target="_blank">{yun:}$news_tian.title{/yun}</a>  <em>{yun:}$news_tian.datetime{/yun}</em></dt>
+<dd>{yun:}$news_tian.description|strip_tags{/yun} <a href="{yun:}$news_tian.url{/yun}" target="_blank">[详情]</a>
+</dd>
+</dl>
+{yun:}/article{/yun}
+<ul>
+{yun:}article limit=8 order=hits  t_len=20 urlstatic=1 item=news_hits{/yun}
+<li><a href="{yun:}$news_hits.url{/yun}" target="_blank">{yun:}$news_hits.title{/yun}</a><em>{yun:}$news_hits.datetime{/yun}</em></li>
+{yun:}/article{/yun}
+</ul>
+</div>
+<div class="news_cont fl">
+{yun:}articleclass arclist=5 arcpic=1 r_news=1 item=arcgroupright urlstatic=1 len=4 pt_len=25 pd_len=40 t_len=25{/yun}
+{yun:}if is_array($arcgroupright.arclist)||is_array($arcgroupright.arcpic)&&$arcgroupright.arclist|@count>0{/yun}
+<div class="news_sort_list fl">
+	<div><div class="news_sort_title yun_bth_icon"><span>{yun:}$arcgroupright.name{/yun}</span></div></div>
+    {yun:}foreach from=$arcgroupright.arcpic item=acrpicsright{/yun}
+    <dl>
+        <dt><a href="{yun:}$acrpicsright.url{/yun}" target="_blank"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$acrpicsright.s_thumb{/yun}"  width="89" height="80" alt="{yun:}$acrpicsright.title{/yun}"></a></dt>
+        <dd>
+        <strong><a  target="_blank" href="{yun:}$acrpicsright.url{/yun}">{yun:}$acrpicsright.title{/yun}</a></strong>
+        <span>{yun:}$acrpicsright.description|strip_tags{/yun}...</span><a  target="_blank" href="{yun:}$acrpicsright.url{/yun}">[详细]</a>
+        </dd>
+    </dl>
+    {yun:}/foreach{/yun}
+    <ul>
+    {yun:}foreach from=$arcgroupright.arclist item=arclistright{/yun}
+        <li class="png">
+            <a href="{yun:}$arclistright.url{/yun}" target="_blank">{yun:}$arclistright.title{/yun}</a>
+            <em>{yun:}$arclistright.datetime|date_format:"%m-%d"{/yun}</em>
+        </li>
+    {yun:}/foreach{/yun}
+    </ul>
+	<div class="news_more fl"><a href="{yun:}$arcgroupright.url{/yun}">[更多]</a></div>
+</div>
+{yun:}/if{/yun}
+{yun:}/articleclass{/yun}
+</div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

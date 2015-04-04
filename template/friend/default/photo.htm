@@ -1,0 +1,88 @@
+{yun:}include file="$friendstyle/header.htm"{/yun}
+<div class="Personals_content">
+<div class="py_cont">
+{yun:}include file="$friendstyle/left2.htm"{/yun}
+    <div class="Personals_cont">
+    <div class="Personals_my_all">资料修改 </div>
+    <div class="Personals_my_good_h1">
+    <ul>
+    <li><a href="{yun:}furl url=c:info{/yun}">基本信息</a></li>
+    <li class="Personals_my_on">头像管理</li>
+    </ul>
+    </div>
+    <div class="remindbox01 mt10"> 
+        {yun:}if $rom.pic{/yun}
+       <dl class="remindbox01_img">
+        <dt>小头像</dt>
+       <dd><img src="{yun:}$rom.pic{/yun}" /></dd>
+        </dl>
+        {yun:}/if{/yun}
+        {yun:}if $rom.pic_big{/yun}
+         <dl class="remindbox01_img">
+         <dt>大头像 </dt>
+        <dd><img src="{yun:}$rom.pic_big{/yun}" /></dd>
+        </dl>
+      {yun:}/if{/yun}
+     </div>
+    	<div class="remindbox01 mt10"> 
+		<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+	<form enctype="multipart/form-data" target="supportiframe" method="post" name="upform" target="upload_target" action="{yun:}furl url=c:photo{/yun}">
+		<input type="file" name="Filedata" id="Filedata"style="height:23px;"/ >
+		<input style="margin-right:20px;" type="submit" name="" value="上传形象照" onclick="return checkFile();" /><span style="visibility:hidden;" id="loading_gif"><img src="{yun:}$friend_style{/yun}/images/loading.gif" align="absmiddle" />上传中，请稍侯......</span>
+		</form>
+		<iframe src="about:blank" name="upload_target" style="display:none;"></iframe>
+		<div id="avatar_editor"></div>
+    </div>
+
+<script type="text/javascript">
+var extensions = 'jpg,jpeg,gif,png';
+var saveUrl = weburl+'/friend/index.php';
+var cameraPostUrl = weburl+'/friend/index.php?c=camera';
+var editorFlaPath = '{yun:}$config.sy_weburl{/yun}/template/friend/default/images/AvatarEditor.swf';
+function useCamera(){
+var content = '<embed height="464" width="514" wmode="transparent"';
+content +='flashvars="type=camera';
+content +='&postUrl='+cameraPostUrl+'?&radom=1';
+content += '&saveUrl='+saveUrl+'?c=save_avatar&radom=1" ';
+content +='pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" ';
+content +='allowscriptaccess="always" quality="high" ';
+content +='src="'+editorFlaPath+'"/>';
+document.getElementById('avatar_editor').innerHTML = content;
+}
+function buildAvatarEditor(pic_id,pic_path,post_type){
+var content = '<embed height="464" width="514" wmode="transparent"'; 
+content+='flashvars="type='+post_type;
+content+='&photoUrl='+pic_path;
+content+='&photoId='+pic_id;
+content+='&postUrl='+cameraPostUrl+'?&radom=1';
+content+='&saveUrl='+saveUrl+'?c=save_avatar&radom=1"';
+content+=' pluginspage="http://www.macromedia.com/go/getflashplayer"';
+content+=' type="application/x-shockwave-flash"';
+content+=' allowscriptaccess="always" quality="high" src="'+editorFlaPath+'"/>';
+document.getElementById('avatar_editor').innerHTML = content;
+}
+function avatarSaved(){ layer.msg('保存成功！', 2, 9,function(){location.href = '{yun:}furl url=c:photo{/yun}';});return false; }
+function avatarError(msg){layer.msg('上传失败！', 2, 8);return false; }
+function checkFile(){
+var path = document.getElementById('Filedata').value;
+var ext = getExt(path);
+var re = new RegExp("(^|\\s|,)" + ext + "($|\\s|,)", "ig");
+if(extensions != '' && (re.exec(extensions) == null || ext == '')) { 
+ layer.msg('对不起，只能上传jpg, gif, png类型的图片！', 2, 8);return false; 
+}
+showLoading();
+return true;
+}
+function getExt(path) {return path.lastIndexOf('.') == -1 ? '' : path.substr(path.lastIndexOf('.') + 1, path.length).toLowerCase();}
+function	showLoading(){document.getElementById('loading_gif').style.visibility = 'visible';}
+function hideLoading(){document.getElementById('loading_gif').style.visibility = 'hidden';}
+</script>
+     <div class="Personals_my_all_list">  
+   </div>
+    <div class="clear"></div>
+      <div><div class="pages">{yun:}$pagenav{/yun}</div></div>
+   </div>
+      {yun:}include file="$friendstyle/right.htm"{/yun}  
+    </div> 
+    </div>
+{yun:}include file="$friendstyle/footer.htm"{/yun}

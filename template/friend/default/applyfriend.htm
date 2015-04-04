@@ -1,0 +1,37 @@
+{yun:}include file="$friendstyle/header.htm"{/yun}
+<div class="Personals_content">
+<div class="py_cont">
+{yun:}include file="$friendstyle/left2.htm"{/yun}
+    <div class="Personals_cont">
+    <div class="Personals_my_all">我的好友 </div>
+    <div class="Personals_my_good_h1">
+    <ul>
+    <li><a href="{yun:}furl url=c:addfriend{/yun}">添加好友</a></li>
+    <li class="Personals_my_on">好友申请</li>
+    <li><a href="{yun:}furl url=c:myfriend{/yun}">管理好友</a></li>
+    </ul>
+    </div>
+	 {yun:}if $list{/yun}
+     <div class="Personals_my_all_list">      
+     {yun:}foreach from=$list item=list{/yun}
+      <dl class="Personals_my_all_list_dl">
+      <dt><img src="{yun:}$list.pic_big{/yun}"width="152" height="152" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);"></dt>
+      <dd><a href="{yun:}furl url=c:profile,id:`$list.nid`{/yun}" class="friend_name">{yun:}$list.nickname{/yun}</a></dd>
+      <dd>
+      <a href="javascript:void(0)" onclick="layer_del('确定要加该好友？', '{yun:}furl url=c:applyfriend,pass:`$list.uid`,type:`$list.uidtype`,name:`$list.nickname`{/yun}');" >通过</a> 
+      <a href="javascript:void(0)" onclick="layer_del('确定要拒绝？', '{yun:}furl url=c:applyfriend,nopass:`$list.uid`{/yun}');">拒绝</a>
+      </dd>
+      </dl>
+     {yun:}/foreach{/yun}
+   </div>
+     <div class="clear"></div>
+   {yun:}else{/yun}
+     <div class="Personals_my_all_no">暂无好友申请！</div>
+     {yun:}/if{/yun}
+    <div class="clear"></div>
+      <div><div class="pages">{yun:}$pagenav{/yun}</div></div>
+   </div>
+      {yun:}include file="$friendstyle/right.htm"{/yun}  
+    </div> 
+    </div>
+{yun:}include file="$friendstyle/footer.htm"{/yun}

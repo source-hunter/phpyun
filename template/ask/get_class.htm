@@ -1,0 +1,67 @@
+{yun:}include file="$askstyle/header.htm"{/yun}
+<div class="answers_content">
+<div class="answers_cont">
+<div class="answers_left">
+<div class="topic_cont_top">
+<div class="topic_cont_top_r">
+<strong>{yun:}$q_class.name{/yun}</strong>
+<div class="topic_cont_top-nav">
+<ul class="topic_cont_top-nav-list">
+<li class="topic_cont_top-nav-list-item">
+<li class="topic_cont_top-nav-list-item">
+{yun:}if $recom{/yun}
+<span>精华</span>
+{yun:}else{/yun}
+<a class="topic_cont_top-nav-normal" href="{yun:}aurl url=c:getclass,cid:`$cid`,recom:1{/yun}">精华</a>
+{yun:}/if{/yun}
+</li>
+<li class="topic_cont_top-nav-list-item">
+{yun:}if $recom=="" && $dyna==""{/yun}
+<span>全部问题</span>
+{yun:}else{/yun}
+<a class="topic_cont_top-nav-normal" href="{yun:}aurl url=c:getclass,cid:`$cid`{/yun}">全部问题</a>
+{yun:}/if{/yun}
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+{yun:}qlist item=qlist cid=auto.cid ispage=1 recom=auto.recom t_len=20 limit=10{/yun}
+<div class="answers_left_list">
+	<div class="answers_left_list_cont">
+		<h2><a class="question_link" href="{yun:}$qlist.url{/yun}" id="title_{yun:}$qlist.id{/yun}">{yun:}$qlist.title{/yun}</a></h2>
+		<div class="answers_feed-meta">
+			<a href="javascript:void(0)" class="answers_feed-meta_gz" onclick="attention('{yun:}$qlist.id{/yun}','1');">关注问题</a>
+			<a href="javascript:void(0)" class="answers_feed-meta_ll">（{yun:}$qlist.visit{/yun}）浏览</a>
+            <a href="javascript:void(0)" class="answers_feed-meta_pl">（{yun:}$qlist.answer_num{/yun}）回答</a>
+			<a href="javascript:void(0);" onclick="forward_sinaweibo('{yun:}$qlist.id{/yun}')" class="answers_feed-meta_xl">新浪微博</a>
+			<a href="javascript:void(0);" onclick="forward_tencentweibo('{yun:}$qlist.id{/yun}')" class="answers_feed-meta_tx">腾讯微博</a>
+			{yun:}$qlist.add_time|date_format:"%Y-%m-%d %H:%M:%S"{/yun}
+		</div>
+	</div>
+	<div class="answers_left_list_right" id='answer_{yun:}$qlist.id{/yun}' style="cursor:pointer">
+ 		<img src="{yun:}$qlist.pic{/yun}" width="55" height="55" style=" cursor:pointer" onmouseover="get_user_info('answer_','{yun:}$qlist.id{/yun}','{yun:}$qlist.uid{/yun}');" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);" onmouseout="hide_user_info('answer_','{yun:}$qlist.id{/yun}')">
+	 
+		{yun:}if $qlist.is_atn!='2'{/yun}
+			{yun:}if $qlist.is_atn=='1'{/yun}
+				<a href="javascript:void(0)" onclick="attention_user('{yun:}$qlist.uid{/yun}')" class="zg-btn-unfollow" name="atn_{yun:}$qlist.uid{/yun}">取消关注</a>
+			{yun:}else{/yun}
+				<a href="javascript:void(0)" onclick="attention_user('{yun:}$qlist.uid{/yun}')" class='zg-btn-green' name="atn_{yun:}$qlist.uid{/yun}">关注</a>
+			{yun:}/if{/yun}
+		{yun:}/if{/yun}
+	</div>
+</div>
+{yun:}/qlist{/yun}
+<div class="clear"></div><div class="clear"></div>
+<div class="pages">{yun:}$pagenav{/yun}</div>
+</div>
+<div class="answers_right">
+{yun:}include file="$askstyle/right.htm"{/yun}
+</div>
+</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$askstyle/footer.htm"{/yun}
+</body>
+</html>

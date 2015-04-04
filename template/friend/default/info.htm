@@ -1,0 +1,115 @@
+{yun:}include file="$friendstyle/header.htm"{/yun}
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+</style>
+<SCRIPT language=javascript>
+ $(function(){
+  $("#description").keyup(function(){
+   var len = $(this).val().length;
+   if(len > 50){
+   $(this).val($(this).val().substring(0,50));
+    layer.msg('个性签名字数已超出限制！', 2, 3);return false;
+   }
+  });
+ });
+function CheckPost(){ 
+	if($.trim($("input[name='nickname']").val())==''){layer.msg('请构思一个与众不同的昵称！', 2, 3);return false;}	
+	if($.trim($("#birthday").val())==''){layer.msg('请填写您的出生年月！', 2, 3);return false;}	
+	if($.trim($("#description").val())==''){layer.msg('您可能忘记了个性签名！', 2, 3);return false;} 
+}
+</SCRIPT>
+<div class="Personals_content">
+<div class="py_cont">
+{yun:}include file="$friendstyle/left2.htm"{/yun}
+    <div class="Personals_cont">
+    <div class="Personals_my_all">资料修改 </div>
+    <div class="Personals_my_good_h1">
+    <ul>
+        <li class="Personals_my_on">基本信息</li>
+        <li><a href="{yun:}furl url=c:photo{/yun}">头像管理</a></li>
+    </ul>
+    </div>
+	<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+  <form name="MyForm" target="supportiframe" method="post" action="" onsubmit="return CheckPost();">
+  <div class="info_Picture">
+    <div class="w740">
+    <div class="formbox02">
+    <ul class="info_Picture_list">
+      <li class="photo">
+        <div class="text"></div>
+      </li>
+      <li class="short">
+        <div class="name" style="line-height:22px;"> *昵称：</div>
+        <div class="text">
+          <input name="nickname" type="text" maxlength="50" value="{yun:}$rom.nickname{/yun}" class="info_Picture_nc"/>
+          <span id="by_nickname" class="errordisplay">姓名不能为空</span> 
+          </div>
+      </li>
+	  <li class="short">
+        <div class="name" style="line-height:22px;"> 性别：</div>
+		<div class="text">
+			<select name='sex'>
+				<option value='1' {yun:}if $rom.sex=='1'{/yun}selected{yun:}/if{/yun}>男</option>
+				<option value='2' {yun:}if $rom.sex=='2'{/yun}selected{yun:}/if{/yun}>女</option>
+				<option value='3' {yun:}if $rom.sex=='3'{/yun}selected{yun:}/if{/yun}>保密</option>
+			</select>
+		</div>
+      </li>
+      <li class="short">
+        <div class="name"style="line-height:22px;"> *出生年月：</div>
+        <div class="text">
+        <link href="{yun:}$config.sy_weburl{/yun}/js/time/jscal2.css" type="text/css" rel="stylesheet">
+		<script src="{yun:}$config.sy_weburl{/yun}/js/time/calendar.js" type="text/javascript"></script>
+        <script src="{yun:}$config.sy_weburl{/yun}/js/time/en.js" type="text/javascript"></script>
+         <input id="birthday" type="text" readonly="" size="10" value="{yun:}$rom.birthday{/yun}" name="birthday">
+        <script type="text/javascript">
+        Calendar.setup({
+        weekNumbers: true,
+        inputField : "birthday",
+        trigger : "birthday",
+        dateFormat: "%Y-%m-%d",
+        showTime: false,
+        onSelect : function() {this.hide();}
+        });
+        </script>
+		<span id="by_birthday" class="errordisplay">生日不能为空</span>
+        </div>
+      </li>
+      <li class="short">
+        <div class="name"> *个性签名：</div>
+        <div class="text">
+         <textarea name="description" id="description" style="height:80px;width:336px;">{yun:}$rom.description{/yun}</textarea>
+         <div class="clear"></div>
+        <span id="by_description" class="errordisplay" style="padding-left:100px">个性签名不能为空</span></div>
+      </li>
+       <li class="short" style="margin-top:0px;">  <div class="name"> &nbsp;</div>
+      <input type="submit" name="submitBtn" value=" 保 存" class="input-button" />
+     </ul></div>
+      </div>
+    </div>
+    </form>
+   <style>
+   .errordisplay{
+    background: url("{yun:}$friend_style{/yun}/images/errorico.gif") no-repeat scroll 0 0 transparent;
+    color: #AA0000;
+    display: inline;
+    height: 25px;
+    line-height: 25px;
+    padding-left: 15px;
+    text-align: left;
+    visibility: hidden;
+   }
+   </style> 
+
+     <div class="Personals_my_all_list">  
+
+   </div><div class="clear"></div>
+      <div><div class="pages">{yun:}$pagenav{/yun}</div></div>
+
+   </div>
+    
+     {yun:}include file="$friendstyle/right.htm"{/yun}
+    </div> 
+    </div>
+{yun:}include file="$friendstyle/footer.htm"{/yun}

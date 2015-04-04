@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>提示信息 - {yun:}$config.sy_webname{/yun} - Powered by PHPYun.</title>
+<META content="{yun:}$msg{/yun}" name=Keywords>
+<META content="{yun:}$msg{/yun}" name=Description>
+<link href="{yun:}$config.sy_weburl{/yun}/template/member/style/msg.css" rel="stylesheet" type="text/css" />
+</head>
+<script>
+document.onkeydown = function()
+{
+　　　　if(event.keyCode==116) {
+　　　　　　event.keyCode=0;
+　　　　　　event.returnValue = false;
+　　　　}
+}
+document.oncontextmenu = function() {event.returnValue = false;}
+</script>
+<body>
+<div class="content" style="background:f5f5f5;">
+  <div class="content-title"><span>{yun:}$msg{/yun}</span></div>
+  <div style="border:1px solid #ccc; float:left;width:448px;">
+    <dl>
+        <dd class="dl_1"><a href="{yun:}$job_url{/yun}">{yun:}$job_thisname{/yun}</a></dd>
+        <dd class="dl_2"><a href="{yun:}$job_next_url{/yun}">{yun:}$job_nextname{/yun}</a></dd>
+    </dl>
+</div>
+</div>
+</body>
+</html>

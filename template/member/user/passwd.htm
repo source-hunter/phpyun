@@ -1,0 +1,78 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<script>
+    function Showsub()
+	{
+		var oldpass = $("#oldpassword").val();
+		var pass = $("#password").val();
+		var repass = $("#repassword").val();
+		oldpass=$.trim(oldpass);
+		pass=$.trim(pass);
+		repass=$.trim(repass);
+		var flag = true;
+		if(oldpass==""){
+			$("#msg_oldpassword").html("<font color='red'>原始密码不能为空!</font>");
+			flag = false;
+		}else if(oldpass.length<6 || oldpass.length>20){
+			$("#msg_oldpassword").html("<font color='red'>新密码需在 6-20个字符之内!</font>");
+			flag = false;
+		}else{
+			$("#msg_oldpassword").html("<font color='#008000'>输入成功!</font>");
+		}
+		if(pass==""){
+			$("#msg_password").html("<font color='red'>新密码不能为空!</font>");
+			flag = false;
+		}else if(pass.length<6 || pass.length>20){
+			$("#msg_password").html("<font color='red'>新密码需在 6-20个字符之内!</font>");
+			flag = false;
+		}else{
+			$("#msg_password").html("<font color='#008000'>输入成功!</font>");
+		}
+		if(repass==""){
+			$("#msg_repassword").html("<font color='red'>请再次确认新密码!</font>");
+			flag = false;
+		}else if(repass.length<6 || repass.length>20){
+			$("#msg_repassword").html("<font color='red'>新密码需在 6-20个字符之内!</font>");
+			flag = false;
+		}else if(repass!=pass){
+			$("#msg_repassword").html("<font color='red'>两次密码输入不一致，请重新输入!</font>");
+			flag = false;
+		}else{
+			$("#msg_repassword").html("<font color='#008000'>输入成功!</font>");
+		}
+		return flag;
+	}        
+    </script>
+<div class="mian_right fltR mt12">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur">修改密码</li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div id="">
+    <iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <FORM name='MyForm'  action='' target="supportiframe" method="post" onsubmit="return Showsub();">
+      <div class="passwd_list mt10">
+        <ul>
+          <li>原始密码：
+            <input type="password" id="oldpassword" name="oldpassword" class="pass_text"/>
+            &nbsp;&nbsp;<em id="msg_oldpassword">填写您的原始密码！</em></li>
+          <li>密　　码：
+            <input type="password" id="password" name="password" class="pass_text"/>
+            &nbsp;&nbsp;<em id="msg_password">新密码格式为 6-20个字符！</em></li>
+          <li>确认密码：
+            <input type="password" id="repassword" name="repassword" class="pass_text"/>
+            &nbsp;&nbsp;<em id="msg_repassword">请再次确认您的新密码！</em></li>
+          <li>
+            <input type="hidden" value="1" name="usertype" />
+            <input type="submit" name="submit" class="passwd_btn" value="保存" >
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

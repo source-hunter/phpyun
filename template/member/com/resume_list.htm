@@ -1,0 +1,47 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950"> {yun:}include file="$comstyle/left.htm"{/yun}
+  <div class=right_box>
+    <div class=admincont_box>
+      <div class=admin_tit><span>求职此职位</span></div>
+      <div class=admin_textbox_04>
+        <div class=table>
+          <div>
+            <div>
+              <table id="job_checkbokid" cellSpacing=1 align=center border=0>
+                <tbody>
+                  <tr align=middle style="height:30px">
+                    <th scope=col style="WIDth: 10%">姓名</th>
+                    <th scope=col style="WIDth: 10%">学历</th>
+                    <th scope=col style="WIDth: 15%">工作经验</th>
+                    <th scope=col style="WIDth: 10%">薪水待遇</th>
+                    <th scope=col style="WIDth: 10%">工作地区</th>
+                  </tr>
+                {yun:}foreach from=$rows item=job{/yun} 
+                {yun:}assign var="uid" value=$job.uid{/yun}
+                <tr style="height:30px">
+                  <td><a href="{yun:}url m=resume url=id:`$job.id`{/yun}" target="_blank" >{yun:}$job.name_info{/yun}</a>&nbsp;{yun:}if $looks[$uid]{/yun}<font color="red">已查看</font>{yun:}/if{/yun}</td>
+                  <td>{yun:}$job.edu_info{/yun}</td>
+                  <td>{yun:}$job.exp_info{/yun}</td>
+                  <td>{yun:}$job.salary_info{/yun}</td>
+                  <td>{yun:}$job.province{/yun}&nbsp;{yun:}$job.city{/yun}</td>
+                </tr>
+                {yun:}/foreach{/yun}
+                  </tbody>
+                
+              </table>
+            </div>
+          </div>
+        </div>
+        <div style="clear:both"></div>
+        <h3 style="margin-top:10px">
+          <div> </div>
+          <div>
+            <div class="diggg">{yun:}$pagenav{/yun}</div>
+          </div>
+        </h3>
+        <div style="clear:both"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

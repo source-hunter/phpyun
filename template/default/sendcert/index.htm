@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+    <div class="clear"></div>
+<div class="pwdmain">
+<div class="pwdmain_cont" style="float:left">
+    <div class="getpwd">
+        <div class="pwdcon">
+            <div class="pwdalert"> 请输入您注册时所使用的帐号。 </div>
+            <div class="pwdemail" >
+				<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+                <form target="supportiframe" action="{yun:}url m=sendcert url=c:sendcert{/yun}" method="post" onkeydown="if(event.keyCode==13){return false;}" >
+                   <ul>
+                <li style="width:100%;float:left">
+                    <span>用户名：</span>
+                    <input id="username" type="text" name="username" size="20" value="" class="fedcon_text">
+                    </li>
+                     <li style="width:100%;float:left"><span>验证码：</span>
+
+                    <input id="txt_CheckCode" class="fedcon_text" type="text" style="width:80px;" maxlength="4" name="authcode">
+<img id="vcode_img" src="include/authcode.inc.php"> <a href="javascript:check_code();">看不清?</a><br />
+                    <span  id="msg_error"></span></li>
+                  <li style="width:100%;float:left">
+                         <span>&nbsp;</span>
+                    <input type="hidden" name="usertypr" value="{yun:}$usertype{/yun}"  />
+                    <input class="pwdsub" type="submit" value="发送激活邮件" name="pwd_add" onclick="return forget();">
+                    </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

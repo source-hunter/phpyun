@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+ 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_h1_bg infoboxp_topIjf">
+<span class="infoboxp_top_span" style="float:left">管理员列表</span>
+<a href="index.php?m=admin_user&c=addgroup"  class="admin_infoboxp_tj"> 添加管理员类型</a>
+</div>
+<div class="">
+  <div class="table-list">
+    <div class="admin_table_border">
+      <table width="100%">
+        <thead>
+          <tr class="admin_table_top">
+            <th width="7%">编号</th>
+            <th width="12%">类型名称</th>
+            <th width="12%">管理员数</th>
+            <th width="12%" class="admin_table_th_bg">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+        {yun:}foreach item=v from=$adminusergroup{/yun}
+        <tr>
+          <td align="center" style="cursor:pointer;">{yun:}$v.id{/yun}</td>
+          <td align="center" style="cursor:pointer;">{yun:}$v.group_name{/yun}</td>
+           <td align="center" style="cursor:pointer;">10</td>
+          <td align="center">
+			<a href="index.php?m=admin_user&c=addgroup&id={yun:}$v.id{/yun}" class="admin_cz_bj">修改</a> |
+		    <a href="javascript:void(0);" onClick="layer_del('确定要删除？','index.php?m=admin_user&c=delgroup&id={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</a>
+			</td>
+        </tr>
+        {yun:}/foreach{/yun}
+          </tbody>
+        
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+	<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+</body>
+</html>

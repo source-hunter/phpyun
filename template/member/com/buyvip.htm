@@ -1,0 +1,52 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">购买会员</span></div>
+        <div class="clear"></div>
+        <div class="mt10">
+          <table width="100%" border="0" cellspacing="1" cellpadding="1" class="my_table_msg">
+            <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+            <form name="alipayment" action="index.php?c=right&act=buysave" target="supportiframe" method="post" id='myform'  >
+              <input type="hidden" name="type" value="vip" />
+              <input type="hidden" name="vipid" value="{yun:}$smarty.get.vipid{/yun}" />
+              <input type="hidden" name="price" value="{yun:}$row.service_price{/yun}">
+               <input type="hidden" name="unit_buy" value="{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}" />
+              <tr>
+                <th height="30">功能名称:</th>
+                <td>{yun:}$row.name{/yun}</td>
+              </tr>
+              <tr>
+                <th height="30">购买类型:</th>
+                <td><input type="radio" name="buytype" value="2" id="type_0" checked style="height:auto; vertical-align:middle"/>
+                  <label for="type_0">{yun:}$config.integral_pricename{/yun}</label>
+                  <input type="radio" name="buytype" value="1" id="type_1" style="height:auto; vertical-align:middle"/>
+                  <label for="type_1">余额</label></td>
+              </tr>
+              <tr>
+                <th height="30">购买费用:</th>
+                <td><span id="span_service_price"style="display:none">{yun:}$row.service_price{/yun}
+                  <input type="hidden" name="service_price" id='service_price' value="{yun:}$row.service_price{/yun}" >
+                  元</span> <span id="span_integral_buy" >{yun:}$row.integral_buy{/yun}
+                  <input type="hidden" name="integral_buy" id='integral_buy' value="{yun:}$row.integral_buy{/yun}" >
+                  {yun:}$config.integral_pricename{/yun}</span></td>
+              </tr>
+              
+              <tr>
+                <td rowspan="2">&nbsp;</td>
+                <td><p class="bank_msg">您还有{yun:}if !$statis.integral{/yun}0{yun:}else{/yun}{yun:}$statis.integral{/yun}{yun:}/if{/yun}{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}.余额{yun:}$statis.pay{/yun}元</p></td>
+              </tr>
+              <tr>
+                <td height="40">
+                <input class="c_btn_02 c_btn_02_w110" type="button" onclick="buy_vip_ad();" value="下一步">
+                </td>
+              </tr>
+            </form>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

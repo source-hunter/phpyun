@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<span class="admin_title_span">模板风格列表</span></div>
+<div class="table-list">
+{yun:}foreach item=v from=$list{/yun}
+<div style="float:left;width:240px;text-align:center;padding:15px;line-height:180%;border:1px solid #ccc;background:#fff;margin-right:10px;">
+	  <img width="225" height="136" border="1" style="border: #CCCCCC;" alt="{yun:}$v.name{/yun}" src="{yun:}$v.img{/yun}">
+	  <br>
+	 <strong>{yun:}$v.name{/yun}</strong>{yun:}if $sy_style==$v.dir{/yun}<font color="#FF0000">【当前使用风格】</font>{yun:}/if{/yun}
+     <br>
+     风格作者：{yun:}$v.author{/yun}
+	 <br>
+	风格目录名称：{yun:}$v.dir{/yun}
+      <br>
+      <input name="" value="风格信息修改" type="button" class="admin_submit6" onClick="location.href='index.php?m=admin_style&c=modify&dir={yun:}$v.dir{/yun}'" >
+      {yun:}if $sy_style!=$v.dir{/yun}
+        <input name="" value="使用该风格" type="button" onClick="layer_del('确定更换模版分格吗？更换后请重新生成页面。','index.php?m=admin_style&c=check_style&dir={yun:}$v.dir{/yun}');" class="admin_submit6"/>
+       
+      {yun:}/if{/yun}
+	 </div>
+     {yun:}/foreach{/yun} 
+</div>
+</div>
+</body>
+</html>

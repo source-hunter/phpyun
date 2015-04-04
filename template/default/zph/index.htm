@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+<div class="current_Location icon png"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > 招聘会 </div>
+{yun:}if !$total{/yun}
+<div class="seachno">
+        <div class="seachno_left"><img src="{yun:}$style{/yun}/images/search-no.gif"></div>
+        <div class="listno-content"> <strong>很抱歉，没有找到满足条件的招聘会</strong><br>
+	 </div>
+</div>
+{yun:}/if{/yun}
+{yun:}fairs item=zph limit=10 ispage=1{/yun}
+    <div class="job_fairs fl">
+        <div>
+            <div class="job_fairs_Fillet_t job_fairs_Fillet_icon icon png"></div>
+            <div class="job_fairs_Fillet_b job_fairs_Fillet_icon  icon png"></div>
+            <div class="job_fairs_Fillet_rt job_fairs_Fillet_icon  icon png"></div>
+            <div class="job_fairs_Fillet_rb job_fairs_Fillet_icon  icon png"></div>
+        </div>
+    <div class="job_fairs_box fl ">
+        <div class="job_fairs_box_left fl">
+            {yun:}if $zph.stime<'0' && $zph.etime>'0'{/yun}
+                <div class="job_fairs_In fairs_Status png">进行中</div>
+            {yun:}elseif $zph.etime<'0'{/yun}
+                <div class="job_fairs_end fairs_Status png">已结束</div>
+            {yun:}else{/yun}
+                <div class="job_fairs_nostart fairs_Status png">未开始</div>
+            {yun:}/if{/yun}
+            <div class="job_fairs_box_h1 title{yun:}$zph.id{/yun}">
+            <a href="index.php?m=zph&c=show&id={yun:}$zph.id{/yun}" target="_blank">{yun:}$zph.title{/yun}</a>
+            </div>
+            <div class="job_fairs_box_p">
+            {yun:}sublen str=$zph.body length="190"{/yun}...
+            </div>
+            <ul class="job_fairs_box_ul">
+            <li><span>★ 时　　间：</span>{yun:}$zph.starttime{/yun}至{yun:}$zph.endtime{/yun}</li>
+            <li><span>★ 举办会场：</span>{yun:}$zph.address{/yun}</li>
+            <li><span>★ 主 办 方：</span>{yun:}$zph.organizers{/yun}</li>
+            </ul>
+            <div class="job_fairs_sub">
+             <a href="javascript:;" class="fairs_yd yun_bth" pid="{yun:}$zph.id{/yun}" stime="{yun:}$zph.stime{/yun}" etime="{yun:}$zph.etime{/yun}" class="zphstatus" onclick="get_zph({yun:}$zph.id{/yun});"><!--企业预定--></a>
+             <a href="index.php?m=zph&c=com&id={yun:}$zph.id{/yun}" class="fairs_ch yun_bth"><!--参会企业--></a>
+             <a href="index.php?m=zph&c=show&id={yun:}$zph.id{/yun}" class="fairs_xq yun_bth"><!--查看详情--></a>
+			 <input id="zph_etime_{yun:}$zph.id{/yun}" value='{yun:}$zph.etime{/yun}' type="hidden"/>
+			 <input id="zph_stime_{yun:}$zph.id{/yun}" value='{yun:}$zph.stime{/yun}' type="hidden"/>
+             </div>
+        </div>
+        <div class="job_fairs_box_right fr">
+        <a href="index.php?m=zph&c=show&id={yun:}$zph.id{/yun}" target="_blank"><img src="{yun:}$config.sy_weburl{/yun}{yun:}$zph.pic{/yun}" width="262" height="231"></a>
+        </div>
+    </div>
+</div>
+{yun:}/fairs{/yun}
+<div id="TB_window" style=" display: none;" class="Corporate_box">
+	<div id="error_zph" class="error_zph"></div>
+	<div id="TB_ajaxContent" class="Corporate_box_cont" style="padding:10px;">
+		<input name="pid" value="0" type="hidden">
+		<input name="uid" value="0" type="hidden">
+		<div class="zph_tck_box_close">参与的招聘会名称：</div>
+		<div class="zph_tck_box_bg" style="padding:5px; margin-top:5px; ">
+		<span id="zph_name">正在获取...</span>
+        </div>
+		<div class="zph_tck_box_close_post">
+		<div class="zph_tck_box_close">选择参与招聘会的职位：</div>
+		<div id="joblist" class="zph_tck_post" style="padding-bottom:10px;"></div>
+		</div>
+		<div class="Corporate_box_sub" style="margin-top: 10px; padding-left: 150px;">
+		<input type='button' value="提交" onclick="clickzph()" class="Corporate_box_tj"/>
+		</div>
+	</div>
+</div>
+</div> 
+{yun:}include file="$tplstyle/footer.htm"{/yun}

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="./images/reset.css" rel="stylesheet" type="text/css" />
+<link href="./images/system.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<link href="./images/table_form.css" rel="stylesheet" type="text/css" />
+<title></title>
+</head>
+<body class="body_ifm">
+    <div class="infoboxp"><div class="infoboxp_top_bg"></div>
+    <div class="infoboxp_top">
+    <span class="infoboxp_top_span" style="float:left">添加管理员</span>
+    <a href=" javascript:history.back(-1);" class="admin_infoboxp_tj">管理员列表</a> 
+    </div>
+<div class="common-form">
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" action="index.php?m=admin_user&c=save"   target="supportiframe" method="post" id="myform">
+<input type="hidden" value="{yun:}$adminuser[0]{/yun}" name="uid" />
+<table width="100%" class="table_form contentWrap" style="background:#fff;">
+    <tr>
+        <td style="width:110px; text-align:right">用户名：</td>
+        <td>
+        <input type="text" name="username" id="realname" class="input-text" size="30" value="{yun:}$adminuser[2]{/yun}">
+        </td>
+    </tr>
+      	<tr class="admin_table_trbg" >
+        <td style="width:110px; text-align:right">密码：</td>
+        <td><input type="password" name="password" id="realname" class="input-text" size="30" value="">{yun:}if is_array($adminuser){/yun}<font color="gray">如果密码留空则不修改密码！</font>{yun:}/if{/yun}
+        </td>
+    </tr>
+<tr>
+    <td style="width:110px; text-align:right">真实姓名：</td>
+<td><input type="text" name="name" id="realname" class="input-text" size="30" value="{yun:}$adminuser[4]{/yun}">
+</td>
+</tr>
+   	<tr class="admin_table_trbg" >
+    <td style="width:110px; text-align:right">权限：</td>
+<td>
+<select name="m_id">
+{yun:}foreach item=v from=$user_group{/yun}
+<option value="{yun:}$v.id{/yun}" {yun:}if $v.id eq $adminuser[1]{/yun} selected=selected{yun:}/if{/yun}>{yun:}$v.group_name{/yun}</option>
+{yun:}/foreach{/yun}
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+	<input class="admin_submit4" name="useradd" type="submit" value="提交" id="dosubmit">
+</td>
+ </table>
+ <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+ </form>
+</div>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun} 
+<div class="post_content">
+
+<header class="index_post_h2">
+
+    <span>
+
+        》邀请面试
+
+    </span>
+
+</header>
+<div>
+<input name="uid" id="uid" value="{yun:}$smarty.get.uid{/yun}" type="hidden">
+</div>
+       <div class="com_box_yq" id='job_box' >
+        <dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">面试职位：</span>
+		  </dt>
+          <dd><select id='jobname'>
+          	{yun:}foreach from=$joblist item=one{/yun}
+            <option value="{yun:}$one.name{/yun}">{yun:}$one.name{/yun}</option>
+            {yun:}/foreach{/yun}
+          </select></dd>
+        </dl>
+		<dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">联系人：</span>
+             <dd> <input   id='linkman' value='{yun:}$smarty.get.linkman{/yun}'>
+</dd>
+        </dl>
+        <dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">联系电话：</span>
+              <dd>  <input id='linktel' value='{yun:}$smarty.get.linktel{/yun}'></dd>
+		  </dt>
+        </dl>
+		<dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">面试时间：</span>
+            <dd><input id='intertime' value='{yun:}$smarty.get.intertime{/yun}'></dd>
+		  </dt>
+        </dl>
+		<dl class="com_box_yq_dl">
+          <dt>
+			<span class="city_01">面试地址：</span><dd><input id='address' value='{yun:}$smarty.get.address{/yun}'></dd>
+		  </dt>
+        </dl>
+		<dl class="com_box_yq_dl">
+			<dt><span class="city_01">面试备注：</span><dd><textarea id="content"  class="resyme_text">{yun:}$smarty.get.jobname{/yun}</textarea></dd>
+		</dl>
+      <dl class="com_box_yq_dl" id="resume_job" style="height:40px;">
+        <dt><span class="city_01">&nbsp;</span><input type="hidden" value="{yun:}$Info.id{/yun}" id="eid">
+		<input type="hidden" value="{yun:}$Info.uid{/yun}" id="uid">
+		<input type="hidden" id="username" value="{yun:}$Info.name{/yun}"> 
+		<input class="resume_sub_yq" id="click_invite" type="button" value="邀请面试"  >
+    </dl>
+  
+ </div>
+ </div>
+<script language="javascript" type="text/javascript">
+function talent_pool(uid,eid)
+{
+	$.post(weburl+"/index.php?m=ajax&c=talent_pool",{eid:eid,uid:uid},function(data){
+		if(data=='0'){
+			layermsg('只有企业用户，才可以操作！');
+		}else if(data=='1'){
+			layermsg('加入成功！');
+		}else if(data=='2'){
+			layermsg('该简历已加入到人才库！');
+		}else{
+			layermsg('对不起，操作出错！');
+		}
+	});
+}
+$(document).ready(function(){
+	
+	//邀请面试
+	$("#click_invite").click(function(){
+		var uid=$("#uid").val();
+		var content=$("#content").val();
+		var username=$("#username").val();
+		var job=$("#jobname").val();
+		var intertime=$("#intertime").val();
+		var linkman=$("#linkman").val();
+		var linktel=$("#linktel").val();
+		var address=$("#address").val();
+		job=job.split("+");
+		var jobname=job[0];
+		var jobid=job[1];
+		if($("#update_yq").attr("checked")=='checked'){
+			var update_yq=1;
+		}else{
+			var update_yq=0;
+		}
+		if($.trim(content)==""){
+			layermsg('内容不能为空！');return false;
+		}
+		//layer.closeAll();
+		//loadi = layer.load('执行中，请稍候...',0);
+		$.post(weburl+"/index.php?m=ajax&c=sava_ajaxresume",{uid:uid,content:content,username:username,jobname:jobname,update_yq:update_yq,address:address,linkman:linkman,linktel:linktel,intertime:intertime,jobid:jobid},function(data){
+			//layer.close(loadi);
+			var data=eval('('+data+')');
+			var status=data.status;
+			var integral=data.integral;
+			if(status==8){
+				layermsg('您已被该用户列如黑名单！');return false;
+			}else if(status==9){
+				layermsg('该用户已被你列入黑名单！');return false;
+			}else if(!status || status==0){
+				//layer.alert('请先登录！', 0, '提示',function(){window.location.href ="index.php?m=login&usertype=2&type=out";window.event.returnValue = false;return false;  });
+			}else if(status==5){
+				//layer.confirm('您还有'+integral+integral_pricename+'！不够邀请面试，是否充值？', function(){window.location.href =weburl+"/member/index.php?c=pay";window.event.returnValue = false;return false;  });
+			}else if(status==3){
+				layermsg('您已成功邀请！',2,function(){history.back();});
+			}else if(status==7){
+				layermsg('您已经邀请过该人才，请不要重复邀请！',2,function(){history.back();});
+			}
+		});
+	})
+});
+</script>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun}

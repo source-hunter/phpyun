@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script>
+function change_bank(){
+	var sy_bankname=$("#sy_bankname").val();
+	if($.trim(sy_bankname)==""){parent.layer.msg('银行名称不能为空！', 2, 8);return false;}
+	var sy_bankdnumber=$("#sy_bankdnumber").val();
+	if($.trim(sy_bankdnumber)==""){parent.layer.msg('银行卡号不能为空！', 2, 8);return false;}
+	var sy_bankdeposit=$("#sy_bankdeposit").val();
+	if($.trim(sy_bankdeposit)==""){parent.layer.msg('银行卡开户行不能为空！', 2, 8);return false;}
+	var sy_bankuser=$("#sy_bankuser").val();
+	if($.trim(sy_bankuser)==""){parent.layer.msg('银行卡开户人不能为空！', 2, 8);return false;}
+}
+$(document).ready(function(){
+	$(".input-text").hover(function(){ 
+		var msg_id=$(this).attr('id'); 
+		var msg=$('#'+msg_id+' + font').html();
+		if($.trim(msg)!=''){
+			layer.tips(msg, this, {
+			guide: 1, 
+			style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F']
+			}); 
+		} 
+	},function(){
+		var msg_id=$(this).attr('id');
+		var msg=$('#'+msg_id+' + font').html();
+		if($.trim(msg)!=''){
+			layer.closeTips();
+		} 
+	});
+});
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position: absolute;"></div>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+  <h6>银行卡设置</h6>
+  	<div class="infoboxp_right">
+    	<a href="index.php?m=payconfig" class="infoboxp_tj">支付设置</a>
+    </div>
+</div>
+<div class="main_tag">
+  <div class="tag_box">
+    <div>
+
+      <!--银行设置-->
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form method="post" target="supportiframe" action="" name="config" onsubmit="return change_bank();">
+        <table id="alipay" width="100%" class="table_form">
+          <tr>
+            <th width="140">银行名称: </th>
+            <td><input class="input-text" type="text" name="sy_bankname" id="sy_bankname" value="{yun:}$bankone.bank_name{/yun}" size="40" maxlength="255"/>
+              <font color="gray" style="display:none">如：中国银行</font></td>
+          </tr>
+          <tr class="admin_table_trbg">
+            <th width="140">卡　　号: </th>
+            <td><input class="input-text" type="text" name="sy_bankdnumber" id="sy_bankdnumber" value="{yun:}$bankone.bank_number{/yun}" size="40" maxlength="255"/>
+              <font color="gray" style="display:none">如：6228 4567 8888 8888 888</font></td>
+          </tr>
+          <tr>
+            <th width="140">开 户 行：</th>
+            <td><input class="input-text" type="text" name="sy_bankdeposit" id="sy_bankdeposit" value="{yun:}$bankone.bank_address{/yun}" size="40" maxlength="255"/>
+              <font color="gray" style="display:none"> 如：上海分行徐汇支行田林路分理处</font></td>
+          </tr>
+          <tr class="admin_table_trbg">
+            <th width="140">收款方名称：</th>
+            <td><input class="input-text" type="text" name="sy_bankuser" id="sy_bankuser" size="40" value="{yun:}$bankone.name{/yun}" maxlength="255"/>
+              <font color="gray" style="display:none">如：开户人</font></td>
+          </tr>
+          <tr>
+            <td align="center" colspan="2">
+            <input type="hidden" name="pytoken" id="pytoken"value="{yun:}$pytoken{/yun}">
+            {yun:}if $bankone.name{/yun}
+              <input name="bankid" type="hidden" value="{yun:}$bankone.id{/yun}">
+              <input class="admin_submit4" type="submit" id="pay_bank" name="pay_bank" value="&nbsp; 修 改 &nbsp;"  />
+              &nbsp;&nbsp;
+              {yun:}else{/yun}
+              <input class="admin_submit4" type="submit" id="pay_bank" name="pay_bank" value="&nbsp; 添 加 &nbsp;"  />
+              &nbsp;&nbsp;
+              {yun:}/if{/yun}
+              <input class="admin_submit4" type="reset" name="reset" value="&nbsp; 重 置 &nbsp;" /></td>
+          </tr>
+        </table>
+      </form>
+
+<div class="table-list">
+<div class="admin_table_border">
+    <table width="100%">
+    	<thead>
+				<tr class="admin_table_top">
+			<th width="22%">银行名称</th>
+			<th width="23%">卡号</th>
+			<th width="24%">开户行</th>
+			<th width="23%">开户人</th>
+			<th width="8%" class="admin_table_th_bg">操作</th>
+		</tr>
+		</thead>
+		<tbody>
+            {yun:}foreach item=v from=$bankrows{/yun}
+            <tr align="center">
+              <td class="ud">{yun:}$v.bank_name{/yun}</td>
+              <td class="od">{yun:}$v.bank_number{/yun}</td>
+              <td>{yun:}$v.bank_address{/yun}</td>
+              <td>{yun:}$v.name{/yun}</td>
+              <td><a  href="index.php?m=payconfig&c=bank&id={yun:}$v.id{/yun}">修改</a> <a href="javascript:void(0)" onclick="layer_del('确定删除吗？','index.php?m=payconfig&c=del&id={yun:}$v.id{/yun}')">删除</a></td>
+            </tr>
+            {yun:}foreachelse{/yun}
+            <tr align="center">
+              <td class="ud" colspan="5">暂无银行卡</td>
+            </tr>
+            {yun:}/foreach{/yun}
+              </tbody>
+
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

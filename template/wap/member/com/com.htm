@@ -1,0 +1,12 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun} 
+<section class="wap_member">
+<div class="wap_member_comp_h1"><span>账户管理</span></div>
+<div class="wap_member_Receive">
+<div class="wap_member_pay">账户余额：<em>{yun:}$statis.pay{/yun}</em> 元</div>
+<div class="wap_member_pay_c">会员级别：{yun:}$statis.rating_name{/yun}</div> 
+<div class="wap_member_pay_c">您的{yun:}$config.integral_pricename{/yun}：{yun:}$statis.integral{/yun}{yun:}$config.integral_priceunit{/yun}</div>
+<a id="orderAdd" href="index.php?c=pay" class="com_m_wap_pay">充值</a>
+</div>
+</section>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

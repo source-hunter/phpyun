@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link href="{yun:}$style{/yun}/style/newnr.css" rel="stylesheet" type="text/css" />
+<link href="{yun:}$style{/yun}/style/news.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+    <div class="content_n">
+        <h1><span><a href="{yun:}$config.sy_weburl{/yun}"> 首页</a> >> 系统公告</span></h1>
+<h2 align="center">{yun:}$Info.title{/yun}</h2>
+        <div class="date">
+        时间:{yun:}$Info.datetime|date_format:"%Y-%m-%d"{/yun} 
+        </div>
+        <div class="txt">
+        {yun:}$Info.content{/yun}
+        </div>
+    </div>        
+    <div class="sidebar">      
+    <div class="pics">
+            <h1><span>推荐图片文章</span></h1>
+            {yun:}article type=1 pic=1 limit=6 t_len=6 item=tuijian{/yun}
+            <dl>
+            <dt><a href="{yun:}$tuijian.url{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$tuijian.newsphoto{/yun}" style="width:75px; height:65px;" /></a></dt>
+            <dd><a href="{yun:}$tuijian.url{/yun}">{yun:}$tuijian.title{/yun}</a></dd>
+            </dl>
+           {yun:}/article{/yun}
+   </div>  
+   <div class="new">
+            <h1><span>热点新闻</span></h1>
+            <ul>
+                {yun:}article limit=8 order=hits t_len=20 item=hits{/yun}
+                <li>&amp;amp;middot;<a href="{yun:}$hits.url{/yun}">{yun:}$hits.title{/yun}</a></li>
+                {yun:}/article{/yun}
+            </ul>
+   </div>        
+   </div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

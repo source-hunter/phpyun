@@ -1,0 +1,165 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<form method="get" action="index.php">
+<input type="hidden" name="m" value="com" />
+<div class="com_search_box">
+<div class="job_search_box">
+<div class="job_input_box"><input type="text" value="" placeholder="请输入关键字" name="keyword"  class="job_input_box_search " ></div>
+	<div class="job_search_box_button">
+		<button id="cityclassbutton" type="button" onclick="checkshowjob('city');">请选择工作地区</button>
+		<div class="job_search_box_city" style="display:none; float:left;width:100%;height:auto; z-index:100; position:absolute; background-color:#FFF;">
+        	<ul>
+            	{yun:}foreach from=$city_index item=v{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchcity 0" cityid="{yun:}$v{/yun}" parentid="0">{yun:}$city_name[$v]{/yun}</li>
+                {yun:}foreach from=$city_type[$v] item=v1{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchcity1 {yun:}$v{/yun}" cityid="{yun:}$v1{/yun}" parentid="{yun:}$v{/yun}">{yun:}$city_name[$v1]{/yun}</li>
+                {yun:}foreach from=$city_type[$v1] item=v2{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchcity2 {yun:}$v1{/yun}" cityid="{yun:}$v2{/yun}" parentid="{yun:}$v1{/yun}">{yun:}$city_name[$v2]{/yun}</li>
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun} 
+           	</ul>
+    	</div>
+        <input type="hidden" name="provinceid" id="provinceid" value="" />
+        <input type="hidden" name="cityid" id="cityid" value="" />
+        <input type="hidden" name="three_cityid" id="three_cityid" value="" />
+        
+</div>
+<div class="job_search_box_button">
+<button id="jobclassbutton" type="button" onclick="checkshowjob('job');">请选择职位类别</button>
+		<div class="job_search_box_jobclass" style="display:none; float:left;width:100%;height:auto; z-index:100; position:absolute; background-color:#FFF;">
+        	<ul>
+            	{yun:}foreach from=$job_index item=v{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchjobclass 0" jobclassid="{yun:}$v{/yun}" parentid="0">{yun:}$job_name[$v]{/yun}</li>
+                {yun:}foreach from=$job_type[$v] item=v1{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchjobclass1 {yun:}$v{/yun}" jobclassid="{yun:}$v1{/yun}" parentid="{yun:}$v{/yun}">{yun:}$job_name[$v1]{/yun}</li>
+                {yun:}foreach from=$job_type[$v1] item=v2{/yun}
+                <li style="width:auto;float:left;display:none; list-style-type:none; margin:5px 10px 5px 10px;" class="jobsearchjobclass2 {yun:}$v1{/yun}" jobclassid="{yun:}$v2{/yun}" parentid="{yun:}$v1{/yun}">{yun:}$job_name[$v2]{/yun}</li>
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun}
+                {yun:}/foreach{/yun} 
+           	</ul>
+    	</div>
+        <input type="hidden" name="job1" id="job1" value="" />
+        <input type="hidden" name="job1_son" id="job1_son" value="" />
+        <input type="hidden" name="job_post" id="job_post" value="" />
+        <input type="hidden" name="job_classid" id="job_classid" value="" />
+</div>
+</div>
+</div>
+<div class="com_search_box">
+ <div class="com_search_box_cont">
+  <div class="com_search_box_list">
+    <div class="com_search_box_left"> 行业类别： </div> 
+    <div class="com_search_box_right">
+     <div class="selectOption" style="width: 100%">
+				     <select name="hy">
+				<option value="">请选择</option>        
+				{yun:}foreach from=$industry_index item=v{/yun}
+				<option value="{yun:}$v{/yun}" {yun:}if $smarty.get.hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>               {yun:}/foreach{/yun} 
+			  </select>
+			 </div>  
+			 </div> 
+		   </div> 	
+  <div class="com_search_box_list">
+    <div class="com_search_box_left"> 公司性质： </div> 
+     <div class="com_search_box_right">
+      <div class="selectOption" style="width: 100%">
+				<select name="pr" id='pr'>
+					<option value="">请选择</option>
+					{yun:}foreach from=$comdata.job_pr item=pr{/yun}
+					<option value="{yun:}$pr{/yun}">{yun:}$comclass_name[$pr]{/yun}</option>
+					{yun:}/foreach{/yun}
+				</select>
+			 </div>  
+		   </div> 
+		 </div> 
+<div class="com_search_box_list">
+  <div class="com_search_box_left"> 公司规模： </div> 
+    <div class="com_search_box_right">
+      <div class="selectOption" style="width: 100%">
+			<select name="num" id='num'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$comdata.job_mun item=num{/yun}
+				<option value="{yun:}$num{/yun}">{yun:}$comclass_name[$num]{/yun}</option>
+				{yun:}/foreach{/yun}
+		    </select>
+			 </div>  
+			 </div> 
+		   </div> 	
+  <div class="com_search_box_list">
+    <div class="com_search_box_left"> 工作经验： </div> 
+     <div class="com_search_box_right">
+      <div class="selectOption" style="width: 100%">
+		 <select name="exp" id='exp'>
+					<option value="">请选择</option>
+					{yun:}foreach from=$comdata.job_exp item=exp{/yun}
+					<option value="{yun:}$exp{/yun}">{yun:}$comclass_name[$exp]{/yun}</option>
+					{yun:}/foreach{/yun}
+			</select>
+			 </div>  
+			 </div> 
+             </div> 	       
+   <div class="com_search_box_list">
+    <div class="com_search_box_left"> 月薪范围： </div> 
+	<div class="com_search_box_right">
+      <div class="selectOption" style="width: 100%">
+			<select name="salary" id='salary'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$comdata.job_salary item=salary{/yun}
+				<option value="{yun:}$salary{/yun}">{yun:}$comclass_name[$salary]{/yun}</option>
+				{yun:}/foreach{/yun}
+		    </select>
+			 </div>  
+			 </div> 
+		 </div> 
+   <div class="com_search_box_list">
+    <div class="com_search_box_left"> 学历要求： </div> 
+		<div class="com_search_box_right">
+        <div class="selectOption" style="width: 100%">
+			<select name="edu" id='edu'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$comdata.job_edu item=edu{/yun}
+				<option value="{yun:}$edu{/yun}">{yun:}$comclass_name[$edu]{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+			 </div>  
+			 </div> 
+		 </div>  
+       
+        <div class="com_search_box_list">
+         <div class="com_search_box_left"> 工作性质： </div> 
+		 <div class="com_search_box_right">
+            <div class="selectOption" style="width: 100%">
+			<select name="type" id='type'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$comdata.job_type item=type{/yun}
+				<option value="{yun:}$type{/yun}">{yun:}$comclass_name[$type]{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+			 </div>  
+			 </div> 
+		 </div>  
+       <div class="com_search_box_list">
+        <div class="com_search_box_left"> 发布日期： </div> 
+		 <div class="com_search_box_right">
+            <div class="selectOption" style="width: 100%">
+			<select name="report" id='report'>
+				<option value="">请选择</option>
+				{yun:}foreach from=$comdata.job_report item=report{/yun}
+				<option value="{yun:}$report{/yun}">{yun:}$comclass_name[$report]{/yun}</option>
+				{yun:}/foreach{/yun} 
+		    </select>
+			 </div>  
+			 </div> 
+		 </div>   
+		    </div> 
+	</div>
+    <div class="seach_post_submit">
+      <input type="submit" value="搜索"class="seach_post_sub" />
+
+</div>
+
+	</form>
+
+{yun:}include file="$wapstyle/public.htm"{/yun}
+{yun:}include file="$wapstyle/footer.htm"{/yun}

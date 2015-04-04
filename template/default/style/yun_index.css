@@ -1,0 +1,198 @@
+@charset "gb2312";
+.cont_Projector{width:459px; float:left;margin:0 0 0 8px;}
+.Projector {width: 459px;float:left;margin:10px 0 0 0;}
+.yun_Announcement{width:432px;height:34px; line-height:34px;padding: 0 0 0 25px;color:#666; background:#fff url(../images/job-gg.png) no-repeat 8px 10px;overflow:hidden;border:1px solid #e1e1e1; margin-top:10px; float:left}
+.yun_Announcement ul li a{ display:inline-block;color:#3377cc; margin-right:20px;}
+.yun_Announcement ul li .yun_new_dt_em{color:#999; margin-left:20px;}
+.index_logoin {width: 239px;height: 244px;background:#fff;border:1px solid #dcdcdc;float:left;margin:10px 0 0 0;}
+.index_logoin_h1 {width: 100%;background:#f4f4f4;border-bottom:1px solid #dcdcdc;height: 33px;line-height: 33px; text-indent:10px;;font-size: 16px;color: #0f0e0e;font-family:microsoft yahei,ËÎÌå;}
+.index_logoin_cont {width: 100%;float: left;color: #999; padding-top:5px;}
+.index_logoin_cont li {width: 100%;float: left;margin:13px 0 0 0;}
+.index_logoin_cont li span {display: block;width: 60px;font-size: 12px;float: left;line-height: 29px;text-align: right}
+.index_logoin_t{width:156px; float:left; padding-left:10px; margin-top:5px;}
+.index_logoin_inp {width: 145px;height:27px;border: 1px solid #e7e2e2;background: #fff;color:#9d9fa0;line-height:27px; margin-top:8px; padding-left:4px;}
+.index_logoin_bth2{width:62px;height:62px;border:none; float:left; margin-top:15px; margin-left:5px; background:url(../images/yun_i_log.gif) no-repeat;border:none; cursor:pointer}
+.index_logoin_yz{width:90px;height:29px;border: 1px solid #e7e2e2;background: #fff;color:#c7c4c4;line-height:29px;}
+.index_logoin_check {width: 13px;height: 13px;overflow: hidden;display: block;float: left;margin:2px 5px 0 0;vertical-align:middle; margin-left:10px;_margin-left:5px;}
+.index_logoin_cont li .index_l_jz { display:inline-block;width:130px;float: left;line-height:18px;}
+.index_logoin_cont li a {float: left; margin:0 0 0 10px;}
+.index_logoin_submit {width:102px;height:32px;margin:0 0px 0 10px;display: block;float: left;background:#3b8ee3;border: none;cursor: pointer;_margin:0 0px 0 5px;border-radius:2px; font-size:14px; font-weight:bold;color:#fff; line-height:32px; text-align:center;}
+.index_logoin_submit:hover{color:#fff;}
+.index_logoin_submit2 {width: 102px;height:32px; line-height:32px; text-align:center;margin:0 10px 0 0;display: block;float: left;background:#e45e01;border-radius:2px; font-size:14px; font-weight:bold;color:#fff;cursor: pointer; display:block}
+.index_logoin_submit2:hover{color:#fff;}
+.index_logoin_cont .index_logoin_Coop {width: 223px;margin:10px 0 0 5px; _margin-left:2px;border-top: 1px dashed #fff;}
+.index_logoin_cont .index_logoin_Coop em {margin-right: 0px;}
+.index_logoin_cont .index_logoin_Coop img {display: block;float: left}
+.index_logoin_cont .index_logoin_Coop a {color:#0085C4;margin:0 0 0 5px;_margin:0 0 0 2px;}
+.index_logoin_cont a:hover{ text-decoration:none}
+.index_logoin_after {width: 239px;height: 242px;background:#fff;border:1px solid #cac7c7;float:left;margin:10px 0 0 0;overflow:hidden}
+.hunter_logoin_bg {float: left;padding: 10px;width: 213px;}
+.logoin_after_tx {background: url(../images/lt_line.png) repeat-x center bottom;float: left;width: 100%;}
+.logoin_after_tx dt {float: left;height: 68px;width: 68px;}
+.logoin_after_tx dt img {display: block; margin:7px 0 0 6px;border-radius: 2px 2px 2px 2px;}
+.logoin_after_tx dd {float: left;margin:5px 0 0 0;padding:0 0 0 10px;width: 130px;font-size: 12px;color: #000;}
+.logoin_after_cj {float: left;font-size: 12px;width: 100%;margin:10px 0 10px 0;color:#898785}
+.logoin_after_cj u {color: #FF3300;}
+.hunter_logoin_list {width: 100%;float: left;margin:0 0 8px 0;}
+.logoin_after {border-bottom: 1px dashed #fff;float: left;height:28px;line-height:28px;width: 100%;}
+.logoin_after a {color: #999}
+.logoin_after_su1 {background:#3b8ee3;color: #FFFFFF;display: block;float: left; font-weight:bold;font-size: 14px;height: 30px;line-height:30px;text-align: center;width:90px;border-radius:2px }
+.logoin_after_su1:hover {color: #FFFFFF;text-decoration: none;}
+.logoin_after_su2 {background:#f60;color: #fff;display: block;float: left;font-size: 14px; font-weight:bold;height:30px;line-height:30px;margin-left:15px;text-align: center;width:90px;border-radius:2px }
+.logoin_after_su2:hover {color: #fff;text-decoration: none;}
+.logoin_after_cz {float: left;width: 100%; margin-top:5px;}
+.logoin_after em {display: inline-block;font-family: Tahoma, sans-serif;font-weight: 700;height: 22px;line-height: 22px;padding: 0 10px 0 8px;text-decoration: underline;width: auto;margin-top: 3px;color:#000; background:#e5e5e5}
+.logoin_after_cz a {color: #666;float: left;line-height: 12px;padding: 6px 10px; width:80px; background:#f8f8f8; text-align:center}
+.logoin_after_cz .in_l_cor{color:#C00; text-decoration:underline;font-weight:bold;  background:#f8f8f8;margin-left:10px;}
+.index_logoin_re{ position:relative; z-index:5}
+.index_logoin_msg{width:165px;height:28px; position:absolute;left:0;top:-25px;}
+.index_logoin_msg_tx{width:124px;height:26px; line-height:26px; padding-left:25px;border:1px solid #ffc7c7; background:#ffecec url(../images/ico_warn2.png) no-repeat 5px center;color:#d54801; position:relative}
+.index_logoin_re_m{ position:relative; z-index:10}
+.index_logoin_msg_icon{width:10px;height:6px; background:url(../images/yun_icon_sj.png) no-repeat; position:absolute;left:10px;bottom:-5px;_bottom:-13px;}
+.yuin_index_r{width:263px;height:244px; float:right; margin-top:10px;border:1px solid #dcdcdc; background:#fff;}
+.yuin_index_r_b{width:223px;border:1px solid #ccc; background:#fff; padding:2px; margin-top:5px; float:left; }
+.yuin_index_r_h1{width:100%;height:32px; line-height:32px; font-size:14px; font-family:microsoft yahei,ËÎÌå; background:#f4f4f4;border-bottom:1px solid #dcdcdc;  }
+.yun_index_h1_list{width:100%;}
+.yun_index_h1_list li{width:86px; float:left;border-right:1px solid #dedede; text-align:center; cursor:pointer}
+.yun_index_h1_list  .yun_index_h1_cur{ background:#fff; position:relative}
+.yun_index_h1_list  .yun_index_h1_cur span{width:86px; height:33px; background:#fff; display:block; position:absolute;left:0px;top:0px;}
+.yun_in_news{width:100%; float:left; padding-top:5px;}
+.yun_in_news li{width:100%; float:left; padding-top:5px; }
+.yun_in_news li .yun_in_news_span{ display:inline-block;width:17px;height:17px; background:#e9e5e5; text-align:center; line-height:16px;color:#333; float:left; margin-left:10px; font-family:microsoft yahei,ËÎÌå;border-radius:2px; }
+.yun_in_news_a{width:220px;height:20px; line-height:20px; overflow:hidden; display:inline-block; line-height:16px; padding-left:10px; float:left}
+.yun_in_news li .yun_in_news_span_cur{ background:#3b8ee3;color:#fff;}
+.index_latest_news{width:100%; float:left; padding-top:5px;}
+.index_latest_news li{width:230px;height:25px; line-height:25px; margin-left:10px; background:url(../images/new_li.png) no-repeat left center; padding-left:10px;}
+.w980 {width: 980px;_overflow: hidden;}
+.Famous_recruitment {width: 978px;float: left;border:1px solid #dcdcdc; background:#fff; margin-top:10px;_overflow: hidden;}
+.Latest_talent_cont {width:686px;float: left;padding: 5px 0px 10px 10px;}
+.Latest_talent_list {width:333px;float:left;height: 23px;line-height: 23px;float: left;background:#f4f4f4;margin-right:10px;_margin-right:5px;}
+.Latest_talent_list li {float: left;text-align: center;font-weight: bold;color:#666}
+.Latest_talent_list_a {width: 70px;}
+.Latest_talent_list_b {width: 45px;}
+.Latest_talent_list_c {width: 55px;}
+.Latest_talent_list  .Latest_talent_list_d {width: 150px; text-align:left; float:right}
+.Latest_talent_list2 {border-bottom: 1px dashed #b8b6b7;background: none;height: 28px;line-height: 28px;width:333px;float:left}
+.Latest_talent_list2 li {font-weight: normal;color: #666}
+.Latest_talent_list_a img {display: block;float: left; margin:8px 0 0 0;}
+.Latest_talent_list_a a {float: left;margin:0 0 0 5px;display:inline-block;width:50px;text-align:left; overflow:hidden;height:25px;}
+.Recommended_jobs_cont {width: 100%;float: left; padding-bottom:8px;}
+.Recommended_jobs_cont ul li {width:179px;height:50px; line-height:22px; padding-left:5px; padding-top:5px;border:1px solid #e7e7e7; float:left; margin-top:8px; margin-left:8px;_margin-left:4px;_margin-right:4px; color:#928b8b}
+.Recommended_jobs_cont ul li .Recommended_jobs_name_a {color:#3b8ee3}
+.Recommended_jobs_cont ul li .Recommended_jobs_name { display:block;color:#666;}
+.Recommended_jobs_cont ul li .Recommended_jobs_name a {color:#928b8b}
+.index_Famous_show {width: 310px;border: 1px solid #00C;padding: 1px;position: absolute;top: -1px;left: -1px;padding-top: 51px;}
+.index_Emergency_job{width:978px; background:#fff;border:1px solid #dcdcdc; float:left; margin-top:10px;}
+.Emergency_index_cont{width:735px; float:left; padding-bottom:3px;}
+.Emergency_index_cont li{	width:355px;height:25px; line-height:25px;float: left; padding-left:10px;}
+.index_Emergency_post_name{color:#3b8ee3; margin-left:10px;}
+.index_Emergency_com_name{color:#666}
+.Featured_Jobs {width: 100%;float: left;position: relative;padding-bottom: 12px; overflow:hidden;}
+.angle_l_t {width: 14px;height: 14px;background-position: -386px -167px;left: -1px;top: -1px;position: absolute;}
+.angle_l_b {width: 14px;height: 14px;background-position: -386px -206px;left: -1px;bottom: -1px;position: absolute;}
+.angle_r_t {width: 14px;height: 14px;background-position: -386px -187px;right: -1px;top: -1px;position: absolute;}
+.angle_r_b {width: 14px;height: 14px;background-position: -386px -224px;right: -1px;bottom: -1px;position: absolute;}
+.Featured_Jobs_list {width:968px;padding:0px 0 15px 0;float: left; padding-left:10px;}
+.Featured_Jobs_list dl {width:230px;float: left;margin-right:12px;background: url(../images/yun_icodd.jpg) repeat-x bottom;height:57px;overflow:hidden}
+.Featured_Jobs_list dl dt {float: left;width: 18px;margin: 10px 5px 0 0}
+.Featured_Jobs_list dl dd {width:225px;padding: 10px 0 10px 5px;float: left;line-height:23px;}
+.Featured_Jobs_list dl dd  {display: block;}
+.Featured_Jobs_date{color:#999}
+.Featured_Jobs_t1{width:100%; float:left}
+.Featured_Jobs_t2{width:100%; float:left}
+.Featured_Jobs_name{color:#666}
+.Featured_Jobs_name_c{color:#06F}
+.right_banner{width:275px;float:right; margin-right:5px;}
+.right_banner a{width:269px; display:block;	border: 1px solid #e5e5e5; padding:2px; margin-top:5px;}
+.right_banner img{ display:block}
+.right_banner a:hover{border:1px solid #ccc}
+.index_news {float: left;margin:10px 0 0px 0;width: 978px;position: relative;border:1px solid #e0dedf;background:#fff;}
+.index_news_content {width: 299px;padding: 10px 15px 10px 10px;margin:5px 0 0 0;float: left;}
+.bgnone{ background:none}
+.index_news_fr {margin-right: 0px;float: right}
+.index_news_top {float: left;width: 100%;border-bottom: 1px dashed #ccc;padding-bottom: 10px;margin-bottom: 10px;}
+.index_news_top dt {background:#FFFFFF;border: 1px solid #CCCCCC;float: left;padding: 2px;width:100px;}
+.index_news_top dt img {display: block; float:left;}
+.index_news_top dd {color: #575757;float: left;line-height: 20px;padding-left: 10px;width: 180px;}
+.index_news_top dd strong {color: #000000;display: block;}
+.index_news_top dd a {color: #FF0000;}
+.index_news_top dd strong a {color:#09F;}
+.index_news .index_news_right {width: 100%;float: left}
+.index_news .index_news_right ul li {height: 23px;line-height: 23px;background: url(../images/left_list02.gif) no-repeat 0 12px;padding-left: 10px;}
+.index_link {width: 100%;float: left;}
+.index_link_cont {width: 980px;margin: 0 auto}
+.index_link_cont_h1 {width: 100%;height: 35px;line-height: 35px;}
+.index_link_cont_h1 span {display: block;float: left;font-size:14px;color:#333; font-weight:bold}
+.index_link_cont_h1 a {float: left; margin:0 0 0 10px;color: #285691;}
+.index_link_list {width: 980px;float: left;}
+.index_link_list_name {width: 980px; margin:10px 0 0 0;float:left;}
+.index_link_list a {margin-left: 8px;_margin-left:7px;line-height: 30px;display: inline-block}
+.index_link_l {width: 8px;height: 269px;float: left;background: url(../images/yun_link_l.png) no-repeat left center}
+.index_link_list_img { margin:10px 0 0 0;width: 100%;float: left;}
+.index_link_list_img a {display: block;float: left; margin:0 0px 10px 8px;}
+.index_link_list_img img {width: 128px;border: 1px solid #ccc;display: block;float: left;_margin-right: 0px; text-align:center}
+.index_left15560 {float: left;padding-bottom: 5px;text-align: right;width: 990px;}
+.Famous_recruitment_cont {width: 990px;float: left;}
+.Famous_recruitment_cont li {border: 1px solid #fff;padding: 1px;width:185px;background: #fff;float: left;margin: 5px 0px 0px 5px;_margin: 5px 2px 0px 3px}
+.Famous_recruitment_cont img {display: block;float: left}
+.Famous_recruitment_act {position: relative}
+#mainids .tlogo ul li.current1 {list-style-type: none;position: relative;width:185px;z-index:1000}
+#mainids .tlogo ul li.current1 .on {position: relative;z-index: 1003;}
+#mainids .tlogo ul li .show {background: #fff;border:1px solid #DCDCDC;display: none;left: -1px;padding: 1px;position: absolute;
+text-align: left;top: -1px;width:185px;}
+#mainids .tlogo .show .area {background: #FFFFFF;overflow: hidden;padding:76px 0 0;float: left}
+#mainids .tlogo ul li.current1 .show {display: block;}
+#mainids .area_left {width:185px;float: left; border-top:1px solid #ccc;}
+#mainids .area_left a {color:#666;;overflow: hidden; display:inline-block;border:1px solid #E6E6E6;border-radius:15px; padding:0px 10px;height:24px; line-height:24px; margin-top:5px; margin-left:5px;}
+#mainids .area_left a:hover {border:1px solid #f60;color: #F60;text-decoration:none}
+#mainids .area_right {float: left;width:175px;overflow: hidden;padding-left: 5px;line-height: 22px;color: #555;white-space: normal; word-break: break-all; }
+#mainids .area_right a {width: 100%;height: 22px;line-height: 22px;overflow: hidden;text-align: center;display: block;color:#3B8EE3;font-weight: bold}
+#mainids .area_right a:hover {color: #03F;text-decoration: underline}
+#mainids .area_left_bot {width:93px;background-color: #EEEEEE;float: left;height: 22px;line-height: 22px;margin-top: 5px;text-align: center;}
+#mainids .area_left_bot a {color: #333;}
+#mainids .area_right_bot{width:91px;background-color: #EEEEEE;float: left;height: 22px;line-height: 22px;margin-top: 5px;text-align: center;border-left:1px solid #fff;}
+#mainids .area_right_bot a {color: #333}
+#mainids .w160 {width: 160px;}
+#mainids .w170 {width: 173px;}
+#mainids .tlogo ul li .show_ban {background: #EAE8E8;border: 1px solid #65A9E6;display: none;left: -1px;padding: 1px;position: absolute;text-align: left;top: -1px;width: 313px;}
+#mainids .tlogo ul li.current1 .show_ban {display: block;}
+#mainids .tlogo .show_ban .area {background: #FFFFFF;overflow: hidden;padding: 55px 0 0;float: left}
+#mainids .tlogo ul li.current2 {list-style-type: none;position: relative;width: 313px;}
+#mainids .tlogo ul li.current2 .on {position: relative;z-index: 1003;}
+#slides {position: relative;width: 459px;height:200px;float:left;}
+.slides_container {overflow:hidden;position:relative;display:none;width: 459px;height:200px;}
+.slides_container div.slide {width: 459px;height:200px;display:block;}
+.slides_container img {width: 459px;height:200px;display: block;}
+#slides .prev {margin-right: 5px;float:left;}
+#slides .next {margin-right: 5px;float:left;}
+.pagination {margin:6px 0 0;list-style: none;z-index:9999;position: absolute;bottom: 15px;right:15px;}
+.pagination li {float: left;margin: 0 1px;}
+.pagination li a {display: block;width: 13px;height: 0;padding-top: 13px;background-position: 0 0;float: left;overflow: hidden;background-image: url(../images/circle.png);}
+.pagination li.current a, .pagination li.current a:hover { background-position: -16px -0px }
+.pagination li a:hover { background-position: 0px -0px }
+#slides a:link, #slides a:visited { color: #333 }
+#slides a:hover, #slides a:active { color: #9e2020 } 
+.index_banner_cont{width:990px;}
+.index_banner_cont a{ display:inline-block;float:left; margin-top:5px; margin-right:5px;_margin-right:2px;}
+.index_banner_cont img{ display:block}
+.index_logoin_box{width:239px; float:left;}
+.Latest_talent_h1 {width:100%;height: 38px; float:left}
+.Latest_talent_h1 b { height:20px; line-height:20px; border-left:6px solid #f60; float:left;display: block; padding-left:10px;font-size:16px;color:#1F7FCC;margin-top:10px;font-family: Î¢ÈíÑÅºÚ, ËÎÌå; }
+.index_Emergency_span{color:#FC9B00; font-size:14px; font-weight:normal; margin-left:5px; font-family:tahoma,arial,"ËÎÌå"}
+.Latest_talent_h1 .Famous_tit{ background-position:0 -116px;}
+.Latest_talent_h1 .Emergency_tit {background-position:0 -169px;}
+.Latest_talent_h1  .HOt_tit{background-position:0 -262px;}
+.Latest_talent_h1 .User_tit{background-position:0 -233px;}
+.index_News_h1{width:100%;height:40px;}
+.index_News_h1  b { height:20px; line-height:20px; border-left:6px solid #f60; float:left;display: block; padding-left:10px;font-size:16px;color:#1F7FCC;margin-top:8px;font-family: Î¢ÈíÑÅºÚ, ËÎÌå; }
+.index_News_h1  .News_tit{	display: block;float: left;color: #2d5382;font-size: 14px;width:74px;height:18px;margin-top:7px; margin-left:10px;background-position:0 -200px;}
+.Latest_talent_h1 .index_more{display: block;float: right;text-align: center;margin-top: 10px;font-family: Î¢ÈíÑÅºÚ;font-size:12px;color: #0a8deb;margin-right:10px;}
+.index_News_h1 u{ float:right; text-decoration:none; line-height:40px; margin-right:10px;color:#666}
+.index_News_h1 u a{color:#666}
+.Recommended_jobs_cont_li{width:100%;height:23px; line-height:23px; overflow:hidden; display:block}
+.Recommended_jobs_pin{color:#ed2121; float:left}
+.Recommended_jobs_name_cor{color:#3b8ee3}
+.index_buildPic{width:240px; float:right; overflow:hidden}
+.index_buildPic_cont{width:250px;}
+.index_buildPic  ul li {float: left;display: inline;width: 117px;height: 65px;overflow: hidden;text-align: center;vertical-align: bottom;border-top: 1px solid #E6E6E6;border-left:1px solid #e6e6e6; margin-top:-1px;}
+.index_buildPic ul li img{ margin: 9px 0px 0px;}

@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<script>
+function check_link(id){
+	if(id==2){ 
+		$("#photo").show();
+		$(".pic").show();
+	}
+	if(id==1){ 
+		$("#photo").hide();
+		$(".pic").hide();
+	}		
+}
+function photo_change(id){
+	if(id==1){ 
+		$("#image1").show();
+		$("#image2").hide();
+	}
+	if(id==2){ 
+		$("#image1").hide();
+		$("#image2").show();
+	}		
+}
+function checkform(myform)
+{
+  if (myform.title.value=="") 
+  { 
+	  parent.layer.msg('请填写链接标题！', 2, 2); 
+      return (false);
+  }	
+  if (myform.url.value=="") 
+  { 
+	  parent.layer.msg('请填写链接地址！', 2, 2);  
+      return (false);
+  }	
+}
+$(document).ready(function(){
+	$("#did").click(function(){
+		var checked=$("#did").attr("checked");
+		if(checked=="checked"){
+			$(".did").attr("checked","checked");
+		}else{
+			$(".did").attr("checked",false);
+		}
+	})
+	$(".did").click(function(){
+		if(document.getElementById('did').checked){
+			document.getElementById('did').checked = document.getElementById('did').checked&0;
+		}
+	})
+})
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="admin_Prompt">
+        <div class="admin_Prompt_span">
+           注意：添加链接时，请正确选择链接类型。
+        </div>
+        <div class="admin_Prompt_close"></div>
+    </div>
+
+<div class="infoboxp_top">
+<h6>添加链接</h6>
+    <a href="index.php?m=link" class="infoboxp_tj">友情链接列表</a>
+</div>
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" target="supportiframe" action="index.php?m=link&c=save" method="post"  encType="multipart/form-data"  onSubmit="return checkform(this);">
+<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+<table width="100%" class="table_form" style="background:#fff;">
+	<tr>
+		<th width="120">链接类型：</th>
+		<td><select name="type" onchange="check_link(this.value);">
+			<option value="1" {yun:}if $linkrow.link_type==1{/yun}selected{yun:}/if{/yun}>文字链接</option>
+			<option value="2" {yun:}if $linkrow.link_type==2{/yun}selected{yun:}/if{/yun}>图片链接</option>
+		</select></td>
+	</tr>
+	    	<tr class="admin_table_trbg" >
+		<th width="120">链接标题：</th>
+		<td><input class="input-text" type="text" name="title" size="40" value="{yun:}$linkrow.link_name{/yun}" />
+		<font color="gray">例：phpyun</font>
+		</td>
+	</tr>
+	<tr>
+		<th width="120">链接地址：</th>
+		<td><input class="input-text" type="text" name="url" size="30" value="{yun:}$linkrow.link_url{/yun}" />
+		<font color="gray">例：http://www.phpyun.com</font>
+		</td>
+	</tr>
+    <tr >
+      <th>使用范围：</th>
+      <td>
+      <div class="all_Domain_name">
+     <input type="button" value="{yun:}if $linkrow.domain_name==""{/yun}全站{yun:}else{/yun}{yun:}$linkrow.domain_name{/yun}{yun:}/if{/yun}" class="all_Domain_button" id="domain_name">
+     <input type="hidden" id="domainid" value="{yun:}$linkrow.domain{/yun}" name="domain">
+     <div class="all_Domain_name_box" id="domain_list" style="display:none;">
+<span class="all_Domain_name_box_list"><input type="checkbox" class="domain" id="did" value="0+0" {yun:}if stripos($linkrow.domain,'0')!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> 全站</span> 
+          {yun:}foreach from=$domain item=v{/yun}
+          <span class="all_Domain_name_box_list"><input type="checkbox" class="domain" class="did" value="{yun:}$v.id{/yun}+{yun:}$v.title{/yun}" {yun:}if stripos($linkrow.domain,$v.id)!==false{/yun}checked{yun:}/if{/yun} class="all_Domain_name_box_bth"> {yun:}$v.title{/yun}</span> 
+          {yun:}/foreach{/yun}
+          <div class="all_Domain_name_sub"><input type="button" value="确定" class="all_Domain_name_submit1" onClick="check_domain()">
+          <input type="button" value="取消" class="all_Domain_name_submit2" onClick="Close('domain_list')"></div>
+     </div>
+      </div>
+      </td>
+    </tr>
+	<tr>
+		<th width="120">站点下使用范围：</th>
+		<td>
+			<select name="tem_type">
+				<option value='1' {yun:}if $linkrow.tem_type==1{/yun}selected{yun:}/if{/yun}>全站使用</option>
+				<option value="2" {yun:}if $linkrow.tem_type==2{/yun}selected{yun:}/if{/yun} >仅在首页使用</option> 
+			</select>
+		</td>
+	</tr>
+	<tr id="photo" {yun:}if $linkrow.link_type neq 2{/yun}style="display:none;"{yun:}/if{/yun}>
+		<th width="120">缩 略 图：</th>
+		<td><input type="radio" name="phototype" value="1" onclick="photo_change(this.value)"
+		{yun:}if $linkrow.img_type eq 1{/yun}checked{yun:}/if{/yun}/> 上传图片 &nbsp;                
+        <input type="radio" name="phototype" value="2" onclick="photo_change(this.value)"{yun:}if $linkrow.img_type eq 2{/yun}checked{yun:}/if{/yun}/> 远程图片
+		<br />
+        <div style="height:10px;"></div>
+            <div id="image1" {yun:}if $linkrow.img_type!="1"{/yun}style="display:none"{yun:}/if{/yun}>
+                <input name="uplocadpic" type="file" size="40"  class="input-text"/>例：http://www.phpyun.com/yun.jpg</div>
+            <div id="image2" {yun:}if $linkrow.img_type!="2"{/yun}style="display:none"{yun:}/if{/yun}>            
+                <input name="uplocadpic" type="text" size="40" value="{yun:}$linkrow.pic{/yun}"  class="input-text"/>
+            例：http://www.hr135.com/yun.jpg</div>
+		</td>
+	</tr>
+    {yun:}if $linkrow.link_type eq 2{/yun}
+        {yun:}if $linkrow.img_type eq 1{/yun}
+            <tr class="pic">
+                <th width="120">图片预览：</th>
+                <td><img src="../{yun:}$linkrow.pic{/yun}" width="150" height="80" /></td>
+            </tr>
+        {yun:}else if $linkrow.img_type eq 2{/yun}
+            <tr class="pic">
+                <th width="120">图片预览：</th>
+                <td><img src="{yun:}$linkrow.pic{/yun}" width="150" height="80" /></td>
+            </tr>
+        {yun:}/if{/yun}
+	{yun:}/if{/yun}
+    	<tr class="admin_table_trbg" >
+		<th width="120">排序：</th>
+		<td><input class="input-text" type="text" name="sorting" size="20" value="{yun:}$linkrow.link_sorting{/yun}" />
+		<font color="gray">例：大前小后</font>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2">
+        {yun:}if is_array($linkrow){/yun}
+        <input type="hidden" name="id" value="{yun:}$linkrow.id{/yun}" />
+        <input type="hidden" name="lasturl" value="{yun:}$lasturl{/yun}">
+        <input class="admin_submit4" type="submit" name="link_update" value="&nbsp;修 改&nbsp;" />
+        {yun:}else{/yun}
+        <input class="admin_submit4" type="submit" name="link_add" value="&nbsp;添 加&nbsp;" />
+        {yun:}/if{/yun}
+		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" /></td>
+	</tr>
+</table>
+</form>
+</div></div>
+</body>
+</html>

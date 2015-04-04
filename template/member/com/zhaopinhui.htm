@@ -1,0 +1,95 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<script>
+$(function(){
+	$(".statusbody").click(function(){
+		var id=$(this).attr("pid");
+		var bodys=$("#statusbody"+id).val();
+		$("#showbody").html(bodys);
+		$.layer({
+			type : 1,
+			title :'审核说明',
+			offset: [($(window).height() - 380)/2 + 'px', ''],
+			closeBtn : [0 , true],
+			border : [10 , 0.3 , '#000', true],
+			area : ['380px','auto'],
+			page : {dom :"#infobox2"}
+		});
+	});
+
+});
+</script>
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">我参加的招聘会</span>
+          <div class=admin_tit_right> </div>
+        </div>
+        <div class=admin_textbox_04> 
+            <div class=table>
+              <div>
+                <div>
+                  <table id="job_checkbokid" cellspacing=1 align=center border=0 class="com_table">
+                    <tbody>
+                      <tr align=middle style="height:30px">
+                        <th >招聘会名称</th>
+                        <th>会展中心</th>
+                        <th>参与时间</th>
+                        <th>状态</th>
+                        <th >操作</th>
+                      </tr>
+                    {yun:}foreach item=v from=$rows{/yun}
+                    <tr style="height:30px">
+                      <td style="width:230px;"><a href="{yun:}url m=zph url=c:show,id:`$v.zid`{/yun}" target=_blank>{yun:}$v.title{/yun}</a></td>
+                      <td style="width:180px;">{yun:}$v.address{/yun}</td>
+                      <td>{yun:}$v.ctime|date_format:'%Y-%m-%d'{/yun}</td>
+                      <td>{yun:}if $v.status==1{/yun}<font color="green">已审核</font>{yun:}elseif $v.status==2{/yun}<font color="#FF0000">未通过</font>{yun:}else{/yun}<font color="blue">未审核</font>{yun:}/if{/yun}</td>
+                      <input type="hidden" id="statusbody{yun:}$v.id{/yun}" value="{yun:}$v.statusbody{/yun}" />
+                      <td>{yun:}if $v.status==2{/yun}<a href="javascript:;" class="statusbody" pid="{yun:}$v.id{/yun}">查看原因</a> {yun:}/if{/yun}<a href="javascript:;" class="zphstatus" pid="{yun:}$v.jobid{/yun}" zid="{yun:}$v.zid{/yun}">查看职位</a> <a href="javascript:void(0)" onclick="layer_del('确定要退出？', '{yun:}$now_url{/yun}&act=del&id={yun:}$v.id{/yun}');">退出</a></td>
+                    </tr>
+                    {yun:}foreachelse{/yun}
+                    <tr style="height:30px">
+                      <td colspan="5">您还没有参加的招聘会。</td>
+                    </tr>
+                    {yun:}/foreach{/yun}
+                      </tbody>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="diggg">{yun:}$pagenav{/yun}</div> 
+          <div class="clear"></div>
+          <!--聘会审核弹出框-->
+          <div class="admin_Operating_sh" id="infobox2" style="padding:10px;width:350px; display:none;">
+
+            <div class="admin_Operating_text" style="padding:5px; height:auto;color:#C30; font-size:14px; line-height:23px;white-space: normal; word-break: break-all;" id="showbody"> </div>
+          </div>
+        </div>
+        <!--聘会审核弹出框-->
+
+      </div>
+    </div>
+  </div>
+</div>
+<div id="infobox" style="display:none;margin: 0 auto; padding: 0;">
+  <table class="table_form " style="width:380px;">
+    <tr>
+      <td style="width:75px">招聘会名称：</td>
+      <td id="title"></td>
+    </tr>
+    <tr>
+      <td>举办时间：</td>
+      <td><span id='stime'></span>至<span id='etime'></span></td>
+    </tr>
+    <tr>
+      <td>举办地点：</td>
+      <td id='address'></td>
+    </tr>
+    <tr>
+      <td>我的职位：</td>
+      <td id='cname'></td>
+    </tr>
+  </table>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

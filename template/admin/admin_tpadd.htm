@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" /> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script>
+function checkform(){
+	if($("#name").val()==""){
+		parent.layer.msg('文件名不得为空！', 2, 2); 
+		return false
+	}
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>添加模板</h6>
+  <div class="infoboxp_right"> 
+	<a href=" javascript:history.back(-1);" class="infoboxp_tj">模板列表</a> 
+	</div>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form name="myform" id="myform" target="supportiframe" action="index.php?m=admin_template&c=tpaddsave" method="post" encType="multipart/form-data" onKeyDown="if(event.keyCode==13){return false;}">
+	<table width="100%" class="table_form">
+		<tr >
+			<th width="120">文件名：</th>
+			<td><input onKeyUp="value=value.replace(/[^\w\.\/]/ig,'')" id="name" class="input-text" name="name" value="">.htm  (必须是.htm后缀文件,只能输入英文字母与数字)</td></tr>
+		<tr >
+        <tr >
+			<th width="120">模板名称：</th> 
+			<td><input  name="tp_name" class="input-text" value=""></td></tr>
+		<tr >
+         <tr >
+			<th width="120">所在路径：</th>
+			<td>/template/{yun:}$style{/yun}<input name="dir" value="" class="input-text">(填写文件保存目录名称，留空则默认风格根目录)
+            <input type="hidden" name="path" value="{yun:}$path{/yun}" class="input-text"></td></tr>
+    		<tr>
+			<th>模板内容：</th>
+			<td>
+			 <textarea name="content" cols="145" rows="28">{yun:}$tp_info.content{/yun}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+        	<input class="admin_submit4" type="submit" name="submit" value="&nbsp;提  交&nbsp;" onClick="return checkform()"/>
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+			</td>
+		</tr>
+	</table>
+	<input type="hidden" name="pytoken" id='pytoken'  value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+</body>
+</html>

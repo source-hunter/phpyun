@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="js/admin_public.js" language="javascript"></script> 
+<script>
+$(document).ready(function(){
+	$(".input-text").focus(function(){ 
+		var msg_id=$(this).attr('id');
+		var msg=$('#'+msg_id+' + font').html(); 
+		if($.trim(msg)!=''){
+			layer.tips(msg, this, {
+			guide: 1, 
+			style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F'], 
+			}); 
+		} 
+	}).blur(function () {
+		layer.closeTips();
+	});
+});
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position: absolute;"></div>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>财付通设置</h6>
+	<div class="infoboxp_right">
+    	<a href="index.php?m=payconfig" class="infoboxp_tj">支付设置</a>
+    </div>
+</div>
+<div class="main_tag">
+	<div class="tag_box">
+	<div>
+<div id="right" style="display:block">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+	<form method="post" target="supportiframe" action="" name="config" >
+ <div id="paysync">
+	<table id="alipay" width="100%" class="table_form">
+		<tr>
+			<th>商户号:</th>
+			<td><input type="text" class="input-text" name="sy_tenpayid" id="sy_tenpayid" value="{yun:}$tenpaydata.sy_tenpayid{/yun}" size="50" maxlength="255"/><font color="gray" style="display:none">如：1209404409</font></td>
+		</tr>
+		<tr class="admin_table_trbg">
+			<th>商户密钥:</th>
+			<td><input type="text" class="input-text" name="sy_tenpaycode" id="sy_tenpaycode" value="{yun:}$tenpaydata.sy_tenpaycode{/yun}" size="50" maxlength="255"/><font color="gray"  style="display:none">如：a2cec92d571f43b56f1e6ab32173e492</font></td>
+		</tr>
+	</table>
+	</div>
+	<table width="100%" class="table_form">
+		<tr>
+			<td align="center" colspan="2"><input class="admin_submit4" id="pay_config" type="submit" name="pay_config" value="&nbsp; 修 改 &nbsp;"  />&nbsp;&nbsp;<input class="admin_submit4" type="reset" name="reset" value="&nbsp; 重 置 &nbsp;" /></td>
+		</tr>
+	</table>
+	<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+	</form>
+</div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{yun:}include file="$askstyle/header.htm"{/yun}
+<div class="answers_content">
+<div class="answers_cont">
+<div class="answers_left">
+<div class="answers_news_title"><span>热门问题</span></div>
+<!--就这块循环 start-->
+{yun:}foreach from=$hot_week item=h_list{/yun}
+<div class="answers_left_list">
+<div class="answers_left_list_cont">
+	<h2><a class="question_link" href="{yun:}aurl url=c:content,id:`$h_list.id`{/yun}" id="title_{yun:}$h_list.id{/yun}">{yun:}$h_list.title{/yun}</a></h2>
+	<div class="answers_discuss">{yun:}$h_list.content|strip_tags|mb_substr:0:100:'gbk'{/yun}</div>
+	<div class="answers_feed-meta">
+		<a href="javascript:void(0)" class="answers_feed-meta_gz" onclick="attention('{yun:}$h_list.id{/yun}','1');">关注问题</a>
+		<a href="javascript:void(0)"  class="answers_feed-meta_ll" > （{yun:}$h_list.visit{/yun}）次浏览</a>
+        <a href="javascript:void(0)"  class="answers_feed-meta_hd">（{yun:}$h_list.answer_num{/yun}）回答</a>
+		<a href="javascript:void(0);" onclick="forward_sinaweibo('{yun:}$h_list.id{/yun}')" class="answers_feed-meta_xl">新浪微博</a>
+		<a href="javascript:void(0);" onclick="forward_tencentweibo('{yun:}$h_list.id{/yun}')" class="answers_feed-meta_tx">腾讯微博</a>
+	</div>
+</div>
+<div class="answers_left_list_right" id='answer_{yun:}$h_list.id{/yun}' >
+	{yun:}if $h_list.pic{/yun}
+	<img src="{yun:}$h_list.pic{/yun}" width="55" height="55" style=" cursor:pointer" onmouseover="get_user_info('answer_','{yun:}$h_list.id{/yun}','{yun:}$h_list.uid{/yun}');" onmouseout="hide_user_info('answer_','{yun:}$h_list.id{/yun}')" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);" >
+	{yun:}else{/yun}
+	<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}" width="55" height="55" style=" cursor:pointer" onmouseover="get_user_info('answer_','{yun:}$h_list.id{/yun}','{yun:}$h_list.uid{/yun}');" onmouseout="hide_user_info('answer_','{yun:}$h_list.id{/yun}')" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);">
+	{yun:}/if{/yun}
+	{yun:}if $h_list.is_atn!='2'{/yun}
+		{yun:}if $h_list.is_atn=='1'{/yun}
+			<a href="javascript:void(0)" style="float:right" onclick="attention_user('{yun:}$h_list.uid{/yun}')" class="zg-btn-unfollow"  name="atn_{yun:}$h_list.uid{/yun}">取消关注</a>
+		{yun:}else{/yun}
+			<a href="javascript:void(0)" style="float:right" onclick="attention_user('{yun:}$h_list.uid{/yun}')" class='zg-btn-green'  name="atn_{yun:}$h_list.uid{/yun}">关注</a>
+		{yun:}/if{/yun}
+	{yun:}/if{/yun}
+</div>
+</div>
+{yun:}/foreach{/yun}
+<div class="clear"></div>
+<div class="pages">{yun:}$pagenav{/yun}</div>
+</div>
+<div class="answers_right">
+{yun:}include file="$askstyle/right.htm"{/yun} </div>
+</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$askstyle/footer.htm"{/yun}
+</body>
+</html>

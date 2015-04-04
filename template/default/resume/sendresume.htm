@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>简历</title>
+</head>
+<body style="background:#dfdfdf; margin:0 auto">
+<style>
+#contentDiv ul li {list-style:none;}
+.td_title1 {color: #6690FF;}
+.td04 {COLOR: #00659c;TEXT-INDENT: 0px}
+.mail{ padding-top:20px; margin-bottom:20px;}
+.mail li{width:100%;height:28px; line-height:28px; float:left; margin-bottom:10px;color:#666}
+.mail li span{width:130px; text-align:right; display:block; float:left;color:#666}
+.zhiw1{width:680px; background:#e0f0ff;border:1px solid #aad8f0; margin-top:10px; margin-bottom:10px;font-size:12px;}
+.zhiw{width:680px; background:#e0f0ff;border:1px solid #aad8f0; margin-top:10px; margin-bottom:10px;font-size:12px; float:left; list-style:none;}
+.zhiw li{width:300px; line-height:26px; float:left; margin-left:20px;_margin-left:10px; list-style:none;}
+.resume_text{border:1px solid #ccc;height:28px; line-height:28px;}
+table{ border-collapse:collapse;background:#ffffff }
+table tr{background:#ffffff}
+table td{ padding:3px; line-height:23px;border:1px solid #A2C8D5; white-space:normal;word-break:break-all}
+</style>
+<table width="750" border="0"   cellpadding="0" cellspacing="0" bgcolor="#fff" style="font-size:12px; margin:0 auto">
+  <tr>
+    <td colspan="8" align="center"bgcolor="#EAF3FC"> 
+    <font size="5" color="#f60">{yun:}$Info.username_n{/yun}</font>
+<font size="4" color="#666666">个人简历 (简历编号：NO.{yun:}$Info.id{/yun})</font> 
+</td>
+  </tr>
+      <tr>
+    <td colspan="8" align="center" bgcolor="#2C7ED2"> <font color="#ffffff">目前供职情况：我目前处于离职状态（或还未就业状态）。</font> </td>
+  </tr>
+    <tr>
+    <td colspan="8" align="center" bgcolor="#ffffff">简历名称：{yun:}$Info.r_name{/yun} 	&nbsp;&nbsp;&nbsp; [浏览次数]:{yun:}$Info.hits{/yun} 	&nbsp;&nbsp;&nbsp;&nbsp;更新时间：{yun:}$Info.lastupdate|date_format:"%Y-%m-%d"{/yun}</td>
+  </tr>
+  {yun:}if $Info.info_status=="1" || $usertype=="2"{/yun}
+  <tr>
+    <td colspan="8" align="center"  bgcolor="#EAF3FC"> <b> 个人基本信息</b> </td>
+  </tr>
+  <tr>
+    <td width="71"  bgcolor="#EAF3FC"><div style="width:80px;">姓名</div></td>
+    <td width="98" bgcolor="#ffffff">{yun:}$Info.username_n{/yun}</td>
+    <td width="75"  bgcolor="#EAF3FC">性别</td>
+    <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_sex{/yun}</td>
+    <td width="90"  bgcolor="#EAF3FC">出生日期</td>
+    <td width="130" bgcolor="#ffffff">{yun:}$Info.birthday|date_format:"%Y年%m月%d日"{/yun}</td>
+    <td  bgcolor="#ffffff" rowspan="5" style="width:110px;_border-right:1px solid #a2c8d5">
+    <div style="width:120px;height:150px; position:relative;">
+	 <div style="width:120px; position:absolute;left:-4px; background:#fff;height:153px;border-left: 1px solid #A2C8D5; padding-left:3px;"><img src="{yun:}$Info.resume_photo{/yun}" width="120" height="150"></div>
+     </div>
+     </td>
+  </tr>
+  {yun:}if $Info.basic_info=='1'||$Info.basic_info=='1'{/yun}
+  <tr>
+   {yun:}if $config.user_idcard=="0"||$Info.basic_info=='0'{/yun} <td  bgcolor="#EAF3FC">身份证号</td>
+    <td colspan="4" bgcolor="#ffffff">
+   <a href="{yun:}$config.sy_weburl{/yun}/index.php?m=resume&id={yun:}$Info.id{/yun}">登录后可以查看</a>
+    </td>
+    {yun:}/if{/yun} 
+    {yun:}if $Info.basic_info=='1'{/yun}<td  bgcolor="#EAF3FC">籍贯</td>
+    <td bgcolor="#ffffff">{yun:}$Info.domicile{/yun}</td>{yun:}/if{/yun} 
+  </tr>
+  {yun:}/if{/yun} 
+   {yun:}if $Info.basic_info=='1'{/yun}
+  <tr>
+    <td  bgcolor="#EAF3FC">身高</td>
+    <td bgcolor="#ffffff">{yun:}$Info.height{/yun}cm</td>
+    <td  bgcolor="#EAF3FC">体重</td>
+    <td colspan="2" bgcolor="#ffffff">{yun:}$Info.weight{/yun}kg</td>
+    <td  bgcolor="#EAF3FC">民族</td>
+    <td bgcolor="#ffffff">{yun:}$Info.nationality{/yun}</td>
+  </tr>
+   {yun:}/if{/yun} 
+
+  <tr>   
+
+       <td  bgcolor="#EAF3FC">学历</td>
+    <td  bgcolor="#ffffff">{yun:}$Info.useredu{/yun}</td>
+   <td  bgcolor="#EAF3FC">工作经验</td>
+    <td bgcolor="#ffffff" colspan="2">{yun:}$Info.user_exp{/yun}</td> 
+      {yun:}if $Info.basic_info=='1'{/yun}
+    <td  bgcolor="#EAF3FC">婚姻状况</td>
+    <td bgcolor="#ffffff">{yun:}$Info.user_marriage{/yun}</td>
+     {yun:}else{/yun}  
+	  <td colspan="2" ></td>
+     {yun:}/if{/yun}  
+  </tr>
+  <tr>
+    <td   bgcolor="#EAF3FC">现所在地</td>
+    <td  {yun:}if $Info.basic_info=='1'{/yun}colspan="6"{yun:}else{/yun} colspan="6"{yun:}/if{/yun}  bgcolor="#ffffff">{yun:}$Info.living{/yun}</td>
+
+  </tr>
+   {yun:}if $Info.basic_info=='1'{/yun}
+  <tr>
+    <td  bgcolor="#EAF3FC">详细地址</td>
+    <td colspan="7" bgcolor="#ffffff">{yun:}$Info.address{/yun}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#EAF3FC">个人主页</td>
+    <td colspan="7" bgcolor="#ffffff">{yun:}$Info.homepage{/yun}</td>
+  </tr>
+   {yun:}/if{/yun} 
+  <tr>
+    <td bgcolor="#EAF3FC">自我评价</td>
+    <td  {yun:}if $Info.basic_info=='1'{/yun}colspan="7"{yun:}else{/yun} colspan="6"{yun:}/if{/yun} bgcolor="#ffffff">{yun:}$Info.description{/yun}</td>
+  </tr>
+  {yun:}/if{/yun}
+  {yun:}if $Info.doc{/yun}
+   <tr>
+    <td align="center" bgcolor="#EAF3FC"  {yun:}if $Info.basic_info=='1'{/yun}colspan="7"{yun:}else{/yun} colspan="6"{yun:}/if{/yun} bgcolor="#ffffff"> <b> 求职意向</b> </td>
+  </tr>
+    <tr>
+    <td bgcolor="#EAF3FC">期望行业</td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$Info.hy{/yun}</td>
+    <td bgcolor="#EAF3FC">工作地区 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.city_one{/yun} {yun:}$Info.city_tow{/yun} {yun:}$Info.city_three{/yun}</td>
+  </tr>
+     <tr>
+    <td bgcolor="#EAF3FC">职位性质 </td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$Info.type{/yun}</td>
+    <td bgcolor="#EAF3FC">待遇要求 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.salary{/yun} {yun:}if $Info.salary!="面议"{/yun} <font color="#888888">RMB</font>{yun:}/if{/yun}</td>
+  </tr>
+     <tr>
+    <td bgcolor="#EAF3FC">期望职位 </td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$Info.jobname{/yun} </td>
+    <td bgcolor="#EAF3FC">到职时间 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.report{/yun}</td>
+  </tr>
+    <tr>
+    <td  bgcolor="#EAF3FC">个人简介</td>
+    <td colspan="7" bgcolor="#ffffff">{yun:}$Info.user_doc.doc{/yun}</td>
+  </tr>
+  {yun:}else{/yun}
+     <tr>
+    <td align="center" bgcolor="#EAF3FC"  {yun:}if $Info.basic_info=='1'{/yun}colspan="8"{yun:}else{/yun} colspan="7"{yun:}/if{/yun} bgcolor="#ffffff"> <b> 求职意向</b> </td>
+  </tr>
+    <tr>
+    <td bgcolor="#EAF3FC">期望行业</td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$Info.hy{/yun}</td>
+    <td bgcolor="#EAF3FC">工作地区 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.city_one{/yun} {yun:}$Info.city_tow{/yun} {yun:}$Info.city_three{/yun}</td>
+  </tr>
+     <tr>
+    <td bgcolor="#EAF3FC">职位性质 </td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$Info.type{/yun}</td>
+    <td bgcolor="#EAF3FC">待遇要求 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.salary{/yun} {yun:}if $Info.salary!="面议"{/yun} <font color="#888888">RMB</font>{yun:}/if{/yun}</td>
+  </tr>
+     <tr>
+    <td bgcolor="#EAF3FC">期望职位 </td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$Info.jobname{/yun} </td>
+    <td bgcolor="#EAF3FC">到职时间 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.report{/yun}</td>
+  </tr>
+	 {yun:}if is_array($Info.user_work) && !empty($Info.user_work){/yun}
+     <tr>
+    <td colspan="8" align="center" bgcolor="#EAF3FC"> <b> 工作经历</b> </td>
+  </tr>
+        {yun:}foreach item=all from=$Info.user_work{/yun} 
+    <tr>
+    <td bgcolor="#EAF3FC">工作时间</td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$all.sdate|date_format:"%Y年%m月"{/yun} - {yun:}if $all.edate{/yun}{yun:}$all.edate|date_format:"%Y年%m月"{/yun}{yun:}else{/yun}至今{yun:}/if{/yun}</td>
+    <td bgcolor="#EAF3FC">所在部门 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$all.department{/yun}</td>
+  </tr>
+     <tr>
+    <td bgcolor="#EAF3FC">单位名称 </td>
+    <td colspan="4" bgcolor="#ffffff">{yun:}$all.name{/yun}</td>
+    <td bgcolor="#EAF3FC">担任职位 </td>
+    <td colspan="2"  bgcolor="#ffffff">{yun:}$all.title{/yun}</td>
+  </tr>
+     <tr>
+    <td bgcolor="#EAF3FC">工作内容 </td>
+    <td colspan="7" bgcolor="#ffffff">{yun:}$all.content{/yun}</td>
+  </tr>
+        {yun:}/foreach{/yun}
+      {yun:}/if{/yun}
+  
+    {yun:}if is_array($Info.user_edu) && !empty($Info.user_edu){/yun}
+    <tr>
+    	<td colspan="8" align="center" bgcolor="#EAF3FC"> <b> 教育经历</b> </td>
+    </tr>
+    {yun:}section name=all loop=$Info.user_edu{/yun}
+    <tr>
+        <td bgcolor="#EAF3FC">毕业时间</td>
+        <td colspan="4" bgcolor="#ffffff">{yun:}$Info.user_edu[all].sdate|date_format:"%Y年%m月"{/yun} - {yun:}$Info.user_edu[all].edate|date_format:"%Y年%m月"{/yun}</td>
+        <td bgcolor="#EAF3FC">专业 </td>
+        <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.user_edu[all].specialty{/yun}</td>
+    </tr>
+    <tr>
+    <td bgcolor="#EAF3FC">学校名称 </td>
+        <td colspan="4" bgcolor="#ffffff">{yun:}$Info.user_edu[all].name{/yun} </td>
+        <td bgcolor="#EAF3FC">担任职位 </td>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_edu[all].title{/yun}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAF3FC">专业描述 </td>
+        <td colspan="7" bgcolor="#ffffff">{yun:}$Info.user_edu[all].content{/yun}</td>
+    </tr>
+    {yun:}/section{/yun}
+    {yun:}/if{/yun}
+    {yun:}if is_array($Info.user_skill) && !empty($Info.user_skill){/yun}
+    <tr>
+    <td colspan="8" align="center" bgcolor="#EAF3FC"><b> 专业技能</b></td>
+    </tr>    
+    <tr>
+        <td bgcolor="#EAF3FC">掌握时间</td>
+        <td colspan="2" bgcolor="#EAF3FC">技能类别 </td>
+        <td colspan="3" bgcolor="#EAF3FC">熟练程度</td>
+        <td colspan="2" bgcolor="#EAF3FC">技能名称</td>
+    </tr>
+    {yun:}section name=all loop=$Info.user_skill{/yun}
+    <tr>
+        <td bgcolor="#ffffff">{yun:}$Info.user_skill[all].longtime{/yun}年</td>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_skill[all].skill_n{/yun}</td>
+        <td colspan="3" bgcolor="#ffffff">{yun:}$Info.user_skill[all].ing_n{/yun}</td>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_skill[all].name{/yun}</td>
+    </tr>
+    {yun:}/section{/yun}
+    {yun:}/if{/yun}
+    {yun:}if is_array($Info.user_xm) && !empty($Info.user_xm){/yun}
+    <tr>
+    <td colspan="8" align="center" bgcolor="#EAF3FC"><b> 项目经验</b></td>
+    </tr>
+    {yun:}section name=all loop=$Info.user_xm{/yun}
+    <tr>
+        <td bgcolor="#EAF3FC">项目时间</td>
+        <td colspan="4" bgcolor="#ffffff">{yun:}$Info.user_xm[all].sdate|date_format:"%Y年%m月"{/yun} - {yun:}$Info.user_xm[all].edate|date_format:"%Y年%m月"{/yun}</td>
+        <td bgcolor="#EAF3FC">项目环境 </td>
+        <td colspan="2"  bgcolor="#ffffff">{yun:}$Info.user_xm[all].sys{/yun}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAF3FC">项目名称 </td>
+        <td colspan="4" bgcolor="#ffffff">{yun:}$Info.user_xm[all].name{/yun}</td>
+        <td bgcolor="#EAF3FC">担任职位 </td>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_xm[all].title{/yun}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAF3FC">项目内容 </td>
+        <td colspan="7" bgcolor="#ffffff">{yun:}$Info.user_xm[all].content{/yun}</td>
+    </tr>
+    {yun:}/section{/yun}
+    {yun:}/if{/yun}
+    {yun:}if is_array($Info.user_cert) && !empty($Info.user_cert){/yun}
+    <tr>
+    	<td colspan="8" align="center" bgcolor="#EAF3FC"><b> 证书</b></td>
+    </tr> 
+    {yun:}section name=all loop=$Info.user_cert{/yun}
+    <tr>
+        <td colspan="2" bgcolor="#EAF3FC">  颁发时间</td>
+        <td colspan="4" bgcolor="#EAF3FC">  颁发单位</td>
+        <td colspan="2" bgcolor="#EAF3FC"> 证书全称</td>
+    </tr>
+    <tr>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_cert[all].sdate|date_format:"%Y年%m月%d日"{/yun}</td>
+        <td colspan="4" bgcolor="#ffffff">{yun:}$Info.user_cert[all].title{/yun}</td>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_cert[all].name{/yun}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAF3FC">证书描述 </td>
+        <td colspan="7" bgcolor="#ffffff">{yun:}$Info.user_cert[all].content{/yun}</td>
+    </tr>
+    {yun:}/section{/yun}
+    {yun:}/if{/yun}
+    {yun:}if is_array($Info.user_tra) && !empty($Info.user_tra){/yun}
+    <tr>
+    	<td colspan="8" align="center" bgcolor="#EAF3FC"><b> 培训经历</b></td>
+    </tr> 
+    {yun:}section name=all loop=$Info.user_tra{/yun}
+    <tr>
+        <td colspan="2" bgcolor="#EAF3FC">  有效时间</td>
+        <td colspan="4" bgcolor="#EAF3FC">  颁发单位</td>
+        <td colspan="2" bgcolor="#EAF3FC"> 证书全称</td>
+    </tr>
+    <tr>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_tra[all].sdate|date_format:"%Y年%m月"{/yun} - {yun:}$Info.user_tra[all].edate|date_format:"%Y年%m月"{/yun}</td>
+        <td colspan="4" bgcolor="#ffffff">{yun:}$Info.user_tra[all].title{/yun}</td>
+        <td colspan="2" bgcolor="#ffffff">{yun:}$Info.user_tra[all].name{/yun}</td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAF3FC">培训描述 </td>
+        <td colspan="7" bgcolor="#ffffff">{yun:}$Info.user_tra[all].content{/yun}</td>
+    </tr>
+    {yun:}/section{/yun}
+    {yun:}/if{/yun}
+
+    {yun:}if is_array($Info.user_other) && !empty($Info.user_other){/yun}
+    <tr>
+    	<td colspan="8" align="center" bgcolor="#EAF3FC"><b> 其他信息</b></td>
+    </tr> 
+    {yun:}section name=all loop=$Info.user_other{/yun}
+    <tr>
+        <td  bgcolor="#EAF3FC">其他标题</td>
+        <td colspan="7" bgcolor="#ffffff">{yun:}$Info.user_other[all].title{/yun}</td>
+    </tr>
+    <tr>
+    	<td  bgcolor="#EAF3FC">其他描述</td>
+    	<td colspan="7" bgcolor="#ffffff">{yun:}$Info.user_other[all].content{/yun}</td>
+    </tr>
+    {yun:}/section{/yun}
+    {yun:}/if{/yun}
+    <tr>
+	    <td colspan="8" align="center"  bgcolor="#EAF3FC"><b>联系方式</b></td>
+    </tr>
+    <tr>
+        <td  bgcolor="#EAF3FC">手机</td>
+        <td colspan="7" bgcolor="#ffffff"><a href="{yun:}$config.sy_weburl{/yun}/index.php?m=resume&id={yun:}$Info.id{/yun}">登录后可以查看</a></td>
+    </tr>
+	{yun:}if $Info.basic_info=='1'{/yun}
+    <tr>
+        <td  bgcolor="#EAF3FC">座机
+        <td colspan="7" bgcolor="#ffffff"><a href="{yun:}$config.sy_weburl{/yun}/index.php?m=resume&id={yun:}$Info.id{/yun}">登录后可以查看</a></td>
+    </tr>
+	{yun:}/if{/yun}
+    <tr>
+        <td  bgcolor="#EAF3FC">电子邮件
+        <td colspan="7" bgcolor="#ffffff"><a href="{yun:}$config.sy_weburl{/yun}/index.php?m=resume&id={yun:}$Info.id{/yun}">登录后可以查看</a></td>
+    </tr>
+    {yun:}/if{/yun}
+</table>
+
+</body>
+</html>

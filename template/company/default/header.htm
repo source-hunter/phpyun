@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$com.name{/yun}-{yun:}$title{/yun}-{yun:}$config.sy_webname{/yun}-Powered by PHPYun.</title>
+<META name=keywords content="{yun:}$keywords{/yun}"> 
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$comstyle{/yun}images/css.css" type="text/css">
+</head>
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]--> 
+<script>
+var weburl="{yun:}$config.sy_weburl{/yun}";
+</script>
+<body>
+<div class="centent">
+  <div class="header">
+    <div class="logo">{yun:}$com.name{/yun}</div>
+       <div class="fh"><a href="{yun:}$config.sy_weburl{/yun}">返回{yun:}$config.sy_webname{/yun}首页</a></div>
+    <ul class="nav">
+      <li><a href="{yun:}curl dir=company url=id:`{yun:}$smarty.get.id{/yun}`{/yun}">首页</a></li>
+      <li><a href="{yun:}curl dir=company url=id:`{yun:}$smarty.get.id{/yun}`,tp:post{/yun}">招聘职位</a></li>
+      <li><a href="{yun:}curl dir=company url=id:`{yun:}$smarty.get.id{/yun}`,tp:show{/yun}">环境展示</a></li>
+      <li><a href="{yun:}curl dir=company url=id:`{yun:}$smarty.get.id{/yun}`,tp:position{/yun}">地理位置</a></li>
+      <li><a href="{yun:}curl dir=company url=id:`{yun:}$smarty.get.id{/yun}`,tp:intro{/yun}">公司简介</a></li>
+      <li><a href="{yun:}curl dir=company url=id:`{yun:}$smarty.get.id{/yun}`,tp:connection{/yun}">联系我们</a></li>
+    </ul>
+  </div> 

@@ -1,0 +1,40 @@
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<div class="clear"></div>
+<div class="about_content">
+<div class="about_left">
+<div class="about_left_h1"><span class="about_left_h1_span">帮助中心</span></div>
+{yun:}desc assign_name=descclass{/yun}
+{yun:}foreach item=descclass from=$descclass{/yun}
+<div class="about_left_list">
+<div class="about_left_tit"><span class="bout_left_tit_span">{yun:}$descclass.name{/yun}</span></div>
+<ul class="about_left_ul">
+{yun:}foreach item=desclit from=$descclass.list{/yun}
+<li {yun:}if $smarty.get.id==$desclit.id{/yun}class="about_left_ul_cur"{yun:}/if{/yun}><a 
+			{yun:}if $desclit.is_type==1{/yun}
+              href="{yun:}$config.sy_weburl{/yun}/{yun:}$desclit.url{/yun}"
+               {yun:}else{/yun}
+              href="{yun:}$desclit.url{/yun}"
+               {yun:}/if{/yun}
+ title="{yun:}$desclit.name{/yun}">{yun:}$desclit.name{/yun}</a></li>
+{yun:}/foreach{/yun}
+</ul>
+</div>
+{yun:}/foreach{/yun}
+
+
+</div>
+<div class="about_right">
+<div class="about_right_h1"><span class="about_right_span">{yun:}$name{/yun}</span>
+<em class="about_right_cur">当前位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > {yun:}$name{/yun}</em>
+</div>
+<div class="about_right_p">
+{yun:}$content{/yun}
+</div>
+</div>
+
+
+
+
+</div>

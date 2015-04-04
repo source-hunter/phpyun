@@ -1,0 +1,141 @@
+{yun:}include file="$askstyle/header.htm"{/yun}
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+ <script language="javascript">
+{yun:}if $no_login==""{/yun}
+KindEditor.ready(function(K) {
+	K.create('#content', {
+		themeType : 'default',
+		items : ['bold', 'italic', 'underline','removeformat', 'link']
+	});
+});
+{yun:}/if{/yun}
+function keyup(){
+	var name=$("#q_class").val();
+	$.post("index.php?m=question&c=get_q_class",{name:name},function(data){
+		$("#result_class").html(data);
+	});
+}
+function get_class(id){
+	var name=$("#"+id).html();
+	$("#q_class").val(name);
+	$("#class").val(id);
+	$("#result_class").html("");
+} 
+</script>
+
+<style>
+
+* {
+    margin: 0 ; ;
+    padding: 0;
+}
+</style>
+
+<div class="answers_content">
+<div class="answers_cont">
+
+
+<div class="answers_left">
+<div class="answers_subject" id="title_{yun:}$show.id{/yun}">{yun:}$show.title{/yun}</div>
+
+<div id="46" class="answers_left_list">
+
+	<div class="answers_subject_cont w590">
+		<div class="answers_left_list_name">
+			<b class="fl"><a href="{yun:}furl url=c:profile,id:`$show.uid`{/yun}">{yun:}$show.nickname{/yun}</a> <em>{yun:}$show.description{/yun}</em></b>
+			<span>{yun:}$show.add_time|date_format:"%Y-%m-%d %H:%M:%S"{/yun}</span>
+		</div>
+		<div class="clear"></div>
+		<div class="answers_subject_pp">{yun:}$show.content{/yun}	</div>
+	</div>
+
+	<div class="answers_left_list_right"   id='question_{yun:}$show.id{/yun}' > 
+		<img src="{yun:}$show.pic{/yun}" width="55" height="55" onmouseover="get_user_info('question_','{yun:}$show.id{/yun}','{yun:}$show.uid{/yun}');" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);" onmouseout="hide_user_info('question_','{yun:}$show.id{/yun}')" style=" cursor:pointer"> 
+		{yun:}if $show.is_atn!='2'{/yun}
+			{yun:}if $show.is_atn=='1'{/yun}
+				<a href="javascript:void(0)"  onclick="attention_user('{yun:}$show.uid{/yun}')" class="zg-btn-unfollow"  name="atn_{yun:}$show.uid{/yun}">取消关注</a>
+			{yun:}else{/yun}
+				<a href="javascript:void(0)"  onclick="attention_user('{yun:}$show.uid{/yun}')" class='zg-btn-green'  name="atn_{yun:}$show.uid{/yun}">关注</a>
+			{yun:}/if{/yun}
+		{yun:}/if{/yun}
+	</div>
+</div>
+	<div class="answers_subject_cont_cz">
+		<div class="answers_feed-meta">
+			{yun:}if $show.is_atn!='2'{/yun}
+				{yun:}if $show.ask_is_atn=='1'{/yun}
+					已关注
+				{yun:}else{/yun}
+					<a href="javascript:void(0)" class="answers_feed-meta_gz" onclick="attention('{yun:}$show.id{/yun}','1');">关注问题</a>
+				{yun:}/if{/yun} 
+			{yun:}/if{/yun}
+			<a href="javascript:void(0);" class="answers_feed-meta_ll"> ({yun:}$show.visit{/yun})次浏览 </a>
+			<a href="javascript:void(0);" onclick="forward_sinaweibo('{yun:}$show.id{/yun}')" class="answers_feed-meta_xl">新浪微博</a>
+			<a href="javascript:void(0);" onclick="forward_tencentweibo('{yun:}$show.id{/yun}')" class="answers_feed-meta_tx">腾讯微博</a>
+			{yun:}if $show.is_atn!='2'{/yun}
+			<a href="javascript:void(0)" class="answers_feed-meta_jb"  onclick="get_show('{yun:}$show.id{/yun}','1');">举报</a>
+			{yun:}/if{/yun}
+		</div>
+
+	</div>
+<div class="answers_subject_cont_question"><strong>{yun:}$show.answer_num{/yun}个回答 </strong></div>
+<div class="clear"></div>
+{yun:}foreach from=$answer item=a_list key=key{/yun}
+<div class="answers_left_list" id="{yun:}$a_list.id{/yun}">
+
+	<div class="answers_left_list_cont" style="width:530px;">
+		<div class="answers_left_list_name"><b class="fl"><a href="{yun:}furl url=c:profile,id:`$a_list.uid`{/yun}">{yun:}$a_list.nickname{/yun}</a> <em>{yun:}$a_list.description{/yun}</em></b><span>{yun:}$a_list.add_time|date_format:"%Y-%m-%d %H:%M:%S"{/yun}</span> </div>
+        <div class="clear"></div>
+		<div class="answers_left_list_answer">{yun:}$a_list.content{/yun}</div>
+		<div class="answers_feed-meta"> 
+			<a href="javascript:void(0)" class="answers_feed-meta_pl" onclick="get_comment('{yun:}$a_list.id{/yun}','{yun:}$show.id{/yun}','0','{yun:}$a_list.comment{/yun}');">（<span id="com_num_{yun:}$a_list.id{/yun}">{yun:}$a_list.comment{/yun}</span>）条评论</a> 
+			{yun:}if $a_list.is_atn!='2'{/yun}
+			<a href="javascript:void(0)" class="answers_feed-meta_jb" onclick="get_show('{yun:}$a_list.id{/yun}','2');">举报</a>
+            <a href="javascript:void(0);" class="answers_feed-meta_zan" onclick="support('{yun:}$a_list.id{/yun}')" >（<span id="support_num_{yun:}$a_list.id{/yun}">{yun:}$a_list.support{/yun}</span>）赞</a>
+			{yun:}/if{/yun}
+		</div>
+		<div class="answers_discuss" style="display:none" id="div_{yun:}$a_list.id{/yun}">
+			<div class="answers_discuss_cont" id="review_{yun:}$a_list.id{/yun}">
+			</div>
+		</div>
+	</div>
+	<div class="answers_left_list_right"   id='answer_{yun:}$a_list.id{/yun}' > 
+		<img src="{yun:}$a_list.pic{/yun}" width="55" height="55" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);" onmouseover="get_user_info('answer_','{yun:}$a_list.id{/yun}','{yun:}$a_list.uid{/yun}');" onmouseout="hide_user_info('answer_','{yun:}$a_list.id{/yun}')" style="cursor:pointer"> 
+		{yun:}if $a_list.is_atn!='2'{/yun}
+			{yun:}if $a_list.is_atn=='1'{/yun}
+				<a href="javascript:void(0)"  onclick="attention_user('{yun:}$a_list.uid{/yun}')" class="zg-btn-unfollow"  name="atn_{yun:}$a_list.uid{/yun}">取消关注</a>
+			{yun:}else{/yun}
+				<a href="javascript:void(0)"  onclick="attention_user('{yun:}$a_list.uid{/yun}')" class='zg-btn-green'  name="atn_{yun:}$a_list.uid{/yun}">关注</a>
+			{yun:}/if{/yun}
+		{yun:}/if{/yun}
+	</div>
+</div>
+{yun:}/foreach{/yun}
+		{yun:}if $no_login==''{/yun}
+		<div class="answers_subject_cont_question">{yun:}if $show.uid==$uid{/yun}追加问题{yun:}else{/yun}我要回答{yun:}/if{/yun}</div>
+		<div class="answers_Comment">
+			<div class="answers_Comment_cont">
+				<div class="my_discuss">
+					<iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+					<form name="myform"  target="supportiframe"  action="{yun:}aurl url=c:answer,id:`$show.id`{/yun}" method="post"    onSubmit="return checkform('2');">
+						<textarea  id="content" name="content" cols="100" rows="8" class="goog-textarea" ></textarea>
+                        <div class="clear"></div>
+						<input class="my_discuss_aubmit"  type="submit" name="add" value="&nbsp;回答&nbsp;"  />
+					</form>
+				</div>
+			</div>
+		</div>
+		{yun:}/if{/yun}
+    </div>
+<div class="answers_right">
+ {yun:}include file="$askstyle/right.htm"{/yun}
+</div>
+
+</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$askstyle/footer.htm"{/yun}
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>提示信息 - {yun:}$config.sy_webname{/yun} - Powered by PHPYun.</title>
+<META content="{yun:}$job_arr_msg{/yun}" name=Keywords>
+<META content="{yun:}$job_arr_msg{/yun}" name=Description>
+<link href="{yun:}$config.sy_weburl{/yun}/template/member/style/msg.css" rel="stylesheet" type="text/css"/>
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+ <SCRIPT>
+function TimeOut(){
+	{yun:}if $job_arr_url=='1'{/yun} 
+		layer.msg('{yun:}$job_arr_msg{/yun}', {yun:}$job_arr_tm{/yun},{yun:}$job_arr_st{/yun},function(){location.href = '{yun:}$config.sy_weburl{/yun}'});
+	{yun:}else{/yun}
+		layer.msg('{yun:}$job_arr_msg{/yun}', {yun:}$job_arr_tm{/yun},{yun:}$job_arr_st{/yun},function(){location.href = '{yun:}$job_arr_url{/yun}';});
+	{yun:}/if{/yun} 
+} 
+</SCRIPT>
+</head>
+<body onLoad="TimeOut()"> 
+</body>
+</html>

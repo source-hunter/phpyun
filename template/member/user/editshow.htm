@@ -1,0 +1,69 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$userstyle/left.htm"{/yun}
+    <div class="mian_right fltR mt12 re">
+    <div class="tabmenubox01 mt9">
+      <ul>
+        <li class="cur"> <a href="index.php?c=resume">我的简历</a></li>
+        <li> <a href="index.php?c=look">简历被浏览</a></li>
+        <li> <a href="index.php?c=privacy">隐私设置</a></li>
+        <li> <a href="index.php?c=subscribe">订阅设置</a></li>
+      </ul>
+    </div>
+     <link href="{yun:}$userstyle{/yun}/images/css/uploadify.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/jquery.uploadify-3.1.min.js"></script>
+    <div class='right_box'>
+      <div class='admincont_box'>
+     
+        
+  
+          <div class="index_photo_new fltL mt10">
+              <ul class="file_button_edit">
+			  <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+			   <form name="myform" method="post" target="supportiframe"  action="index.php?c=show&act=upshow" enctype="multipart/form-data" onsubmit="return checkshow();">
+             	  <input type="hidden" name="eid" value="{yun:}$smarty.get.eid{/yun}"/>
+                  <input type="hidden" name="id" value="{yun:}$id{/yun}"/>
+                  <input type="hidden" name="uid" value="{yun:}$uid{/yun}"/>
+				  <input type="hidden" name="picurl" value="{yun:}$picurl.picurl{/yun}"/>
+                <li class="file_button_edit_img">
+                  <div class=textbox> <img src=".{yun:}$picurl.picurl{/yun}" width="220" height="180"> </div>
+                </li>
+                  <li>
+                    <div class=tit>环境图片：</div>
+                    <div class=textbox>
+                      <input class="file_button_edit_input"  name="uplocadpic" type="file"  value="" size="50" class="inputbtn011"/>
+                      <em style=" margin-left:10px; float:left;">最佳尺寸：155*110</em> </div>
+                  </li>
+                  <li>
+                    <div class=tit>标&nbsp;&nbsp;&nbsp;&nbsp;题：</div>
+                    <div class=textbox>
+                      <input class="file_button_edit_input" type="text" name="title" size="15" value="{yun:}$picurl.title{/yun}"/>
+                    </div>
+                  </li>
+                  <li>
+                    <div class=tit>排&nbsp;&nbsp;&nbsp;&nbsp;序：</div>
+                    <div class=textbox>
+                      <input class="file_button_edit_input" type="text" name="showsort" size="15" value="{yun:}$picurl.sort{/yun}" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"/>
+                      <em style=" margin-left:10px;">数值越大越靠前</em> </div>
+                  </li>
+                  <li><div class="sub_btn">
+                    <input class="btn_01"  type="submit" name="submitbtn" value="更新信息">
+                  </div></li>
+                </form>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+</div>
+<script language="javascript">
+function checkshow(){
+	var title=$.trim($("input[name=title]").val());
+	if(title==''){
+	   layer.msg('标题不能为空！', 2, 8); return false;
+	}		
+}
+</script>
+{yun:}include file="$userstyle/footer.htm"{/yun}

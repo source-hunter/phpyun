@@ -1,0 +1,49 @@
+{yun:}include file="$wapstyle/member/cheader.htm"{/yun} 
+<section class="wap_member">
+<div class="wap_member_comp_h1"><span>谁看过我</span></div>
+<div class="wap_member_Receive">
+{yun:}foreach item=v from=$rows{/yun}
+<div class="wap_member_Receive_list">
+			  <span class="job_news_list_span job_w30"><input type='checkbox' name="delid[]" value="{yun:}$v.id{/yun}" style="border:0px;"></span>
+			  <span class="job_news_list_span job_w160">{yun:}$v.jobname{/yun}</span>
+			  <span class="job_news_list_span job_w90"><a href="{yun:}wapurl m=resume url=uid:`$v.uid`{/yun}" target="_blank">&nbsp;{yun:}$v.name{/yun}</a></span>
+			  <span class="job_news_list_span job_w50">&nbsp;{yun:}$v.edu{/yun}</span>
+				<span class="job_news_list_span job_w80">&nbsp;{yun:}$v.exp{/yun}</span>
+			  <span class="job_news_list_span job_w100" style="width:160px;">{yun:}$v.datetime|date_format:'%Y-%m-%d %H:%M'{/yun}</span>
+			  <span class="job_news_list_span job_w155">
+                {yun:}if $v.userid_msg==1{/yun}
+                <font color="red">已邀请</font>
+                {yun:}else{/yun}
+                  <a href="javascript:;" uid="{yun:}$v.uid{/yun}" username="{yun:}$v.name{/yun}" class="sq_resume" style="position:relative; "> 邀请面试</a>
+                  {yun:}/if{/yun} 
+                  &nbsp;|&nbsp;<a href="javascript:void(0)" onclick="isdel( '{yun:}$config_wapdomain{/yun}/member/index.php?c=look_job_del&id={yun:}$v.id{/yun}')">删除</a></span>
+
+</div>
+
+{yun:}foreachelse{/yun}
+<div class="wap_member_no">您暂时还没有被浏览的职位</div>
+{yun:}/foreach{/yun}
+
+
+ <script language="javascript" type="text/javascript">
+function talent_pool(uid,eid)
+{
+	$.post(weburl+"/index.php?m=ajax&c=talent_pool",{eid:eid,uid:uid},function(data){
+		if(data=='0'){
+			layermsg('只有企业用户，才可以操作！');
+		}else if(data=='1'){
+			layermsg('加入成功！');
+		}else if(data=='2'){
+			layermsg('该简历已加入到人才库！');
+		}else{
+			layermsg('对不起，操作出错！');
+		}
+	});
+}
+
+
+</div>
+<!--没有职位提示-->
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

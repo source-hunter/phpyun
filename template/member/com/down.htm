@@ -1,0 +1,132 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <link href="{yun:}$comstyle{/yun}/images/index_style.css" type=text/css rel=stylesheet>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">已下载的简历</span>
+          <form action="index.php" method="get" />
+          
+          <div class="news_search">
+            <input name="c" type="hidden" value="down">
+            <input name="keyword" type="text"class="news_text" value="请输入简历关键字" onblur="if(this.value==''){this.value='请输入简历关键字'}" onclick="if(this.value=='请输入简历关键字'){this.value=''}">
+            <input name="" type="submit" class="news_bth" value=" ">
+          </div>
+          </form>
+        </div>
+        <div class="job_re_ts">您已下载 <span class="re_cor blod">{yun:}$total{/yun}</span> 份简历</div>
+        <div class=admin_textbox_04>
+          <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+          <form action="{yun:}$now_url{/yun}&act=del"target="supportiframe" method="post" id='myform'>
+            <div class=table>
+              <div id="job_checkbokid" >
+                <div class="job_news_list job_news_list_h1"> <span class="job_news_list_span job_w30">&nbsp;</span> <span class="job_news_list_span job_w160">求职意向</span> <span class="job_news_list_span job_w90">姓名</span> <span class="job_news_list_span job_w50">性别</span> <span class="job_news_list_span job_w50">学历</span> <span class="job_news_list_span job_w100">下载时间</span> <span class="job_news_list_span job_w100">查看简历</span> <span class="job_news_list_span job_w155">操作</span> </div>
+                {yun:}if !empty($rows){/yun}
+                {yun:}foreach  from=$rows  item=v{/yun}
+                <div class="job_news_list"> <span class="job_news_list_span job_w30">
+                  <input type="checkbox" name="delid[]" value="{yun:}$v.id{/yun}">
+                  </span> <span class="job_news_list_span job_w160">{yun:}$v.jobname{/yun}</span> <span class="job_news_list_span job_w90">{yun:}$v.name{/yun}&nbsp;</span> <span class="job_news_list_span job_w50">{yun:}$v.sex{/yun}&nbsp;</span> <span class="job_news_list_span job_w50">{yun:}$v.edu{/yun}&nbsp;</span> <span class="job_news_list_span job_w100">{yun:}$v.downtime|date_format:'%Y-%m-%d'{/yun}</span> <span class="job_news_list_span job_w100"><a href="{yun:}url m=resume url=id:`$v.eid`{/yun}" target=_blank>查看简历</a></span> <span class="job_news_list_span job_w155"><a href="javascript:void(0)" onclick="layer_del('确定要删除？','{yun:}$now_url{/yun}&act=del&id={yun:}$v.id{/yun}')">删除</a>&nbsp;|&nbsp;
+                  {yun:}if $v.userid_msg==1{/yun} <font color="red">已邀请</font> {yun:}else{/yun} <a href="javascript:;" uid="{yun:}$v.uid{/yun}" username="{yun:}$v.name{/yun}" id="b" class="sq_resume" style="position:relative; "> 邀请面试</a> {yun:}/if{/yun} 
+                  {yun:}if $report==1{/yun}|&nbsp;<a href="javascript:;" r_uid="{yun:}$v.uid{/yun}" eid="{yun:}$v.eid{/yun}" r_name="{yun:}$v.name{/yun}" id="r"  class="status" >举报</a>{yun:}/if{/yun}</span> </div>
+                {yun:}/foreach{/yun}
+                <div>
+                  <div class="fltL"> <span class="fltL job_new_de">
+                    <input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'>
+                    全选</span>
+                    <INPUT class="job_new_tj" type="button" name="subdel" value="批量删除" onclick="return really('delid[]');">
+                  </div>
+                  <div class="diggg">{yun:}$pagenav{/yun}</div>
+                </div>
+                {yun:}elseif $smarty.get.keyword!="" {/yun}
+                <div class="msg_no">没有搜索下载记录。 </div>
+                {yun:}else{/yun}
+                <div class="msg_no">您还没有下载记录。 </div>
+                {yun:}/if{/yun} </div>
+            </div>
+            <div> </div>
+          </form>
+          <div class="clear"></div>
+          <div class="infoboxp22" id="infobox" style="display:none; ">
+            <div>
+              <form action="index.php?c=down&act=report" method="post" id="formstatus" target="supportiframe">
+                <input name="r_uid" value="0" type="hidden">
+                <input name="eid" value="0" type="hidden">
+                <input name="r_name" value="0" type="hidden">
+                <div class="jb_infobox" style="width: 100%;">
+                  <textarea id="alertcontent"style="width:310px;margin:5px" name="r_reason" cols="30" rows="9" class="hr_textarea"></textarea>
+                </div>
+                <div class="jb_infobox" style="width: 100%;">
+                  <button type="submit"   name='submit' value='1' class="submit_btn" style="margin-left:80px;">确认</button>
+                  &nbsp;&nbsp;
+                  <button type="button" id='zxxCancelBtn'  class="cancel_btn">取消</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script> 
+$(document).ready(function(){ 
+	$('#zxxCancelBtn').click(function(){
+		layer.closeAll();
+	});
+	$(".status").click(function(){
+		$("input[name=eid]").val($(this).attr("eid"));
+		$("input[name=r_uid]").val($(this).attr("r_uid"));
+		$("input[name=r_name]").val($(this).attr("r_name")); 
+		$.layer({
+			type : 1,
+			title :'举报',
+			offset: [($(window).height() - 160)/2 + 'px', ''],
+			closeBtn : [0 , true],
+			border : [10 , 0.3 , '#000', true],
+			area : ['320px','160px'],
+			page : {dom :"#infobox"}
+		});
+	}); 
+}); 
+</script>
+<div id='job_box' style="display:none;float:left">
+  <div class="city_1">
+    <dl class="city_3">
+      <dt> <span class="city_01">面试职位：</span>
+        <select id='jobname'>
+        </select>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">联系人：</span>
+        <input size='5'  id='linkman' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">联系电话：</span>
+        <input size='10'  id='linktel' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">面试时间：</span>
+        <input size='34' id='intertime' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3">
+      <dt> <span class="city_01">面试地址：</span>
+        <input size='34' id='address' value=''>
+      </dt>
+    </dl>
+    <dl class="city_3"  >
+      <dt><span class="city_01">面试备注：</span>
+        <textarea id="content" cols="40" rows="5" class="resyme_text"></textarea>
+    </dl>
+    <dl class="city_3" id="resume_job" style="height:40px;">
+      <dt><span class="city_01">&nbsp;</span>
+        <input type="hidden" id="uid" value="">
+        <input type="hidden" id="username" value="">
+        <input class="resume_sub_yq" id="click_invite" type="button" value="邀请面试"  >
+    </dl>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

@@ -1,0 +1,28 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="post_content">
+<div class="post_title">
+<h3>{yun:}$row.title{/yun}</h3>
+<aside>{yun:}$row.companyname{/yun}</aside>
+<i> {yun:}$row.ctime{/yun}</i>
+</div>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>》职位描述</span></header>
+  <ul class="com_post_msg">
+  <li>[招聘人数] {yun:}$row.mans{/yun}</li>
+  <li>[联 系 人] {yun:}$row.linkman{/yun}</li>
+  <li>[联系电话] {yun:}if $config.com_fast_status=='1'  && !$smarty.cookies.uid{/yun}
+  <a href='{yun:}wapurl m=login{/yun}'><font color='red'>登录后查看联系电话</font></a>
+  {yun:}else{/yun}
+  {yun:}$row.phone{/yun}
+  
+  {yun:}/if{/yun}</li>
+  <li>[联系地址] {yun:}$row.address{/yun}</li>
+  <li>[具体要求] {yun:}$row.require{/yun}</li>
+  </ul>
+  <header  class="index_post_h2"><span>》信息管理</span></header>
+<!--  href="{yun:}wapurl url=m:once,c:add,id:`$row.id`{/yun}"-->
+ <a onclick="checkshowjob('once');$('#onceid').val('{yun:}$row.id{/yun}');$('#once_password').val('')" class="tiny_cz">管理</a>  
+ <div class="tiny_tag">只有发布者本人才可以操作</div>
+</section>
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

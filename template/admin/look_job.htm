@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"> <div class="infoboxp_top_bg"></div>
+  <div class="admin_Filter">
+    <span class="complay_top_span fl">职位浏览记录</span>	
+      <form action="index.php" name="myform" method="get">
+        <input name="m" value="look_job" type="hidden"/>
+        <span class="admin_Filter_span">检索类型：</span>  
+		<div class="admin_Filter_text formselect"  did='dtype'>
+		  <input type="button" value="{yun:}if $smarty.get.type=='1'||$smarty.get.type==''{/yun}个人用户{yun:}elseif $smarty.get.type=='2'{/yun}职位名称{yun:}elseif $smarty.get.type=='3'{/yun}公司名称{yun:}/if{/yun}" class="admin_Filter_but"  id="btype">
+		  <input type="hidden" id='type' value="{yun:}if $smarty.get.type{/yun}{yun:}$smarty.get.type{/yun}{yun:}else{/yun}1{yun:}/if{/yun}" name='type'>
+		  <div class="admin_Filter_text_box" style="display:none" id='dtype'>
+			  <ul>
+			  <li><a href="javascript:void(0)" onClick="formselect('1','type','个人用户')">个人用户</a></li>
+			  <li><a href="javascript:void(0)" onClick="formselect('2','type','职位名称')">职位名称</a></li> 
+			  <li><a href="javascript:void(0)" onClick="formselect('3','type','公司名称')">公司名称</a></li>  
+			  </ul>  
+		  </div>
+		</div>
+        <input class="admin_Filter_search" type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}" size="25"/>
+        <input class="admin_Filter_bth" type="submit" name="search" value="检索"/>
+						        <span class='admin_search_div'>
+        <div class="admin_adv_search">
+          <div class="admin_adv_search_bth">高级搜索</div>
+        </div> 
+        </span> 
+       </form> 
+  </div>
+ {yun:}include file="admin/admin_search.htm"{/yun} 
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php" name="myform" id="myform" method="get" target="supportiframe">
+        <input name="m" value="look_job" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th style="width:20px;"><label for="chkall">
+                  <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+              <th>
+			  {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+			  <a href="{yun:}seacrh_url order=desc t=id m=look_job untype=order,t{/yun}">编号<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="{yun:}seacrh_url order=asc t=id m=look_job untype=order,t{/yun}">编号<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th align="center">个人用户</th>
+              <th align="center">职位名称</th>
+              <th align="center">公司名称</th>
+              <th>
+			   {yun:}if $smarty.get.t=="datetime" && $smarty.get.order=="asc"{/yun}
+			  <a href="{yun:}seacrh_url order=desc t=datetime m=look_job untype=order,t{/yun}">浏览时间<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="{yun:}seacrh_url order=asc t=datetime m=look_job untype=order,t{/yun}">浏览时间<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+          {yun:}foreach item=v key=key from=$list{/yun}
+          <tr align="center"{yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun} id="list{yun:}$v.id{/yun}">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+            <td align="left"><a href="{yun:}url m=resume url=uid:`$v.uid`{/yun}" target="_blank">{yun:}$v.username{/yun}</a></td>
+            <td align="left"><a href="{yun:}url m=com url=c:comapply,id:`$v.jobid`{/yun}" target="_blank">{yun:}$v.job_name{/yun}</a></td>
+            <td align="left"><a href="{yun:}curl url=id:`$v.com_id`{/yun}" target="_blank">{yun:}$v.com_name{/yun}</a></td>
+            <td>{yun:}$v.datetime|date_format:"%Y-%m-%d %H:%M"{/yun}</td>
+            <td><a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=look_job&c=del&del={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</a></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td align="center"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></td>
+            <td colspan="2" >
+            <label for="chkAll2">全选</label>&nbsp;
+            <input class="admin_submit4" type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+            <td colspan="4" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+          
+        </table>
+		<input type="hidden" name="pytoken" id="pytoken" value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<script charset="utf-8" src="../data/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../data/kindeditor/lang/zh_CN.js"></script>
+<link rel="stylesheet" href="../data/kindeditor/themes/default/default.css" />
+<script>
+KindEditor.ready(function(K) {
+	var uploadbutton = K.uploadbutton({
+		button : K('#insertfile')[0],
+		fieldName : 'imgFile',
+		url : '../data/kindeditor/php/upload_json.php?dir=file',
+		afterUpload : function(data) {
+			if (data.error === 0) {
+				K('#url').val(data.url);
+				K('#span_url').html(data.url);
+			} else {
+				parent.layer.msg(data.message);
+			}
+		},
+		afterError : function(str) {
+			parent.layer.msg(str,2,8);
+		}
+	});
+	uploadbutton.fileBox.change(function(e) {
+		uploadbutton.submit();
+	});
+});
+function cksubmit(){
+	var url=$.trim($("#url").val());
+	if(url==''){parent.layer.msg("请上传文档！",2,8);return false;}	
+}
+</script>
+<div class="w950">
+	{yun:}include file="$userstyle/left.htm"{/yun}
+	<div class="mian_right fltR mt12 re">
+    <div class="tabmenubox01 mt9">
+      <ul>
+        <li class="cur"> <a href="index.php?c=resume">我的简历</a></li>
+        <li> <a href="index.php?c=look">简历被浏览</a></li>
+        <li> <a href="index.php?c=privacy">隐私设置</a></li>
+        <li> <a href="index.php?c=subscribe">订阅设置</a></li>
+      </ul>    
+    </div>
+     <link href="{yun:}$userstyle{/yun}/images/m_style.css" rel="stylesheet" type="text/css" />   
+    <div class="right_box" style="float:left; margin-left:20px; _margin-left:10px;">
+      <div class="admincont_box">
+        <div class="admin_tit"><span class="admin_tit_bg">作品展示</span><span class="remind"></span></div>
+        <div class="admin_note">
+       <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+        <form action="index.php?c=resume&act=upload" method="post" onSubmit="return cksubmit();" enctype="multipart/form-data" target="supportiframe">
+	    <input class="input-text" name="url" type="hidden" value="{yun:}$row.url{/yun}" id='url'/> 
+        <span id="span_url" style="color:#444">{yun:}$row.url{/yun}</span>
+        上传文件：<input type="button" id="insertfile" value="选择文档" /> 
+        <br />
+        <input class="btn_02 mt10 fltL btn_02_ie" type="submit" name="submit" value=" 提 交 " />
+		<input type="hidden" name="id" value="{yun:}$id{/yun}"/>
+        <input type="hidden" name="pytoken" id="pytoken" value="{yun:}$pytoken{/yun}">
+        </form>
+        <div class="clear"></div>
+        <div  class='photos-every-edit'>
+          <ul id='albums_pic_list'></ul>
+        </div>
+      </div>     
+    </div>  
+  </div>
+</div>
+</div>
+
+{yun:}include file="$userstyle/footer.htm"{/yun}

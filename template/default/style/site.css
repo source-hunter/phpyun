@@ -1,0 +1,50 @@
+@charset "gb2312";
+/* CSS Document */
+.site_h1 {
+	width:100%;
+	height:40px;
+	line-height:40px;
+	float:left;
+	margin-top:10px;
+	text-indent:20px;
+}
+.site_list {
+	width:978px;
+	border:1px solid #ccc;
+	background:#fff;
+	margin-top:10px;
+	float:left;
+	margin-bottom:10px;
+}
+.site_list dl {
+	width:948px;
+	margin-left:15px;
+	float:left;
+	border-bottom: 1px dotted #DDDDDD;
+	padding:10px 0
+}
+.site_list dl dt {
+	border: 1px solid #DDDDDD;
+	float: left;
+	font-size: 18px;
+	line-height: 30px;
+	text-align: center;
+	width: 60px;
+}
+.site_list dl dd {
+	float: left;
+	height: auto;
+	line-height: 20px;
+	margin: 0;
+	overflow: hidden;
+	padding-left: 25px;
+	padding-top: 5px;
+	text-align: left;
+	width: 800px;
+}
+.site_list dl dd a {
+	color: #666666;
+	font-size: 12px;
+	margin-right: 15px;
+	text-decoration: none;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp"> 
+<div class="infoboxp_top_bg"></div>
+  <div class="admin_Filter"> 
+	<span class="complay_top_span fl">短信记录</span>	
+      <form action="index.php" name="myform" method="get" style="float:left">
+        <span class="company_m6" style="float:left; margin-left:10px;">
+        <input name="m" value="mobliemsg" type="hidden"/>
+		<input type="hidden" name="state" value="{yun:}$smarty.get.state{/yun}"/>
+        <span class="admin_Filter_span"> 检索类型：</span> 
+		  <div class="admin_Filter_text formselect" did="dtype"> 
+			<input type="button" {yun:}if $smarty.get.type==''||$smarty.get.type=='1'{/yun} value="手机号" {yun:}elseif $smarty.get.type=='2'{/yun} value="发送人" {yun:}elseif $smarty.get.type=='3'{/yun} value="接收人"{yun:}/if{/yun} class="admin_Filter_but" id="btype">
+				<input type="hidden" name="type" id="type" {yun:}if $smarty.get.type==''{/yun} value="手机号"{yun:}else{/yun}value="{yun:}$smarty.get.type{/yun}"{yun:}/if{/yun}/>
+				 <div class="admin_Filter_text_box" style="display:none" id="dtype">
+					  <ul> 
+					  <li><a href="javascript:void(0)" onClick="formselect('1','type','手机号')">手机号</a></li>
+					  <li><a href="javascript:void(0)" onClick="formselect('2','type','发送人')">发送人</a></li>	
+					  <li><a href="javascript:void(0)" onClick="formselect('3','type','接收人')">接收人</a></li>	 			  
+					  </ul>  
+				  </div>
+			</div>	 
+        <input class="company_job_text" type="text" name="keyword"  size="25" style="float:left">
+        <input class="admin_Filter_bth" type="submit" name="news_search" value="检索"/>
+		<span class='admin_search_div'>
+		  <div class="admin_adv_search"><div class="admin_adv_search_bth">高级选项</div></div>   
+		</span>
+		</span>  
+      </form> 
+  </div>
+ {yun:}include file="admin/admin_search.htm"{/yun} 
+
+
+
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php?m=mobliemsg&c=del" target="supportiframe" name="myform" method="post" id='myform'>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th><label for="chkall">
+                <input type="checkbox" id='chkAll' onclick='CheckAll(this.form)'/>
+                </label></th>
+              <th align="left"> {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun} <a href="{yun:}seacrh_url order=desc t=id m=mobliemsg untype=order,t{/yun}">编号<img src="images/sanj.jpg"/></a> {yun:}else{/yun} <a href="{yun:}seacrh_url order=asc t=id m=mobliemsg untype=order,t{/yun}">编号<img src="images/sanj2.jpg"/></a> {yun:}/if{/yun} </th>
+              <th align="left">手机号</th>
+              <th align="left">发送人</th>
+              <th align="left">接收人</th>
+              <th align="left" width="400">内容</th>
+              <th> {yun:}if $smarty.get.t=="ctime" && $smarty.get.order=="asc"{/yun} <a href="{yun:}seacrh_url order=desc t=ctime m=mobliemsg untype=order,t{/yun}">时间<img src="images/sanj.jpg"/></a> {yun:}else{/yun} <a href="{yun:}seacrh_url order=asc t=ctime m=mobliemsg untype=order,t{/yun}">时间<img src="images/sanj2.jpg"/></a> {yun:}/if{/yun} </th>
+              <th>状态</th>
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+          {yun:}foreach item=v key=key from=$rows{/yun}
+          <tr align="center"{yun:}if ($key+1)%2=='0'{/yun}class="admin_com_td_bg"{yun:}/if{/yun} id="list{yun:}$v.id{/yun}">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+            <td align="left">{yun:}$v.moblie{/yun}</td>
+            <td align="left">{yun:}if $v.cname{/yun}{yun:}$v.cname{/yun}{yun:}else{/yun}系统{yun:}/if{/yun}</td>
+            <td align="left">{yun:}$v.name{/yun}</td>
+            <td align="left" width="400">{yun:}$v.content{/yun}</td>
+            <td>{yun:}$v.ctime|date_format:"%Y-%m-%d"{/yun}</td>
+            <td>{yun:}if $v.state==1{/yun}<font color="green">成功</font>{yun:}else{/yun}<font color="red">失败</font>{yun:}/if{/yun}</td>
+            <td><a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=mobliemsg&c=del&id={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</a></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+          <td align="center"><input type="checkbox" id='chkAll2' onclick='CheckAll2(this.form)' /></td>
+          <td colspan="2" >
+          <label for="chkAll2">全选</label>&nbsp;
+            <input class="admin_submit4"  type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+            <td colspan="6" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+          </tbody>
+          
+        </table>
+        <input type="hidden" name="pytoken"  id='pytoken'  value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

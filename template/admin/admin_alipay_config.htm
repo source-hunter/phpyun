@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<script>
+$(document).ready(function(){
+	$(".input-text").focus(function(){ 
+		var msg_id=$(this).attr('id');
+		var msg=$('#'+msg_id+' + font').html(); 
+		if($.trim(msg)!=''){
+			layer.tips(msg, this, {
+			guide: 1, 
+			style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F'], 
+			}); 
+		} 
+	}).blur(function () {
+		layer.closeTips();
+	});
+});
+</script>
+<body class="body_ifm">
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position: absolute;"></div>
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+<div class="infoboxp_top">
+<h6>支付宝设置</h6>
+	<div class="infoboxp_right">
+    	<a href="index.php?m=payconfig" class="infoboxp_tj">支付设置</a>
+    </div>
+</div>
+<div class="main_tag">
+	<div class="tag_box">
+	<div>
+<div id="right" style="display:block">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+	<form method="post" target="supportiframe" action="" name="config">
+    <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+	<div id="paysync">
+	<table id="alipay" width="100%" class="table_form">
+		<tr >
+			<th width="200">合作身份者ID:</th>
+			<td><input class="input-text" type="text" name="sy_alipayid" id="sy_alipayid" value="{yun:}$alipaydata.sy_alipayid{/yun}" size="40" maxlength="255"/> <font color="gray" style="display:none">如：208800200994****</font></td>
+		</tr>
+		<tr class="admin_table_trbg">
+			<th width="200">安全检验码:</th>
+			<td><input class="input-text" type="text" name="sy_alipaycode" id="sy_alipaycode" value="{yun:}$alipaydata.sy_alipaycode{/yun}" size="45" maxlength="255"/><font color="gray"  style="display:none">如：7zzqkb09qu7zoo9ehny7j4sdfj22qqcf</font></td>
+		</tr>
+		<tr >
+			<th width="200">签约支付宝账号或卖家支付宝帐户:</th>
+			<td><input class="input-text" type="text" name="sy_alipayemail" id="sy_alipayemail" value="{yun:}$alipaydata.sy_alipayemail{/yun}" size="40" maxlength="255"/></td>
+		</tr>
+        <tr class="admin_table_trbg">
+			<th width="200">选择接口类型:</th>
+			<td><select name="alipaytype" >
+            <option value="1">即时到账交易</option>
+            <option value="2"  {yun:}if $config.alipaytype=='2'{/yun}selected{yun:}/if{/yun}>标准双接口</option> 
+            </select><font color="gray"  style="display:none">请选择您最后一次跟支付宝签订的协议里面说明的接口类型</font></td>
+		</tr>
+		<tr >
+			<th width="200">收款方名称:</th>
+			<td><input class="input-text" type="text" name="sy_alipayname" id="sy_alipayname" value="{yun:}$alipaydata.sy_alipayname{/yun}" size="40" maxlength="255"/> <font color="gray" style="display:none">如：公司名称、网站名称、收款人姓名等</font> </td>
+		</tr>
+	</table>
+	
+	</div>
+	<table width="100%" class="table_form">
+		<tr class="admin_table_trbg">
+			<td align="center" colspan="2"><input class="admin_submit4" id="pay_config" type="submit" name="pay_config" value="&nbsp; 修 改 &nbsp;"  />&nbsp;&nbsp;<input class="admin_submit4" type="reset" name="reset" value="&nbsp; 重 置 &nbsp;" /></td>
+		</tr>
+	</table>
+	</form>
+</div>
+</div>
+</div>
+</body>
+</html>

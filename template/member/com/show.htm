@@ -1,0 +1,38 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> 
+   {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">环境展示</span><span class='remind'>以下*为必填项</span></div>
+        <input class="btn_02 mt10 fltL btn_02_ie"   type="button" value="我要上传"  onclick="location.href='index.php?c=show&act=addshow'"/>      
+        <div class="fltL mt10" style="line-height:30px; margin-left:10px;">最佳尺寸：155*110</div>
+        <div class="show_pic fltL">
+          <div id="trlisttwo">
+             <div class="show_pic_list">
+			  {yun:}foreach item=show from=$rows{/yun}   
+				<dl>
+					<dt>
+						<img src=".{yun:}$show.picurl{/yun}" width="220" height="180"/>    
+						<div style="width:100%; line-height:23px;white-space: normal; text-align:center; word-break: break-all;height:23px; overflow:hidden">{yun:}$show.title{/yun}</div>
+						<div class="compl_list_bg"></div>
+					</dt>
+					<dd style="text-align:center;">
+						<a href=".{yun:}$show.picurl{/yun}" target="_blank">查看</a> | 
+						<a href="{yun:}$now_url{/yun}&act=showpic&id={yun:}$show.id{/yun}">修改</a> |
+						<a href="javascript:void(0)" onclick="layer_del('确定要删除该数据？', 'index.php?c=show&&act=del&id={yun:}$show.id{/yun}'); ">删除</a>
+					</dd>
+				</dl>
+                {yun:}foreachelse{/yun}    
+                <div class="show_pic_no">您还没有上传企业展示。</div>
+             {yun:}/foreach{/yun}
+			 </div>   
+			</div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="diggg">{yun:}$pagenav{/yun}</div>
+    </div>
+  </div>
+</div> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

@@ -1,0 +1,45 @@
+{yun:}include file="$friendstyle/header.htm"{/yun}
+<script>
+function search_keywords(){
+	var keyword=$("#keywords").val();
+	if(keyword=="查找对方昵称"){
+		$("#keywords").val('');
+	}
+}
+</script>
+<div class="Personals_content">
+<div class="py_cont">
+{yun:}include file="$friendstyle/left2.htm"{/yun}
+    <div class="Personals_cont">
+    <div class="Personals_my_all">添加好友 </div>
+    <div class="Personals_my_good_h1">
+        <ul>
+            <li class="Personals_my_on">添加好友</li>
+            <li><a href="{yun:}furl url=c:applyfriend{/yun}">好友申请</a></li>
+            <li><a href="{yun:}furl url=c:myfriend{/yun}">管理好友</a></li>
+        </ul>
+    </div>
+    <div class="Personals_my_all_seach">
+    <form action="{yun:}$config.sy_weburl{/yun}/friend/index.php" method="get" onsubmit="return search_keywords();">
+    <input type="hidden" name="c" value="addfriend" />
+    <input type="text" id="keywords" value="{yun:}if $getnm!=""{/yun}{yun:}$getnm{/yun}{yun:}else{/yun}查找对方昵称{yun:}/if{/yun}" class="seach_all_text placeholder" name="nm" onclick="if(this.value=='查找对方昵称'){this.value=''}" onblur="if(this.value==''){this.value='查找对方昵称'}">
+    <input type="submit" value="搜索" class="seach_all_submit"  />
+    </form>
+    </div>
+     <div class="Personals_my_all_list">
+     {yun:}foreach from=$list item=list{/yun}
+      <dl class="Personals_my_all_list_dl">
+      <dt><img src="{yun:}$list.pic_big{/yun}"width="152" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_friend_icon{/yun}',2);"></dt>
+      <dd><a href="{yun:}furl url=c:profile,id:`$list.uid`{/yun}" class="friend_name">{yun:}$list.nickname{/yun}</a></dd>
+      <dd><a href="javascript:;" onclick="addfriend('{yun:}$list.uid{/yun}','{yun:}$list.usertype{/yun}');">加为好友</a></dd>
+      </dl>
+     {yun:}/foreach{/yun}
+   </div>
+    <div class="clear"></div>
+    <div><div class="pages">{yun:}$pagenav{/yun}</div></div>
+    </div>
+      {yun:}include file="$friendstyle/right.htm"{/yun}
+    </div>
+    </div>
+    
+{yun:}include file="$friendstyle/footer.htm"{/yun}

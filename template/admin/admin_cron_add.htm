@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top_bg"></div>
+
+<div class="admin_Prompt">
+<div class="admin_Prompt_span"> 注意事项： 计划任务是一项使系统在规定时间自动执行某些特定任务的功能。 </div>
+<div class="admin_Prompt_close"></div>
+</div>
+
+<div class="infoboxp_top"><span class="admin_title_span">添加计划任务</span><a href="index.php?m=cron"  class="admin_infoboxp_tj">管理计划任务</a>
+
+</div>
+<div class="main_tag">
+<div class="tag_box">
+<div>
+	<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+
+    <form action="index.php?m=cron&c=save" method="post" target="supportiframe">
+    <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    <table width="100%" class="table_form">
+       <tr>
+            <th width="140">任务名称：</th>
+            <td><input class="input-text" type="text" name="name" id="sy_qqappid" value="{yun:}$row.name{/yun}" size="30" maxlength="255"/><font color="gray">如：定期修改职位</font></td>
+        </tr>
+        <tr>
+            <th width="140">任务路径：</th>
+            <td><input class="input-text" type="text" name="dir" id="sy_qqappid" value="{yun:}$row.dir{/yun}" size="30" maxlength="255"/><font color="gray">执行程序文件名,如：index.php,无须填写路径,存放路径/include/cron/</font></td>
+        </tr>
+        <tr>
+            <th width="140">类型：</th>
+            <td>
+              <input type="radio" name="type" value="1" id="sy_qqlogin_0" {yun:}if $row.type=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_qqlogin_0">每周</label>
+              <input type="radio" name="type" value="2" id="sy_qqlogin_1" {yun:}if $row.type=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_qqlogin_1">每月</label>
+              <input type="radio" name="type" value="3" id="sy_qqlogin_1" {yun:}if $row.type=="3"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_qqlogin_1">每天</label>
+             </td>
+        </tr>
+      
+        <tr id="weektrid" {yun:}if $row.type!='1' && $row{/yun} style="display:none"{yun:}/if{/yun}>
+            <th width="140">每周：</th>
+            <td>
+             <select name="week" id="weekid">
+             	{yun:}foreach from=$arrweek key=k item=v{/yun}
+             	<option value="{yun:}$k{/yun}" {yun:}if $row.week==$k{/yun}selected{yun:}/if{/yun}>{yun:}$v{/yun}</option>
+                {yun:}/foreach{/yun}
+             </select>
+             </td>
+        </tr>
+     
+        <tr id="monthtrid" {yun:}if $row.type!='2'{/yun} style="display:none"{yun:}/if{/yun}>
+            <th width="140">每月：</th>
+            <td>
+             <select name="month" id="monthid">
+             	{yun:}foreach from=$montharr key=k item=v{/yun}
+             	<option value="{yun:}$k{/yun}" {yun:}if $row.month==$k{/yun}selected{yun:}/if{/yun}>{yun:}$v{/yun}</option>
+                {yun:}/foreach{/yun}
+             </select>
+             <font color="gray">注：选对30日或31日当月无日期，则不执行</font>
+             </td>
+        </tr>
+        <tr>
+            <th width="140">小时：</th>
+            <td><select name="hour">
+             	{yun:}foreach from=$hourarr key=k item=v{/yun}
+             	<option value="{yun:}$k{/yun}" {yun:}if $row.hour==$k{/yun}selected{yun:}/if{/yun}>{yun:}$v{/yun}</option>
+                {yun:}/foreach{/yun}
+             </select></td>
+        </tr>
+        <tr>
+            <th width="140">分钟：</th>
+            <td><input class="input-text" type="text" name="minute" id="sy_qqappkey" value="{yun:}$row.minute{/yun}" size="40" maxlength="255"/><font color="gray">不填请留空，默认:00</font></td>
+        </tr>
+       <tr>
+            <th width="140">是否执行：</th>
+            <td>
+              <input type="radio" name="display" value="1" id="sy_qqlogin_0" {yun:}if $row.display=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_qqlogin_0">是</label>
+              <input type="radio" name="display" value="2" id="sy_qqlogin_1" {yun:}if $row.display=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_qqlogin_1">否</label>
+             </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+            <input name="id" value="{yun:}$row.id{/yun}" type="hidden">
+            <input class="admin_submit4" id="qqconfig" type="submit" name="msgconfig" value="提交" />&nbsp;&nbsp;
+            <input class="admin_submit4" type="reset" value="重置" /></td>
+        </tr>
+    </table>
+    </form>
+</div>
+</div>
+</div>
+
+<script>
+$(function(){
+	$("input[name=type]").click(function(){
+		var typeid=$(this).val();
+		if(typeid==1){
+			$("#weektrid").show();
+			$("#monthtrid").hide();
+		}else if(typeid==2){
+			$("#monthtrid").show();
+			$("#weektrid").hide();
+		}else{
+			$("#monthtrid").hide();
+			$("#weektrid").hide();
+		}
+	});
+})
+</script></div>
+</body>
+</html>

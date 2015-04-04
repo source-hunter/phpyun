@@ -1,0 +1,9 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="wap_tit">
+  <h1>{yun:}$row.title{/yun}</h1>
+</div>
+<div class="news_cont_ms">{yun:}$row.datetime|date_format:"%Y-%m-%d"{/yun} 来源：{yun:}$row.source{/yun} 点击：<span id="click">{yun:}$row.hits+1{/yun}</span> 次 </div>
+<div class="wap_news_cont">
+  <div class="wap_txt link_lan"> {yun:}$row.content{/yun} </div>
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun}

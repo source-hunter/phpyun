@@ -1,0 +1,17 @@
+<div class="clear"></div>
+<div class=footer>
+<div class=w900>
+<div class=footernav>
+{yun:}foreach from=$menu_name[3] key=key item=footer{/yun}
+{yun:}if $key!='0'{/yun}|{yun:}/if{/yun} <a href="{yun:}$config.sy_weburl{/yun}/{yun:}$footer.url{/yun}" {yun:}if $footer.eject{/yun} target="_blank"{yun:}/if{/yun} style="{yun:}if $footer.color{/yun}color:{yun:}$footer.color{/yun};{yun:}/if{/yun} {yun:}if $footer.bold==1{/yun}font-weight:bolder;{yun:}/if{/yun}">{yun:}$footer.name{/yun}</a>
+{yun:}/foreach{/yun}
+</div>
+</div>
+</div> 
+<div class="clear"></div>
+<div id="bg" {yun:}if $company.hy=="" && ($smarty.get.c=="index" || $smarty.get.c=="") {/yun}style="display:block"{yun:}/if{/yun}></div> 
+<div id="uclogin" style="display:none"></div>
+</div>
+<div class="clear"></div>
+</body>
+</html>

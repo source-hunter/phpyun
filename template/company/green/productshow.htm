@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}-Powered by PHPYun.</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$com_style{/yun}images/css.css" type="text/css">
+</head>
+<body>
+<div>
+  <div class="header">
+    <div class="w1000">
+      <div class="logo">{yun:}if $com.logo{/yun}<img src="{yun:}$com.logo{/yun}" width="185" height="75" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}',2);">{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}" width="185" height="75">{yun:}/if{/yun}</div>
+           <div class="header_rz">
+{yun:}if $usertype=='1'{/yun}
+    {yun:}if $show.id{/yun}
+        <a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" id='atn_{yun:}$com.uid{/yun}'>取消关注</a>
+    {yun:}else{/yun}
+        <a href="javascript:void(0)"  onclick="atn('{yun:}$com.uid{/yun}')" id='atn_{yun:}$com.uid{/yun}'>关注</a>
+    {yun:}/if{/yun}
+{yun:}/if{/yun}
+      </div>
+      <div class="nav">
+        <ul>
+          <li class="nav_cur"><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#about">关于我们<i class="nav_cur_icon"></i></a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#job">招聘职位</a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#pl">评论留言</a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#show">公司环境</a></li>
+          <li><a href="{yun:}curl url=id:`$smarty.get.id`{/yun}#news">公司新闻</a></li>
+          <li><a href="{yun:}$config.sy_weburl{/yun}">人才网首页</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="com_banner">
+    <div class="w1000"> <img src="{yun:}$banner.pic{/yun}" width="1000" height="300"> </div>
+  </div>
+</div>
+<div class="w1000">
+  <div class="about_us"><img src="{yun:}$com_style{/yun}images/icon2.gif" title="产品介绍"></div>
+  <div class="news_h1"> {yun:}$row.title{/yun}</div>
+  <div class="news_p">
+    <div class="pro_img"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$row.pic{/yun}" width="300" height="210"> </div>
+    {yun:}$row.body{/yun}</div>
+</div>
+{yun:}include file="$defaultstyle/footer.htm"{/yun}

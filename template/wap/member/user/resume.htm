@@ -1,0 +1,27 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun} 
+ 
+<script>
+function checkdef(eid){
+	$.post("index.php?c=resume",{type:"def_job",eid:eid},function(data){ 
+	})
+}
+</script>
+<div class="wap_member_comp_h1 mt10"><span>我的简历</span></div>
+<div class="wap_member_Receive">
+{yun:}foreach item=resume from=$rows{/yun}
+<div class="wap_member_msg">
+<span>{yun:}$resume.name{/yun}</span>
+<i>{yun:}$resume.lastupdate|date_format:'%Y-%m-%d'{/yun}</i>
+<div class="wap_member_msg_jl"> 
+<a href="javascript:isdel('index.php?c=resume&del={yun:}$resume.id{/yun}');" class="wap_member_msg_jl_sc">删除</a> 
+<a href="index.php?c=addresume&eid={yun:}$resume.id{/yun}" class="wap_member_msg_jl_sc">修改</a>
+<a href="index.php?c=resume&update={yun:}$resume.id{/yun}" class="wap_member_msg_jl_sc">刷新</a>
+<input type="radio" name="def" value="{yun:}$resume.id{/yun}" onclick="checkdef('{yun:}$resume.id{/yun}');" {yun:}if $def_job.def_job==$resume.id{/yun} checked{yun:}/if{/yun} id='checkdef'/><label for="checkdef">设为默认</label>
+</div>
+</div>
+{yun:}/foreach{/yun}
+</div>
+<!--没有职位提示-->
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

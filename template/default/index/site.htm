@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<link href="{yun:}$style{/yun}/style/site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<script>
+function setsite(cityid,name){
+	$.post("index.php?m=includejs&c=SiteCity",{cityid:cityid,cityname:name},function(data){
+		if(data!=""){
+			window.location.href=data;
+		}
+	});
+}
+function setsite_hy(hyid){
+	$.post("index.php?m=includejs&c=SiteHy",{hyid:hyid},function(data){
+		if(data!=""){
+			window.location.href=data;
+		}
+	});
+}
+function show_site(div_id){
+	if(div_id=='site_city'){
+		$("#site_city").show();
+		$("#site_hy").hide();
+	}else{
+		$("#site_hy").show();
+		$("#site_city").hide();
+	}
+}
+</script>
+<div class="yun_content">
+<div class="index_bo">
+  <div class="clist">
+	<div class="site_list">
+		<div class="site_h1" >
+			<a href="javascript:;" onClick="show_site('site_city')" class="aaa">
+			<strong style="font-size:18px;">城市</strong></a>
+			<a href="javascript:;" onClick="show_site('site_hy')" class="aaa">
+			<strong style="font-size:18px;">行业</strong></a>
+		</div>
+		<div id='site_city'>
+			<dl>
+                <dt>
+                    <a href="javascript:;"  onclick="setsite('nat','{yun:}$config.sy_indexcity{/yun}');"  class="aaa">
+                        {yun:}$config.sy_indexcity{/yun}
+                    </a>
+                </dt>
+				<dd></dd>
+			</dl>
+			{yun:}fz_list fz_list=city_list{/yun}
+			{yun:}foreach key=key item=list from=$city_list{/yun}
+			<dl>
+				<dt>{yun:}$key{/yun}.</dt>
+				<dd>
+				{yun:}foreach  item=city from=$list{/yun}
+					<a href="javascript:;" onClick="setsite('{yun:}$city.id{/yun}','{yun:}$city.name{/yun}');">{yun:}$city.name{/yun}</a>
+				{yun:}/foreach{/yun}
+				</dd>
+			</dl>
+			{yun:}/foreach{/yun}
+		</div>
+		<div id='site_hy' style="display:none">
+			{yun:}hy_list hy_list=hy_list{/yun}
+			<dl>
+				<dd>
+					<a href="javascript:;" onClick="setsite_hy('0');">所有行业</a>
+				</dd>
+			</dl>
+			{yun:}foreach key=key item=list from=$hy_list{/yun}
+			<dl>
+				<dd>
+					<a href="javascript:;" onClick="setsite_hy('{yun:}$list.hy{/yun}');">{yun:}$list.hyname{/yun}</a>
+				</dd>
+			</dl>
+			{yun:}/foreach{/yun}
+		</div>
+	</div>
+  </div>
+</div>
+</div>
+<div class="clear"></div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}
